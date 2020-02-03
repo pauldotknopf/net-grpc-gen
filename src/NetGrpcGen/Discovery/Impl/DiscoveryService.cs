@@ -53,6 +53,19 @@ namespace NetGrpcGen.Discovery.Impl
                     o.Properties.Add(p);
                 }
 
+                foreach (var method in _attributeFinder.FindMethodsWithAttribute<GrpcMethodAttribute>(o.Type))
+                {
+                    var m = new GrpcMethod
+                    {
+                        Name = method.Item1.Name,
+                        Attribute = method.Item2,
+                        Method = method.Item1,
+                        GrpcObject = o
+                    };
+                    
+                    o.Methods.Add(m);
+                }
+                
                 return o;
             }).ToList();
         }

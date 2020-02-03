@@ -45,5 +45,21 @@ namespace NetGrpcGen.Infra.Impl
 
             return result;
         }
+
+        public List<Tuple<MethodInfo, T>> FindMethodsWithAttribute<T>(Type type) where T : class
+        {
+            var result = new List<Tuple<MethodInfo, T>>();
+            
+            foreach (var method in type.GetMethods())
+            {
+                var attribute = method.GetCustomAttributes(typeof(T)).ToList();
+                if (attribute.Count > 0)
+                {
+                    result.Add(new Tuple<MethodInfo, T>(method, attribute[0] as T));
+                }
+            }
+
+            return result;
+        }
     }
 }

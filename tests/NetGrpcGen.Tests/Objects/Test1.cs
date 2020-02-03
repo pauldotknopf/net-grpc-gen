@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using NetGrpcGen.Adapters;
 using NetGrpcGen.ComponentModel;
 using Tests;
@@ -13,7 +14,7 @@ namespace NetGrpcGen.Tests.Objects
         private string _prop;
 
         [GrpcProperty]
-        public string Prop
+        public virtual string Prop
         {
             get => _prop;
             set
@@ -25,6 +26,12 @@ namespace NetGrpcGen.Tests.Objects
                 _prop = value;
                 OnPropertyChanged();
             }
+        }
+
+        [GrpcMethod]
+        public virtual void Method1()
+        {
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -98,6 +105,17 @@ namespace NetGrpcGen.Tests.Objects
                 default:
                     throw new NotSupportedException();
             }
+        }
+
+        public override Task<object> InvokeMethod(Test1 instance, object request)
+        {
+            if (request is Method1Request method1Request)
+            {
+                instance.Method1();
+                return Task.FromResult<object>(new Method1Response());
+            }
+            
+            throw new NotSupportedException();
         }
     }
 }

@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+using NetGrpcGen.Infra;
 
 namespace NetGrpcGen.Adapters
 {
@@ -17,5 +19,7 @@ namespace NetGrpcGen.Adapters
         public abstract void PackValue(TObject instance, TGetPropResponse dest);
         
         public abstract void UnpackValue(TObject instance, TSetPropRequest source);
+
+        public abstract Task<object> InvokeMethod(TObject instance, object request);
     }
 }

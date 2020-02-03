@@ -30,4 +30,9 @@ namespace Tests
     {
         
     }
+
+    public partial class Method1Request : IObjectMessage
+    {
+        
+    }
 }

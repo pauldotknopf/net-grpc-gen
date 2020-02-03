@@ -1,9 +1,11 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using Moq;
 using NetGrpcGen.Adapters;
 using NetGrpcGen.Tests.Objects;
 using Tests;
@@ -16,20 +18,17 @@ namespace NetGrpcGen.Tests
         [Fact]
         public async Task Can_create_and_finalize_object()
         {
-            await WithWithObject((client, stream, instance, objectId) => Task.CompletedTask);
+            var o = new Mock<Test1>();
+            await WithWithObject(o.Object, (client, stream, instance, objectId) => Task.CompletedTask);
         }
         
         [Fact]
         public async Task Can_read_property()
         {
-            await WithWithObject(async (client, stream, instance, objectId) =>
+            var o = new Mock<Test1>();
+            o.SetupGet(x => x.Prop).Returns("testt");
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                instance.Prop = "testt";
-                
-                // Flush the prop-changed event.
-                await stream.ResponseStream.MoveNext();
-                stream.ResponseStream.Current.Unpack<Test1PropChanged>();
-                
                 var result = await client.GetPropertyAsync(new Test1GetPropRequest
                 {
                     Prop = Test1ObjectServiceProperty.Prop,
@@ -46,7 +45,9 @@ namespace NetGrpcGen.Tests
         [Fact]
         public async Task Can_set_property()
         {
-            await WithWithObject(async (client, stream, instance, objectId) =>
+            var o = new Mock<Test1>();
+            o.CallBase = true;
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
                 var result = await client.SetPropertyAsync(new Test1SetPropRequest
                 {
@@ -67,10 +68,24 @@ namespace NetGrpcGen.Tests
                 propChanged.Str.Should().Be("testsdfsdttt");
             });
         }
-
-        private async Task WithWithObject(Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
+        
+        [Fact]
+        public async Task Can_invoke_method()
         {
-            var instance = new Test1();
+            var o = new Mock<Test1>();
+            o.Setup(x => x.Method1());
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+                {
+                    await client.Method1Async(new Method1Request
+                    {
+                        ObjectId = objectId
+                    });
+                    o.Verify(x => x.Method1(), Times.Once);
+                });
+        }
+
+        private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
+        {
             var objectAdapter = new Test1Adapter(instance);
             var serviceAdapter = new ObjectServiceAdapter<Test1,
                 Test1GetPropRequest,
@@ -81,7 +96,7 @@ namespace NetGrpcGen.Tests
                 Test1CreateResponse,
                 Test1StopRequest,
                 Test1StopResponse,
-                Test1ObjectServiceProperty>(objectAdapter);
+                Test1ObjectServiceProperty>(objectAdapter, BuildDiscoveryService(typeof(Test1)).DiscoverObjects().First());
 
             var serverHandler = new Server
             {

@@ -73,11 +73,24 @@ namespace NetGrpcGen.CodeGen
                     writer.WriteLine("\t\tstring str = 3;");
                     writer.WriteLine("\t}");
                     writer.WriteLine("}");
+
+                    foreach (var method in o.Methods)
+                    {
+                        writer.WriteLine($"message {method.Name}Request {{");
+                        writer.WriteLine("\tuint64 objectId = 1;");
+                        writer.WriteLine("}");
+                        writer.WriteLine($"message {method.Name}Response {{");
+                        writer.WriteLine("}");
+                    }
                     
                     writer.WriteLine($"service {serviceName} {{");
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
                     writer.WriteLine($"\trpc GetProperty ({o.Name}GetPropRequest) returns ({o.Name}GetPropResponse);");
                     writer.WriteLine($"\trpc SetProperty ({o.Name}SetPropRequest) returns ({o.Name}SetPropResponse);");
+                    foreach (var method in o.Methods)
+                    {
+                        writer.WriteLine($"\trpc {method.Name}({method.Name}Request) returns ({method.Name}Response);");
+                    }
                     writer.WriteLine("}");
                 }
             }

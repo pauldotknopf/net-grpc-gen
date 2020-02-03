@@ -39,7 +39,7 @@ namespace NetGrpcGen.Tests
         [GrpcObject]
         public class TestObjectWithNotifyPropertyChanging : INotifyPropertyChanged
         {
-            public event PropertyChangedEventHandler PropertyChanged;
+            public event PropertyChangedEventHandler PropertyChanged = delegate {  };
         }
 
         [Fact]

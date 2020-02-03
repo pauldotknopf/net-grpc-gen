@@ -9,5 +9,7 @@ namespace NetGrpcGen.Infra
         List<Tuple<Type, T>> FindObjectsWithAttribute<T>() where T : class;
 
         List<Tuple<PropertyInfo, T>> FindPropertiesWithAttribute<T>(Type type) where T : class;
+        
+        List<Tuple<MethodInfo, T>> FindMethodsWithAttribute<T>(Type type) where T : class;
     }
 }

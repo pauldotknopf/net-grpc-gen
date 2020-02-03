@@ -6,6 +6,7 @@ using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using NetGrpcGen.Infra;
+using NetGrpcGen.Model;
 
 namespace NetGrpcGen.Adapters
 {
@@ -29,11 +30,15 @@ namespace NetGrpcGen.Adapters
         where TStopResponse : IMessage, new()
     {
         private readonly ObjectAdapter<TObject, TGetPropResponse, TSetPropRequest, TPropChanged, TPropertyEnum> _objectAdapter;
+        private readonly GrpcObject _grpcObject;
         private readonly ConcurrentDictionary<ulong, TObject> _objects = new ConcurrentDictionary<ulong, TObject>();
 
-        public ObjectServiceAdapter(ObjectAdapter<TObject, TGetPropResponse, TSetPropRequest, TPropChanged, TPropertyEnum> objectAdapter)
+        public ObjectServiceAdapter(
+            ObjectAdapter<TObject, TGetPropResponse, TSetPropRequest, TPropChanged, TPropertyEnum> objectAdapter,
+            GrpcObject grpcObject)
         {
             _objectAdapter = objectAdapter;
+            _grpcObject = grpcObject;
         }
 
         private async Task Create(
@@ -101,6 +106,16 @@ namespace NetGrpcGen.Adapters
 
             return Task.FromResult(response);
         }
+
+        private async Task<object> InvokeMethod(IObjectMessage request)
+        {
+            if (!_objects.TryGetValue(request.ObjectId, out TObject o))
+            {
+                throw new Exception("Invalid object id.");
+            }
+            
+            return await _objectAdapter.InvokeMethod(o, request);
+        }
         
         private Task<TSetPropResponse> SetProperty(TSetPropRequest request)
         {
@@ -131,6 +146,7 @@ namespace NetGrpcGen.Adapters
                 TStopRequest,
                 TStopResponse,
                 TPropertyEnum> _serviceAdapter;
+            private readonly GrpcObject _grpcObject;
 
             public CustomServiceBinder(ServerServiceDefinition.Builder builder,
                 ObjectServiceAdapter<TObject,
@@ -142,10 +158,12 @@ namespace NetGrpcGen.Adapters
                     TCreateResponse,
                     TStopRequest,
                     TStopResponse,
-                    TPropertyEnum> serviceAdapter)
+                    TPropertyEnum> serviceAdapter,
+                GrpcObject grpcObject)
             {
                 _builder = builder;
                 _serviceAdapter = serviceAdapter;
+                _grpcObject = grpcObject;
             }
 
             public override void AddMethod<TRequest, TResponse>(Method<TRequest, TResponse> method, DuplexStreamingServerMethod<TRequest, TResponse> handler)
@@ -191,7 +209,25 @@ namespace NetGrpcGen.Adapters
                         }));
                         break;
                     default:
-                        throw new NotSupportedException();
+                        bool found = false;
+                        foreach (var invokeMethod in _grpcObject.Methods)
+                        {
+                            if (invokeMethod.Name == method.Name)
+                            {
+                                found = true;
+                                _builder.AddMethod(method, new UnaryServerMethod<TRequest, TResponse>(async (request, context) =>
+                                {
+                                    var response = await _serviceAdapter.InvokeMethod(request as IObjectMessage);
+                                    return response as TResponse;
+                                }));
+                                break;
+                            }
+                        }
+                        if (!found)
+                        {
+                            throw new NotSupportedException();
+                        }
+                        break;
                 }
             }
         }
@@ -199,7 +235,7 @@ namespace NetGrpcGen.Adapters
         public ServerServiceDefinition Create(Action<ServiceBinderBase> configure)
         {
             var builder = ServerServiceDefinition.CreateBuilder();
-            var binder = new CustomServiceBinder(builder, this);
+            var binder = new CustomServiceBinder(builder, this, _grpcObject);
             configure(binder);
             return builder.Build();
         }
