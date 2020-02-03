@@ -107,14 +107,20 @@ namespace NetGrpcGen.Adapters
             return Task.FromResult(response);
         }
 
-        private async Task<object> InvokeMethod(IObjectMessage request)
+        private async Task<TResponse> InvokeMethod<TRequest, TResponse>(TRequest request)
         {
-            if (!_objects.TryGetValue(request.ObjectId, out TObject o))
+            var objectMessage = request as IObjectMessage;
+            if (objectMessage == null)
+            {
+                throw new Exception("Request type doesn't implement IObjectMessage.");
+            }
+            
+            if (!_objects.TryGetValue(objectMessage.ObjectId, out TObject o))
             {
                 throw new Exception("Invalid object id.");
             }
             
-            return await _objectAdapter.InvokeMethod(o, request);
+            return await _objectAdapter.InvokeMethod<TRequest, TResponse>(o, request);
         }
         
         private Task<TSetPropResponse> SetProperty(TSetPropRequest request)
@@ -215,11 +221,7 @@ namespace NetGrpcGen.Adapters
                             if (invokeMethod.Name == method.Name)
                             {
                                 found = true;
-                                _builder.AddMethod(method, new UnaryServerMethod<TRequest, TResponse>(async (request, context) =>
-                                {
-                                    var response = await _serviceAdapter.InvokeMethod(request as IObjectMessage);
-                                    return response as TResponse;
-                                }));
+                                _builder.AddMethod(method, async (request, context) => await _serviceAdapter.InvokeMethod<TRequest, TResponse>(request));
                                 break;
                             }
                         }

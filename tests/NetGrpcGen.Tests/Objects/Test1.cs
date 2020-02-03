@@ -53,6 +53,11 @@ namespace NetGrpcGen.Tests.Objects
         public Test1Adapter(Test1 instance)
         {
             _instance = instance;
+            RegisterMethod<Method1Request, Method1Response>((request, x) =>
+            {
+                x.Method1();
+                return Task.FromResult(new Method1Response());
+            });
         }
         
         public override Test1 Create()
@@ -105,17 +110,6 @@ namespace NetGrpcGen.Tests.Objects
                 default:
                     throw new NotSupportedException();
             }
-        }
-
-        public override Task<object> InvokeMethod(Test1 instance, object request)
-        {
-            if (request is Method1Request method1Request)
-            {
-                instance.Method1();
-                return Task.FromResult<object>(new Method1Response());
-            }
-            
-            throw new NotSupportedException();
         }
     }
 }
