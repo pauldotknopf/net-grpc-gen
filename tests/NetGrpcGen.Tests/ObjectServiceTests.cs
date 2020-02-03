@@ -39,6 +39,24 @@ namespace NetGrpcGen.Tests
             });
         }
 
+        [Fact]
+        public async Task Can_set_property()
+        {
+            await WithWithObject(async (client, instance, objectId) =>
+            {
+                var result = await client.SetPropertyAsync(new Test1SetPropRequest
+                {
+                    Prop = Test1ObjectServiceProperty.Prop,
+                    ObjectId = objectId,
+                    Str = "testsdfsdttt"
+                });
+
+                result.Prop.Should().Be(Test1ObjectServiceProperty.Prop);
+                result.ObjectId.Should().Be(objectId);
+                instance.Prop.Should().Be("testsdfsdttt");
+            });
+        }
+
         private async Task WithWithObject(Func<Test1ObjectService.Test1ObjectServiceClient, Test1, ulong, Task> action)
         {
             var instance = new Test1();
@@ -46,6 +64,8 @@ namespace NetGrpcGen.Tests
             var serviceAdapter = new ObjectServiceAdapter<Test1,
                 Test1GetPropRequest,
                 Test1GetPropResponse,
+                Test1SetPropRequest,
+                Test1SetPropResponse,
                 Test1CreateResponse,
                 Test1StopRequest,
                 Test1StopResponse>(objectAdapter);

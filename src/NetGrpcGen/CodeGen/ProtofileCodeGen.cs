@@ -30,6 +30,19 @@ namespace NetGrpcGen.CodeGen
                     }
                     writer.WriteLine("}");
                     
+                    writer.WriteLine($"message {o.Name}SetPropRequest {{");
+                    writer.WriteLine("\tuint64 objectId = 1;");
+                    writer.WriteLine($"\t{serviceName}Property prop = 2;");
+                    writer.WriteLine("\toneof value {");
+                    writer.WriteLine("\t\tstring str = 3;");
+                    writer.WriteLine("\t}");
+                    writer.WriteLine("}");
+                    
+                    writer.WriteLine($"message {o.Name}SetPropResponse {{");
+                    writer.WriteLine("\tuint64 objectId = 1;");
+                    writer.WriteLine($"\t{serviceName}Property prop = 2;");
+                    writer.WriteLine("}");
+                    
                     writer.WriteLine($"message {o.Name}GetPropRequest {{");
                     writer.WriteLine("\tuint64 objectId = 1;");
                     writer.WriteLine($"\t{serviceName}Property prop = 2;");
@@ -56,6 +69,7 @@ namespace NetGrpcGen.CodeGen
                     writer.WriteLine($"service {serviceName} {{");
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
                     writer.WriteLine($"\trpc GetProperty ({o.Name}GetPropRequest) returns ({o.Name}GetPropResponse);");
+                    writer.WriteLine($"\trpc SetProperty ({o.Name}SetPropRequest) returns ({o.Name}SetPropResponse);");
                     writer.WriteLine("}");
                 }
             }

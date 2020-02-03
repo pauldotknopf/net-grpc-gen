@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -12,19 +11,23 @@ namespace NetGrpcGen.Adapters
     public class ObjectServiceAdapter<TObject,
         TGetPropRequest,
         TGetPropResponse,
+        TSetPropRequest,
+        TSetPropResponse,
         TCreateResponse,
         TStopRequest,
         TStopResponse> : ServiceBinderBase
+        where TSetPropRequest : class, IObjectMessage, new()
+        where TSetPropResponse : class, IMessage, new()
         where TGetPropRequest : class, IObjectMessage, new()
         where TGetPropResponse : class, IMessage, new()
         where TCreateResponse : IObjectMessage, new()
         where TStopRequest : IMessage, new()
         where TStopResponse : IMessage, new()
     {
-        private readonly ObjectAdapter<TObject, TGetPropRequest, TGetPropResponse> _objectAdapter;
+        private readonly ObjectAdapter<TObject, TGetPropRequest, TGetPropResponse, TSetPropRequest, TSetPropResponse> _objectAdapter;
         private readonly ConcurrentDictionary<ulong, TObject> _objects = new ConcurrentDictionary<ulong, TObject>();
 
-        public ObjectServiceAdapter(ObjectAdapter<TObject, TGetPropRequest, TGetPropResponse> objectAdapter)
+        public ObjectServiceAdapter(ObjectAdapter<TObject, TGetPropRequest, TGetPropResponse, TSetPropRequest, TSetPropResponse> objectAdapter)
         {
             _objectAdapter = objectAdapter;
         }
@@ -66,14 +69,38 @@ namespace NetGrpcGen.Adapters
 
             return Task.FromResult(_objectAdapter.GetProperty(o, request));
         }
+        
+        private Task<TSetPropResponse> SetProperty(TSetPropRequest request)
+        {
+            if (!_objects.TryGetValue(request.ObjectId, out TObject o))
+            {
+                throw new Exception("Invalid object id.");
+            }
+
+            return Task.FromResult(_objectAdapter.SetProperty(o, request));
+        }
 
         public class CustomServiceBinder : ServiceBinderBase
         {
             private readonly ServerServiceDefinition.Builder _builder;
-            private readonly ObjectServiceAdapter<TObject, TGetPropRequest, TGetPropResponse, TCreateResponse, TStopRequest, TStopResponse> _serviceAdapter;
+            private readonly ObjectServiceAdapter<TObject,
+                TGetPropRequest,
+                TGetPropResponse,
+                TSetPropRequest,
+                TSetPropResponse,
+                TCreateResponse,
+                TStopRequest,
+                TStopResponse> _serviceAdapter;
 
             public CustomServiceBinder(ServerServiceDefinition.Builder builder,
-                ObjectServiceAdapter<TObject, TGetPropRequest, TGetPropResponse, TCreateResponse, TStopRequest, TStopResponse> serviceAdapter)
+                ObjectServiceAdapter<TObject,
+                    TGetPropRequest,
+                    TGetPropResponse,
+                    TSetPropRequest,
+                    TSetPropResponse,
+                    TCreateResponse,
+                    TStopRequest,
+                    TStopResponse> serviceAdapter)
             {
                 _builder = builder;
                 _serviceAdapter = serviceAdapter;
@@ -111,6 +138,13 @@ namespace NetGrpcGen.Adapters
                         _builder.AddMethod(method, new UnaryServerMethod<TRequest, TResponse>(async (request, context) =>
                         {
                             var response = await _serviceAdapter.GetProperty(request as TGetPropRequest);
+                            return response as TResponse;
+                        }));
+                        break;
+                    case "SetProperty":
+                        _builder.AddMethod(method, new UnaryServerMethod<TRequest, TResponse>(async (request, context) =>
+                        {
+                            var response = await _serviceAdapter.SetProperty(request as TSetPropRequest);
                             return response as TResponse;
                         }));
                         break;

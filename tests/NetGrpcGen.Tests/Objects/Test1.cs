@@ -35,7 +35,11 @@ namespace NetGrpcGen.Tests.Objects
         }
     }
 
-    public class Test1Adapter : ObjectAdapter<Test1, Test1GetPropRequest, Test1GetPropResponse>
+    public class Test1Adapter : ObjectAdapter<Test1,
+        Test1GetPropRequest,
+        Test1GetPropResponse,
+        Test1SetPropRequest,
+        Test1SetPropResponse>
     {
         private readonly Test1 _instance;
 
@@ -61,6 +65,26 @@ namespace NetGrpcGen.Tests.Objects
             {
                 case Test1ObjectServiceProperty.Prop:
                     result.Str = instance.Prop;
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+
+            return result;
+        }
+
+        public override Test1SetPropResponse SetProperty(Test1 instance, Test1SetPropRequest request)
+        {
+            var result = new Test1SetPropResponse
+            {
+                ObjectId = request.ObjectId,
+                Prop = request.Prop
+            };
+            
+            switch (request.Prop)
+            {
+                case Test1ObjectServiceProperty.Prop:
+                    instance.Prop = request.Str;
                     break;
                 default:
                     throw new NotSupportedException();

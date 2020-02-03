@@ -10,4 +10,14 @@ namespace Tests
     {
         
     }
+
+    public partial class Test1SetPropRequest : IObjectMessage
+    {
+        
+    }
+
+    public partial class Test1SetPropResponse : IObjectMessage
+    {
+        
+    }
 }
