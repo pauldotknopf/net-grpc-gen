@@ -33,6 +33,13 @@ message Test1StopRequest {
 }
 message Test1StopResponse {
 }
+message Test1PropChanged {
+	uint64 objectId = 1;
+	Test1ObjectServiceProperty prop = 2;
+	oneof value {
+		string str = 3;
+	}
+}
 service Test1ObjectService {
 	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);
 	rpc GetProperty (Test1GetPropRequest) returns (Test1GetPropResponse);

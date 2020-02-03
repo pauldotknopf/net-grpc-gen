@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -13,21 +14,24 @@ namespace NetGrpcGen.Adapters
         TGetPropResponse,
         TSetPropRequest,
         TSetPropResponse,
+        TPropChanged,
         TCreateResponse,
         TStopRequest,
-        TStopResponse> : ServiceBinderBase
-        where TSetPropRequest : class, IObjectMessage, new()
-        where TSetPropResponse : class, IMessage, new()
-        where TGetPropRequest : class, IObjectMessage, new()
-        where TGetPropResponse : class, IMessage, new()
+        TStopResponse,
+        TPropertyEnum>
+        where TGetPropRequest : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
+        where TGetPropResponse : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
+        where TSetPropRequest : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
+        where TSetPropResponse : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
+        where TPropChanged : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
         where TCreateResponse : IObjectMessage, new()
         where TStopRequest : IMessage, new()
         where TStopResponse : IMessage, new()
     {
-        private readonly ObjectAdapter<TObject, TGetPropRequest, TGetPropResponse, TSetPropRequest, TSetPropResponse> _objectAdapter;
+        private readonly ObjectAdapter<TObject, TGetPropResponse, TSetPropRequest, TPropChanged, TPropertyEnum> _objectAdapter;
         private readonly ConcurrentDictionary<ulong, TObject> _objects = new ConcurrentDictionary<ulong, TObject>();
 
-        public ObjectServiceAdapter(ObjectAdapter<TObject, TGetPropRequest, TGetPropResponse, TSetPropRequest, TSetPropResponse> objectAdapter)
+        public ObjectServiceAdapter(ObjectAdapter<TObject, TGetPropResponse, TSetPropRequest, TPropChanged, TPropertyEnum> objectAdapter)
         {
             _objectAdapter = objectAdapter;
         }
@@ -46,10 +50,31 @@ namespace NetGrpcGen.Adapters
                 var response = new TCreateResponse {ObjectId = tagId};
                 await responseStream.WriteAsync(Any.Pack(response));
 
+                var handler = new PropertyChangedEventHandler((sender, args) =>
+                {
+                    var prop = _objectAdapter.ParsePropertyEnum(args.PropertyName);
+                    var message = new TPropChanged();
+                    message.ObjectId = tagId;
+                    message.Prop = prop;
+                    _objectAdapter.PackValue(o, message);
+                    // TODO: Queue request on the outer context.
+                    responseStream.WriteAsync(Any.Pack(message));
+                });
+                var propChanged = o as INotifyPropertyChanged;
+                if(propChanged != null)
+                {
+                    propChanged.PropertyChanged += handler;
+                }
+                
                 // Wait for a stop request...
                 await requestStream.MoveNext();
                 requestStream.Current.Unpack<TStopRequest>();
 
+                if (propChanged != null)
+                {
+                    propChanged.PropertyChanged -= handler;
+                }
+                
                 // Send the stop response.
                 await responseStream.WriteAsync(Any.Pack(new TStopResponse()));
             }
@@ -67,7 +92,14 @@ namespace NetGrpcGen.Adapters
                 throw new Exception("Invalid object id.");
             }
 
-            return Task.FromResult(_objectAdapter.GetProperty(o, request));
+            var response = new TGetPropResponse
+            {
+                Prop = request.Prop,
+                ObjectId = request.ObjectId
+            };
+            _objectAdapter.PackValue(o, response);
+
+            return Task.FromResult(response);
         }
         
         private Task<TSetPropResponse> SetProperty(TSetPropRequest request)
@@ -76,8 +108,14 @@ namespace NetGrpcGen.Adapters
             {
                 throw new Exception("Invalid object id.");
             }
+            
+            _objectAdapter.UnpackValue(o, request);
 
-            return Task.FromResult(_objectAdapter.SetProperty(o, request));
+            return Task.FromResult(new TSetPropResponse
+            {
+                Prop = request.Prop,
+                ObjectId = request.ObjectId
+            });
         }
 
         public class CustomServiceBinder : ServiceBinderBase
@@ -88,9 +126,11 @@ namespace NetGrpcGen.Adapters
                 TGetPropResponse,
                 TSetPropRequest,
                 TSetPropResponse,
+                TPropChanged,
                 TCreateResponse,
                 TStopRequest,
-                TStopResponse> _serviceAdapter;
+                TStopResponse,
+                TPropertyEnum> _serviceAdapter;
 
             public CustomServiceBinder(ServerServiceDefinition.Builder builder,
                 ObjectServiceAdapter<TObject,
@@ -98,9 +138,11 @@ namespace NetGrpcGen.Adapters
                     TGetPropResponse,
                     TSetPropRequest,
                     TSetPropResponse,
+                    TPropChanged,
                     TCreateResponse,
                     TStopRequest,
-                    TStopResponse> serviceAdapter)
+                    TStopResponse,
+                    TPropertyEnum> serviceAdapter)
             {
                 _builder = builder;
                 _serviceAdapter = serviceAdapter;

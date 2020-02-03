@@ -11,20 +11,24 @@ using Xunit;
 
 namespace NetGrpcGen.Tests
 {
-    public class ObjectServiceTests
+    public class ObjectServiceTests : BaseTests
     {
         [Fact]
         public async Task Can_create_and_finalize_object()
         {
-            await WithWithObject((client, instance, objectId) => Task.CompletedTask);
+            await WithWithObject((client, stream, instance, objectId) => Task.CompletedTask);
         }
         
         [Fact]
         public async Task Can_read_property()
         {
-            await WithWithObject(async (client, instance, objectId) =>
+            await WithWithObject(async (client, stream, instance, objectId) =>
             {
                 instance.Prop = "testt";
+                
+                // Flush the prop-changed event.
+                await stream.ResponseStream.MoveNext();
+                stream.ResponseStream.Current.Unpack<Test1PropChanged>();
                 
                 var result = await client.GetPropertyAsync(new Test1GetPropRequest
                 {
@@ -42,7 +46,7 @@ namespace NetGrpcGen.Tests
         [Fact]
         public async Task Can_set_property()
         {
-            await WithWithObject(async (client, instance, objectId) =>
+            await WithWithObject(async (client, stream, instance, objectId) =>
             {
                 var result = await client.SetPropertyAsync(new Test1SetPropRequest
                 {
@@ -54,10 +58,17 @@ namespace NetGrpcGen.Tests
                 result.Prop.Should().Be(Test1ObjectServiceProperty.Prop);
                 result.ObjectId.Should().Be(objectId);
                 instance.Prop.Should().Be("testsdfsdttt");
+                
+                // Let's make sure we can get the prop changed event.
+                await stream.ResponseStream.MoveNext();
+                var propChanged = stream.ResponseStream.Current.Unpack<Test1PropChanged>();
+                propChanged.Prop.Should().Be(Test1ObjectServiceProperty.Prop);
+                propChanged.ObjectId.Should().Be(objectId);
+                propChanged.Str.Should().Be("testsdfsdttt");
             });
         }
 
-        private async Task WithWithObject(Func<Test1ObjectService.Test1ObjectServiceClient, Test1, ulong, Task> action)
+        private async Task WithWithObject(Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {
             var instance = new Test1();
             var objectAdapter = new Test1Adapter(instance);
@@ -66,9 +77,11 @@ namespace NetGrpcGen.Tests
                 Test1GetPropResponse,
                 Test1SetPropRequest,
                 Test1SetPropResponse,
+                Test1PropChanged,
                 Test1CreateResponse,
                 Test1StopRequest,
-                Test1StopResponse>(objectAdapter);
+                Test1StopResponse,
+                Test1ObjectServiceProperty>(objectAdapter);
 
             var serverHandler = new Server
             {
@@ -89,13 +102,15 @@ namespace NetGrpcGen.Tests
 
             var objectId = stream.ResponseStream.Current.Unpack<Test1CreateResponse>().ObjectId;
 
-            await action(client, instance, objectId);
+            await action(client, stream, instance, objectId);
             
             // Finalize the object.
             await stream.RequestStream.WriteAsync(Any.Pack(new Test1StopRequest()));
             (await stream.ResponseStream.MoveNext()).Should().BeTrue();
             stream.ResponseStream.Current.Unpack<Test1StopResponse>();
             stream.Dispose();
+
+            await serverHandler.ShutdownAsync();
         }
     }
 }

@@ -36,10 +36,10 @@ namespace NetGrpcGen.Tests.Objects
     }
 
     public class Test1Adapter : ObjectAdapter<Test1,
-        Test1GetPropRequest,
         Test1GetPropResponse,
         Test1SetPropRequest,
-        Test1SetPropResponse>
+        Test1PropChanged,
+        Test1ObjectServiceProperty>
     {
         private readonly Test1 _instance;
 
@@ -53,44 +53,51 @@ namespace NetGrpcGen.Tests.Objects
             return _instance;
         }
 
-        public override Test1GetPropResponse GetProperty(Test1 instance, Test1GetPropRequest request)
+        public override Test1ObjectServiceProperty ParsePropertyEnum(string propertyName)
         {
-            var result = new Test1GetPropResponse
+            switch (propertyName)
             {
-                ObjectId = request.ObjectId,
-                Prop = request.Prop
-            };
-            
-            switch (request.Prop)
-            {
-                case Test1ObjectServiceProperty.Prop:
-                    result.Str = instance.Prop;
-                    break;
+                case "Prop":
+                    return Test1ObjectServiceProperty.Prop;
                 default:
                     throw new NotSupportedException();
             }
-
-            return result;
         }
 
-        public override Test1SetPropResponse SetProperty(Test1 instance, Test1SetPropRequest request)
+        public override void PackValue(Test1 instance, Test1GetPropResponse dest)
         {
-            var result = new Test1SetPropResponse
-            {
-                ObjectId = request.ObjectId,
-                Prop = request.Prop
-            };
-            
-            switch (request.Prop)
+            switch (dest.Prop)
             {
                 case Test1ObjectServiceProperty.Prop:
-                    instance.Prop = request.Str;
+                    dest.Str = instance.Prop;
                     break;
                 default:
                     throw new NotSupportedException();
             }
+        }
 
-            return result;
+        public override void PackValue(Test1 instance, Test1PropChanged dest)
+        {
+            switch (dest.Prop)
+            {
+                case Test1ObjectServiceProperty.Prop:
+                    dest.Str = instance.Prop;
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
+        public override void UnpackValue(Test1 instance, Test1SetPropRequest source)
+        {
+            switch (source.Prop)
+            {
+                case Test1ObjectServiceProperty.Prop:
+                    instance.Prop = source.Str;
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
         }
     }
 }

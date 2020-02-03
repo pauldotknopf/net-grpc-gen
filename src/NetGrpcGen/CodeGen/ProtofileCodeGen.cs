@@ -66,6 +66,14 @@ namespace NetGrpcGen.CodeGen
                     writer.WriteLine($"message {o.Name}StopResponse {{");
                     writer.WriteLine("}");
                     
+                    writer.WriteLine($"message {o.Name}PropChanged {{");
+                    writer.WriteLine("\tuint64 objectId = 1;");
+                    writer.WriteLine($"\t{serviceName}Property prop = 2;");
+                    writer.WriteLine("\toneof value {");
+                    writer.WriteLine("\t\tstring str = 3;");
+                    writer.WriteLine("\t}");
+                    writer.WriteLine("}");
+                    
                     writer.WriteLine($"service {serviceName} {{");
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
                     writer.WriteLine($"\trpc GetProperty ({o.Name}GetPropRequest) returns ({o.Name}GetPropResponse);");
