@@ -34,6 +34,12 @@ namespace NetGrpcGen.Tests.Objects
             
         }
 
+        [GrpcMethod]
+        public virtual int MethodWithReturnInt()
+        {
+            return 3;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -58,13 +64,17 @@ namespace NetGrpcGen.Tests.Objects
                 x.Method1();
                 return Task.FromResult(new Method1Response());
             });
+            RegisterMethod<MethodWithReturnIntRequest, MethodWithReturnIntResponse>((request, x) => Task.FromResult(new MethodWithReturnIntResponse
+            {
+                Response = x.MethodWithReturnInt()
+            }));
         }
         
         public override Test1 Create()
         {
             return _instance;
         }
-
+        
         public override Test1ObjectServiceProperty ParsePropertyEnum(string propertyName)
         {
             switch (propertyName)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -78,8 +79,18 @@ namespace NetGrpcGen.CodeGen
                     {
                         writer.WriteLine($"message {method.Name}Request {{");
                         writer.WriteLine("\tuint64 objectId = 1;");
+                        index = 1;
+                        foreach (var arg in method.Arguments)
+                        {
+                            index++;
+                            writer.WriteLine($"\t{ToGrpcType(arg.DataType)} {arg.Name} = {index};");
+                        }
                         writer.WriteLine("}");
                         writer.WriteLine($"message {method.Name}Response {{");
+                        if (method.ReturnType != null)
+                        {
+                            writer.WriteLine($"\t{ToGrpcType(method.ReturnType.Value)} response = 1;");
+                        }
                         writer.WriteLine("}");
                     }
                     
@@ -93,6 +104,21 @@ namespace NetGrpcGen.CodeGen
                     }
                     writer.WriteLine("}");
                 }
+            }
+        }
+
+        private string ToGrpcType(GrpcDataType dataType)
+        {
+            switch (dataType)
+            {
+                case GrpcDataType.Complex:
+                    return "string";
+                case GrpcDataType.String:
+                    return "string";
+                case GrpcDataType.Int32:
+                    return "sint32";
+                default:
+                    throw new NotSupportedException();
             }
         }
     }

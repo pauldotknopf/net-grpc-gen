@@ -41,14 +41,7 @@ namespace NetGrpcGen.Discovery.Impl
                         GrpcObject = o
                     };
                     
-                    if (p.Property.PropertyType == typeof(string))
-                    {
-                        p.PropertyType = GrpcPropertyType.String;
-                    }
-                    else
-                    {
-                        throw new Exception($"Invalid property type {p.Property.PropertyType.Name} for {p.Name} on {o.Name}");
-                    }
+                    p.DataType = GetDataType(p.Property.PropertyType);
                     
                     o.Properties.Add(p);
                 }
@@ -62,12 +55,47 @@ namespace NetGrpcGen.Discovery.Impl
                         Method = method.Item1,
                         GrpcObject = o
                     };
+
+                    if (m.Method.ReturnType != typeof(void))
+                    {
+                        m.ReturnType = GetDataType(m.Method.ReturnType);
+                    }
+
+                    foreach (var arg in m.Method.GetParameters())
+                    {
+                        m.Arguments.Add(new GrpcArgument
+                        {
+                            Name = arg.Name,
+                            Type = arg.ParameterType,
+                            DataType = GetDataType(arg.ParameterType)
+                        });
+                    }
                     
                     o.Methods.Add(m);
                 }
                 
                 return o;
             }).ToList();
+        }
+
+        private GrpcDataType GetDataType(Type type)
+        {
+            if (type == typeof(String))
+            {
+                return GrpcDataType.String;
+            }
+
+            if (type == typeof(int))
+            {
+                return GrpcDataType.Int32;
+            }
+
+            if (type.IsClass)
+            {
+                return GrpcDataType.Complex;
+            }
+            
+            throw new NotSupportedException("Invalid data type: " + type.FullName);
         }
     }
 }

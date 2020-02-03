@@ -13,6 +13,6 @@ namespace NetGrpcGen.Model
         
         public PropertyInfo Property { get; set; }
         
-        public GrpcPropertyType PropertyType { get; set; }
+        public GrpcDataType DataType { get; set; }
     }
 }

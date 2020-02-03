@@ -35,4 +35,9 @@ namespace Tests
     {
         
     }
+
+    public partial class MethodWithReturnIntRequest : IObjectMessage
+    {
+        
+    }
 }
