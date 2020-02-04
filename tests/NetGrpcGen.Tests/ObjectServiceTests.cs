@@ -99,6 +99,22 @@ namespace NetGrpcGen.Tests
                 o.Verify(x => x.MethodWithReturnInt(), Times.Once);
             });
         }
+        
+        [Fact]
+        public async Task Can_invoke_async_method()
+        {
+            var o = new Mock<Test1>();
+            o.Setup(x => x.MethodWithReturnIntA()).Returns(Task.FromResult(20));
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                var response = await client.MethodWithReturnIntAAsync(new MethodWithReturnIntARequest()
+                {
+                    ObjectId = objectId
+                });
+                response.Response.Should().Be(20);
+                o.Verify(x => x.MethodWithReturnIntA(), Times.Once);
+            });
+        }
 
         private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {

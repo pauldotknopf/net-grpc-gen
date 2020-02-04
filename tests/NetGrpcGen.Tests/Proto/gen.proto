@@ -51,10 +51,17 @@ message MethodWithReturnIntRequest {
 message MethodWithReturnIntResponse {
 	sint32 response = 1;
 }
+message MethodWithReturnIntARequest {
+	uint64 objectId = 1;
+}
+message MethodWithReturnIntAResponse {
+	sint32 response = 1;
+}
 service Test1ObjectService {
 	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);
 	rpc GetProperty (Test1GetPropRequest) returns (Test1GetPropResponse);
 	rpc SetProperty (Test1SetPropRequest) returns (Test1SetPropResponse);
 	rpc Method1(Method1Request) returns (Method1Response);
 	rpc MethodWithReturnInt(MethodWithReturnIntRequest) returns (MethodWithReturnIntResponse);
+	rpc MethodWithReturnIntA(MethodWithReturnIntARequest) returns (MethodWithReturnIntAResponse);
 }

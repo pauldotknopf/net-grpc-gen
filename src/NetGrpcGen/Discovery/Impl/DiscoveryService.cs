@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using NetGrpcGen.ComponentModel;
 using NetGrpcGen.Infra;
 using NetGrpcGen.Model;
@@ -56,9 +57,32 @@ namespace NetGrpcGen.Discovery.Impl
                         GrpcObject = o
                     };
 
-                    if (m.Method.ReturnType != typeof(void))
+                    if (typeof(Task).IsAssignableFrom(m.Method.ReturnType))
                     {
-                        m.ReturnType = GetDataType(m.Method.ReturnType);
+                        // This is an async method.
+                        var generateParameters = m.Method.ReturnType.GetGenericArguments();
+                        if (generateParameters.Length == 0)
+                        {
+                            m.ReturnType = null;
+                        }
+                        else
+                        {
+                            if (generateParameters.Length > 1)
+                            {
+                                // Huh?
+                                throw new NotSupportedException();
+                            }
+                            m.ReturnType = GetDataType(generateParameters[0]);
+                        }
+
+                        m.IsAsync = true;
+                    }
+                    else
+                    {
+                        if (m.Method.ReturnType != typeof(void))
+                        {
+                            m.ReturnType = GetDataType(m.Method.ReturnType);
+                        }
                     }
 
                     foreach (var arg in m.Method.GetParameters())

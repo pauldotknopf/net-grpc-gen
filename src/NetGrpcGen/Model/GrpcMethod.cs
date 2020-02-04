@@ -21,6 +21,8 @@ namespace NetGrpcGen.Model
         
         public GrpcDataType? ReturnType { get; set; }
         
+        public bool IsAsync { get; set; }
+        
         public List<GrpcArgument> Arguments { get; set; }
     }
 }

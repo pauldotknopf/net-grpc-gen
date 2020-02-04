@@ -40,6 +40,12 @@ namespace NetGrpcGen.Tests.Objects
             return 3;
         }
 
+        [GrpcMethod]
+        public virtual Task<int> MethodWithReturnIntA()
+        {
+            return Task.FromResult(5);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -68,6 +74,10 @@ namespace NetGrpcGen.Tests.Objects
             {
                 Response = x.MethodWithReturnInt()
             }));
+            RegisterMethod<MethodWithReturnIntARequest, MethodWithReturnIntAResponse>(async (request, x) => new MethodWithReturnIntAResponse
+            {
+                Response = await x.MethodWithReturnIntA()
+            });
         }
         
         public override Test1 Create()
