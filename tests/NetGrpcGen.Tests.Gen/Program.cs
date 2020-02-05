@@ -9,7 +9,7 @@ namespace NetGrpcGen.Tests.Gen
     {
         static void Main(string[] args)
         {
-            var outputFile = "/home/pknopf/git/net-grpc-gen/tests/NetGrpcGen.Tests/Proto/gen.proto";
+            var outputFile = "/home/pknopf/git/net-grpc-gen/tests/NetGrpcGen.Tests/Objects/gen.proto";
             if (File.Exists(outputFile))
             {
                 File.Delete(outputFile);

@@ -22,41 +22,6 @@ namespace NetGrpcGen.CodeGen
                 {
                     var serviceName = $"{o.Name}ObjectService";
                     
-                    writer.WriteLine($"enum {serviceName}Property {{");
-                    int index = 0;
-                    foreach (var prop in o.Properties.OrderBy(x => x.Name))
-                    {
-                        writer.WriteLine($"\t{prop.Name} = {index};");
-                        index++;
-                    }
-                    writer.WriteLine("}");
-                    
-                    writer.WriteLine($"message {o.Name}SetPropRequest {{");
-                    writer.WriteLine("\tuint64 objectId = 1;");
-                    writer.WriteLine($"\t{serviceName}Property prop = 2;");
-                    writer.WriteLine("\toneof value {");
-                    writer.WriteLine("\t\tstring str = 3;");
-                    writer.WriteLine("\t}");
-                    writer.WriteLine("}");
-                    
-                    writer.WriteLine($"message {o.Name}SetPropResponse {{");
-                    writer.WriteLine("\tuint64 objectId = 1;");
-                    writer.WriteLine($"\t{serviceName}Property prop = 2;");
-                    writer.WriteLine("}");
-                    
-                    writer.WriteLine($"message {o.Name}GetPropRequest {{");
-                    writer.WriteLine("\tuint64 objectId = 1;");
-                    writer.WriteLine($"\t{serviceName}Property prop = 2;");
-                    writer.WriteLine("}");
-                    
-                    writer.WriteLine($"message {o.Name}GetPropResponse {{");
-                    writer.WriteLine("\tuint64 objectId = 1;");
-                    writer.WriteLine($"\t{serviceName}Property prop = 2;");
-                    writer.WriteLine("\toneof value {");
-                    writer.WriteLine("\t\tstring str = 3;");
-                    writer.WriteLine("\t}");
-                    writer.WriteLine("}");
-                    
                     writer.WriteLine($"message {o.Name}CreateResponse {{");
                     writer.WriteLine("\tuint64 objectId = 1;");
                     writer.WriteLine("}");
@@ -67,40 +32,30 @@ namespace NetGrpcGen.CodeGen
                     writer.WriteLine($"message {o.Name}StopResponse {{");
                     writer.WriteLine("}");
                     
-                    writer.WriteLine($"message {o.Name}PropChanged {{");
-                    writer.WriteLine("\tuint64 objectId = 1;");
-                    writer.WriteLine($"\t{serviceName}Property prop = 2;");
-                    writer.WriteLine("\toneof value {");
-                    writer.WriteLine("\t\tstring str = 3;");
-                    writer.WriteLine("\t}");
-                    writer.WriteLine("}");
-
-                    foreach (var method in o.Methods)
-                    {
-                        writer.WriteLine($"message {method.Name}Request {{");
-                        writer.WriteLine("\tuint64 objectId = 1;");
-                        index = 1;
-                        foreach (var arg in method.Arguments)
-                        {
-                            index++;
-                            writer.WriteLine($"\t{ToGrpcType(arg.DataType)} {arg.Name} = {index};");
-                        }
-                        writer.WriteLine("}");
-                        writer.WriteLine($"message {method.Name}Response {{");
-                        if (method.ReturnType != null)
-                        {
-                            writer.WriteLine($"\t{ToGrpcType(method.ReturnType.Value)} response = 1;");
-                        }
-                        writer.WriteLine("}");
-                    }
+                    // foreach (var method in o.Methods)
+                    // {
+                    //     writer.WriteLine($"message {method.Name}Request {{");
+                    //     writer.WriteLine("\tuint64 objectId = 1;");
+                    //     index = 1;
+                    //     foreach (var arg in method.Arguments)
+                    //     {
+                    //         index++;
+                    //         writer.WriteLine($"\t{ToGrpcType(arg.DataType)} {arg.Name} = {index};");
+                    //     }
+                    //     writer.WriteLine("}");
+                    //     writer.WriteLine($"message {method.Name}Response {{");
+                    //     if (method.ReturnType != null)
+                    //     {
+                    //         writer.WriteLine($"\t{ToGrpcType(method.ReturnType.Value)} response = 1;");
+                    //     }
+                    //     writer.WriteLine("}");
+                    // }
                     
                     writer.WriteLine($"service {serviceName} {{");
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
-                    writer.WriteLine($"\trpc GetProperty ({o.Name}GetPropRequest) returns ({o.Name}GetPropResponse);");
-                    writer.WriteLine($"\trpc SetProperty ({o.Name}SetPropRequest) returns ({o.Name}SetPropResponse);");
                     foreach (var method in o.Methods)
                     {
-                        writer.WriteLine($"\trpc {method.Name}({method.Name}Request) returns ({method.Name}Response);");
+                        writer.WriteLine($"\trpc {method.Name} ({method.RequestType.TypeName}) returns ({method.ResponseType.TypeName});");
                     }
                     writer.WriteLine("}");
                 }

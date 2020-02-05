@@ -1,5 +1,8 @@
+using System;
 using System.ComponentModel;
 using FluentAssertions;
+using Google.Protobuf;
+using Google.Protobuf.Reflection;
 using NetGrpcGen.ComponentModel;
 using Xunit;
 
@@ -49,6 +52,29 @@ namespace NetGrpcGen.Tests
             var result = discoveryService.DiscoverObjects();
             result.Count.Should().Be(1);
             result[0].ImplementedINotify.Should().BeTrue();
+        }
+
+        [GrpcObject]
+        public class TestObjectWithMethod
+        {
+            [GrpcMethod]
+            public DummyMessage1 TestMethod(DummyMessage2 request)
+            {
+                return new DummyMessage1();
+            }
+        }
+        
+        [Fact]
+        public void Can_discover_method()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithMethod));
+            var result = discoveryService.DiscoverObjects();
+            result.Count.Should().Be(1);
+            result[0].Methods.Should().HaveCount(1);
+            result[0].Methods[0].Name.Should().Be("TestMethod");
+            result[0].Methods[0].IsAsync.Should().BeFalse();
+            result[0].Methods[0].RequestType.TypeName.Should().Be("DummyMessage2");
+            result[0].Methods[0].ResponseType.TypeName.Should().Be("DummyMessage1");
         }
 
         [GrpcObject]

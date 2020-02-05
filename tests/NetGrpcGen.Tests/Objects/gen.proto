@@ -1,0 +1,16 @@
+syntax = "proto3";
+package Tests;
+import "google/protobuf/any.proto";
+import "types.proto";
+message Test1CreateResponse {
+	uint64 objectId = 1;
+}
+message Test1StopRequest {
+}
+message Test1StopResponse {
+}
+service Test1ObjectService {
+	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);
+	rpc TestMethod (TestMessageRequest) returns (TestMessageResponse);
+	rpc TestMethodSync (TestMessageRequest) returns (TestMessageResponse);
+}

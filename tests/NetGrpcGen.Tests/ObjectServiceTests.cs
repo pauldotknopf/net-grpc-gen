@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Google.Protobuf.WellKnownTypes;
@@ -21,114 +20,52 @@ namespace NetGrpcGen.Tests
             var o = new Mock<Test1>();
             await WithWithObject(o.Object, (client, stream, instance, objectId) => Task.CompletedTask);
         }
-        
-        [Fact]
-        public async Task Can_read_property()
-        {
-            var o = new Mock<Test1>();
-            o.SetupGet(x => x.Prop).Returns("testt");
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
-            {
-                var result = await client.GetPropertyAsync(new Test1GetPropRequest
-                {
-                    Prop = Test1ObjectServiceProperty.Prop,
-                    ObjectId = objectId
-                });
-
-                result.Prop.Should().Be(Test1ObjectServiceProperty.Prop);
-                result.ObjectId.Should().Be(objectId);
-                result.ValueCase.Should().Be(Test1GetPropResponse.ValueOneofCase.Str);
-                result.Str.Should().Be("testt");
-            });
-        }
 
         [Fact]
-        public async Task Can_set_property()
+        public async Task Can_invoke_method()
         {
             var o = new Mock<Test1>();
             o.CallBase = true;
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var result = await client.SetPropertyAsync(new Test1SetPropRequest
+                var response = await client.TestMethodAsync(new TestMessageRequest
                 {
-                    Prop = Test1ObjectServiceProperty.Prop,
                     ObjectId = objectId,
-                    Str = "testsdfsdttt"
+                    Value1 = 3,
+                    Value2 = "234"
                 });
-
-                result.Prop.Should().Be(Test1ObjectServiceProperty.Prop);
-                result.ObjectId.Should().Be(objectId);
-                instance.Prop.Should().Be("testsdfsdttt");
-                
-                // Let's make sure we can get the prop changed event.
-                await stream.ResponseStream.MoveNext();
-                var propChanged = stream.ResponseStream.Current.Unpack<Test1PropChanged>();
-                propChanged.Prop.Should().Be(Test1ObjectServiceProperty.Prop);
-                propChanged.ObjectId.Should().Be(objectId);
-                propChanged.Str.Should().Be("testsdfsdttt");
+                response.Value1.Should().Be(3);
+                response.Value2.Should().Be("234");
+                o.Verify(x => x.TestMethod(It.IsAny<TestMessageRequest>()), Times.Once());
             });
         }
         
         [Fact]
-        public async Task Can_invoke_method()
+        public async Task Can_invoke_method_sync()
         {
             var o = new Mock<Test1>();
-            o.Setup(x => x.Method1());
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
-                {
-                    await client.Method1Async(new Method1Request
-                    {
-                        ObjectId = objectId
-                    });
-                    o.Verify(x => x.Method1(), Times.Once);
-                });
-        }
-        
-        [Fact]
-        public async Task Can_invoke_method_with_return_type()
-        {
-            var o = new Mock<Test1>();
-            o.Setup(x => x.MethodWithReturnInt()).Returns(5);
+            o.CallBase = true;
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.MethodWithReturnIntAsync(new MethodWithReturnIntRequest
+                var response = await client.TestMethodSyncAsync(new TestMessageRequest
                 {
-                    ObjectId = objectId
+                    ObjectId = objectId,
+                    Value1 = 3,
+                    Value2 = "234"
                 });
-                response.Response.Should().Be(5);
-                o.Verify(x => x.MethodWithReturnInt(), Times.Once);
+                response.Value1.Should().Be(3);
+                response.Value2.Should().Be("234");
+                o.Verify(x => x.TestMethodSync(It.IsAny<TestMessageRequest>()), Times.Once());
             });
         }
-        
-        [Fact]
-        public async Task Can_invoke_async_method()
-        {
-            var o = new Mock<Test1>();
-            o.Setup(x => x.MethodWithReturnIntA()).Returns(Task.FromResult(20));
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
-            {
-                var response = await client.MethodWithReturnIntAAsync(new MethodWithReturnIntARequest()
-                {
-                    ObjectId = objectId
-                });
-                response.Response.Should().Be(20);
-                o.Verify(x => x.MethodWithReturnIntA(), Times.Once);
-            });
-        }
-
+       
         private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {
             var objectAdapter = new Test1Adapter(instance);
             var serviceAdapter = new ObjectServiceAdapter<Test1,
-                Test1GetPropRequest,
-                Test1GetPropResponse,
-                Test1SetPropRequest,
-                Test1SetPropResponse,
-                Test1PropChanged,
                 Test1CreateResponse,
                 Test1StopRequest,
-                Test1StopResponse,
-                Test1ObjectServiceProperty>(objectAdapter, BuildDiscoveryService(typeof(Test1)).DiscoverObjects().First());
+                Test1StopResponse>(objectAdapter, BuildDiscoveryService(typeof(Test1)).DiscoverObjects().First());
 
             var serverHandler = new Server
             {

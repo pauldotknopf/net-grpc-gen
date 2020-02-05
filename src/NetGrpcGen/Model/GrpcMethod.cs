@@ -6,11 +6,6 @@ namespace NetGrpcGen.Model
 {
     public class GrpcMethod
     {
-        public GrpcMethod()
-        {
-            Arguments = new List<GrpcArgument>();
-        }
-        
         public string Name { get; set; }
         
         public GrpcMethodAttribute Attribute { get; set; }
@@ -19,10 +14,10 @@ namespace NetGrpcGen.Model
         
         public MethodInfo Method { get; set; }
         
-        public GrpcDataType? ReturnType { get; set; }
-        
         public bool IsAsync { get; set; }
         
-        public List<GrpcArgument> Arguments { get; set; }
+        public GrpcType RequestType { get; set; }
+        
+        public GrpcType ResponseType { get; set; }
     }
 }

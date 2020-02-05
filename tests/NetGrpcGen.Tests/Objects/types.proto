@@ -1,0 +1,13 @@
+syntax = "proto3";
+package Tests;
+
+message TestMessageRequest {
+	uint64 objectId = 1;
+	uint64 value1 = 2;
+	string value2 = 3;
+}
+
+message TestMessageResponse {
+	uint64 value1 = 1;
+	string value2 = 2;
+}

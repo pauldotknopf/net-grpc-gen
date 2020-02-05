@@ -11,30 +11,19 @@ using NetGrpcGen.Model;
 namespace NetGrpcGen.Adapters
 {
     public class ObjectServiceAdapter<TObject,
-        TGetPropRequest,
-        TGetPropResponse,
-        TSetPropRequest,
-        TSetPropResponse,
-        TPropChanged,
         TCreateResponse,
         TStopRequest,
-        TStopResponse,
-        TPropertyEnum>
-        where TGetPropRequest : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
-        where TGetPropResponse : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
-        where TSetPropRequest : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
-        where TSetPropResponse : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
-        where TPropChanged : class, IObjectMessage, IPropertyMessage<TPropertyEnum>, new()
+        TStopResponse>
         where TCreateResponse : IObjectMessage, new()
         where TStopRequest : IMessage, new()
         where TStopResponse : IMessage, new()
     {
-        private readonly ObjectAdapter<TObject, TGetPropResponse, TSetPropRequest, TPropChanged, TPropertyEnum> _objectAdapter;
+        private readonly ObjectAdapter<TObject> _objectAdapter;
         private readonly GrpcObject _grpcObject;
         private readonly ConcurrentDictionary<ulong, TObject> _objects = new ConcurrentDictionary<ulong, TObject>();
 
         public ObjectServiceAdapter(
-            ObjectAdapter<TObject, TGetPropResponse, TSetPropRequest, TPropChanged, TPropertyEnum> objectAdapter,
+            ObjectAdapter<TObject> objectAdapter,
             GrpcObject grpcObject)
         {
             _objectAdapter = objectAdapter;
@@ -55,31 +44,10 @@ namespace NetGrpcGen.Adapters
                 var response = new TCreateResponse {ObjectId = tagId};
                 await responseStream.WriteAsync(Any.Pack(response));
 
-                var handler = new PropertyChangedEventHandler((sender, args) =>
-                {
-                    var prop = _objectAdapter.ParsePropertyEnum(args.PropertyName);
-                    var message = new TPropChanged();
-                    message.ObjectId = tagId;
-                    message.Prop = prop;
-                    _objectAdapter.PackValue(o, message);
-                    // TODO: Queue request on the outer context.
-                    responseStream.WriteAsync(Any.Pack(message));
-                });
-                var propChanged = o as INotifyPropertyChanged;
-                if(propChanged != null)
-                {
-                    propChanged.PropertyChanged += handler;
-                }
-                
                 // Wait for a stop request...
                 await requestStream.MoveNext();
                 requestStream.Current.Unpack<TStopRequest>();
 
-                if (propChanged != null)
-                {
-                    propChanged.PropertyChanged -= handler;
-                }
-                
                 // Send the stop response.
                 await responseStream.WriteAsync(Any.Pack(new TStopResponse()));
             }
@@ -89,25 +57,8 @@ namespace NetGrpcGen.Adapters
                 _objects.TryRemove(tagId, out o);
             }
         }
-
-        private Task<TGetPropResponse> GetProperty(TGetPropRequest request)
-        {
-            if (!_objects.TryGetValue(request.ObjectId, out TObject o))
-            {
-                throw new Exception("Invalid object id.");
-            }
-
-            var response = new TGetPropResponse
-            {
-                Prop = request.Prop,
-                ObjectId = request.ObjectId
-            };
-            _objectAdapter.PackValue(o, response);
-
-            return Task.FromResult(response);
-        }
-
-        private async Task<TResponse> InvokeMethod<TRequest, TResponse>(TRequest request)
+        
+        private async Task<TResponse> InvokeMethod<TRequest, TResponse>(GrpcMethod method, TRequest request)
         {
             var objectMessage = request as IObjectMessage;
             if (objectMessage == null)
@@ -119,52 +70,33 @@ namespace NetGrpcGen.Adapters
             {
                 throw new Exception("Invalid object id.");
             }
-            
-            return await _objectAdapter.InvokeMethod<TRequest, TResponse>(o, request);
-        }
-        
-        private Task<TSetPropResponse> SetProperty(TSetPropRequest request)
-        {
-            if (!_objects.TryGetValue(request.ObjectId, out TObject o))
+
+            var response = method.Method.Invoke(o, new object[] { request });
+
+            if (response is Task task)
             {
-                throw new Exception("Invalid object id.");
+                await task;
+                var result = (object)((dynamic)task).Result;
+                return (TResponse)result;
             }
-            
-            _objectAdapter.UnpackValue(o, request);
-
-            return Task.FromResult(new TSetPropResponse
-            {
-                Prop = request.Prop,
-                ObjectId = request.ObjectId
-            });
+                
+            return (TResponse)response;
         }
-
+       
         public class CustomServiceBinder : ServiceBinderBase
         {
             private readonly ServerServiceDefinition.Builder _builder;
             private readonly ObjectServiceAdapter<TObject,
-                TGetPropRequest,
-                TGetPropResponse,
-                TSetPropRequest,
-                TSetPropResponse,
-                TPropChanged,
                 TCreateResponse,
                 TStopRequest,
-                TStopResponse,
-                TPropertyEnum> _serviceAdapter;
+                TStopResponse> _serviceAdapter;
             private readonly GrpcObject _grpcObject;
 
             public CustomServiceBinder(ServerServiceDefinition.Builder builder,
                 ObjectServiceAdapter<TObject,
-                    TGetPropRequest,
-                    TGetPropResponse,
-                    TSetPropRequest,
-                    TSetPropResponse,
-                    TPropChanged,
                     TCreateResponse,
                     TStopRequest,
-                    TStopResponse,
-                    TPropertyEnum> serviceAdapter,
+                    TStopResponse> serviceAdapter,
                 GrpcObject grpcObject)
             {
                 _builder = builder;
@@ -200,20 +132,6 @@ namespace NetGrpcGen.Adapters
             {
                 switch (method.Name)
                 {
-                    case "GetProperty":
-                        _builder.AddMethod(method, new UnaryServerMethod<TRequest, TResponse>(async (request, context) =>
-                        {
-                            var response = await _serviceAdapter.GetProperty(request as TGetPropRequest);
-                            return response as TResponse;
-                        }));
-                        break;
-                    case "SetProperty":
-                        _builder.AddMethod(method, new UnaryServerMethod<TRequest, TResponse>(async (request, context) =>
-                        {
-                            var response = await _serviceAdapter.SetProperty(request as TSetPropRequest);
-                            return response as TResponse;
-                        }));
-                        break;
                     default:
                         bool found = false;
                         foreach (var invokeMethod in _grpcObject.Methods)
@@ -221,7 +139,7 @@ namespace NetGrpcGen.Adapters
                             if (invokeMethod.Name == method.Name)
                             {
                                 found = true;
-                                _builder.AddMethod(method, async (request, context) => await _serviceAdapter.InvokeMethod<TRequest, TResponse>(request));
+                                _builder.AddMethod(method, async (request, context) => await _serviceAdapter.InvokeMethod<TRequest, TResponse>(invokeMethod, request));
                                 break;
                             }
                         }

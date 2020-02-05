@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Google.Protobuf;
 using NetGrpcGen.ComponentModel;
 using NetGrpcGen.Infra;
 using NetGrpcGen.Model;
@@ -63,7 +64,11 @@ namespace NetGrpcGen.Discovery.Impl
                         var generateParameters = m.Method.ReturnType.GetGenericArguments();
                         if (generateParameters.Length == 0)
                         {
-                            m.ReturnType = null;
+                            m.ResponseType = new GrpcType
+                            {
+                                Import = "google/protobuf/empty.proto",
+                                TypeName = "google.protobuf.Empty"
+                            };
                         }
                         else
                         {
@@ -72,7 +77,16 @@ namespace NetGrpcGen.Discovery.Impl
                                 // Huh?
                                 throw new NotSupportedException();
                             }
-                            m.ReturnType = GetDataType(generateParameters[0]);
+                            var returnType = generateParameters[0];
+                            if (!typeof(IMessage).IsAssignableFrom(returnType))
+                            {
+                                throw new Exception("Invalid return type, must implement IMessage.");
+                            }
+
+                            m.ResponseType = new GrpcType
+                            {
+                                TypeName = returnType.Name
+                            };
                         }
 
                         m.IsAsync = true;
@@ -81,18 +95,40 @@ namespace NetGrpcGen.Discovery.Impl
                     {
                         if (m.Method.ReturnType != typeof(void))
                         {
-                            m.ReturnType = GetDataType(m.Method.ReturnType);
+                            if (!typeof(IMessage).IsAssignableFrom(m.Method.ReturnType))
+                            {
+                                throw new Exception("Invalid return type, must implement IMessage.");
+                            }
+                            m.ResponseType = new GrpcType
+                            {
+                                TypeName = m.Method.ReturnType.Name
+                            };
                         }
                     }
 
-                    foreach (var arg in m.Method.GetParameters())
+                    var parameters = m.Method.GetParameters();
+                    if (parameters.Length == 0)
                     {
-                        m.Arguments.Add(new GrpcArgument
+                        m.RequestType = new GrpcType
                         {
-                            Name = arg.Name,
-                            Type = arg.ParameterType,
-                            DataType = GetDataType(arg.ParameterType)
-                        });
+                            Import = "google/protobuf/empty.proto",
+                            TypeName = "google.protobuf.Empty"
+                        };
+                    }else if (parameters.Length == 1)
+                    {
+                        if (!typeof(IMessage).IsAssignableFrom(parameters[0].ParameterType))
+                        {
+                            throw new Exception("Parameter must implement IMessage.");
+                        }
+
+                        m.RequestType = new GrpcType
+                        {
+                            TypeName = parameters[0].ParameterType.Name
+                        };
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid number of parameters.");
                     }
                     
                     o.Methods.Add(m);
