@@ -79,6 +79,11 @@ namespace NetGrpcGen.Adapters
                 var result = (object)((dynamic)task).Result;
                 return (TResponse)result;
             }
+
+            if (response == null)
+            {
+                response = new Empty();
+            }
                 
             return (TResponse)response;
         }

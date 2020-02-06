@@ -1,6 +1,7 @@
 using System;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
+using NetGrpcGen.Adapters;
 
 namespace NetGrpcGen.Tests
 {
@@ -24,7 +25,7 @@ namespace NetGrpcGen.Tests
         public MessageDescriptor Descriptor => throw new NotImplementedException();
     }
     
-    public class DummyMessage2 : IMessage
+    public class DummyMessage2 : IMessage, IObjectMessage
     {
         public void MergeFrom(CodedInputStream input)
         {
@@ -42,5 +43,11 @@ namespace NetGrpcGen.Tests
         }
 
         public MessageDescriptor Descriptor => throw new NotImplementedException();
+
+        public ulong ObjectId
+        {
+            get => throw new NotImplementedException();
+            set => throw  new NotImplementedException();
+        }
     }
 }

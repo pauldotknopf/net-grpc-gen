@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
@@ -75,6 +76,106 @@ namespace NetGrpcGen.Tests
             result[0].Methods[0].IsAsync.Should().BeFalse();
             result[0].Methods[0].RequestType.TypeName.Should().Be("DummyMessage2");
             result[0].Methods[0].ResponseType.TypeName.Should().Be("DummyMessage1");
+        }
+
+        [GrpcObject]
+        public class TestObjectWithAsyncMethod
+        {
+            [GrpcMethod]
+            public Task<DummyMessage1> TestMethod(DummyMessage2 request)
+            {
+                return Task.FromResult(new DummyMessage1());
+            }
+        }
+        
+        [Fact]
+        public void Can_discover_async_method()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithAsyncMethod));
+            var result = discoveryService.DiscoverObjects();
+            result.Count.Should().Be(1);
+            result[0].Methods.Should().HaveCount(1);
+            result[0].Methods[0].Name.Should().Be("TestMethod");
+            result[0].Methods[0].IsAsync.Should().BeTrue();
+            result[0].Methods[0].RequestType.TypeName.Should().Be("DummyMessage2");
+            result[0].Methods[0].ResponseType.TypeName.Should().Be("DummyMessage1");
+        }
+
+        [GrpcObject]
+        public class TestObjectWithNoParameter
+        {
+            [GrpcMethod]
+            public DummyMessage1 TestMethod()
+            {
+                return new DummyMessage1();
+            }
+        }
+        
+        [Fact]
+        public void Can_not_discover_method_with_no_parameter()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithNoParameter));
+            var ex = Assert.Throws<Exception>(() => discoveryService.DiscoverObjects());
+            ex.Message.Should().Contain("All methods must have at least one parameter.");
+        }
+
+        [GrpcObject]
+        public class TestObjectWithInvalidParameter
+        {
+            [GrpcMethod]
+            public void TestMethod(DummyMessageInvalid request)
+            {
+                
+            }
+
+            public class DummyMessageInvalid : IMessage
+            {
+                public void MergeFrom(CodedInputStream input)
+                {
+                    throw new NotImplementedException();
+                }
+
+                public void WriteTo(CodedOutputStream output)
+                {
+                    throw new NotImplementedException();
+                }
+
+                public int CalculateSize()
+                {
+                    throw new NotImplementedException();
+                }
+
+                public MessageDescriptor Descriptor => throw new NotImplementedException();
+            }
+        }
+        
+        [Fact]
+        public void All_methods_parameters_must_implement_object_message_interface()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithInvalidParameter));
+            var ex = Assert.Throws<Exception>(() => discoveryService.DiscoverObjects());
+            ex.Message.Should().Contain("Parameter must implement IObjectMessage.");
+        }
+        
+        [GrpcObject]
+        public class TestObjectWithNoResponse
+        {
+            [GrpcMethod]
+            public void TestMethod(DummyMessage2 request)
+            {
+            }
+        }
+        
+        [Fact]
+        public void Can_discover_method_with_no_response()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithNoResponse));
+            var result = discoveryService.DiscoverObjects();
+            result.Count.Should().Be(1);
+            result[0].Methods.Should().HaveCount(1);
+            result[0].Methods[0].Name.Should().Be("TestMethod");
+            result[0].Methods[0].RequestType.TypeName.Should().Be("DummyMessage2");
+            result[0].Methods[0].ResponseType.TypeName.Should().Be("google.protobuf.Empty");
         }
 
         [GrpcObject]

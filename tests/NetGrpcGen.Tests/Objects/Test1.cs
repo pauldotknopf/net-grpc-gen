@@ -27,6 +27,12 @@ namespace NetGrpcGen.Tests.Objects
                 Value2 = request.Value2
             };
         }
+
+        [GrpcMethod]
+        public virtual void TestMethodWithNoResponse(TestMessageRequest request)
+        {
+            
+        }
     }
 
     public class Test1Adapter : ObjectAdapter<Test1>

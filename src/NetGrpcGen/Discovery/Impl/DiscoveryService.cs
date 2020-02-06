@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Google.Protobuf;
+using NetGrpcGen.Adapters;
 using NetGrpcGen.ComponentModel;
 using NetGrpcGen.Infra;
 using NetGrpcGen.Model;
@@ -104,21 +105,27 @@ namespace NetGrpcGen.Discovery.Impl
                                 TypeName = m.Method.ReturnType.Name
                             };
                         }
+                        else
+                        {
+                            m.ResponseType = new GrpcType
+                            {
+                                Import = "google/protobuf/empty.proto",
+                                TypeName = "google.protobuf.Empty"
+                            };
+                        }
                     }
 
                     var parameters = m.Method.GetParameters();
                     if (parameters.Length == 0)
                     {
-                        m.RequestType = new GrpcType
-                        {
-                            Import = "google/protobuf/empty.proto",
-                            TypeName = "google.protobuf.Empty"
-                        };
-                    }else if (parameters.Length == 1)
+                        throw new Exception("All methods must have at least one parameter.");
+                    }
+                    
+                    if (parameters.Length == 1)
                     {
-                        if (!typeof(IMessage).IsAssignableFrom(parameters[0].ParameterType))
+                        if (!typeof(IObjectMessage).IsAssignableFrom(parameters[0].ParameterType))
                         {
-                            throw new Exception("Parameter must implement IMessage.");
+                            throw new Exception("Parameter must implement IObjectMessage.");
                         }
 
                         m.RequestType = new GrpcType

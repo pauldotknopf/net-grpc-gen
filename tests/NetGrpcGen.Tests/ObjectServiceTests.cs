@@ -9,6 +9,7 @@ using NetGrpcGen.Adapters;
 using NetGrpcGen.Tests.Objects;
 using Tests;
 using Xunit;
+using Xunit.Sdk;
 
 namespace NetGrpcGen.Tests
 {
@@ -58,7 +59,22 @@ namespace NetGrpcGen.Tests
                 o.Verify(x => x.TestMethodSync(It.IsAny<TestMessageRequest>()), Times.Once());
             });
         }
-       
+
+        [Fact]
+        public async Task Can_invoke_method_with_no_return_type()
+        {
+            var o = new Mock<Test1>();
+            o.Setup(x => x.TestMethodWithNoResponse(It.IsAny<TestMessageRequest>()));
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                var response = await client.TestMethodWithNoResponseAsync(new TestMessageRequest
+                {
+                    ObjectId = objectId
+                });
+                o.Verify(x => x.TestMethodWithNoResponse(It.IsAny<TestMessageRequest>()), Times.Once());
+            });
+        }
+      
         private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {
             var objectAdapter = new Test1Adapter(instance);
