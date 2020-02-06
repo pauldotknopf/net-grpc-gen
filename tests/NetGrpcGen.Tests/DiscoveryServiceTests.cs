@@ -194,7 +194,49 @@ namespace NetGrpcGen.Tests
             result[0].Properties.Should().HaveCount(1);
             var prop = result[0].Properties[0];
             prop.Name.Should().Be("Prop");
-            prop.GrpcObject.Name.Should().Be("TestObjectWithProperty");
+            prop.CanWrite.Should().BeTrue();
+            prop.DataType.TypeName.Should().Be("string");
+        }
+        
+        [GrpcObject]
+        public class TestObjectWithComplexType
+        {
+            [GrpcProperty]
+            public DummyMessage1 Prop { get; set; }
+        }
+
+        [Fact]
+        public void Can_discover_property_with_complex_type()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithComplexType));
+            var result = discoveryService.DiscoverObjects();
+            result.Count.Should().Be(1);
+            result[0].Properties.Should().HaveCount(1);
+            var prop = result[0].Properties[0];
+            prop.Name.Should().Be("Prop");
+            prop.CanWrite.Should().BeTrue();
+            prop.DataType.TypeName.Should().Be("DummyMessage1");
+        }
+
+        [GrpcObject]
+        public class TestObjectWithoutReadAccessor
+        {
+            [GrpcProperty]
+            public string Prop
+            {
+                set
+                {
+                    var _ = value;
+                }
+            }
+        }
+        
+        [Fact]
+        public void Properties_must_have_a_read_accessor()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithoutReadAccessor));
+            var ex = Assert.Throws<Exception>(() => discoveryService.DiscoverObjects());
+            ex.Message.Should().Contain("All properties must support reading.");
         }
     }
 }

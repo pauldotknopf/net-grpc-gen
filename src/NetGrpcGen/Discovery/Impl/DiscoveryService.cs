@@ -43,8 +43,15 @@ namespace NetGrpcGen.Discovery.Impl
                         Property = prop.Item1,
                         GrpcObject = o
                     };
+
+                    if (!p.Property.CanRead)
+                    {
+                        throw new Exception("All properties must support reading.");
+                    }
+
+                    p.CanWrite = p.Property.CanWrite;
                     
-                    p.DataType = GetDataType(p.Property.PropertyType);
+                    p.DataType = GetGrpcType(p.Property.PropertyType);
                     
                     o.Properties.Add(p);
                 }
@@ -145,21 +152,22 @@ namespace NetGrpcGen.Discovery.Impl
             }).ToList();
         }
 
-        private GrpcDataType GetDataType(Type type)
+        private GrpcType GetGrpcType(Type type)
         {
             if (type == typeof(String))
             {
-                return GrpcDataType.String;
+                return new GrpcType
+                {
+                    TypeName = "string"
+                };
             }
 
-            if (type == typeof(int))
+            if (typeof(IMessage).IsAssignableFrom(type))
             {
-                return GrpcDataType.Int32;
-            }
-
-            if (type.IsClass)
-            {
-                return GrpcDataType.Complex;
+                return new GrpcType
+                {
+                    TypeName = type.Name
+                };
             }
             
             throw new NotSupportedException("Invalid data type: " + type.FullName);
