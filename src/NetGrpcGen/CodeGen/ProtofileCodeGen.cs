@@ -31,31 +31,48 @@ namespace NetGrpcGen.CodeGen
                     
                     writer.WriteLine($"message {o.Name}StopResponse {{");
                     writer.WriteLine("}");
-                    
-                    // foreach (var method in o.Methods)
-                    // {
-                    //     writer.WriteLine($"message {method.Name}Request {{");
-                    //     writer.WriteLine("\tuint64 objectId = 1;");
-                    //     index = 1;
-                    //     foreach (var arg in method.Arguments)
-                    //     {
-                    //         index++;
-                    //         writer.WriteLine($"\t{ToGrpcType(arg.DataType)} {arg.Name} = {index};");
-                    //     }
-                    //     writer.WriteLine("}");
-                    //     writer.WriteLine($"message {method.Name}Response {{");
-                    //     if (method.ReturnType != null)
-                    //     {
-                    //         writer.WriteLine($"\t{ToGrpcType(method.ReturnType.Value)} response = 1;");
-                    //     }
-                    //     writer.WriteLine("}");
-                    // }
-                    
+
+                    foreach (var property in o.Properties)
+                    {
+                        if (property.CanWrite)
+                        {
+                            writer.WriteLine($"message SetProperty{property.Name}Request {{");
+                            writer.WriteLine("\tuint64 objectId = 1;");
+                            writer.WriteLine($"\t{property.DataType.TypeName} value = 2;");
+                            writer.WriteLine("}");
+                            
+                            writer.WriteLine($"message SetProperty{property.Name}Response {{");
+                            writer.WriteLine("}");
+                        }
+                        writer.WriteLine($"message GetProperty{property.Name}Request {{");
+                        writer.WriteLine("\tuint64 objectId = 1;");
+                        writer.WriteLine("}");
+                        
+                        writer.WriteLine($"message GetProperty{property.Name}Response {{");
+                        writer.WriteLine($"\t{property.DataType.TypeName} value = 1;");
+                        writer.WriteLine("}");
+                        
+                        if (o.ImplementedINotify)
+                        {
+                            writer.WriteLine($"message Property{property.Name}Changed {{");
+                            writer.WriteLine("\tuint64 objectId = 1;");
+                            writer.WriteLine($"\t{property.DataType.TypeName} value = 2;");
+                            writer.WriteLine("}");
+                        }
+                    }
                     writer.WriteLine($"service {serviceName} {{");
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
                     foreach (var method in o.Methods)
                     {
                         writer.WriteLine($"\trpc {method.Name} ({method.RequestType.TypeName}) returns ({method.ResponseType.TypeName});");
+                    }
+                    foreach (var property in o.Properties)
+                    {
+                        if (property.CanWrite)
+                        {
+                            writer.WriteLine($"\trpc SetProperty{property.Name} (SetProperty{property.Name}Request) returns (SetProperty{property.Name}Response);");
+                        }
+                        writer.WriteLine($"\trpc GetProperty{property.Name} (GetProperty{property.Name}Request) returns (GetProperty{property.Name}Response);");
                     }
                     writer.WriteLine("}");
                 }

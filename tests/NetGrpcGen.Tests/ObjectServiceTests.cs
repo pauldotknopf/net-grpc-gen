@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -74,7 +75,55 @@ namespace NetGrpcGen.Tests
                 o.Verify(x => x.TestMethodWithNoResponse(It.IsAny<TestMessageRequest>()), Times.Once());
             });
         }
-      
+
+        [Fact]
+        public async Task Can_read_property()
+        {
+            var o = new Mock<Test1>();
+            o.SetupGet(x => x.PropString).Returns("sssdsd");
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                var response = await client.GetPropertyPropStringAsync(new GetPropertyPropStringRequest
+                {
+                    ObjectId = objectId
+                });
+                response.Value.Should().Be("sssdsd");
+                o.VerifyGet(x => x.PropString, Times.Once);
+            });
+        }
+
+        [Fact]
+        public async Task Can_set_property()
+        {
+            var o = new Mock<Test1>();
+            o.SetupSet(x => x.PropString = "TTT");
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                await client.SetPropertyPropStringAsync(new SetPropertyPropStringRequest
+                {
+                    ObjectId = objectId,
+                    Value = "TTT"
+                });
+                o.VerifySet(x => x.PropString = "TTT", Times.Once);
+            });
+        }
+        
+        [Fact]
+        public async Task Can_raise_prop_changed()
+        {
+            var o = new Mock<Test1>();
+            o.SetupGet(x => x.PropString).Returns("sdfxcvs");
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                o.Raise(x => x.PropertyChanged += null, new PropertyChangedEventArgs("PropString"));
+
+                await stream.ResponseStream.MoveNext();
+                var propChanged = stream.ResponseStream.Current.Unpack<PropertyPropStringChanged>();
+                propChanged.Value.Should().Be("sdfxcvs");
+                propChanged.ObjectId.Should().Be(objectId);
+            });
+        }
+        
         private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {
             var objectAdapter = new Test1Adapter(instance);

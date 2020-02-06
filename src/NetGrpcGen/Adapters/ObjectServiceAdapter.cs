@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -44,10 +47,37 @@ namespace NetGrpcGen.Adapters
                 var response = new TCreateResponse {ObjectId = tagId};
                 await responseStream.WriteAsync(Any.Pack(response));
 
+                var notifyHandler = o as INotifyPropertyChanged;
+                var handler = new PropertyChangedEventHandler((sender, args) =>
+                {
+                    var grpcProperty = _grpcObject.Properties.SingleOrDefault(x => x.Name == args.PropertyName);
+                    if (grpcProperty == null)
+                    {
+                        return;
+                    }
+                    var eventType = _objectAdapter.GetPropChangedType(args.PropertyName);
+                    if (eventType != null)
+                    {
+                        var propChangedResponse = Activator.CreateInstance(eventType);
+                        SetValue(propChangedResponse, grpcProperty.Property.GetValue(o));
+                        SetObjectId(propChangedResponse, tagId);
+                        responseStream.WriteAsync(Any.Pack(propChangedResponse as IMessage));
+                    }
+                });
+                if (notifyHandler != null)
+                {
+                    notifyHandler.PropertyChanged += handler;
+                }
+                
                 // Wait for a stop request...
                 await requestStream.MoveNext();
                 requestStream.Current.Unpack<TStopRequest>();
 
+                if (notifyHandler != null)
+                {
+                    notifyHandler.PropertyChanged -= handler;
+                }
+                
                 // Send the stop response.
                 await responseStream.WriteAsync(Any.Pack(new TStopResponse()));
             }
@@ -87,7 +117,80 @@ namespace NetGrpcGen.Adapters
                 
             return (TResponse)response;
         }
-       
+
+        private TResponse GetProperty<TRequest, TResponse>(GrpcProperty property, TRequest request)
+        {
+            var objectId = GetObjectId(request);
+            
+            if (!_objects.TryGetValue(objectId, out TObject o))
+            {
+                throw new Exception("Invalid object id.");
+            }
+
+            var response = Activator.CreateInstance(typeof(TResponse));
+
+            var value = property.Property.GetValue(o);
+            SetValue(response, value);
+            
+            return (TResponse)response;
+        }
+        
+        private TResponse SetProperty<TRequest, TResponse>(GrpcProperty property, TRequest request)
+        {
+            var objectId = GetObjectId(request);
+            
+            if (!_objects.TryGetValue(objectId, out TObject o))
+            {
+                throw new Exception("Invalid object id.");
+            }
+
+            var valueToSet = GetValue(request);
+
+            property.Property.SetValue(o, valueToSet);
+
+            return (TResponse)Activator.CreateInstance(typeof(TResponse));
+        }
+
+        private ulong GetObjectId(object instance)
+        {
+            var prop = instance.GetType().GetProperty("ObjectId", BindingFlags.Public | BindingFlags.Instance);
+            if (prop == null)
+            {
+                throw new Exception($"The type {instance.GetType().Name} doesn't have a property \"ObjectId\".");
+            }
+            return (ulong)prop.GetValue(instance);
+        }
+        
+        private void SetObjectId(object instance, ulong value)
+        {
+            var prop = instance.GetType().GetProperty("ObjectId", BindingFlags.Public | BindingFlags.Instance);
+            if (prop == null)
+            {
+                throw new Exception($"The type {instance.GetType().Name} doesn't have a property \"ObjectId\".");
+            }
+            prop.SetValue(instance, value);
+        }
+
+        private void SetValue(object instance, object value)
+        {
+            var prop = instance.GetType().GetProperty("Value", BindingFlags.Public | BindingFlags.Instance);
+            if (prop == null)
+            {
+                throw new Exception($"The type {instance.GetType().Name} doesn't have a property \"Value\".");
+            }
+            prop.SetValue(instance, value);
+        }
+        
+        private object GetValue(object instance)
+        {
+            var prop = instance.GetType().GetProperty("Value", BindingFlags.Public | BindingFlags.Instance);
+            if (prop == null)
+            {
+                throw new Exception($"The type {instance.GetType().Name} doesn't have a property \"Value\".");
+            }
+            return prop.GetValue(instance);
+        }
+
         public class CustomServiceBinder : ServiceBinderBase
         {
             private readonly ServerServiceDefinition.Builder _builder;
@@ -138,21 +241,39 @@ namespace NetGrpcGen.Adapters
                 switch (method.Name)
                 {
                     default:
-                        bool found = false;
                         foreach (var invokeMethod in _grpcObject.Methods)
                         {
                             if (invokeMethod.Name == method.Name)
                             {
-                                found = true;
                                 _builder.AddMethod(method, async (request, context) => await _serviceAdapter.InvokeMethod<TRequest, TResponse>(invokeMethod, request));
-                                break;
+                                return;
                             }
                         }
-                        if (!found)
+
+                        foreach (var property in _grpcObject.Properties)
                         {
-                            throw new NotSupportedException();
+                            if (method.Name == $"GetProperty{property.Name}")
+                            {
+                                _builder.AddMethod(method, (request, context) =>
+                                {
+                                    var response = _serviceAdapter.GetProperty<TRequest, TResponse>(property, request);
+                                    return Task.FromResult(response);
+                                });
+                                return;
+                            }
+
+                            if (method.Name == $"SetProperty{property.Name}")
+                            {
+                                _builder.AddMethod(method, (request, context) =>
+                                {
+                                    var response = _serviceAdapter.SetProperty<TRequest, TResponse>(property, request);
+                                    return Task.FromResult(response);
+                                });
+                                return;
+                            }
                         }
-                        break;
+                        
+                        throw new NotSupportedException();
                 }
             }
         }
