@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Objects/types.proto" />
+    <Protobuf Include="Objects/types.proto" ProtoRoot="Objects" />
     <Protobuf Include="Objects/gen.proto" ProtoRoot="Objects" />
   </ItemGroup>
 

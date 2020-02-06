@@ -6,11 +6,11 @@ using FluentAssertions;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Moq;
+using Custom.Types;
 using NetGrpcGen.Adapters;
 using NetGrpcGen.Tests.Objects;
 using Tests;
 using Xunit;
-using Xunit.Sdk;
 
 namespace NetGrpcGen.Tests
 {
@@ -124,6 +124,27 @@ namespace NetGrpcGen.Tests
             });
         }
         
+        [Fact]
+        public async Task Can_raise_prop_changed_on_complex_type()
+        {
+            var o = new Mock<Test1>();
+            o.SetupGet(x => x.PropComplex).Returns(new TestMessageResponse
+            {
+                Value1 = 78,
+                Value2 = "sss"
+            });
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                o.Raise(x => x.PropertyChanged += null, new PropertyChangedEventArgs("PropComplex"));
+
+                await stream.ResponseStream.MoveNext();
+                var propChanged = stream.ResponseStream.Current.Unpack<PropertyPropComplexChanged>();
+                propChanged.Value.Value1.Should().Be(78);
+                propChanged.Value.Value2.Should().Be("sss");
+                propChanged.ObjectId.Should().Be(objectId);
+            });
+        }
+        
         private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {
             var objectAdapter = new Test1Adapter(instance);
@@ -134,7 +155,7 @@ namespace NetGrpcGen.Tests
 
             var serverHandler = new Server
             {
-                Services = {  serviceAdapter.Create(binder => { Test1ObjectService.BindService(binder, null); }) },
+                Services = {  serviceAdapter.Create(typeof(Test1ObjectService)) },
                 Ports =
                 {
                     new ServerPort("localhost", 8000, ServerCredentials.Insecure)

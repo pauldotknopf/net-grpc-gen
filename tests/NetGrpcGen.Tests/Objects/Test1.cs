@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Custom.Types;
 using NetGrpcGen.Adapters;
 using NetGrpcGen.ComponentModel;
 using Tests;
@@ -36,7 +37,6 @@ namespace NetGrpcGen.Tests.Objects
         [GrpcMethod]
         public virtual void TestMethodWithNoResponse(TestMessageRequest request)
         {
-            
         }
 
         [GrpcProperty]
@@ -71,21 +71,13 @@ namespace NetGrpcGen.Tests.Objects
         public Test1Adapter(Test1 instance)
         {
             _instance = instance;
+            RegisterPropChangedType<PropertyPropStringChanged>("PropString");
+            RegisterPropChangedType<PropertyPropComplexChanged>("PropComplex");
         }
         
         public override Test1 Create()
         {
             return _instance;
-        }
-
-        public override Type GetPropChangedType(string propName)
-        {
-            if (propName == "PropString")
-            {
-                return typeof(PropertyPropStringChanged);
-            }
-
-            return null;
         }
     }
 }

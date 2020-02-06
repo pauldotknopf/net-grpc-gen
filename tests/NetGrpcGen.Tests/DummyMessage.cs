@@ -25,7 +25,7 @@ namespace NetGrpcGen.Tests
         public MessageDescriptor Descriptor => throw new NotImplementedException();
     }
     
-    public class DummyMessage2 : IMessage, IObjectMessage
+    public class DummyMessage2 : IMessage
     {
         public void MergeFrom(CodedInputStream input)
         {
@@ -43,11 +43,5 @@ namespace NetGrpcGen.Tests
         }
 
         public MessageDescriptor Descriptor => throw new NotImplementedException();
-
-        public ulong ObjectId
-        {
-            get => throw new NotImplementedException();
-            set => throw  new NotImplementedException();
-        }
     }
 }

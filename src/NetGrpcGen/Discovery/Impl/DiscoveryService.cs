@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Google.Protobuf;
+using Google.Protobuf.Reflection;
+using Google.Protobuf.WellKnownTypes;
 using NetGrpcGen.Adapters;
 using NetGrpcGen.ComponentModel;
 using NetGrpcGen.Infra;
 using NetGrpcGen.Model;
+using Type = System.Type;
 
 namespace NetGrpcGen.Discovery.Impl
 {
@@ -72,11 +76,7 @@ namespace NetGrpcGen.Discovery.Impl
                         var generateParameters = m.Method.ReturnType.GetGenericArguments();
                         if (generateParameters.Length == 0)
                         {
-                            m.ResponseType = new GrpcType
-                            {
-                                Import = "google/protobuf/empty.proto",
-                                TypeName = "google.protobuf.Empty"
-                            };
+                            m.ResponseType = GetGrpcType(typeof(Empty));
                         }
                         else
                         {
@@ -91,10 +91,7 @@ namespace NetGrpcGen.Discovery.Impl
                                 throw new Exception("Invalid return type, must implement IMessage.");
                             }
 
-                            m.ResponseType = new GrpcType
-                            {
-                                TypeName = returnType.Name
-                            };
+                            m.ResponseType = GetGrpcType(returnType);
                         }
 
                         m.IsAsync = true;
@@ -107,18 +104,12 @@ namespace NetGrpcGen.Discovery.Impl
                             {
                                 throw new Exception("Invalid return type, must implement IMessage.");
                             }
-                            m.ResponseType = new GrpcType
-                            {
-                                TypeName = m.Method.ReturnType.Name
-                            };
+
+                            m.ResponseType = GetGrpcType(m.Method.ReturnType);
                         }
                         else
                         {
-                            m.ResponseType = new GrpcType
-                            {
-                                Import = "google/protobuf/empty.proto",
-                                TypeName = "google.protobuf.Empty"
-                            };
+                            m.ResponseType = GetGrpcType(typeof(Empty));
                         }
                     }
 
@@ -130,15 +121,14 @@ namespace NetGrpcGen.Discovery.Impl
                     
                     if (parameters.Length == 1)
                     {
-                        if (!typeof(IObjectMessage).IsAssignableFrom(parameters[0].ParameterType))
+                        // Make sure it has an object id property.
+                        var objectIdProp = parameters[0].ParameterType
+                            .GetProperty("ObjectId", BindingFlags.Instance | BindingFlags.Public);
+                        if (objectIdProp == null)
                         {
-                            throw new Exception("Parameter must implement IObjectMessage.");
+                            throw new Exception("The request type must have an \"ObjectId\" property.");
                         }
-
-                        m.RequestType = new GrpcType
-                        {
-                            TypeName = parameters[0].ParameterType.Name
-                        };
+                        m.RequestType = GetGrpcType(parameters[0].ParameterType);
                     }
                     else
                     {
@@ -164,13 +154,25 @@ namespace NetGrpcGen.Discovery.Impl
 
             if (typeof(IMessage).IsAssignableFrom(type))
             {
+                var descriptor = GetDescriptor(type);
                 return new GrpcType
                 {
-                    TypeName = type.Name
+                    TypeName = descriptor.FullName,
+                    Import = descriptor.File.Name
                 };
             }
             
             throw new NotSupportedException("Invalid data type: " + type.FullName);
+        }
+
+        private MessageDescriptor GetDescriptor(Type type)
+        {
+            var message = Activator.CreateInstance(type) as IMessage;
+            if (message == null)
+            {
+                throw new Exception($"The type {type.Name} doesn't implement IMessage.");
+            }
+            return message.Descriptor;
         }
     }
 }

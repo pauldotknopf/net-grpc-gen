@@ -1,5 +1,5 @@
 syntax = "proto3";
-package Tests;
+package custom.types;
 
 message TestMessageRequest {
 	uint64 objectId = 1;

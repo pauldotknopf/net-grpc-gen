@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -10,6 +9,7 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using NetGrpcGen.Infra;
 using NetGrpcGen.Model;
+using Type = System.Type;
 
 namespace NetGrpcGen.Adapters
 {
@@ -17,7 +17,7 @@ namespace NetGrpcGen.Adapters
         TCreateResponse,
         TStopRequest,
         TStopResponse>
-        where TCreateResponse : IObjectMessage, new()
+        where TCreateResponse : IMessage, new()
         where TStopRequest : IMessage, new()
         where TStopResponse : IMessage, new()
     {
@@ -35,8 +35,7 @@ namespace NetGrpcGen.Adapters
 
         private async Task Create(
             IAsyncStreamReader<Any> requestStream,
-            IServerStreamWriter<Any> responseStream,
-            ServerCallContext context)
+            IServerStreamWriter<Any> responseStream)
         {
             var o = _objectAdapter.Create();
             var tagId = o.GetOrCreateTag();
@@ -44,7 +43,8 @@ namespace NetGrpcGen.Adapters
 
             try
             {
-                var response = new TCreateResponse {ObjectId = tagId};
+                var response = new TCreateResponse();
+                SetObjectId(response, tagId);
                 await responseStream.WriteAsync(Any.Pack(response));
 
                 var notifyHandler = o as INotifyPropertyChanged;
@@ -56,13 +56,14 @@ namespace NetGrpcGen.Adapters
                         return;
                     }
                     var eventType = _objectAdapter.GetPropChangedType(args.PropertyName);
-                    if (eventType != null)
+                    if (eventType == null)
                     {
-                        var propChangedResponse = Activator.CreateInstance(eventType);
-                        SetValue(propChangedResponse, grpcProperty.Property.GetValue(o));
-                        SetObjectId(propChangedResponse, tagId);
-                        responseStream.WriteAsync(Any.Pack(propChangedResponse as IMessage));
+                        throw new Exception($"Couldn't get event type for property {args.PropertyName}.");
                     }
+                    var propChangedResponse = Activator.CreateInstance(eventType);
+                    SetValue(propChangedResponse, grpcProperty.Property.GetValue(o));
+                    SetObjectId(propChangedResponse, tagId);
+                    responseStream.WriteAsync(Any.Pack(propChangedResponse as IMessage));
                 });
                 if (notifyHandler != null)
                 {
@@ -90,13 +91,9 @@ namespace NetGrpcGen.Adapters
         
         private async Task<TResponse> InvokeMethod<TRequest, TResponse>(GrpcMethod method, TRequest request)
         {
-            var objectMessage = request as IObjectMessage;
-            if (objectMessage == null)
-            {
-                throw new Exception("Request type doesn't implement IObjectMessage.");
-            }
+            var objectId = GetObjectId(request);
             
-            if (!_objects.TryGetValue(objectMessage.ObjectId, out TObject o))
+            if (!_objects.TryGetValue(objectId, out TObject o))
             {
                 throw new Exception("Invalid object id.");
             }
@@ -219,7 +216,7 @@ namespace NetGrpcGen.Adapters
                     case "Create":
                         _builder.AddMethod(method, new DuplexStreamingServerMethod<TRequest, TResponse>(
                             (stream, responseStream, context) => _serviceAdapter.Create(stream as IAsyncStreamReader<Any>,
-                                responseStream as IServerStreamWriter<Any>, context)));
+                                responseStream as IServerStreamWriter<Any>)));
                         break;
                     default:
                         throw new NotSupportedException();
@@ -283,6 +280,26 @@ namespace NetGrpcGen.Adapters
             var builder = ServerServiceDefinition.CreateBuilder();
             var binder = new CustomServiceBinder(builder, this, _grpcObject);
             configure(binder);
+            return builder.Build();
+        }
+
+        public ServerServiceDefinition Create(Type type)
+        {
+            var builder = ServerServiceDefinition.CreateBuilder();
+            var binder = new CustomServiceBinder(builder, this, _grpcObject);
+
+            var bindServiceMethod =
+                type
+                    .GetMethods(BindingFlags.Public | BindingFlags.Static)
+                    .Where(x => x.Name == "BindService")
+                    .SingleOrDefault(x => x.GetParameters().Length == 2);
+            if (bindServiceMethod == null)
+            {
+                throw new Exception("Can't find the BindService method.");
+            }
+
+            bindServiceMethod.Invoke(null, new[] {binder, (object) null});
+            
             return builder.Build();
         }
     }

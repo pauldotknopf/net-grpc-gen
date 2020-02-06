@@ -8,6 +8,25 @@ namespace NetGrpcGen.CodeGen
 {
     public class ProtofileCodeGen
     {
+        private List<string> GetAllImports(GrpcObject grpcObject)
+        {
+            var imports = new List<string>();
+
+            foreach (var method in grpcObject.Methods)
+            {
+                if (!imports.Contains(method.ResponseType.Import))
+                {
+                    imports.Add(method.ResponseType.Import);
+                }
+                if (!imports.Contains(method.RequestType.Import))
+                {
+                    imports.Add(method.RequestType.Import);
+                }
+            }
+
+            return imports;
+        }
+        
         public void Generate(List<GrpcObject> objects, string packageName, Stream outputStream)
         {
             using (var writer = new StreamWriter(outputStream))
@@ -17,7 +36,17 @@ namespace NetGrpcGen.CodeGen
                 {
                     writer.WriteLine($"package {packageName};");
                 }
-                writer.WriteLine("import \"google/protobuf/any.proto\";");
+
+                var imports = objects.SelectMany(GetAllImports).Distinct().ToList();
+                if (!imports.Contains("google/protobuf/any.proto"))
+                {
+                    imports.Add("google/protobuf/any.proto");
+                }
+                foreach (var import in imports.OrderBy(x => x))
+                {
+                    writer.WriteLine($"import \"{import}\";");
+                }
+                
                 foreach (var o in objects)
                 {
                     var serviceName = $"{o.Name}ObjectService";
