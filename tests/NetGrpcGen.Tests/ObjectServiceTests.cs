@@ -144,6 +144,55 @@ namespace NetGrpcGen.Tests
                 propChanged.ObjectId.Should().Be(objectId);
             });
         }
+
+        [Fact]
+        public async Task Can_listen_to_event()
+        {
+            var o = new Mock<Test1>();
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                o.Raise(x => x.TestEvent += null, "tettsedf");
+
+                await stream.ResponseStream.MoveNext();
+                var eventTest = stream.ResponseStream.Current.Unpack<EventTestEvent>();
+                eventTest.Value.Should().Be("tettsedf");
+                eventTest.ObjectId.Should().Be(objectId);
+            });
+        }
+        
+        [Fact]
+        public async Task Can_listen_to_event_with_complex_data()
+        {
+            var o = new Mock<Test1>();
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                o.Raise(x => x.TestEventComplex += null, new TestMessageResponse
+                {
+                    Value1 = 45655674,
+                    Value2 = ",,,"
+                });
+
+                await stream.ResponseStream.MoveNext();
+                var eventTestComplex = stream.ResponseStream.Current.Unpack<EventTestEventComplex>();
+                eventTestComplex.Value.Value1.Should().Be(45655674);
+                eventTestComplex.Value.Value2.Should().Be(",,,");
+                eventTestComplex.ObjectId.Should().Be(objectId);
+            });
+        }
+
+        [Fact]
+        public async Task Can_listen_to_event_with_no_data()
+        {
+            var o = new Mock<Test1>();
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                o.Raise(x => x.TestEventNoData += null);
+
+                await stream.ResponseStream.MoveNext();
+                var eventTestComplex = stream.ResponseStream.Current.Unpack<EventTestEventNoData>();
+                eventTestComplex.ObjectId.Should().Be(objectId);
+            });
+        }
         
         private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {

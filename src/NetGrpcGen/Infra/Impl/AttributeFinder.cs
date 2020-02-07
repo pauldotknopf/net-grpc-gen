@@ -61,5 +61,21 @@ namespace NetGrpcGen.Infra.Impl
 
             return result;
         }
+
+        public List<Tuple<EventInfo, T>> FindEventsWithAttribute<T>(Type type) where T : class
+        {
+            var result = new List<Tuple<EventInfo, T>>();
+            
+            foreach (var e in type.GetEvents())
+            {
+                var attribute = e.GetCustomAttributes(typeof(T)).ToList();
+                if (attribute.Count > 0)
+                {
+                    result.Add(new Tuple<EventInfo, T>(e, attribute[0] as T));
+                }
+            }
+
+            return result;
+        }
     }
 }

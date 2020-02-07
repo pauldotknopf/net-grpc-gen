@@ -14,17 +14,24 @@ namespace NetGrpcGen.CodeGen
 
             foreach (var method in grpcObject.Methods)
             {
-                if (!imports.Contains(method.ResponseType.Import))
+                imports.Add(method.ResponseType.Import);
+                imports.Add(method.RequestType.Import);
+            }
+            
+            foreach (var prop in grpcObject.Properties)
+            {
+                imports.Add(prop.DataType.Import);
+            }
+
+            foreach (var even in grpcObject.Events)
+            {
+                if (even.DataType != null)
                 {
-                    imports.Add(method.ResponseType.Import);
-                }
-                if (!imports.Contains(method.RequestType.Import))
-                {
-                    imports.Add(method.RequestType.Import);
+                    imports.Add(even.DataType.Import);
                 }
             }
 
-            return imports;
+            return imports.Where(x => !string.IsNullOrEmpty(x)).Distinct().ToList();
         }
         
         public void Generate(List<GrpcObject> objects, string packageName, Stream outputStream)
@@ -89,6 +96,18 @@ namespace NetGrpcGen.CodeGen
                             writer.WriteLine("}");
                         }
                     }
+
+                    foreach (var even in o.Events)
+                    {
+                        writer.WriteLine($"message Event{even.Name} {{");
+                        writer.WriteLine("\tuint64 objectId = 1;");
+                        if (even.DataType != null)
+                        {
+                            writer.WriteLine($"\t{even.DataType.TypeName} value = 2;");
+                        }
+                        writer.WriteLine("}");
+                    }
+                    
                     writer.WriteLine($"service {serviceName} {{");
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
                     foreach (var method in o.Methods)

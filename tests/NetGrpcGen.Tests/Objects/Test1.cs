@@ -1,10 +1,13 @@
-using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Custom.Types;
 using NetGrpcGen.Adapters;
 using NetGrpcGen.ComponentModel;
 using Tests;
+
+#pragma warning disable 67
+// ReSharper disable EventNeverSubscribedTo.Global
+// ReSharper disable EventNeverInvoked.Global
 
 namespace NetGrpcGen.Tests.Objects
 {
@@ -13,6 +16,15 @@ namespace NetGrpcGen.Tests.Objects
     {
         private string _propString;
         private TestMessageResponse _propComplex;
+
+        [GrpcEvent]
+        public virtual event GrpcObjectEventDelegate<string> TestEvent = delegate { };
+        
+        [GrpcEvent]
+        public virtual event GrpcObjectEventDelegate<TestMessageResponse> TestEventComplex = delegate { };
+
+        [GrpcEvent]
+        public virtual event GrpcObjectEventDelegate TestEventNoData = delegate { };
 
         [GrpcMethod]
         public virtual Task<TestMessageResponse> TestMethod(TestMessageRequest request)
@@ -73,6 +85,9 @@ namespace NetGrpcGen.Tests.Objects
             _instance = instance;
             RegisterPropChangedType<PropertyPropStringChanged>("PropString");
             RegisterPropChangedType<PropertyPropComplexChanged>("PropComplex");
+            RegisterEventType<EventTestEvent>("TestEvent");
+            RegisterEventType<EventTestEventComplex>("TestEventComplex");
+            RegisterEventType<EventTestEventNoData>("TestEventNoData");
         }
         
         public override Test1 Create()

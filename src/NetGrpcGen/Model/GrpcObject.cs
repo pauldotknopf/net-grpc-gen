@@ -10,6 +10,7 @@ namespace NetGrpcGen.Model
         {
             Properties = new List<GrpcProperty>();
             Methods = new List<GrpcMethod>();
+            Events = new List<GrpcEvent>();
         }
         
         public GrpcObjectAttribute Attribute { get; set; }
@@ -23,5 +24,7 @@ namespace NetGrpcGen.Model
         public List<GrpcProperty> Properties { get; set; }
         
         public List<GrpcMethod> Methods { get; set; }
+        
+        public List<GrpcEvent> Events { get; set; }
     }
 }

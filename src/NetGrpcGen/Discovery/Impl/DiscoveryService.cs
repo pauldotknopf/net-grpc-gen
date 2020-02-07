@@ -137,7 +137,44 @@ namespace NetGrpcGen.Discovery.Impl
                     
                     o.Methods.Add(m);
                 }
-                
+
+                foreach (var _ in _attributeFinder.FindEventsWithAttribute<GrpcEventAttribute>(o.Type))
+                {
+                    var e = new GrpcEvent
+                    {
+                        Name = _.Item1.Name,
+                        Attribute = _.Item2,
+                        Event = _.Item1,
+                        GrpcObject = o
+                    };
+
+                    var genericArguments = e.Event.EventHandlerType.GetGenericArguments();
+                    
+                    if (genericArguments.Length == 1)
+                    {
+                        if (e.Event.EventHandlerType.GetGenericTypeDefinition() != typeof(GrpcObjectEventDelegate<>))
+                        {
+                            throw new Exception("Invalid event handler type.");
+                        }
+
+                        e.DataType = GetGrpcType(genericArguments[0]);
+                    
+                        o.Events.Add(e);
+                    } else if (genericArguments.Length == 0)
+                    {
+                        if (e.Event.EventHandlerType != typeof(GrpcObjectEventDelegate))
+                        {
+                            throw new Exception("Invalid event handler type.");
+                        }
+                        
+                        o.Events.Add(e);
+                    }
+                    else
+                    {
+                        throw new Exception("Invalid event handler type.");
+                    }
+                }
+
                 return o;
             }).ToList();
         }

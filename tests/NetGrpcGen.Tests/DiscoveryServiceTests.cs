@@ -5,6 +5,7 @@ using FluentAssertions;
 using Google.Protobuf;
 using Google.Protobuf.Reflection;
 using NetGrpcGen.ComponentModel;
+using NetGrpcGen.Model;
 using Xunit;
 
 namespace NetGrpcGen.Tests
@@ -237,6 +238,48 @@ namespace NetGrpcGen.Tests
             var discoveryService = BuildDiscoveryService(typeof(TestObjectWithoutReadAccessor));
             var ex = Assert.Throws<Exception>(() => discoveryService.DiscoverObjects());
             ex.Message.Should().Contain("All properties must support reading.");
+        }
+
+        [GrpcObject]
+        public class TestObjectWithEvent
+        {
+            #pragma warning disable 67
+            [GrpcEvent]
+            public event GrpcObjectEventDelegate<string> TestEvent;
+            #pragma warning restore 67
+        }
+        
+        [Fact]
+        public void Can_discover_events()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithEvent));
+            var result = discoveryService.DiscoverObjects();
+            result.Count.Should().Be(1);
+            result[0].Events.Should().HaveCount(1);
+            var even = result[0].Events[0];
+            even.Name.Should().Be("TestEvent");
+            even.DataType.TypeName.Should().Be("string");
+        }
+        
+        [GrpcObject]
+        public class TestObjectWithEventNoData
+        {
+#pragma warning disable 67
+            [GrpcEvent]
+            public event GrpcObjectEventDelegate TestEvent;
+#pragma warning restore 67
+        }
+        
+        [Fact]
+        public void Can_discover_events_with_no_data()
+        {
+            var discoveryService = BuildDiscoveryService(typeof(TestObjectWithEventNoData));
+            var result = discoveryService.DiscoverObjects();
+            result.Count.Should().Be(1);
+            result[0].Events.Should().HaveCount(1);
+            var even = result[0].Events[0];
+            even.Name.Should().Be("TestEvent");
+            even.DataType.Should().BeNull();
         }
     }
 }

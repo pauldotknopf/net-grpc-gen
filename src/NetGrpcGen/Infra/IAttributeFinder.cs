@@ -11,5 +11,7 @@ namespace NetGrpcGen.Infra
         List<Tuple<PropertyInfo, T>> FindPropertiesWithAttribute<T>(Type type) where T : class;
         
         List<Tuple<MethodInfo, T>> FindMethodsWithAttribute<T>(Type type) where T : class;
+
+        List<Tuple<EventInfo, T>> FindEventsWithAttribute<T>(Type type) where T : class;
     }
 }

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 using Google.Protobuf;
@@ -55,11 +57,13 @@ namespace NetGrpcGen.Adapters
                     {
                         return;
                     }
+
                     var eventType = _objectAdapter.GetPropChangedType(args.PropertyName);
                     if (eventType == null)
                     {
                         throw new Exception($"Couldn't get event type for property {args.PropertyName}.");
                     }
+
                     var propChangedResponse = Activator.CreateInstance(eventType);
                     SetValue(propChangedResponse, grpcProperty.Property.GetValue(o));
                     SetObjectId(propChangedResponse, tagId);
@@ -69,7 +73,29 @@ namespace NetGrpcGen.Adapters
                 {
                     notifyHandler.PropertyChanged += handler;
                 }
-                
+
+                var eventHandlers = new List<Tuple<GrpcEvent, Delegate>>();
+                foreach (var even in _grpcObject.Events)
+                {
+                    var del = Create(even.Event, val =>
+                    {
+                        var eventType = _objectAdapter.GetEventType(even.Name);
+                        if (eventType == null)
+                        {
+                            return;
+                        }
+                        var eventMessage = Activator.CreateInstance(eventType) as IMessage;
+                        SetObjectId(eventMessage, tagId);
+                        if (even.DataType != null)
+                        {
+                            SetValue(eventMessage, val);
+                        }
+                        responseStream.WriteAsync(Any.Pack(eventMessage));
+                    });
+                    even.Event.AddEventHandler(o, del);
+                    eventHandlers.Add(new Tuple<GrpcEvent, Delegate>(even, del));
+                }
+
                 // Wait for a stop request...
                 await requestStream.MoveNext();
                 requestStream.Current.Unpack<TStopRequest>();
@@ -78,7 +104,12 @@ namespace NetGrpcGen.Adapters
                 {
                     notifyHandler.PropertyChanged -= handler;
                 }
-                
+
+                foreach (var even in eventHandlers)
+                {
+                    even.Item1.Event.RemoveEventHandler(o, even.Item2);
+                }
+
                 // Send the stop response.
                 await responseStream.WriteAsync(Any.Pack(new TStopResponse()));
             }
@@ -87,6 +118,31 @@ namespace NetGrpcGen.Adapters
                 ObjectTagger.Default.FreeId(tagId);
                 _objects.TryRemove(tagId, out o);
             }
+        }
+        
+        private Delegate Create(EventInfo evt, Action<object> d)
+        {
+            var handlerType = evt.EventHandlerType;
+            var eventParams = handlerType.GetGenericArguments();
+
+            //lambda: (object x0, ExampleEventArgs x1) => d(x1.IntArg)
+            var parameters = eventParams.Select(p=>Expression.Parameter(p,"x")).ToArray();
+            Expression body = null;
+            if (parameters.Length == 1)
+            {
+                body = Expression.Call(Expression.Constant(d), d.GetType().GetMethod("Invoke"), parameters[0]);
+            }
+            else
+            {
+                body = Expression.Call(Expression.Constant(d), d.GetType().GetMethod("Invoke"), Expression.Constant(null));
+            }
+            var lambda = Expression.Lambda(body,parameters);
+
+            var ee = lambda.Compile();
+
+            var m = ee.GetType().GetMethod("Invoke", BindingFlags.Public | BindingFlags.Instance);
+
+            return Delegate.CreateDelegate(handlerType, ee, m);
         }
         
         private async Task<TResponse> InvokeMethod<TRequest, TResponse>(GrpcMethod method, TRequest request)
