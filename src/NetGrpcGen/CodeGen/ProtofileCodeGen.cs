@@ -57,6 +57,13 @@ namespace NetGrpcGen.CodeGen
                 foreach (var o in objects)
                 {
                     var serviceName = $"{o.Name}ObjectService";
+
+                    if (o.Events.Count > 0)
+                    {
+                        writer.WriteLine($"message Listen{o.Name}EventStream {{");
+                        writer.WriteLine("\tuint64 objectId = 1;");
+                        writer.WriteLine("}");
+                    }
                     
                     writer.WriteLine($"message {o.Name}CreateResponse {{");
                     writer.WriteLine("\tuint64 objectId = 1;");
@@ -110,6 +117,10 @@ namespace NetGrpcGen.CodeGen
                     
                     writer.WriteLine($"service {serviceName} {{");
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
+                    if (o.Events.Count > 0)
+                    {
+                        writer.WriteLine($"\trpc ListenEvents (Listen{o.Name}EventStream) returns (stream google.protobuf.Any);");
+                    }
                     foreach (var method in o.Methods)
                     {
                         writer.WriteLine($"\trpc {method.Name} ({method.RequestType.TypeName}) returns ({method.ResponseType.TypeName});");

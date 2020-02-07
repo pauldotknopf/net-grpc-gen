@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
@@ -35,6 +36,91 @@ namespace NetGrpcGen.Adapters
             _grpcObject = grpcObject;
         }
 
+        private async Task ListenEvents(
+            object request,
+            IServerStreamWriter<Any> responseStream,
+            ServerCallContext context)
+        {
+            var objectId = GetObjectId(request);
+
+            if (!_objects.TryGetValue(objectId, out TObject o))
+            {
+                throw new Exception("Invalid object id.");
+            }
+
+            var eventHandlers = new List<Tuple<GrpcEvent, Delegate>>();
+            foreach (var even in _grpcObject.Events)
+            {
+                var del = Create(even.Event, val =>
+                {
+                    var eventType = _objectAdapter.GetEventType(even.Name);
+                    if (eventType == null)
+                    {
+                        return;
+                    }
+
+                    var eventMessage = Activator.CreateInstance(eventType) as IMessage;
+                    SetObjectId(eventMessage, objectId);
+                    if (even.DataType != null)
+                    {
+                        SetValue(eventMessage, val);
+                    }
+
+                    responseStream.WriteAsync(Any.Pack(eventMessage));
+                });
+                even.Event.AddEventHandler(o, del);
+                eventHandlers.Add(new Tuple<GrpcEvent, Delegate>(even, del));
+            }
+
+            var notifyHandler = o as INotifyPropertyChanged;
+            var handler = new PropertyChangedEventHandler((sender, args) =>
+            {
+                var grpcProperty = _grpcObject.Properties.SingleOrDefault(x => x.Name == args.PropertyName);
+                if (grpcProperty == null)
+                {
+                    return;
+                }
+
+                var eventType = _objectAdapter.GetPropChangedType(args.PropertyName);
+                if (eventType == null)
+                {
+                    throw new Exception($"Couldn't get event type for property {args.PropertyName}.");
+                }
+
+                var propChangedResponse = Activator.CreateInstance(eventType);
+                SetValue(propChangedResponse, grpcProperty.Property.GetValue(o));
+                SetObjectId(propChangedResponse, objectId);
+                responseStream.WriteAsync(Any.Pack(propChangedResponse as IMessage));
+            });
+            if (notifyHandler != null)
+            {
+                notifyHandler.PropertyChanged += handler;
+            }
+            
+            try
+            {
+                // Wait for the client to disconnect.
+                var tcs = new TaskCompletionSource<bool>();
+                context.CancellationToken.Register(s => ((TaskCompletionSource<bool>) s).SetResult(true), tcs);
+                if (!context.CancellationToken.IsCancellationRequested)
+                {
+                    await tcs.Task;
+                }
+            }
+            finally
+            {
+                // Remove all the event handlers.
+                foreach (var even in eventHandlers)
+                {
+                    even.Item1.Event.RemoveEventHandler(o, even.Item2);
+                }
+                if (notifyHandler != null)
+                {
+                    notifyHandler.PropertyChanged -= handler;
+                }
+            }
+        }
+
         private async Task Create(
             IAsyncStreamReader<Any> requestStream,
             IServerStreamWriter<Any> responseStream)
@@ -49,67 +135,10 @@ namespace NetGrpcGen.Adapters
                 SetObjectId(response, tagId);
                 await responseStream.WriteAsync(Any.Pack(response));
 
-                var notifyHandler = o as INotifyPropertyChanged;
-                var handler = new PropertyChangedEventHandler((sender, args) =>
-                {
-                    var grpcProperty = _grpcObject.Properties.SingleOrDefault(x => x.Name == args.PropertyName);
-                    if (grpcProperty == null)
-                    {
-                        return;
-                    }
-
-                    var eventType = _objectAdapter.GetPropChangedType(args.PropertyName);
-                    if (eventType == null)
-                    {
-                        throw new Exception($"Couldn't get event type for property {args.PropertyName}.");
-                    }
-
-                    var propChangedResponse = Activator.CreateInstance(eventType);
-                    SetValue(propChangedResponse, grpcProperty.Property.GetValue(o));
-                    SetObjectId(propChangedResponse, tagId);
-                    responseStream.WriteAsync(Any.Pack(propChangedResponse as IMessage));
-                });
-                if (notifyHandler != null)
-                {
-                    notifyHandler.PropertyChanged += handler;
-                }
-
-                var eventHandlers = new List<Tuple<GrpcEvent, Delegate>>();
-                foreach (var even in _grpcObject.Events)
-                {
-                    var del = Create(even.Event, val =>
-                    {
-                        var eventType = _objectAdapter.GetEventType(even.Name);
-                        if (eventType == null)
-                        {
-                            return;
-                        }
-                        var eventMessage = Activator.CreateInstance(eventType) as IMessage;
-                        SetObjectId(eventMessage, tagId);
-                        if (even.DataType != null)
-                        {
-                            SetValue(eventMessage, val);
-                        }
-                        responseStream.WriteAsync(Any.Pack(eventMessage));
-                    });
-                    even.Event.AddEventHandler(o, del);
-                    eventHandlers.Add(new Tuple<GrpcEvent, Delegate>(even, del));
-                }
-
                 // Wait for a stop request...
                 await requestStream.MoveNext();
                 requestStream.Current.Unpack<TStopRequest>();
-
-                if (notifyHandler != null)
-                {
-                    notifyHandler.PropertyChanged -= handler;
-                }
-
-                foreach (var even in eventHandlers)
-                {
-                    even.Item1.Event.RemoveEventHandler(o, even.Item2);
-                }
-
+                
                 // Send the stop response.
                 await responseStream.WriteAsync(Any.Pack(new TStopResponse()));
             }
@@ -130,19 +159,21 @@ namespace NetGrpcGen.Adapters
             Expression body = null;
             if (parameters.Length == 1)
             {
+                // ReSharper disable once AssignNullToNotNullAttribute
                 body = Expression.Call(Expression.Constant(d), d.GetType().GetMethod("Invoke"), parameters[0]);
             }
             else
             {
+                // ReSharper disable once AssignNullToNotNullAttribute
                 body = Expression.Call(Expression.Constant(d), d.GetType().GetMethod("Invoke"), Expression.Constant(null));
             }
             var lambda = Expression.Lambda(body,parameters);
 
-            var ee = lambda.Compile();
+            var compileDel = lambda.Compile();
 
-            var m = ee.GetType().GetMethod("Invoke", BindingFlags.Public | BindingFlags.Instance);
+            var m = compileDel.GetType().GetMethod("Invoke", BindingFlags.Public | BindingFlags.Instance);
 
-            return Delegate.CreateDelegate(handlerType, ee, m);
+            return Delegate.CreateDelegate(handlerType, compileDel, m);
         }
         
         private async Task<TResponse> InvokeMethod<TRequest, TResponse>(GrpcMethod method, TRequest request)
@@ -286,7 +317,16 @@ namespace NetGrpcGen.Adapters
 
             public override void AddMethod<TRequest, TResponse>(Method<TRequest, TResponse> method, ServerStreamingServerMethod<TRequest, TResponse> handler)
             {
-                throw new NotSupportedException();
+                switch (method.Name)
+                {
+                    case "ListenEvents":
+                        _builder.AddMethod(method, new ServerStreamingServerMethod<TRequest, TResponse>(
+                            (request, responseStream, context) => _serviceAdapter.ListenEvents(request,
+                                responseStream as IServerStreamWriter<Any>, context)));
+                        break;
+                    default:
+                        throw new NotSupportedException();
+                }
             }
 
             public override void AddMethod<TRequest, TResponse>(Method<TRequest, TResponse> method, UnaryServerMethod<TRequest, TResponse> handler)

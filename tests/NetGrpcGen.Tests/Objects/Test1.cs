@@ -75,7 +75,7 @@ namespace NetGrpcGen.Tests.Objects
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
     }
-
+    
     public class Test1Adapter : ObjectAdapter<Test1>
     {
         private readonly Test1 _instance;
