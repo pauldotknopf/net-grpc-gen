@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using NetGrpcGen.Model;
 
 namespace NetGrpcGen.CodeGen
 {
-    public class ProtofileCodeGen
+    public static class ProtofileCodeGen
     {
-        private List<string> GetAllImports(GrpcObject grpcObject)
+        private static List<string> GetAllImports(GrpcObject grpcObject)
         {
             var imports = new List<string>();
 
@@ -39,129 +40,143 @@ namespace NetGrpcGen.CodeGen
 
             return imports.Where(x => !string.IsNullOrEmpty(x)).Distinct().ToList();
         }
-        
-        public void Generate(List<GrpcObject> objects, string packageName, Stream outputStream)
+
+        public static string Generate(List<GrpcObject> objects, string package)
         {
-            using (var writer = new StreamWriter(outputStream))
+            using (var memoryStream = new MemoryStream())
             {
-                writer.WriteLine("syntax = \"proto3\";");
-                if (!string.IsNullOrEmpty(packageName))
+                using (var writer = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
                 {
-                    writer.WriteLine($"package {packageName};");
+                    Generate(objects, package, writer);
                 }
 
-                var imports = objects.SelectMany(GetAllImports).Distinct().ToList();
-                if (!imports.Contains("google/protobuf/any.proto"))
+                memoryStream.Position = 0;
+                using (var reader = new StreamReader(memoryStream, Encoding.UTF8, true, 1024, true))
                 {
-                    imports.Add("google/protobuf/any.proto");
-                }
-                foreach (var import in imports.OrderBy(x => x))
-                {
-                    writer.WriteLine($"import \"{import}\";");
-                }
-                
-                foreach (var o in objects)
-                {
-                    var serviceName = $"{o.Name}ObjectService";
-
-                    if (o.Events.Count > 0)
-                    {
-                        writer.WriteLine($"message {o.Name}ListenEventStream {{");
-                        writer.WriteLine("\tuint64 objectId = 1;");
-                        writer.WriteLine("}");
-                    }
-                    
-                    writer.WriteLine($"message {o.Name}CreateResponse {{");
-                    writer.WriteLine("\tuint64 objectId = 1;");
-                    writer.WriteLine("}");
-                    
-                    writer.WriteLine($"message {o.Name}StopRequest {{");
-                    writer.WriteLine("}");
-                    
-                    writer.WriteLine($"message {o.Name}StopResponse {{");
-                    writer.WriteLine("}");
-
-                    foreach (var property in o.Properties)
-                    {
-                        if (property.CanWrite)
-                        {
-                            writer.WriteLine($"message {o.Name}{property.Name}SetRequest {{");
-                            writer.WriteLine("\tuint64 objectId = 1;");
-                            writer.WriteLine($"\t{property.DataType.TypeName} value = 2;");
-                            writer.WriteLine("}");
-                            
-                            writer.WriteLine($"message {o.Name}{property.Name}SetResponse {{");
-                            writer.WriteLine("}");
-                        }
-                        writer.WriteLine($"message {o.Name}{property.Name}GetRequest {{");
-                        writer.WriteLine("\tuint64 objectId = 1;");
-                        writer.WriteLine("}");
-                        
-                        writer.WriteLine($"message {o.Name}{property.Name}GetResponse {{");
-                        writer.WriteLine($"\t{property.DataType.TypeName} value = 1;");
-                        writer.WriteLine("}");
-                        
-                        if (o.ImplementedINotify)
-                        {
-                            writer.WriteLine($"message {o.Name}{property.Name}PropertyChanged {{");
-                            writer.WriteLine("\tuint64 objectId = 1;");
-                            writer.WriteLine($"\t{property.DataType.TypeName} value = 2;");
-                            writer.WriteLine("}");
-                        }
-                    }
-
-                    foreach (var even in o.Events)
-                    {
-                        writer.WriteLine($"message {o.Name}{even.Name}Event {{");
-                        writer.WriteLine("\tuint64 objectId = 1;");
-                        if (even.DataType != null)
-                        {
-                            writer.WriteLine($"\t{even.DataType.TypeName} value = 2;");
-                        }
-                        writer.WriteLine("}");
-                    }
-
-                    foreach (var method in o.Methods)
-                    {
-                        writer.WriteLine($"message {o.Name}{method.Name}MethodRequest {{");
-                        writer.WriteLine("\tuint64 objectId = 1;");
-                        if (method.RequestType != null)
-                        {
-                            writer.WriteLine($"\t{method.RequestType.TypeName} value = 2;");
-                        }
-                        writer.WriteLine("}");
-                        writer.WriteLine($"message {o.Name}{method.Name}MethodResponse {{");
-                        if (method.ResponseType != null)
-                        {
-                            writer.WriteLine($"\t{method.ResponseType.TypeName} value = 1;");
-                        }
-                        writer.WriteLine("}");
-                    }
-                    
-                    writer.WriteLine($"service {serviceName} {{");
-                    writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
-                    if (o.Events.Count > 0)
-                    {
-                        writer.WriteLine($"\trpc ListenEvents ({o.Name}ListenEventStream) returns (stream google.protobuf.Any);");
-                    }
-                    foreach (var method in o.Methods)
-                    {
-                        writer.WriteLine($"\trpc {method.Name} ({o.Name}{method.Name}MethodRequest) returns ({o.Name}{method.Name}MethodResponse);");
-                    }
-                    foreach (var property in o.Properties)
-                    {
-                        if (property.CanWrite)
-                        {
-                            writer.WriteLine($"\trpc SetProperty{property.Name} ({o.Name}{property.Name}SetRequest) returns ({o.Name}{property.Name}SetResponse);");
-                        }
-                        writer.WriteLine($"\trpc GetProperty{property.Name} ({o.Name}{property.Name}GetRequest) returns ({o.Name}{property.Name}GetResponse);");
-                    }
-                    writer.WriteLine("}");
+                    return reader.ReadToEnd();
                 }
             }
         }
+        
+        public static void Generate(List<GrpcObject> objects, string packageName, StreamWriter writer)
+        {
+            writer.WriteLine("syntax = \"proto3\";");
+            if (!string.IsNullOrEmpty(packageName))
+            {
+                writer.WriteLine($"package {packageName};");
+            }
 
-        private string ToGrpcType(GrpcDataType dataType)
+            var imports = objects.SelectMany(GetAllImports).Distinct().ToList();
+            if (!imports.Contains("google/protobuf/any.proto"))
+            {
+                imports.Add("google/protobuf/any.proto");
+            }
+            foreach (var import in imports.OrderBy(x => x))
+            {
+                writer.WriteLine($"import \"{import}\";");
+            }
+            
+            foreach (var o in objects)
+            {
+                var serviceName = $"{o.Name}ObjectService";
+
+                if (o.Events.Count > 0)
+                {
+                    writer.WriteLine($"message {o.Name}ListenEventStream {{");
+                    writer.WriteLine("\tuint64 objectId = 1;");
+                    writer.WriteLine("}");
+                }
+                
+                writer.WriteLine($"message {o.Name}CreateResponse {{");
+                writer.WriteLine("\tuint64 objectId = 1;");
+                writer.WriteLine("}");
+                
+                writer.WriteLine($"message {o.Name}StopRequest {{");
+                writer.WriteLine("}");
+                
+                writer.WriteLine($"message {o.Name}StopResponse {{");
+                writer.WriteLine("}");
+
+                foreach (var property in o.Properties)
+                {
+                    if (property.CanWrite)
+                    {
+                        writer.WriteLine($"message {o.Name}{property.Name}SetRequest {{");
+                        writer.WriteLine("\tuint64 objectId = 1;");
+                        writer.WriteLine($"\t{property.DataType.TypeName} value = 2;");
+                        writer.WriteLine("}");
+                        
+                        writer.WriteLine($"message {o.Name}{property.Name}SetResponse {{");
+                        writer.WriteLine("}");
+                    }
+                    writer.WriteLine($"message {o.Name}{property.Name}GetRequest {{");
+                    writer.WriteLine("\tuint64 objectId = 1;");
+                    writer.WriteLine("}");
+                    
+                    writer.WriteLine($"message {o.Name}{property.Name}GetResponse {{");
+                    writer.WriteLine($"\t{property.DataType.TypeName} value = 1;");
+                    writer.WriteLine("}");
+                    
+                    if (o.ImplementedINotify)
+                    {
+                        writer.WriteLine($"message {o.Name}{property.Name}PropertyChanged {{");
+                        writer.WriteLine("\tuint64 objectId = 1;");
+                        writer.WriteLine($"\t{property.DataType.TypeName} value = 2;");
+                        writer.WriteLine("}");
+                    }
+                }
+
+                foreach (var even in o.Events)
+                {
+                    writer.WriteLine($"message {o.Name}{even.Name}Event {{");
+                    writer.WriteLine("\tuint64 objectId = 1;");
+                    if (even.DataType != null)
+                    {
+                        writer.WriteLine($"\t{even.DataType.TypeName} value = 2;");
+                    }
+                    writer.WriteLine("}");
+                }
+
+                foreach (var method in o.Methods)
+                {
+                    writer.WriteLine($"message {o.Name}{method.Name}MethodRequest {{");
+                    writer.WriteLine("\tuint64 objectId = 1;");
+                    if (method.RequestType != null)
+                    {
+                        writer.WriteLine($"\t{method.RequestType.TypeName} value = 2;");
+                    }
+                    writer.WriteLine("}");
+                    writer.WriteLine($"message {o.Name}{method.Name}MethodResponse {{");
+                    if (method.ResponseType != null)
+                    {
+                        writer.WriteLine($"\t{method.ResponseType.TypeName} value = 1;");
+                    }
+                    writer.WriteLine("}");
+                }
+                
+                writer.WriteLine($"service {serviceName} {{");
+                writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
+                if (o.Events.Count > 0)
+                {
+                    writer.WriteLine($"\trpc ListenEvents ({o.Name}ListenEventStream) returns (stream google.protobuf.Any);");
+                }
+                foreach (var method in o.Methods)
+                {
+                    writer.WriteLine($"\trpc {method.Name} ({o.Name}{method.Name}MethodRequest) returns ({o.Name}{method.Name}MethodResponse);");
+                }
+                foreach (var property in o.Properties)
+                {
+                    if (property.CanWrite)
+                    {
+                        writer.WriteLine($"\trpc SetProperty{property.Name} ({o.Name}{property.Name}SetRequest) returns ({o.Name}{property.Name}SetResponse);");
+                    }
+                    writer.WriteLine($"\trpc GetProperty{property.Name} ({o.Name}{property.Name}GetRequest) returns ({o.Name}{property.Name}GetResponse);");
+                }
+                writer.WriteLine("}");
+            }
+        }
+
+        private static string ToGrpcType(GrpcDataType dataType)
         {
             switch (dataType)
             {
