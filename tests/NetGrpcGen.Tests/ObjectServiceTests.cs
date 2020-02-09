@@ -30,14 +30,17 @@ namespace NetGrpcGen.Tests
             o.CallBase = true;
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.TestMethodAsync(new TestMessageRequest
+                var response = await client.TestMethodAsync(new Test1TestMethodMethodRequest
                 {
                     ObjectId = objectId,
-                    Value1 = 3,
-                    Value2 = "234"
+                    Value = new TestMessageRequest
+                    {
+                        Value1 = 3,
+                        Value2 = "234"
+                    }
                 });
-                response.Value1.Should().Be(3);
-                response.Value2.Should().Be("234");
+                response.Value.Value1.Should().Be(3);
+                response.Value.Value2.Should().Be("234");
                 o.Verify(x => x.TestMethod(It.IsAny<TestMessageRequest>()), Times.Once());
             });
         }
@@ -49,14 +52,17 @@ namespace NetGrpcGen.Tests
             o.CallBase = true;
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.TestMethodSyncAsync(new TestMessageRequest
+                var response = await client.TestMethodSyncAsync(new Test1TestMethodSyncMethodRequest
                 {
                     ObjectId = objectId,
-                    Value1 = 3,
-                    Value2 = "234"
+                    Value = new TestMessageRequest
+                    {
+                        Value1 = 3,
+                        Value2 = "234"
+                    }
                 });
-                response.Value1.Should().Be(3);
-                response.Value2.Should().Be("234");
+                response.Value.Value1.Should().Be(3);
+                response.Value.Value2.Should().Be("234");
                 o.Verify(x => x.TestMethodSync(It.IsAny<TestMessageRequest>()), Times.Once());
             });
         }
@@ -68,9 +74,10 @@ namespace NetGrpcGen.Tests
             o.Setup(x => x.TestMethodWithNoResponse(It.IsAny<TestMessageRequest>()));
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.TestMethodWithNoResponseAsync(new TestMessageRequest
+                await client.TestMethodWithNoResponseAsync(new Test1TestMethodWithNoResponseMethodRequest
                 {
-                    ObjectId = objectId
+                    ObjectId = objectId,
+                    Value = new TestMessageRequest()
                 });
                 o.Verify(x => x.TestMethodWithNoResponse(It.IsAny<TestMessageRequest>()), Times.Once());
             });

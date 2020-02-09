@@ -76,7 +76,7 @@ namespace NetGrpcGen.Discovery.Impl
                         var generateParameters = m.Method.ReturnType.GetGenericArguments();
                         if (generateParameters.Length == 0)
                         {
-                            m.ResponseType = GetGrpcType(typeof(Empty));
+                            m.ResponseType = null;
                         }
                         else
                         {
@@ -109,26 +109,19 @@ namespace NetGrpcGen.Discovery.Impl
                         }
                         else
                         {
-                            m.ResponseType = GetGrpcType(typeof(Empty));
+                            m.ResponseType = null;
                         }
                     }
 
                     var parameters = m.Method.GetParameters();
-                    if (parameters.Length == 0)
-                    {
-                        throw new Exception("All methods must have at least one parameter.");
-                    }
-                    
+                 
                     if (parameters.Length == 1)
                     {
-                        // Make sure it has an object id property.
-                        var objectIdProp = parameters[0].ParameterType
-                            .GetProperty("ObjectId", BindingFlags.Instance | BindingFlags.Public);
-                        if (objectIdProp == null)
-                        {
-                            throw new Exception("The request type must have an \"ObjectId\" property.");
-                        }
                         m.RequestType = GetGrpcType(parameters[0].ParameterType);
+                    }
+                    else if(parameters.Length == 0)
+                    {
+                        m.RequestType = null;
                     }
                     else
                     {

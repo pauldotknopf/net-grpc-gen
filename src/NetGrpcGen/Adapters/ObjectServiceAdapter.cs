@@ -185,21 +185,27 @@ namespace NetGrpcGen.Adapters
                 throw new Exception("Invalid object id.");
             }
 
-            var response = method.Method.Invoke(o, new object[] { request });
+            var value = GetValue(request);
+            
+            var response = method.Method.Invoke(o, new object[] { value });
 
             if (response is Task task)
             {
                 await task;
                 var result = (object)((dynamic)task).Result;
-                return (TResponse)result;
+                var messageResponse = Activator.CreateInstance(typeof(TResponse));
+                SetValue(messageResponse, result);
+                return (TResponse)messageResponse;
             }
-
-            if (response == null)
+            else
             {
-                response = new Empty();
+                var messageResponse = Activator.CreateInstance(typeof(TResponse));
+                if (method.ResponseType != null)
+                {
+                    SetValue(messageResponse, response);
+                }
+                return (TResponse) messageResponse;
             }
-                
-            return (TResponse)response;
         }
 
         private TResponse GetProperty<TRequest, TResponse>(GrpcProperty property, TRequest request)

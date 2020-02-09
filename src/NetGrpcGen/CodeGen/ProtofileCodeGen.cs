@@ -14,8 +14,14 @@ namespace NetGrpcGen.CodeGen
 
             foreach (var method in grpcObject.Methods)
             {
-                imports.Add(method.ResponseType.Import);
-                imports.Add(method.RequestType.Import);
+                if (method.ResponseType != null)
+                {
+                    imports.Add(method.ResponseType.Import);
+                }
+                if (method.RequestType != null)
+                {
+                    imports.Add(method.RequestType.Import);
+                }
             }
             
             foreach (var prop in grpcObject.Properties)
@@ -114,6 +120,23 @@ namespace NetGrpcGen.CodeGen
                         }
                         writer.WriteLine("}");
                     }
+
+                    foreach (var method in o.Methods)
+                    {
+                        writer.WriteLine($"message {o.Name}{method.Name}MethodRequest {{");
+                        writer.WriteLine("\tuint64 objectId = 1;");
+                        if (method.RequestType != null)
+                        {
+                            writer.WriteLine($"\t{method.RequestType.TypeName} value = 2;");
+                        }
+                        writer.WriteLine("}");
+                        writer.WriteLine($"message {o.Name}{method.Name}MethodResponse {{");
+                        if (method.ResponseType != null)
+                        {
+                            writer.WriteLine($"\t{method.ResponseType.TypeName} value = 1;");
+                        }
+                        writer.WriteLine("}");
+                    }
                     
                     writer.WriteLine($"service {serviceName} {{");
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
@@ -123,7 +146,7 @@ namespace NetGrpcGen.CodeGen
                     }
                     foreach (var method in o.Methods)
                     {
-                        writer.WriteLine($"\trpc {method.Name} ({method.RequestType.TypeName}) returns ({method.ResponseType.TypeName});");
+                        writer.WriteLine($"\trpc {method.Name} ({o.Name}{method.Name}MethodRequest) returns ({o.Name}{method.Name}MethodResponse);");
                     }
                     foreach (var property in o.Properties)
                     {

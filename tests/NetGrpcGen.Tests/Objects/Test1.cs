@@ -51,6 +51,12 @@ namespace NetGrpcGen.Tests.Objects
         {
         }
 
+        [GrpcMethod]
+        public virtual void TestMethodNoRequest()
+        {
+            
+        }
+
         [GrpcProperty]
         public virtual string PropString
         {
