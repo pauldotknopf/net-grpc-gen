@@ -60,7 +60,7 @@ namespace NetGrpcGen.CodeGen
 
                     if (o.Events.Count > 0)
                     {
-                        writer.WriteLine($"message Listen{o.Name}EventStream {{");
+                        writer.WriteLine($"message {o.Name}ListenEventStream {{");
                         writer.WriteLine("\tuint64 objectId = 1;");
                         writer.WriteLine("}");
                     }
@@ -79,25 +79,25 @@ namespace NetGrpcGen.CodeGen
                     {
                         if (property.CanWrite)
                         {
-                            writer.WriteLine($"message SetProperty{property.Name}Request {{");
+                            writer.WriteLine($"message {o.Name}{property.Name}SetRequest {{");
                             writer.WriteLine("\tuint64 objectId = 1;");
                             writer.WriteLine($"\t{property.DataType.TypeName} value = 2;");
                             writer.WriteLine("}");
                             
-                            writer.WriteLine($"message SetProperty{property.Name}Response {{");
+                            writer.WriteLine($"message {o.Name}{property.Name}SetResponse {{");
                             writer.WriteLine("}");
                         }
-                        writer.WriteLine($"message GetProperty{property.Name}Request {{");
+                        writer.WriteLine($"message {o.Name}{property.Name}GetRequest {{");
                         writer.WriteLine("\tuint64 objectId = 1;");
                         writer.WriteLine("}");
                         
-                        writer.WriteLine($"message GetProperty{property.Name}Response {{");
+                        writer.WriteLine($"message {o.Name}{property.Name}GetResponse {{");
                         writer.WriteLine($"\t{property.DataType.TypeName} value = 1;");
                         writer.WriteLine("}");
                         
                         if (o.ImplementedINotify)
                         {
-                            writer.WriteLine($"message Property{property.Name}Changed {{");
+                            writer.WriteLine($"message {o.Name}{property.Name}PropertyChanged {{");
                             writer.WriteLine("\tuint64 objectId = 1;");
                             writer.WriteLine($"\t{property.DataType.TypeName} value = 2;");
                             writer.WriteLine("}");
@@ -106,7 +106,7 @@ namespace NetGrpcGen.CodeGen
 
                     foreach (var even in o.Events)
                     {
-                        writer.WriteLine($"message Event{even.Name} {{");
+                        writer.WriteLine($"message {o.Name}{even.Name}Event {{");
                         writer.WriteLine("\tuint64 objectId = 1;");
                         if (even.DataType != null)
                         {
@@ -119,7 +119,7 @@ namespace NetGrpcGen.CodeGen
                     writer.WriteLine("\trpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);");
                     if (o.Events.Count > 0)
                     {
-                        writer.WriteLine($"\trpc ListenEvents (Listen{o.Name}EventStream) returns (stream google.protobuf.Any);");
+                        writer.WriteLine($"\trpc ListenEvents ({o.Name}ListenEventStream) returns (stream google.protobuf.Any);");
                     }
                     foreach (var method in o.Methods)
                     {
@@ -129,9 +129,9 @@ namespace NetGrpcGen.CodeGen
                     {
                         if (property.CanWrite)
                         {
-                            writer.WriteLine($"\trpc SetProperty{property.Name} (SetProperty{property.Name}Request) returns (SetProperty{property.Name}Response);");
+                            writer.WriteLine($"\trpc SetProperty{property.Name} ({o.Name}{property.Name}SetRequest) returns ({o.Name}{property.Name}SetResponse);");
                         }
-                        writer.WriteLine($"\trpc GetProperty{property.Name} (GetProperty{property.Name}Request) returns (GetProperty{property.Name}Response);");
+                        writer.WriteLine($"\trpc GetProperty{property.Name} ({o.Name}{property.Name}GetRequest) returns ({o.Name}{property.Name}GetResponse);");
                     }
                     writer.WriteLine("}");
                 }

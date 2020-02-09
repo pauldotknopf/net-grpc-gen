@@ -83,7 +83,7 @@ namespace NetGrpcGen.Tests
             o.SetupGet(x => x.PropString).Returns("sssdsd");
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.GetPropertyPropStringAsync(new GetPropertyPropStringRequest
+                var response = await client.GetPropertyPropStringAsync(new Test1PropStringGetRequest
                 {
                     ObjectId = objectId
                 });
@@ -99,7 +99,7 @@ namespace NetGrpcGen.Tests
             o.SetupSet(x => x.PropString = "TTT");
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                await client.SetPropertyPropStringAsync(new SetPropertyPropStringRequest
+                await client.SetPropertyPropStringAsync(new Test1PropStringSetRequest
                 {
                     ObjectId = objectId,
                     Value = "TTT"
@@ -115,7 +115,7 @@ namespace NetGrpcGen.Tests
             o.SetupGet(x => x.PropString).Returns("sdfxcvs");
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var eventStream = client.ListenEvents(new ListenTest1EventStream
+                var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
                     ObjectId = objectId
                 });
@@ -123,7 +123,7 @@ namespace NetGrpcGen.Tests
                 o.Raise(x => x.PropertyChanged += null, new PropertyChangedEventArgs("PropString"));
 
                 await eventStream.ResponseStream.MoveNext();
-                var propChanged = eventStream.ResponseStream.Current.Unpack<PropertyPropStringChanged>();
+                var propChanged = eventStream.ResponseStream.Current.Unpack<Test1PropStringPropertyChanged>();
                 propChanged.Value.Should().Be("sdfxcvs");
                 propChanged.ObjectId.Should().Be(objectId);
                 
@@ -142,7 +142,7 @@ namespace NetGrpcGen.Tests
             });
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var eventStream = client.ListenEvents(new ListenTest1EventStream
+                var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
                     ObjectId = objectId
                 });
@@ -150,7 +150,7 @@ namespace NetGrpcGen.Tests
                 o.Raise(x => x.PropertyChanged += null, new PropertyChangedEventArgs("PropComplex"));
 
                 await eventStream.ResponseStream.MoveNext();
-                var propChanged = eventStream.ResponseStream.Current.Unpack<PropertyPropComplexChanged>();
+                var propChanged = eventStream.ResponseStream.Current.Unpack<Test1PropComplexPropertyChanged>();
                 propChanged.Value.Value1.Should().Be(78);
                 propChanged.Value.Value2.Should().Be("sss");
                 propChanged.ObjectId.Should().Be(objectId);
@@ -165,7 +165,7 @@ namespace NetGrpcGen.Tests
             var o = new Mock<Test1>();
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var eventStream = client.ListenEvents(new ListenTest1EventStream
+                var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
                     ObjectId = objectId
                 });
@@ -173,7 +173,7 @@ namespace NetGrpcGen.Tests
                 o.Raise(x => x.TestEvent += null, "tettsedf");
 
                 await eventStream.ResponseStream.MoveNext();
-                var eventTest = eventStream.ResponseStream.Current.Unpack<EventTestEvent>();
+                var eventTest = eventStream.ResponseStream.Current.Unpack<Test1TestEventEvent>();
                 eventTest.Value.Should().Be("tettsedf");
                 eventTest.ObjectId.Should().Be(objectId);
 
@@ -187,7 +187,7 @@ namespace NetGrpcGen.Tests
             var o = new Mock<Test1>();
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var eventStream = client.ListenEvents(new ListenTest1EventStream
+                var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
                     ObjectId = objectId
                 });
@@ -199,7 +199,7 @@ namespace NetGrpcGen.Tests
                 });
 
                 await eventStream.ResponseStream.MoveNext();
-                var eventTestComplex = eventStream.ResponseStream.Current.Unpack<EventTestEventComplex>();
+                var eventTestComplex = eventStream.ResponseStream.Current.Unpack<Test1TestEventComplexEvent>();
                 eventTestComplex.Value.Value1.Should().Be(45655674);
                 eventTestComplex.Value.Value2.Should().Be(",,,");
                 eventTestComplex.ObjectId.Should().Be(objectId);
@@ -214,7 +214,7 @@ namespace NetGrpcGen.Tests
             var o = new Mock<Test1>();
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var eventStream = client.ListenEvents(new ListenTest1EventStream
+                var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
                     ObjectId = objectId
                 });
@@ -222,7 +222,7 @@ namespace NetGrpcGen.Tests
                 o.Raise(x => x.TestEventNoData += null);
 
                 await eventStream.ResponseStream.MoveNext();
-                var eventTestComplex = eventStream.ResponseStream.Current.Unpack<EventTestEventNoData>();
+                var eventTestComplex = eventStream.ResponseStream.Current.Unpack<Test1TestEventNoDataEvent>();
                 eventTestComplex.ObjectId.Should().Be(objectId);
                 
                 eventStream.Dispose();

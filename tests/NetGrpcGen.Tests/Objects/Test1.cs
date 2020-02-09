@@ -83,11 +83,11 @@ namespace NetGrpcGen.Tests.Objects
         public Test1Adapter(Test1 instance)
         {
             _instance = instance;
-            RegisterPropChangedType<PropertyPropStringChanged>("PropString");
-            RegisterPropChangedType<PropertyPropComplexChanged>("PropComplex");
-            RegisterEventType<EventTestEvent>("TestEvent");
-            RegisterEventType<EventTestEventComplex>("TestEventComplex");
-            RegisterEventType<EventTestEventNoData>("TestEventNoData");
+            RegisterPropChangedType<Test1PropStringPropertyChanged>("PropString");
+            RegisterPropChangedType<Test1PropComplexPropertyChanged>("PropComplex");
+            RegisterEventType<Test1TestEventEvent>("TestEvent");
+            RegisterEventType<Test1TestEventComplexEvent>("TestEventComplex");
+            RegisterEventType<Test1TestEventNoDataEvent>("TestEventNoData");
         }
         
         public override Test1 Create()
