@@ -1,7 +1,34 @@
 syntax = "proto3";
 package Tests;
 import "google/protobuf/any.proto";
+import "google/protobuf/descriptor.proto";
 import "types.proto";
+extend google.protobuf.MethodOptions {
+    // The method used to create the object.
+    bool create = 1000;
+    // The method used to listen for events.
+    bool eventListener = 1001;
+    // The method name
+    string methodName = 1002;
+    // Is this method sync or async?
+    bool sync = 1003;
+    // The name of the property.
+    string propName = 1004;
+    // The property setter.
+    bool propSet = 1005;
+    // The property getter.
+    bool propGet = 1006;
+}
+extend google.protobuf.MessageOptions {
+    // The name of the object that this message is for.
+    string messageObjectName = 1000;
+    // The name of the event this message is for.
+    string eventName = 1001;
+}
+extend google.protobuf.ServiceOptions {
+    // The name of the object that this service is for.
+    string serviceObjectName = 1000;
+}
 message Test1ListenEventStream {
 	uint64 objectId = 1;
 }
@@ -25,6 +52,7 @@ message Test1PropStringGetResponse {
 	string value = 1;
 }
 message Test1PropStringPropertyChanged {
+	option(eventName) = "PropString";
 	uint64 objectId = 1;
 	string value = 2;
 }
@@ -41,18 +69,22 @@ message Test1PropComplexGetResponse {
 	custom.types.TestMessageResponse value = 1;
 }
 message Test1PropComplexPropertyChanged {
+	option(eventName) = "PropComplex";
 	uint64 objectId = 1;
 	custom.types.TestMessageResponse value = 2;
 }
 message Test1TestEventEvent {
+	option(eventName) = "TestEvent";
 	uint64 objectId = 1;
 	string value = 2;
 }
 message Test1TestEventComplexEvent {
+	option(eventName) = "TestEventComplex";
 	uint64 objectId = 1;
 	custom.types.TestMessageResponse value = 2;
 }
 message Test1TestEventNoDataEvent {
+	option(eventName) = "TestEventNoData";
 	uint64 objectId = 1;
 }
 message Test1TestMethodMethodRequest {
@@ -81,14 +113,42 @@ message Test1TestMethodNoRequestMethodRequest {
 message Test1TestMethodNoRequestMethodResponse {
 }
 service Test1ObjectService {
-	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any);
-	rpc ListenEvents (Test1ListenEventStream) returns (stream google.protobuf.Any);
-	rpc TestMethod (Test1TestMethodMethodRequest) returns (Test1TestMethodMethodResponse);
-	rpc TestMethodSync (Test1TestMethodSyncMethodRequest) returns (Test1TestMethodSyncMethodResponse);
-	rpc TestMethodWithNoResponse (Test1TestMethodWithNoResponseMethodRequest) returns (Test1TestMethodWithNoResponseMethodResponse);
-	rpc TestMethodNoRequest (Test1TestMethodNoRequestMethodRequest) returns (Test1TestMethodNoRequestMethodResponse);
-	rpc SetPropertyPropString (Test1PropStringSetRequest) returns (Test1PropStringSetResponse);
-	rpc GetPropertyPropString (Test1PropStringGetRequest) returns (Test1PropStringGetResponse);
-	rpc SetPropertyPropComplex (Test1PropComplexSetRequest) returns (Test1PropComplexSetResponse);
-	rpc GetPropertyPropComplex (Test1PropComplexGetRequest) returns (Test1PropComplexGetResponse);
+	option(serviceObjectName) = "Test1";
+	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any) {
+		option(create) = true;
+	}
+	rpc ListenEvents (Test1ListenEventStream) returns (stream google.protobuf.Any) {
+		option(eventListener) = true;
+	};
+	rpc TestMethod (Test1TestMethodMethodRequest) returns (Test1TestMethodMethodResponse) {
+		option(methodName) = "TestMethod";
+	};
+	rpc TestMethodSync (Test1TestMethodSyncMethodRequest) returns (Test1TestMethodSyncMethodResponse) {
+		option(methodName) = "TestMethodSync";
+		option(sync) = true;
+	};
+	rpc TestMethodWithNoResponse (Test1TestMethodWithNoResponseMethodRequest) returns (Test1TestMethodWithNoResponseMethodResponse) {
+		option(methodName) = "TestMethodWithNoResponse";
+		option(sync) = true;
+	};
+	rpc TestMethodNoRequest (Test1TestMethodNoRequestMethodRequest) returns (Test1TestMethodNoRequestMethodResponse) {
+		option(methodName) = "TestMethodNoRequest";
+		option(sync) = true;
+	};
+	rpc SetPropertyPropString (Test1PropStringSetRequest) returns (Test1PropStringSetResponse) {
+		option(propName) = "PropString";
+		option(propSet) = true;
+	};
+	rpc GetPropertyPropString (Test1PropStringGetRequest) returns (Test1PropStringGetResponse) {
+		option(propName) = "PropString";
+		option(propGet) = true;
+	};
+	rpc SetPropertyPropComplex (Test1PropComplexSetRequest) returns (Test1PropComplexSetResponse) {
+		option(propName) = "PropComplex";
+		option(propSet) = true;
+	};
+	rpc GetPropertyPropComplex (Test1PropComplexGetRequest) returns (Test1PropComplexGetResponse) {
+		option(propName) = "PropComplex";
+		option(propGet) = true;
+	};
 }
