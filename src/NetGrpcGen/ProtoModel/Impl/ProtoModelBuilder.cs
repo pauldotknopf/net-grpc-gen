@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Google.Protobuf.Reflection;
 
 namespace NetGrpcGen.ProtoModel.Impl
@@ -28,7 +29,6 @@ namespace NetGrpcGen.ProtoModel.Impl
                 }
             }
 
-            // Now, find the properties.
             foreach (var objectModel in result)
             {
                 foreach (var method in objectModel.ServiceDescriptor.Methods)
@@ -83,8 +83,51 @@ namespace NetGrpcGen.ProtoModel.Impl
                     
                     throw new Exception($"Unknown method: {method.Name}");
                 }
+
+                var propChangedEventRegex = new Regex($@"{objectModel.ObjectName}(.*)PropertyChanged");
+                var eventRegex = new Regex($@"{objectModel.ObjectName}(.*)Event");
+                
+                foreach (var messageDescriptor in fileDescriptor.MessageTypes)
+                {
+                    if (messageDescriptor.Name == $"{objectModel.ObjectName}CreateResponse")
+                    {
+                        objectModel.CreateResponseDescriptor = messageDescriptor;
+                        continue;
+                    }
+
+                    if (messageDescriptor.Name == $"{objectModel.ObjectName}StopRequest")
+                    {
+                        objectModel.StopRequestDescriptor = messageDescriptor;
+                        continue;
+                    }
+
+                    if (messageDescriptor.Name == $"{objectModel.ObjectName}StopResponse")
+                    {
+                        objectModel.StopResponseDescriptor = messageDescriptor;
+                        continue;
+                    }
+
+                    var match = propChangedEventRegex.Match(messageDescriptor.Name);
+                    if (match.Success)
+                    {
+                        var propertyName = match.Groups[1].Value;
+                        var propertyModel = objectModel.Properties.Single(x => x.PropertyName == propertyName);
+                        propertyModel.UpdatedEvent = messageDescriptor;
+                        continue;
+                    }
+
+                    match = eventRegex.Match(messageDescriptor.Name);
+                    if (match.Success)
+                    {
+                        var eventName = match.Groups[1].Value;
+                        var eventModel = new ProtoEventModel();
+                        eventModel.EventName = eventName;
+                        eventModel.MessageDescriptor = messageDescriptor;
+                        objectModel.Events.Add(eventModel);
+                    }
+                }
             }
-            
+
             return result;
         }
     }

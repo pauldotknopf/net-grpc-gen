@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <qtest1.h>
+#include <google/protobuf/wire_format_lite.h>
+#include <roc-lib/qrocobjectadapter.h>
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +12,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<QTest1>("interop", 1, 0, "Test1");
+    QRocObjectAdapter::setSharedChannel(grpc::CreateChannel("localhost:8000", grpc::InsecureChannelCredentials()));
+    qmlRegisterType<Tests::QTest1>("interop", 1, 0, "Test1");
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

@@ -9,5 +9,7 @@ namespace NetGrpcGen.ProtoModel
         public MethodDescriptor Setter { get; set; }
         
         public MethodDescriptor Getter { get; set; }
+        
+        public MessageDescriptor UpdatedEvent { get; set; }
     }
 }

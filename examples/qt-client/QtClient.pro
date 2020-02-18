@@ -15,18 +15,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 PKGCONFIG += grpc++ protobuf
 
+include(../../qt/roc-lib.pri)
+include(proto-roc/roc.pri)
+
 SOURCES += \
         main.cpp \
-        proto/types.pb.cc \
-        proto/gen.pb.cc \
-        proto/gen.grpc.pb.cc \
-        qtest1.cpp
+        proto-roc/types.pb.cc \
+        proto-roc/gen.pb.cc \
+        proto-roc/gen.grpc.pb.cc
 
 HEADERS += \
-        proto/types.pb.h \
-        proto/gen.pb.h \
-        proto/gen.grpc.pb.h \
-        qtest1.h
+        proto-roc/types.pb.h \
+        proto-roc/gen.pb.h \
+        proto-roc/gen.grpc.pb.h
 
 RESOURCES += qml.qrc
 

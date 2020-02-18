@@ -6,6 +6,7 @@ using System.Threading;
 using Google.Protobuf;
 using Google.Protobuf.Compiler;
 using Google.Protobuf.Reflection;
+using NetGrpcGen.ProtoModel.Impl;
 using Newtonsoft.Json;
 using Serilog;
 using Serilog.Events;
@@ -16,11 +17,11 @@ namespace NetGrpcGen.Generator
     {
         static void Main(string[] args)
         {
-            while (!Debugger.IsAttached)
-            {
-                Thread.Sleep(10);
-            }
-            Debugger.Break();
+            // while (!Debugger.IsAttached)
+            // {
+            //     Thread.Sleep(10);
+            // }
+            // Debugger.Break();
             
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console(standardErrorFromLevel: LogEventLevel.Verbose)
@@ -33,23 +34,10 @@ namespace NetGrpcGen.Generator
                 using (var stdin = Console.OpenStandardInput())
                 using (var stdout = Console.OpenStandardOutput())
                 {
-                    var registry = new ExtensionRegistry();
-                    registry.Add(Extensions.ServiceObjectName);
-                    registry.Add(Extensions.MethodCreate);
-                    registry.Add(Extensions.MethodEventListener);
-                    registry.Add(Extensions.MethodName);
-                    registry.Add(Extensions.MethodSync);
-                    registry.Add(Extensions.MethodPropName);
-                    registry.Add(Extensions.MethodPropGet);
-                    registry.Add(Extensions.MethodPropSet);
-                    registry.Add(Extensions.MessageObjectName);
-                    registry.Add(Extensions.MessageEventName);
-                    registry.Add(Extensions.MessageForProp);
-      
-                    var parser = CodeGeneratorRequest.Parser.WithExtensionRegistry(registry);
-                    var request = parser.ParseFrom(stdin);
+                    var request = CodeGeneratorRequest.Parser.ParseFrom(stdin);
 
-                    var response = Generator.Generate(request);
+                    var generator = new Generator(new ProtoModelBuilder());
+                    var response = generator.Generate(request);
                     
                     using (var output = new CodedOutputStream(stdout, true))
                     {

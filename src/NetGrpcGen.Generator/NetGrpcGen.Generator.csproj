@@ -10,5 +10,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetGrpcGen\NetGrpcGen.csproj" />
+  </ItemGroup>
   
 </Project>
