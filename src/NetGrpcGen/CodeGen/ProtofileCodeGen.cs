@@ -241,7 +241,7 @@ namespace NetGrpcGen.CodeGen
                     }
                     foreach (var method in o.Methods)
                     {
-                        codeWriter.WriteLine($"rpc {method.Name} ({o.Name}{method.Name}MethodRequest) returns ({o.Name}{method.Name}MethodResponse) {{");
+                        codeWriter.WriteLine($"rpc Invoke{method.Name} ({o.Name}{method.Name}MethodRequest) returns ({o.Name}{method.Name}MethodResponse) {{");
                         codeWriter.WriteLineIndented($"option(methodName) = \"{method.Name}\";");
                         if (!method.IsAsync)
                         {

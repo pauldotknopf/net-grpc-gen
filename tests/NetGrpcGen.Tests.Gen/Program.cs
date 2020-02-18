@@ -13,7 +13,8 @@ namespace NetGrpcGen.Tests.Gen
             var discovery = new Discovery.Impl.DiscoveryService(new AttributeFinder(new FixedTypeFinder(
                 new List<Type>
                 {
-                    typeof(Objects.Test1)
+                    typeof(Objects.Test1),
+                    typeof(Objects.Test2)
                 })));
 
             var protoCode = CodeGen.ProtofileCodeGen.Generate(discovery.DiscoverObjects(), "Tests");

@@ -30,7 +30,7 @@ namespace NetGrpcGen.Tests
             o.CallBase = true;
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.TestMethodAsync(new Test1TestMethodMethodRequest
+                var response = await client.InvokeTestMethodAsync(new Test1TestMethodMethodRequest
                 {
                     ObjectId = objectId,
                     Value = new TestMessageRequest
@@ -57,7 +57,7 @@ namespace NetGrpcGen.Tests
                 }));
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.TestMethodAsync(new Test1TestMethodMethodRequest
+                var response = await client.InvokeTestMethodAsync(new Test1TestMethodMethodRequest
                 {
                     ObjectId = objectId,
                     Value = null
@@ -76,7 +76,7 @@ namespace NetGrpcGen.Tests
                 .Returns(Task.FromResult<TestMessageResponse>(null));
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.TestMethodAsync(new Test1TestMethodMethodRequest
+                var response = await client.InvokeTestMethodAsync(new Test1TestMethodMethodRequest
                 {
                     ObjectId = objectId
                 });
@@ -92,7 +92,7 @@ namespace NetGrpcGen.Tests
             o.CallBase = true;
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                var response = await client.TestMethodSyncAsync(new Test1TestMethodSyncMethodRequest
+                var response = await client.InvokeTestMethodSyncAsync(new Test1TestMethodSyncMethodRequest
                 {
                     ObjectId = objectId,
                     Value = new TestMessageRequest
@@ -114,7 +114,7 @@ namespace NetGrpcGen.Tests
             o.Setup(x => x.TestMethodWithNoResponse(It.IsAny<TestMessageRequest>()));
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                await client.TestMethodWithNoResponseAsync(new Test1TestMethodWithNoResponseMethodRequest
+                await client.InvokeTestMethodWithNoResponseAsync(new Test1TestMethodWithNoResponseMethodRequest
                 {
                     ObjectId = objectId,
                     Value = new TestMessageRequest()
