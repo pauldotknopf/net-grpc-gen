@@ -2,6 +2,7 @@ syntax = "proto3";
 package Tests;
 import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";
+import "google/protobuf/wrappers.proto";
 import "types.proto";
 extend google.protobuf.MethodOptions {
     // The method used to create the object.
@@ -24,6 +25,8 @@ extend google.protobuf.MessageOptions {
     string messageObjectName = 1000;
     // The name of the event this message is for.
     string eventName = 1001;
+    // This event represents a "property changed" event for the given property.
+    string forProp = 1002;
 }
 extend google.protobuf.ServiceOptions {
     // The name of the object that this service is for.
@@ -41,7 +44,7 @@ message Test1StopResponse {
 }
 message Test1PropStringSetRequest {
 	uint64 objectId = 1;
-	string value = 2;
+	google.protobuf.StringValue value = 2;
 }
 message Test1PropStringSetResponse {
 }
@@ -49,12 +52,13 @@ message Test1PropStringGetRequest {
 	uint64 objectId = 1;
 }
 message Test1PropStringGetResponse {
-	string value = 1;
+	google.protobuf.StringValue value = 1;
 }
 message Test1PropStringPropertyChanged {
+	option(messageObjectName) = "Test1";
 	option(eventName) = "PropString";
 	uint64 objectId = 1;
-	string value = 2;
+	google.protobuf.StringValue value = 2;
 }
 message Test1PropComplexSetRequest {
 	uint64 objectId = 1;
@@ -69,21 +73,25 @@ message Test1PropComplexGetResponse {
 	custom.types.TestMessageResponse value = 1;
 }
 message Test1PropComplexPropertyChanged {
+	option(messageObjectName) = "Test1";
 	option(eventName) = "PropComplex";
 	uint64 objectId = 1;
 	custom.types.TestMessageResponse value = 2;
 }
 message Test1TestEventEvent {
+	option(messageObjectName) = "Test1";
 	option(eventName) = "TestEvent";
 	uint64 objectId = 1;
-	string value = 2;
+	google.protobuf.StringValue value = 2;
 }
 message Test1TestEventComplexEvent {
+	option(messageObjectName) = "Test1";
 	option(eventName) = "TestEventComplex";
 	uint64 objectId = 1;
 	custom.types.TestMessageResponse value = 2;
 }
 message Test1TestEventNoDataEvent {
+	option(messageObjectName) = "Test1";
 	option(eventName) = "TestEventNoData";
 	uint64 objectId = 1;
 }

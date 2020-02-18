@@ -44,6 +44,46 @@ namespace NetGrpcGen.Tests
                 o.Verify(x => x.TestMethod(It.IsAny<TestMessageRequest>()), Times.Once());
             });
         }
+
+        [Fact]
+        public async Task Can_invoke_method_with_null_parameter()
+        {
+            var o = new Mock<Test1>();
+            o.Setup(x => x.TestMethod(null))
+                .Returns(Task.FromResult(new TestMessageResponse
+                {
+                    Value1 = 3,
+                    Value2 = "we"
+                }));
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                var response = await client.TestMethodAsync(new Test1TestMethodMethodRequest
+                {
+                    ObjectId = objectId,
+                    Value = null
+                });
+                response.Value.Value1.Should().Be(3);
+                response.Value.Value2.Should().Be("we");
+                o.Verify(x => x.TestMethod(null), Times.Once());
+            });
+        }
+        
+        [Fact]
+        public async Task Can_return_null_parameter()
+        {
+            var o = new Mock<Test1>();
+            o.Setup(x => x.TestMethod(null))
+                .Returns(Task.FromResult<TestMessageResponse>(null));
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                var response = await client.TestMethodAsync(new Test1TestMethodMethodRequest
+                {
+                    ObjectId = objectId
+                });
+                response.Value.Should().BeNull();
+                o.Verify(x => x.TestMethod(null), Times.Once());
+            });
+        }
         
         [Fact]
         public async Task Can_invoke_method_sync()

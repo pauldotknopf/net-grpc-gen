@@ -210,19 +210,28 @@ namespace NetGrpcGen.Adapters
 
         private TResponse GetProperty<TRequest, TResponse>(GrpcProperty property, TRequest request)
         {
-            var objectId = GetObjectId(request);
-            
-            if (!_objects.TryGetValue(objectId, out TObject o))
+            try
             {
-                throw new Exception("Invalid object id.");
+                var objectId = GetObjectId(request);
+
+                if (!_objects.TryGetValue(objectId, out TObject o))
+                {
+                    throw new Exception("Invalid object id.");
+                }
+
+                var response = Activator.CreateInstance(typeof(TResponse));
+
+                var value = property.Property.GetValue(o);
+                SetValue(response, value);
+
+                return (TResponse) response;
             }
-
-            var response = Activator.CreateInstance(typeof(TResponse));
-
-            var value = property.Property.GetValue(o);
-            SetValue(response, value);
-            
-            return (TResponse)response;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                return default(TResponse);
+            }
         }
         
         private TResponse SetProperty<TRequest, TResponse>(GrpcProperty property, TRequest request)

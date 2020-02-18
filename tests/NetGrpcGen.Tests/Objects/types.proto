@@ -1,26 +1,17 @@
 syntax = "proto3";
 package custom.types;
 import "google/protobuf/descriptor.proto";
-option java_package = "com.example.foo";
-
-//extend google.protobuf.MessageOptions {
-//	string my_option = 1000;
-//}
-
+extend google.protobuf.MethodOptions {
+	// The method used to create the object.
+	bool create = 234234;
+}
 
 message TestMessageRequest {
-	//option (my_option) = "Hello worlererd!";
 	uint64 value1 = 2;
 	string value2 = 3;
 }
 
-
-// This is a test comment
 message TestMessageResponse {
-	//option (my_option) = "Hello world!";
-	// This is a comment ona  field,
-	// ann this as well.
-	uint64 value1 = 1; // Traailing..
+	uint64 value1 = 1;
 	string value2 = 2;
-	// huhh.
 }

@@ -77,7 +77,7 @@ namespace NetGrpcGen.CodeGen
             {
                 imports.Add("google/protobuf/descriptor.proto");
             }
-            
+    
             foreach (var import in imports.OrderBy(x => x))
             {
                 codeWriter.WriteLine($"import \"{import}\";");
@@ -105,6 +105,8 @@ namespace NetGrpcGen.CodeGen
     string messageObjectName = 1000;
     // The name of the event this message is for.
     string eventName = 1001;
+    // This event represents a ""property changed"" event for the given property.
+    string forProp = 1002;
 }");
             
             codeWriter.WriteLine(@"extend google.protobuf.ServiceOptions {
@@ -129,14 +131,17 @@ namespace NetGrpcGen.CodeGen
                 codeWriter.WriteLine($"message {o.Name}CreateResponse {{");
                 using (codeWriter.Indent())
                 {
+                    codeWriter.WriteLine($"option(messageObjectName) = \"{o.Name}\";");
                     codeWriter.WriteLine("uint64 objectId = 1;");
                 }
                 codeWriter.WriteLine("}");
                 
                 codeWriter.WriteLine($"message {o.Name}StopRequest {{");
+                codeWriter.WriteLineIndented($"option(messageObjectName) = \"{o.Name}\";");
                 codeWriter.WriteLine("}");
                 
                 codeWriter.WriteLine($"message {o.Name}StopResponse {{");
+                codeWriter.WriteLineIndented($"option(messageObjectName) = \"{o.Name}\";");
                 codeWriter.WriteLine("}");
 
                 foreach (var property in o.Properties)
@@ -173,6 +178,7 @@ namespace NetGrpcGen.CodeGen
                         codeWriter.WriteLine($"message {o.Name}{property.Name}PropertyChanged {{");
                         using (codeWriter.Indent())
                         {
+                            codeWriter.WriteLine($"option(messageObjectName) = \"{o.Name}\";");
                             codeWriter.WriteLine($"option(eventName) = \"{property.Name}\";");
                             codeWriter.WriteLine("uint64 objectId = 1;");
                             codeWriter.WriteLine($"{property.DataType.TypeName} value = 2;");
@@ -186,6 +192,7 @@ namespace NetGrpcGen.CodeGen
                     codeWriter.WriteLine($"message {o.Name}{even.Name}Event {{");
                     using (codeWriter.Indent())
                     {
+                        codeWriter.WriteLine($"option(messageObjectName) = \"{o.Name}\";");
                         codeWriter.WriteLine($"option(eventName) = \"{even.Name}\";");
                         codeWriter.WriteLine("uint64 objectId = 1;");
                         if (even.DataType != null)

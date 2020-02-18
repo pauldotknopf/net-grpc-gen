@@ -98,6 +98,10 @@ namespace NetGrpcGen.Tests.Objects
         
         public override Test1 Create()
         {
+            if (_instance == null)
+            {
+                return new Test1();
+            }
             return _instance;
         }
     }

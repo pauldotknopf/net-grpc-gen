@@ -5,7 +5,10 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using Google.Protobuf;
 using Google.Protobuf.Compiler;
+using Google.Protobuf.Reflection;
 using Newtonsoft.Json;
+using Serilog;
+using Serilog.Events;
 
 namespace NetGrpcGen.Generator
 {
@@ -13,47 +16,45 @@ namespace NetGrpcGen.Generator
     {
         static void Main(string[] args)
         {
+            while (!Debugger.IsAttached)
+            {
+                Thread.Sleep(10);
+            }
+            Debugger.Break();
+            
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console(standardErrorFromLevel: LogEventLevel.Verbose)
+                .CreateLogger();
+            
+            Log.Information("Running rpc generator...");
+
             try
             {
-                while (!Debugger.IsAttached)
-                {
-                    Thread.Sleep(1000);
-                }
-                Debugger.Break();
-
-                var t = "/home/pknopf/test.json";
-                if (File.Exists(t))
-                {
-                    File.Delete(t);
-                }
-                
                 using (var stdin = Console.OpenStandardInput())
                 using (var stdout = Console.OpenStandardOutput())
                 {
-                    var request = CodeGeneratorRequest.Parser.ParseFrom(stdin);
+                    var registry = new ExtensionRegistry();
+                    registry.Add(Extensions.ServiceObjectName);
+                    registry.Add(Extensions.MethodCreate);
+                    registry.Add(Extensions.MethodEventListener);
+                    registry.Add(Extensions.MethodName);
+                    registry.Add(Extensions.MethodSync);
+                    registry.Add(Extensions.MethodPropName);
+                    registry.Add(Extensions.MethodPropGet);
+                    registry.Add(Extensions.MethodPropSet);
+                    registry.Add(Extensions.MessageObjectName);
+                    registry.Add(Extensions.MessageEventName);
+                    registry.Add(Extensions.MessageForProp);
+      
+                    var parser = CodeGeneratorRequest.Parser.WithExtensionRegistry(registry);
+                    var request = parser.ParseFrom(stdin);
 
-                    Console.WriteLine(request.Parameter);
+                    var response = Generator.Generate(request);
                     
-                    foreach (var file in request.ProtoFile)
+                    using (var output = new CodedOutputStream(stdout, true))
                     {
-                        foreach (var message in file.MessageType)
-                        {
-                            foreach (var field in message.Field)
-                            {
-                                Console.WriteLine(field.Name);s
-                            }
-                        }
+                        response.WriteTo(output);
                     }
-                    
-                    File.WriteAllText(t, JsonConvert.SerializeObject(request, Formatting.Indented));
-                    
-                    var response = new CodeGeneratorResponse();
-                    response.File.Add(new CodeGeneratorResponse.Types.File
-                    {
-                        Content = "SDFSDF",
-                        Name = "Name.cs"
-                    });
-                    response.WriteTo(new CodedOutputStream(stdout, true));
                 }
             }
             catch (Exception ex)

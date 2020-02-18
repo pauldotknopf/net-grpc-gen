@@ -176,10 +176,7 @@ namespace NetGrpcGen.Discovery.Impl
         {
             if (type == typeof(String))
             {
-                return new GrpcType
-                {
-                    TypeName = "string"
-                };
+                return GetGrpcType(typeof(StringValue));
             }
 
             if (typeof(IMessage).IsAssignableFrom(type))
