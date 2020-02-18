@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using Google.Protobuf.Reflection;
 
@@ -16,115 +17,128 @@ namespace NetGrpcGen.ProtoModel.Impl
         public List<ProtoObjectModel> BuildObjectModels(FileDescriptor fileDescriptor)
         {
             var result = new List<ProtoObjectModel>();
-            
-            // First, find the objects.
+
             foreach (var service in fileDescriptor.Services)
             {
-                if (service.Name.EndsWith("ObjectService"))
+                var model = BuildObjectModel(service);
+                if (model != null)
                 {
-                    var objectModel = new ProtoObjectModel();
-                    objectModel.ObjectName = service.Name.Substring(0, service.Name.Length - "ObjectService".Length);
-                    objectModel.ServiceDescriptor = service;
-                    result.Add(objectModel);
+                    result.Add(model);
                 }
             }
+            
+            return result;
+        }
 
-            foreach (var objectModel in result)
+        public ProtoObjectModel BuildObjectModel(ServiceDescriptor serviceDescriptor)
+        {
+            ProtoObjectModel result = null;
+
+            if (!serviceDescriptor.Name.EndsWith("ObjectService"))
             {
-                foreach (var method in objectModel.ServiceDescriptor.Methods)
+                return result;
+            }
+
+            result = new ProtoObjectModel
+            {
+                ObjectName =
+                    serviceDescriptor.Name.Substring(0, serviceDescriptor.Name.Length - "ObjectService".Length),
+                ServiceDescriptor = serviceDescriptor
+            };
+
+            foreach (var method in result.ServiceDescriptor.Methods)
+            {
+                if (method.Name == "Create")
                 {
-                    if (method.Name == "Create")
-                    {
-                        objectModel.CreateDescriptor = method;
-                        continue;
-                    }
-
-                    if (method.Name == "ListenEvents")
-                    {
-                        objectModel.ListEventsDescriptor = method;
-                        continue;
-                    }
-
-                    if (method.Name.StartsWith("Invoke"))
-                    {
-                        var methodModel = new ProtoMethodModel
-                        {
-                            MethodName = method.Name.Substring("Invoke".Length),
-                            MethodDescriptor = method
-                        };
-                        objectModel.Methods.Add(methodModel);
-                        continue;
-                    }
-
-                    if (method.Name.StartsWith("GetProperty") || method.Name.StartsWith("SetProperty"))
-                    {
-                        var propertyName = method.Name.Substring("SetProperty".Length);
-                        var propertyModel = objectModel.Properties.SingleOrDefault(x => x.PropertyName == propertyName);
-                        if (propertyModel == null)
-                        {
-                            propertyModel = new ProtoPropertyModel
-                            {
-                                PropertyName = propertyName
-                            };
-                            objectModel.Properties.Add(propertyModel);
-                        }
-
-                        if (method.Name.StartsWith("GetProperty"))
-                        {
-                            propertyModel.Getter = method;
-                        }
-                        else
-                        {
-                            propertyModel.Setter = method;
-                        }
-                        
-                        continue;
-                    }
-                    
-                    throw new Exception($"Unknown method: {method.Name}");
+                    result.CreateDescriptor = method;
+                    continue;
                 }
 
-                var propChangedEventRegex = new Regex($@"{objectModel.ObjectName}(.*)PropertyChanged");
-                var eventRegex = new Regex($@"{objectModel.ObjectName}(.*)Event");
-                
-                foreach (var messageDescriptor in fileDescriptor.MessageTypes)
+                if (method.Name == "ListenEvents")
                 {
-                    if (messageDescriptor.Name == $"{objectModel.ObjectName}CreateResponse")
+                    result.ListEventsDescriptor = method;
+                    continue;
+                }
+
+                if (method.Name.StartsWith("Invoke"))
+                {
+                    var methodModel = new ProtoMethodModel
                     {
-                        objectModel.CreateResponseDescriptor = messageDescriptor;
-                        continue;
+                        MethodName = method.Name.Substring("Invoke".Length),
+                        MethodDescriptor = method
+                    };
+                    result.Methods.Add(methodModel);
+                    continue;
+                }
+
+                if (method.Name.StartsWith("GetProperty") || method.Name.StartsWith("SetProperty"))
+                {
+                    var propertyName = method.Name.Substring("SetProperty".Length);
+                    var propertyModel = result.Properties.SingleOrDefault(x => x.PropertyName == propertyName);
+                    if (propertyModel == null)
+                    {
+                        propertyModel = new ProtoPropertyModel
+                        {
+                            PropertyName = propertyName
+                        };
+                        result.Properties.Add(propertyModel);
                     }
 
-                    if (messageDescriptor.Name == $"{objectModel.ObjectName}StopRequest")
+                    if (method.Name.StartsWith("GetProperty"))
                     {
-                        objectModel.StopRequestDescriptor = messageDescriptor;
-                        continue;
+                        propertyModel.Getter = method;
+                    }
+                    else
+                    {
+                        propertyModel.Setter = method;
                     }
 
-                    if (messageDescriptor.Name == $"{objectModel.ObjectName}StopResponse")
-                    {
-                        objectModel.StopResponseDescriptor = messageDescriptor;
-                        continue;
-                    }
+                    continue;
+                }
 
-                    var match = propChangedEventRegex.Match(messageDescriptor.Name);
-                    if (match.Success)
-                    {
-                        var propertyName = match.Groups[1].Value;
-                        var propertyModel = objectModel.Properties.Single(x => x.PropertyName == propertyName);
-                        propertyModel.UpdatedEvent = messageDescriptor;
-                        continue;
-                    }
+                throw new Exception($"Unknown method: {method.Name}");
+            }
 
-                    match = eventRegex.Match(messageDescriptor.Name);
-                    if (match.Success)
-                    {
-                        var eventName = match.Groups[1].Value;
-                        var eventModel = new ProtoEventModel();
-                        eventModel.EventName = eventName;
-                        eventModel.MessageDescriptor = messageDescriptor;
-                        objectModel.Events.Add(eventModel);
-                    }
+            var propChangedEventRegex = new Regex($@"{result.ObjectName}(.*)PropertyChanged");
+            var eventRegex = new Regex($@"{result.ObjectName}(.*)Event");
+                
+            foreach (var messageDescriptor in result.ServiceDescriptor.File.MessageTypes)
+            {
+                if (messageDescriptor.Name == $"{result.ObjectName}CreateResponse")
+                {
+                    result.CreateResponseDescriptor = messageDescriptor;
+                    continue;
+                }
+
+                if (messageDescriptor.Name == $"{result.ObjectName}StopRequest")
+                {
+                    result.StopRequestDescriptor = messageDescriptor;
+                    continue;
+                }
+
+                if (messageDescriptor.Name == $"{result.ObjectName}StopResponse")
+                {
+                    result.StopResponseDescriptor = messageDescriptor;
+                    continue;
+                }
+
+                var match = propChangedEventRegex.Match(messageDescriptor.Name);
+                if (match.Success)
+                {
+                    var propertyName = match.Groups[1].Value;
+                    var propertyModel = result.Properties.Single(x => x.PropertyName == propertyName);
+                    propertyModel.UpdatedEvent = messageDescriptor;
+                    continue;
+                }
+
+                match = eventRegex.Match(messageDescriptor.Name);
+                if (match.Success)
+                {
+                    var eventName = match.Groups[1].Value;
+                    var eventModel = new ProtoEventModel();
+                    eventModel.EventName = eventName;
+                    eventModel.MessageDescriptor = messageDescriptor;
+                    result.Events.Add(eventModel);
                 }
             }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Google.Protobuf.Reflection;
 
@@ -6,6 +7,8 @@ namespace NetGrpcGen.ProtoModel
     public class ProtoObjectModel
     {
         public string ObjectName { get; set; }
+        
+        public Type ClrType { get; set; }
         
         public ServiceDescriptor ServiceDescriptor { get; set; }
         
