@@ -29,6 +29,475 @@
 namespace custom {
 namespace types {
 
+class TestService final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "custom.types.TestService";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    virtual ::grpc::Status Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::custom::types::FooResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::FooResponse>> AsyncFoo(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::FooResponse>>(AsyncFooRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::FooResponse>> PrepareAsyncFoo(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::FooResponse>>(PrepareAsyncFooRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::custom::types::BarResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::BarResponse>> AsyncBar(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::BarResponse>>(AsyncBarRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::BarResponse>> PrepareAsyncBar(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::BarResponse>>(PrepareAsyncBarRaw(context, request, cq));
+    }
+    class experimental_async_interface {
+     public:
+      virtual ~experimental_async_interface() {}
+      virtual void Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Foo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::FooResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Foo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::FooResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Foo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::FooResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Bar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::BarResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Bar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::BarResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Bar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::BarResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+    };
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::FooResponse>* AsyncFooRaw(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::FooResponse>* PrepareAsyncFooRaw(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::BarResponse>* AsyncBarRaw(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::custom::types::BarResponse>* PrepareAsyncBarRaw(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    ::grpc::Status Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::custom::types::FooResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::custom::types::FooResponse>> AsyncFoo(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::custom::types::FooResponse>>(AsyncFooRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::custom::types::FooResponse>> PrepareAsyncFoo(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::custom::types::FooResponse>>(PrepareAsyncFooRaw(context, request, cq));
+    }
+    ::grpc::Status Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::custom::types::BarResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::custom::types::BarResponse>> AsyncBar(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::custom::types::BarResponse>>(AsyncBarRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::custom::types::BarResponse>> PrepareAsyncBar(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::custom::types::BarResponse>>(PrepareAsyncBarRaw(context, request, cq));
+    }
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
+     public:
+      void Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response, std::function<void(::grpc::Status)>) override;
+      void Foo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::FooResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Foo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::FooResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Foo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::FooResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response, std::function<void(::grpc::Status)>) override;
+      void Bar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::BarResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Bar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::BarResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Bar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::BarResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+     private:
+      friend class Stub;
+      explicit experimental_async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class experimental_async async_stub_{this};
+    ::grpc::ClientAsyncResponseReader< ::custom::types::FooResponse>* AsyncFooRaw(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::custom::types::FooResponse>* PrepareAsyncFooRaw(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::custom::types::BarResponse>* AsyncBarRaw(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::custom::types::BarResponse>* PrepareAsyncBarRaw(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Foo_;
+    const ::grpc::internal::RpcMethod rpcmethod_Bar_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Foo(::grpc::ServerContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response);
+    virtual ::grpc::Status Bar(::grpc::ServerContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Foo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Foo() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Foo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Foo(::grpc::ServerContext* /*context*/, const ::custom::types::FooRequest* /*request*/, ::custom::types::FooResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestFoo(::grpc::ServerContext* context, ::custom::types::FooRequest* request, ::grpc::ServerAsyncResponseWriter< ::custom::types::FooResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Bar : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Bar() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Bar() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Bar(::grpc::ServerContext* /*context*/, const ::custom::types::BarRequest* /*request*/, ::custom::types::BarResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestBar(::grpc::ServerContext* context, ::custom::types::BarRequest* request, ::grpc::ServerAsyncResponseWriter< ::custom::types::BarResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Foo<WithAsyncMethod_Bar<Service > > AsyncService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Foo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Foo() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::custom::types::FooRequest, ::custom::types::FooResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response) { return this->Foo(context, request, response); }));}
+    void SetMessageAllocatorFor_Foo(
+        ::grpc::experimental::MessageAllocator< ::custom::types::FooRequest, ::custom::types::FooResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::custom::types::FooRequest, ::custom::types::FooResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Foo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Foo(::grpc::ServerContext* /*context*/, const ::custom::types::FooRequest* /*request*/, ::custom::types::FooResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Foo(
+      ::grpc::CallbackServerContext* /*context*/, const ::custom::types::FooRequest* /*request*/, ::custom::types::FooResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Foo(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::custom::types::FooRequest* /*request*/, ::custom::types::FooResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Bar : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Bar() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::custom::types::BarRequest, ::custom::types::BarResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response) { return this->Bar(context, request, response); }));}
+    void SetMessageAllocatorFor_Bar(
+        ::grpc::experimental::MessageAllocator< ::custom::types::BarRequest, ::custom::types::BarResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::custom::types::BarRequest, ::custom::types::BarResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Bar() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Bar(::grpc::ServerContext* /*context*/, const ::custom::types::BarRequest* /*request*/, ::custom::types::BarResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Bar(
+      ::grpc::CallbackServerContext* /*context*/, const ::custom::types::BarRequest* /*request*/, ::custom::types::BarResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Bar(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::custom::types::BarRequest* /*request*/, ::custom::types::BarResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_Foo<ExperimentalWithCallbackMethod_Bar<Service > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_Foo<ExperimentalWithCallbackMethod_Bar<Service > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Foo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Foo() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Foo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Foo(::grpc::ServerContext* /*context*/, const ::custom::types::FooRequest* /*request*/, ::custom::types::FooResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Bar : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Bar() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Bar() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Bar(::grpc::ServerContext* /*context*/, const ::custom::types::BarRequest* /*request*/, ::custom::types::BarResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Foo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Foo() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Foo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Foo(::grpc::ServerContext* /*context*/, const ::custom::types::FooRequest* /*request*/, ::custom::types::FooResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestFoo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Bar : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Bar() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Bar() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Bar(::grpc::ServerContext* /*context*/, const ::custom::types::BarRequest* /*request*/, ::custom::types::BarResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestBar(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Foo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Foo() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Foo(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Foo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Foo(::grpc::ServerContext* /*context*/, const ::custom::types::FooRequest* /*request*/, ::custom::types::FooResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Foo(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Foo(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Bar : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Bar() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Bar(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Bar() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Bar(::grpc::ServerContext* /*context*/, const ::custom::types::BarRequest* /*request*/, ::custom::types::BarResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Bar(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Bar(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Foo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Foo() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler< ::custom::types::FooRequest, ::custom::types::FooResponse>(std::bind(&WithStreamedUnaryMethod_Foo<BaseClass>::StreamedFoo, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_Foo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Foo(::grpc::ServerContext* /*context*/, const ::custom::types::FooRequest* /*request*/, ::custom::types::FooResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedFoo(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::custom::types::FooRequest,::custom::types::FooResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Bar : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Bar() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler< ::custom::types::BarRequest, ::custom::types::BarResponse>(std::bind(&WithStreamedUnaryMethod_Bar<BaseClass>::StreamedBar, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_Bar() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Bar(::grpc::ServerContext* /*context*/, const ::custom::types::BarRequest* /*request*/, ::custom::types::BarResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedBar(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::custom::types::BarRequest,::custom::types::BarResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Foo<WithStreamedUnaryMethod_Bar<Service > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_Foo<WithStreamedUnaryMethod_Bar<Service > > StreamedService;
+};
+
 }  // namespace types
 }  // namespace custom
 

@@ -8,32 +8,50 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
+using Google.Protobuf.Reflection;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using NetGrpcGen.Discovery;
 using NetGrpcGen.Infra;
 using NetGrpcGen.Model;
+using NetGrpcGen.ProtoModel;
 using Type = System.Type;
 
 namespace NetGrpcGen.Adapters
 {
-    public class ObjectServiceAdapter<TObject,
-        TCreateResponse,
-        TStopRequest,
-        TStopResponse>
-        where TCreateResponse : IMessage, new()
-        where TStopRequest : IMessage, new()
-        where TStopResponse : IMessage, new()
+    public class ObjectServiceAdapter<TObject>
     {
-        private readonly ObjectAdapter<TObject> _objectAdapter;
+        private readonly ITypeCreator<TObject> _typeCreator;
+        private readonly Type _serviceType;
+        private readonly ProtoObjectModel _protoObjectModel;
         private readonly GrpcObject _grpcObject;
         private readonly ConcurrentDictionary<ulong, TObject> _objects = new ConcurrentDictionary<ulong, TObject>();
 
         public ObjectServiceAdapter(
-            ObjectAdapter<TObject> objectAdapter,
-            GrpcObject grpcObject)
+            IProtoModelBuilder protoModelBuilder,
+            IDiscoveryService discoveryService,
+            ITypeCreator<TObject> typeCreator,
+            Type serviceType)
         {
-            _objectAdapter = objectAdapter;
-            _grpcObject = grpcObject;
+            _typeCreator = typeCreator;
+            _serviceType = serviceType;
+            var serviceDescriptorProperty =
+                serviceType
+                    .GetProperties(BindingFlags.Public | BindingFlags.Static)
+                    .SingleOrDefault(x => x.Name == "Descriptor");
+            if (serviceDescriptorProperty == null)
+            {
+                throw new Exception("Can't find the Descriptor property.");
+            }
+
+            var serviceDescriptor = serviceDescriptorProperty.GetValue(null) as ServiceDescriptor;
+            if (serviceDescriptor == null)
+            {
+                throw new Exception("Can't find the ServiceDescriptor.");
+            }
+
+            _protoObjectModel = protoModelBuilder.BuildObjectModel(serviceDescriptor);
+            _grpcObject = discoveryService.BuildObject(typeof(TObject));
         }
 
         private async Task ListenEvents(
@@ -53,13 +71,13 @@ namespace NetGrpcGen.Adapters
             {
                 var del = Create(even.Event, val =>
                 {
-                    var eventType = _objectAdapter.GetEventType(even.Name);
-                    if (eventType == null)
+                    var protoEvent = _protoObjectModel.Events.SingleOrDefault(x => x.EventName == even.Name);
+                    if (protoEvent == null)
                     {
-                        return;
+                        throw new Exception($"Couldn't find the event {even.Name}");
                     }
-
-                    var eventMessage = Activator.CreateInstance(eventType) as IMessage;
+                    
+                    var eventMessage = Activator.CreateInstance(protoEvent.MessageDescriptor.ClrType) as IMessage;
                     SetObjectId(eventMessage, objectId);
                     if (even.DataType != null)
                     {
@@ -81,7 +99,19 @@ namespace NetGrpcGen.Adapters
                     return;
                 }
 
-                var eventType = _objectAdapter.GetPropChangedType(args.PropertyName);
+                var protoProperty =
+                    _protoObjectModel.Properties.SingleOrDefault(x => x.PropertyName == args.PropertyName);
+                if (protoProperty == null)
+                {
+                    throw new Exception($"Couldn't find proto property {args.PropertyName}.");
+                }
+
+                if (protoProperty.UpdatedEvent == null)
+                {
+                    throw new Exception($"Couldn't find proto property update event {args.PropertyName}.");
+                }
+
+                var eventType = protoProperty.UpdatedEvent.ClrType;
                 if (eventType == null)
                 {
                     throw new Exception($"Couldn't get event type for property {args.PropertyName}.");
@@ -125,22 +155,26 @@ namespace NetGrpcGen.Adapters
             IAsyncStreamReader<Any> requestStream,
             IServerStreamWriter<Any> responseStream)
         {
-            var o = _objectAdapter.Create();
+            var o = _typeCreator.Create();
             var tagId = o.GetOrCreateTag();
             _objects.TryAdd(tagId, o);
 
             try
             {
-                var response = new TCreateResponse();
+                var response = Activator.CreateInstance(_protoObjectModel.CreateResponseDescriptor.ClrType) as IMessage;
                 SetObjectId(response, tagId);
                 await responseStream.WriteAsync(Any.Pack(response));
 
                 // Wait for a stop request...
                 await requestStream.MoveNext();
-                requestStream.Current.Unpack<TStopRequest>();
+                var stopRequest =
+                    Activator.CreateInstance(_protoObjectModel.StopRequestDescriptor.ClrType) as IMessage;
+                stopRequest.MergeFrom(requestStream.Current.Value);
                 
                 // Send the stop response.
-                await responseStream.WriteAsync(Any.Pack(new TStopResponse()));
+                var stopResponse =
+                    Activator.CreateInstance(_protoObjectModel.StopResponseDescriptor.ClrType) as IMessage;
+                await responseStream.WriteAsync(Any.Pack(stopResponse));
             }
             finally
             {
@@ -185,9 +219,16 @@ namespace NetGrpcGen.Adapters
                 throw new Exception("Invalid object id.");
             }
 
-            var value = GetValue(request);
-            
-            var response = method.Method.Invoke(o, new object[] { value });
+            object response = null;
+            if (method.RequestType == null)
+            {
+                method.Method.Invoke(o, new object[]{});
+            }
+            else
+            {
+                var value = GetValue(request);
+                response = method.Method.Invoke(o, new object[] {value});
+            }
 
             if (response is Task task)
             {
@@ -293,17 +334,11 @@ namespace NetGrpcGen.Adapters
         public class CustomServiceBinder : ServiceBinderBase
         {
             private readonly ServerServiceDefinition.Builder _builder;
-            private readonly ObjectServiceAdapter<TObject,
-                TCreateResponse,
-                TStopRequest,
-                TStopResponse> _serviceAdapter;
+            private readonly ObjectServiceAdapter<TObject> _serviceAdapter;
             private readonly GrpcObject _grpcObject;
 
             public CustomServiceBinder(ServerServiceDefinition.Builder builder,
-                ObjectServiceAdapter<TObject,
-                    TCreateResponse,
-                    TStopRequest,
-                    TStopResponse> serviceAdapter,
+                ObjectServiceAdapter<TObject> serviceAdapter,
                 GrpcObject grpcObject)
             {
                 _builder = builder;
@@ -351,7 +386,7 @@ namespace NetGrpcGen.Adapters
                     default:
                         foreach (var invokeMethod in _grpcObject.Methods)
                         {
-                            if (invokeMethod.Name == method.Name)
+                            if ($"Invoke{invokeMethod.Name}" == method.Name)
                             {
                                 _builder.AddMethod(method, async (request, context) => await _serviceAdapter.InvokeMethod<TRequest, TResponse>(invokeMethod, request));
                                 return;
@@ -385,22 +420,14 @@ namespace NetGrpcGen.Adapters
                 }
             }
         }
-        
-        public ServerServiceDefinition Create(Action<ServiceBinderBase> configure)
-        {
-            var builder = ServerServiceDefinition.CreateBuilder();
-            var binder = new CustomServiceBinder(builder, this, _grpcObject);
-            configure(binder);
-            return builder.Build();
-        }
-
-        public ServerServiceDefinition Create(Type type)
+      
+        public ServerServiceDefinition Create()
         {
             var builder = ServerServiceDefinition.CreateBuilder();
             var binder = new CustomServiceBinder(builder, this, _grpcObject);
 
             var bindServiceMethod =
-                type
+                _serviceType
                     .GetMethods(BindingFlags.Public | BindingFlags.Static)
                     .Where(x => x.Name == "BindService")
                     .SingleOrDefault(x => x.GetParameters().Length == 2);

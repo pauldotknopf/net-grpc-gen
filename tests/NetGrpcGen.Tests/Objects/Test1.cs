@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Custom.Types;
 using NetGrpcGen.Adapters;
@@ -32,7 +33,8 @@ namespace NetGrpcGen.Tests.Objects
             return Task.FromResult(new TestMessageResponse
             {
                 Value1 = request.Value1,
-                Value2 = request.Value2
+                Value2 = request.Value2,
+                Value3 = request.Value3
             });
         }
         
@@ -52,9 +54,15 @@ namespace NetGrpcGen.Tests.Objects
         }
 
         [GrpcMethod]
+        public int TestMethodPrimitive(int val)
+        {
+            return val;
+        }
+
+        [GrpcMethod]
         public virtual void TestMethodNoRequest()
         {
-            
+            Thread.Sleep(3000);
         }
 
         [GrpcProperty]
@@ -80,29 +88,5 @@ namespace NetGrpcGen.Tests.Objects
         }
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
-    }
-    
-    public class Test1Adapter : ObjectAdapter<Test1>
-    {
-        private readonly Test1 _instance;
-
-        public Test1Adapter(Test1 instance)
-        {
-            _instance = instance;
-            RegisterPropChangedType<Test1PropStringPropertyChanged>("PropString");
-            RegisterPropChangedType<Test1PropComplexPropertyChanged>("PropComplex");
-            RegisterEventType<Test1TestEventEvent>("TestEvent");
-            RegisterEventType<Test1TestEventComplexEvent>("TestEventComplex");
-            RegisterEventType<Test1TestEventNoDataEvent>("TestEventNoData");
-        }
-        
-        public override Test1 Create()
-        {
-            if (_instance == null)
-            {
-                return new Test1();
-            }
-            return _instance;
-        }
     }
 }

@@ -27,156 +27,167 @@ namespace NetGrpcGen.Discovery.Impl
         public List<GrpcObject> DiscoverObjects()
         {
             var results = _attributeFinder.FindObjectsWithAttribute<GrpcObjectAttribute>();
+            return results.Select(x => BuildObject(x.Item2, x.Item1)).ToList();
+        }
 
-            return results.Select(x =>
+        public GrpcObject BuildObject(Type type)
+        {
+            var attribute = type.GetCustomAttributes(typeof(GrpcObjectAttribute), false);
+            
+            if (attribute.Length > 0)
             {
-                var o = new GrpcObject
+                return BuildObject(attribute[0] as GrpcObjectAttribute, type);
+            }
+
+            return null;
+        }
+
+        private GrpcObject BuildObject(GrpcObjectAttribute attribute, Type type)
+        {
+            var o = new GrpcObject
+            {
+                Name = type.Name,
+                Attribute = attribute,
+                Type = type,
+                ImplementedINotify = typeof(INotifyPropertyChanged).IsAssignableFrom(type)
+            };
+
+            foreach (var prop in _attributeFinder.FindPropertiesWithAttribute<GrpcPropertyAttribute>(o.Type))
+            {
+                var p = new GrpcProperty
                 {
-                    Name = x.Item1.Name,
-                    Attribute = x.Item2,
-                    Type = x.Item1,
-                    ImplementedINotify = typeof(INotifyPropertyChanged).IsAssignableFrom(x.Item1)
+                    Name = prop.Item1.Name,
+                    Attribute = prop.Item2,
+                    Property = prop.Item1,
+                    GrpcObject = o
                 };
 
-                foreach (var prop in _attributeFinder.FindPropertiesWithAttribute<GrpcPropertyAttribute>(o.Type))
+                if (!p.Property.CanRead)
                 {
-                    var p = new GrpcProperty
-                    {
-                        Name = prop.Item1.Name,
-                        Attribute = prop.Item2,
-                        Property = prop.Item1,
-                        GrpcObject = o
-                    };
-
-                    if (!p.Property.CanRead)
-                    {
-                        throw new Exception("All properties must support reading.");
-                    }
-
-                    p.CanWrite = p.Property.CanWrite;
-                    
-                    p.DataType = GetGrpcType(p.Property.PropertyType);
-                    
-                    o.Properties.Add(p);
+                    throw new Exception("All properties must support reading.");
                 }
 
-                foreach (var method in _attributeFinder.FindMethodsWithAttribute<GrpcMethodAttribute>(o.Type))
+                p.CanWrite = p.Property.CanWrite;
+                
+                p.DataType = GetGrpcType(p.Property.PropertyType);
+                
+                o.Properties.Add(p);
+            }
+
+            foreach (var method in _attributeFinder.FindMethodsWithAttribute<GrpcMethodAttribute>(o.Type))
+            {
+                var m = new GrpcMethod
                 {
-                    var m = new GrpcMethod
+                    Name = method.Item1.Name,
+                    Attribute = method.Item2,
+                    Method = method.Item1,
+                    GrpcObject = o
+                };
+
+                if (typeof(Task).IsAssignableFrom(m.Method.ReturnType))
+                {
+                    // This is an async method.
+                    var generateParameters = m.Method.ReturnType.GetGenericArguments();
+                    if (generateParameters.Length == 0)
                     {
-                        Name = method.Item1.Name,
-                        Attribute = method.Item2,
-                        Method = method.Item1,
-                        GrpcObject = o
-                    };
-
-                    if (typeof(Task).IsAssignableFrom(m.Method.ReturnType))
-                    {
-                        // This is an async method.
-                        var generateParameters = m.Method.ReturnType.GetGenericArguments();
-                        if (generateParameters.Length == 0)
-                        {
-                            m.ResponseType = null;
-                        }
-                        else
-                        {
-                            if (generateParameters.Length > 1)
-                            {
-                                // Huh?
-                                throw new NotSupportedException();
-                            }
-                            var returnType = generateParameters[0];
-                            if (!typeof(IMessage).IsAssignableFrom(returnType))
-                            {
-                                throw new Exception("Invalid return type, must implement IMessage.");
-                            }
-
-                            m.ResponseType = GetGrpcType(returnType);
-                        }
-
-                        m.IsAsync = true;
+                        m.ResponseType = null;
                     }
                     else
                     {
-                        if (m.Method.ReturnType != typeof(void))
+                        if (generateParameters.Length > 1)
                         {
-                            if (!typeof(IMessage).IsAssignableFrom(m.Method.ReturnType))
-                            {
-                                throw new Exception("Invalid return type, must implement IMessage.");
-                            }
-
-                            m.ResponseType = GetGrpcType(m.Method.ReturnType);
+                            // Huh?
+                            throw new NotSupportedException();
                         }
-                        else
-                        {
-                            m.ResponseType = null;
-                        }
+                        var returnType = generateParameters[0];
+                        m.ResponseType = GetGrpcType(returnType);
                     }
 
-                    var parameters = m.Method.GetParameters();
-                 
-                    if (parameters.Length == 1)
+                    m.IsAsync = true;
+                }
+                else
+                {
+                    if (m.Method.ReturnType != typeof(void))
                     {
-                        m.RequestType = GetGrpcType(parameters[0].ParameterType);
-                    }
-                    else if(parameters.Length == 0)
-                    {
-                        m.RequestType = null;
+                        m.ResponseType = GetGrpcType(m.Method.ReturnType);
                     }
                     else
                     {
-                        throw new Exception("Invalid number of parameters.");
+                        m.ResponseType = null;
                     }
-                    
-                    o.Methods.Add(m);
                 }
 
-                foreach (var _ in _attributeFinder.FindEventsWithAttribute<GrpcEventAttribute>(o.Type))
+                var parameters = m.Method.GetParameters();
+             
+                if (parameters.Length == 1)
                 {
-                    var e = new GrpcEvent
-                    {
-                        Name = _.Item1.Name,
-                        Attribute = _.Item2,
-                        Event = _.Item1,
-                        GrpcObject = o
-                    };
+                    m.RequestType = GetGrpcType(parameters[0].ParameterType);
+                }
+                else if(parameters.Length == 0)
+                {
+                    m.RequestType = null;
+                }
+                else
+                {
+                    throw new Exception("Invalid number of parameters.");
+                }
+                
+                o.Methods.Add(m);
+            }
 
-                    var genericArguments = e.Event.EventHandlerType.GetGenericArguments();
-                    
-                    if (genericArguments.Length == 1)
-                    {
-                        if (e.Event.EventHandlerType.GetGenericTypeDefinition() != typeof(GrpcObjectEventDelegate<>))
-                        {
-                            throw new Exception("Invalid event handler type.");
-                        }
+            foreach (var _ in _attributeFinder.FindEventsWithAttribute<GrpcEventAttribute>(o.Type))
+            {
+                var e = new GrpcEvent
+                {
+                    Name = _.Item1.Name,
+                    Attribute = _.Item2,
+                    Event = _.Item1,
+                    GrpcObject = o
+                };
 
-                        e.DataType = GetGrpcType(genericArguments[0]);
-                    
-                        o.Events.Add(e);
-                    } else if (genericArguments.Length == 0)
-                    {
-                        if (e.Event.EventHandlerType != typeof(GrpcObjectEventDelegate))
-                        {
-                            throw new Exception("Invalid event handler type.");
-                        }
-                        
-                        o.Events.Add(e);
-                    }
-                    else
+                var genericArguments = e.Event.EventHandlerType.GetGenericArguments();
+                
+                if (genericArguments.Length == 1)
+                {
+                    if (e.Event.EventHandlerType.GetGenericTypeDefinition() != typeof(GrpcObjectEventDelegate<>))
                     {
                         throw new Exception("Invalid event handler type.");
                     }
+
+                    e.DataType = GetGrpcType(genericArguments[0]);
+                
+                    o.Events.Add(e);
+                } else if (genericArguments.Length == 0)
+                {
+                    if (e.Event.EventHandlerType != typeof(GrpcObjectEventDelegate))
+                    {
+                        throw new Exception("Invalid event handler type.");
+                    }
+                    
+                    o.Events.Add(e);
                 }
+                else
+                {
+                    throw new Exception("Invalid event handler type.");
+                }
+            }
 
-                return o;
-            }).ToList();
+            return o;
         }
-
+        
         private GrpcType GetGrpcType(Type type)
         {
             if (type == typeof(String))
             {
                 return GetGrpcType(typeof(StringValue));
+            }
+
+            if (type == typeof(int))
+            {
+                return new GrpcType
+                {
+                    TypeName = "int32"
+                };
             }
 
             if (typeof(IMessage).IsAssignableFrom(type))

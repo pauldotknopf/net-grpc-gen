@@ -1,0 +1,3 @@
+[submodule "examples/qt-client/protobuf-qjson"]
+	path = examples/qt-client/protobuf-qjson
+	url = https://github.com/pauldotknopf/protobuf-qjson.git

@@ -14,8 +14,8 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_types_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TestMessageRequest_types_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_types_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TestMessageResponse_types_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_types_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TestMessageRequest_types_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_types_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TestMessageResponse_types_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2fwrappers_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StringValue_google_2fprotobuf_2fwrappers_2eproto;
 namespace Tests {
 class Test1ListenEventStreamDefaultTypeInternal {
@@ -110,6 +110,14 @@ class Test1TestMethodWithNoResponseMethodResponseDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Test1TestMethodWithNoResponseMethodResponse> _instance;
 } _Test1TestMethodWithNoResponseMethodResponse_default_instance_;
+class Test1TestMethodPrimitiveMethodRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Test1TestMethodPrimitiveMethodRequest> _instance;
+} _Test1TestMethodPrimitiveMethodRequest_default_instance_;
+class Test1TestMethodPrimitiveMethodResponseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Test1TestMethodPrimitiveMethodResponse> _instance;
+} _Test1TestMethodPrimitiveMethodResponse_default_instance_;
 class Test1TestMethodNoRequestMethodRequestDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Test1TestMethodNoRequestMethodRequest> _instance;
@@ -522,6 +530,34 @@ static void InitDefaultsscc_info_Test1TestMethodNoRequestMethodResponse_gen_2epr
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Test1TestMethodNoRequestMethodResponse_gen_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Test1TestMethodNoRequestMethodResponse_gen_2eproto}, {}};
+
+static void InitDefaultsscc_info_Test1TestMethodPrimitiveMethodRequest_gen_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Tests::_Test1TestMethodPrimitiveMethodRequest_default_instance_;
+    new (ptr) ::Tests::Test1TestMethodPrimitiveMethodRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Tests::Test1TestMethodPrimitiveMethodRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Test1TestMethodPrimitiveMethodRequest_gen_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Test1TestMethodPrimitiveMethodRequest_gen_2eproto}, {}};
+
+static void InitDefaultsscc_info_Test1TestMethodPrimitiveMethodResponse_gen_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::Tests::_Test1TestMethodPrimitiveMethodResponse_default_instance_;
+    new (ptr) ::Tests::Test1TestMethodPrimitiveMethodResponse();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::Tests::Test1TestMethodPrimitiveMethodResponse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Test1TestMethodPrimitiveMethodResponse_gen_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Test1TestMethodPrimitiveMethodResponse_gen_2eproto}, {}};
 
 static void InitDefaultsscc_info_Test1TestMethodSyncMethodRequest_gen_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -945,7 +981,7 @@ static void InitDefaultsscc_info_Test2TestMethodWithNoResponse2MethodResponse_ge
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Test2TestMethodWithNoResponse2MethodResponse_gen_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Test2TestMethodWithNoResponse2MethodResponse_gen_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_gen_2eproto[50];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_gen_2eproto[52];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_gen_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_gen_2eproto = nullptr;
 
@@ -1092,6 +1128,19 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Tests::Test1TestMethodPrimitiveMethodRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::Test1TestMethodPrimitiveMethodRequest, objectid_),
+  PROTOBUF_FIELD_OFFSET(::Tests::Test1TestMethodPrimitiveMethodRequest, value_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Tests::Test1TestMethodPrimitiveMethodResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::Test1TestMethodPrimitiveMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::Test1TestMethodNoRequestMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1281,33 +1330,35 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 124, -1, sizeof(::Tests::Test1TestMethodSyncMethodResponse)},
   { 130, -1, sizeof(::Tests::Test1TestMethodWithNoResponseMethodRequest)},
   { 137, -1, sizeof(::Tests::Test1TestMethodWithNoResponseMethodResponse)},
-  { 142, -1, sizeof(::Tests::Test1TestMethodNoRequestMethodRequest)},
-  { 148, -1, sizeof(::Tests::Test1TestMethodNoRequestMethodResponse)},
-  { 153, -1, sizeof(::Tests::Test2ListenEventStream)},
-  { 159, -1, sizeof(::Tests::Test2CreateResponse)},
-  { 165, -1, sizeof(::Tests::Test2StopRequest)},
-  { 170, -1, sizeof(::Tests::Test2StopResponse)},
-  { 175, -1, sizeof(::Tests::Test2PropString2SetRequest)},
-  { 182, -1, sizeof(::Tests::Test2PropString2SetResponse)},
-  { 187, -1, sizeof(::Tests::Test2PropString2GetRequest)},
-  { 193, -1, sizeof(::Tests::Test2PropString2GetResponse)},
-  { 199, -1, sizeof(::Tests::Test2PropString2PropertyChanged)},
-  { 206, -1, sizeof(::Tests::Test2PropComplex2SetRequest)},
-  { 213, -1, sizeof(::Tests::Test2PropComplex2SetResponse)},
-  { 218, -1, sizeof(::Tests::Test2PropComplex2GetRequest)},
-  { 224, -1, sizeof(::Tests::Test2PropComplex2GetResponse)},
-  { 230, -1, sizeof(::Tests::Test2PropComplex2PropertyChanged)},
-  { 237, -1, sizeof(::Tests::Test2TestEvent2Event)},
-  { 244, -1, sizeof(::Tests::Test2TestEventComplex2Event)},
-  { 251, -1, sizeof(::Tests::Test2TestEventNoData2Event)},
-  { 257, -1, sizeof(::Tests::Test2TestMethod2MethodRequest)},
-  { 264, -1, sizeof(::Tests::Test2TestMethod2MethodResponse)},
-  { 270, -1, sizeof(::Tests::Test2TestMethodSync2MethodRequest)},
-  { 277, -1, sizeof(::Tests::Test2TestMethodSync2MethodResponse)},
-  { 283, -1, sizeof(::Tests::Test2TestMethodWithNoResponse2MethodRequest)},
-  { 290, -1, sizeof(::Tests::Test2TestMethodWithNoResponse2MethodResponse)},
-  { 295, -1, sizeof(::Tests::Test2TestMethodNoRequest2MethodRequest)},
-  { 301, -1, sizeof(::Tests::Test2TestMethodNoRequest2MethodResponse)},
+  { 142, -1, sizeof(::Tests::Test1TestMethodPrimitiveMethodRequest)},
+  { 149, -1, sizeof(::Tests::Test1TestMethodPrimitiveMethodResponse)},
+  { 155, -1, sizeof(::Tests::Test1TestMethodNoRequestMethodRequest)},
+  { 161, -1, sizeof(::Tests::Test1TestMethodNoRequestMethodResponse)},
+  { 166, -1, sizeof(::Tests::Test2ListenEventStream)},
+  { 172, -1, sizeof(::Tests::Test2CreateResponse)},
+  { 178, -1, sizeof(::Tests::Test2StopRequest)},
+  { 183, -1, sizeof(::Tests::Test2StopResponse)},
+  { 188, -1, sizeof(::Tests::Test2PropString2SetRequest)},
+  { 195, -1, sizeof(::Tests::Test2PropString2SetResponse)},
+  { 200, -1, sizeof(::Tests::Test2PropString2GetRequest)},
+  { 206, -1, sizeof(::Tests::Test2PropString2GetResponse)},
+  { 212, -1, sizeof(::Tests::Test2PropString2PropertyChanged)},
+  { 219, -1, sizeof(::Tests::Test2PropComplex2SetRequest)},
+  { 226, -1, sizeof(::Tests::Test2PropComplex2SetResponse)},
+  { 231, -1, sizeof(::Tests::Test2PropComplex2GetRequest)},
+  { 237, -1, sizeof(::Tests::Test2PropComplex2GetResponse)},
+  { 243, -1, sizeof(::Tests::Test2PropComplex2PropertyChanged)},
+  { 250, -1, sizeof(::Tests::Test2TestEvent2Event)},
+  { 257, -1, sizeof(::Tests::Test2TestEventComplex2Event)},
+  { 264, -1, sizeof(::Tests::Test2TestEventNoData2Event)},
+  { 270, -1, sizeof(::Tests::Test2TestMethod2MethodRequest)},
+  { 277, -1, sizeof(::Tests::Test2TestMethod2MethodResponse)},
+  { 283, -1, sizeof(::Tests::Test2TestMethodSync2MethodRequest)},
+  { 290, -1, sizeof(::Tests::Test2TestMethodSync2MethodResponse)},
+  { 296, -1, sizeof(::Tests::Test2TestMethodWithNoResponse2MethodRequest)},
+  { 303, -1, sizeof(::Tests::Test2TestMethodWithNoResponse2MethodResponse)},
+  { 308, -1, sizeof(::Tests::Test2TestMethodNoRequest2MethodRequest)},
+  { 314, -1, sizeof(::Tests::Test2TestMethodNoRequest2MethodResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -1334,6 +1385,8 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Tests::_Test1TestMethodSyncMethodResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Tests::_Test1TestMethodWithNoResponseMethodRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Tests::_Test1TestMethodWithNoResponseMethodResponse_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Tests::_Test1TestMethodPrimitiveMethodRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Tests::_Test1TestMethodPrimitiveMethodResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Tests::_Test1TestMethodNoRequestMethodRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Tests::_Test1TestMethodNoRequestMethodResponse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::Tests::_Test2ListenEventStream_default_instance_),
@@ -1410,132 +1463,139 @@ const char descriptor_table_protodef_gen_2eproto[] PROTOBUF_SECTION_VARIABLE(pro
   "TestMethodWithNoResponseMethodRequest\022\020\n"
   "\010objectId\030\001 \001(\004\022/\n\005value\030\002 \001(\0132 .custom."
   "types.TestMessageRequest\"-\n+Test1TestMet"
-  "hodWithNoResponseMethodResponse\"9\n%Test1"
-  "TestMethodNoRequestMethodRequest\022\020\n\010obje"
-  "ctId\030\001 \001(\004\"(\n&Test1TestMethodNoRequestMe"
-  "thodResponse\"*\n\026Test2ListenEventStream\022\020"
-  "\n\010objectId\030\001 \001(\004\"1\n\023Test2CreateResponse\022"
-  "\020\n\010objectId\030\001 \001(\004:\010\302>\005Test2\"\034\n\020Test2Stop"
-  "Request:\010\302>\005Test2\"\035\n\021Test2StopResponse:\010"
-  "\302>\005Test2\"[\n\032Test2PropString2SetRequest\022\020"
-  "\n\010objectId\030\001 \001(\004\022+\n\005value\030\002 \001(\0132\034.google"
-  ".protobuf.StringValue\"\035\n\033Test2PropString"
-  "2SetResponse\".\n\032Test2PropString2GetReque"
-  "st\022\020\n\010objectId\030\001 \001(\004\"J\n\033Test2PropString2"
-  "GetResponse\022+\n\005value\030\001 \001(\0132\034.google.prot"
-  "obuf.StringValue\"x\n\037Test2PropString2Prop"
-  "ertyChanged\022\020\n\010objectId\030\001 \001(\004\022+\n\005value\030\002"
-  " \001(\0132\034.google.protobuf.StringValue:\026\302>\005T"
-  "est2\312>\013PropString2\"a\n\033Test2PropComplex2S"
-  "etRequest\022\020\n\010objectId\030\001 \001(\004\0220\n\005value\030\002 \001"
-  "(\0132!.custom.types.TestMessageResponse\"\036\n"
-  "\034Test2PropComplex2SetResponse\"/\n\033Test2Pr"
-  "opComplex2GetRequest\022\020\n\010objectId\030\001 \001(\004\"P"
-  "\n\034Test2PropComplex2GetResponse\0220\n\005value\030"
+  "hodWithNoResponseMethodResponse\"H\n%Test1"
+  "TestMethodPrimitiveMethodRequest\022\020\n\010obje"
+  "ctId\030\001 \001(\004\022\r\n\005value\030\002 \001(\005\"7\n&Test1TestMe"
+  "thodPrimitiveMethodResponse\022\r\n\005value\030\001 \001"
+  "(\005\"9\n%Test1TestMethodNoRequestMethodRequ"
+  "est\022\020\n\010objectId\030\001 \001(\004\"(\n&Test1TestMethod"
+  "NoRequestMethodResponse\"*\n\026Test2ListenEv"
+  "entStream\022\020\n\010objectId\030\001 \001(\004\"1\n\023Test2Crea"
+  "teResponse\022\020\n\010objectId\030\001 \001(\004:\010\302>\005Test2\"\034"
+  "\n\020Test2StopRequest:\010\302>\005Test2\"\035\n\021Test2Sto"
+  "pResponse:\010\302>\005Test2\"[\n\032Test2PropString2S"
+  "etRequest\022\020\n\010objectId\030\001 \001(\004\022+\n\005value\030\002 \001"
+  "(\0132\034.google.protobuf.StringValue\"\035\n\033Test"
+  "2PropString2SetResponse\".\n\032Test2PropStri"
+  "ng2GetRequest\022\020\n\010objectId\030\001 \001(\004\"J\n\033Test2"
+  "PropString2GetResponse\022+\n\005value\030\001 \001(\0132\034."
+  "google.protobuf.StringValue\"x\n\037Test2Prop"
+  "String2PropertyChanged\022\020\n\010objectId\030\001 \001(\004"
+  "\022+\n\005value\030\002 \001(\0132\034.google.protobuf.String"
+  "Value:\026\302>\005Test2\312>\013PropString2\"a\n\033Test2Pr"
+  "opComplex2SetRequest\022\020\n\010objectId\030\001 \001(\004\0220"
+  "\n\005value\030\002 \001(\0132!.custom.types.TestMessage"
+  "Response\"\036\n\034Test2PropComplex2SetResponse"
+  "\"/\n\033Test2PropComplex2GetRequest\022\020\n\010objec"
+  "tId\030\001 \001(\004\"P\n\034Test2PropComplex2GetRespons"
+  "e\0220\n\005value\030\001 \001(\0132!.custom.types.TestMess"
+  "ageResponse\"\177\n Test2PropComplex2Property"
+  "Changed\022\020\n\010objectId\030\001 \001(\004\0220\n\005value\030\002 \001(\013"
+  "2!.custom.types.TestMessageResponse:\027\302>\005"
+  "Test2\312>\014PropComplex2\"l\n\024Test2TestEvent2E"
+  "vent\022\020\n\010objectId\030\001 \001(\004\022+\n\005value\030\002 \001(\0132\034."
+  "google.protobuf.StringValue:\025\302>\005Test2\312>\n"
+  "TestEvent2\"\177\n\033Test2TestEventComplex2Even"
+  "t\022\020\n\010objectId\030\001 \001(\004\0220\n\005value\030\002 \001(\0132!.cus"
+  "tom.types.TestMessageResponse:\034\302>\005Test2\312"
+  ">\021TestEventComplex2\"K\n\032Test2TestEventNoD"
+  "ata2Event\022\020\n\010objectId\030\001 \001(\004:\033\302>\005Test2\312>\020"
+  "TestEventNoData2\"b\n\035Test2TestMethod2Meth"
+  "odRequest\022\020\n\010objectId\030\001 \001(\004\022/\n\005value\030\002 \001"
+  "(\0132 .custom.types.TestMessageRequest\"R\n\036"
+  "Test2TestMethod2MethodResponse\0220\n\005value\030"
   "\001 \001(\0132!.custom.types.TestMessageResponse"
-  "\"\177\n Test2PropComplex2PropertyChanged\022\020\n\010"
-  "objectId\030\001 \001(\004\0220\n\005value\030\002 \001(\0132!.custom.t"
-  "ypes.TestMessageResponse:\027\302>\005Test2\312>\014Pro"
-  "pComplex2\"l\n\024Test2TestEvent2Event\022\020\n\010obj"
-  "ectId\030\001 \001(\004\022+\n\005value\030\002 \001(\0132\034.google.prot"
-  "obuf.StringValue:\025\302>\005Test2\312>\nTestEvent2\""
-  "\177\n\033Test2TestEventComplex2Event\022\020\n\010object"
-  "Id\030\001 \001(\004\0220\n\005value\030\002 \001(\0132!.custom.types.T"
-  "estMessageResponse:\034\302>\005Test2\312>\021TestEvent"
-  "Complex2\"K\n\032Test2TestEventNoData2Event\022\020"
-  "\n\010objectId\030\001 \001(\004:\033\302>\005Test2\312>\020TestEventNo"
-  "Data2\"b\n\035Test2TestMethod2MethodRequest\022\020"
-  "\n\010objectId\030\001 \001(\004\022/\n\005value\030\002 \001(\0132 .custom"
-  ".types.TestMessageRequest\"R\n\036Test2TestMe"
-  "thod2MethodResponse\0220\n\005value\030\001 \001(\0132!.cus"
-  "tom.types.TestMessageResponse\"f\n!Test2Te"
-  "stMethodSync2MethodRequest\022\020\n\010objectId\030\001"
-  " \001(\004\022/\n\005value\030\002 \001(\0132 .custom.types.TestM"
-  "essageRequest\"V\n\"Test2TestMethodSync2Met"
-  "hodResponse\0220\n\005value\030\001 \001(\0132!.custom.type"
-  "s.TestMessageResponse\"p\n+Test2TestMethod"
-  "WithNoResponse2MethodRequest\022\020\n\010objectId"
-  "\030\001 \001(\004\022/\n\005value\030\002 \001(\0132 .custom.types.Tes"
-  "tMessageRequest\".\n,Test2TestMethodWithNo"
-  "Response2MethodResponse\":\n&Test2TestMeth"
-  "odNoRequest2MethodRequest\022\020\n\010objectId\030\001 "
-  "\001(\004\")\n\'Test2TestMethodNoRequest2MethodRe"
-  "sponse2\240\t\n\022Test1ObjectService\022=\n\006Create\022"
-  "\024.google.protobuf.Any\032\024.google.protobuf."
-  "Any\"\003\300>\001(\0010\001\022J\n\014ListenEvents\022\035.Tests.Tes"
-  "t1ListenEventStream\032\024.google.protobuf.An"
-  "y\"\003\310>\0010\001\022l\n\020InvokeTestMethod\022#.Tests.Tes"
-  "t1TestMethodMethodRequest\032$.Tests.Test1T"
-  "estMethodMethodResponse\"\r\322>\nTestMethod\022\177"
-  "\n\024InvokeTestMethodSync\022\'.Tests.Test1Test"
-  "MethodSyncMethodRequest\032(.Tests.Test1Tes"
-  "tMethodSyncMethodResponse\"\024\322>\016TestMethod"
-  "Sync\330>\001\022\247\001\n\036InvokeTestMethodWithNoRespon"
-  "se\0221.Tests.Test1TestMethodWithNoResponse"
-  "MethodRequest\0322.Tests.Test1TestMethodWit"
-  "hNoResponseMethodResponse\"\036\322>\030TestMethod"
-  "WithNoResponse\330>\001\022\223\001\n\031InvokeTestMethodNo"
-  "Request\022,.Tests.Test1TestMethodNoRequest"
-  "MethodRequest\032-.Tests.Test1TestMethodNoR"
-  "equestMethodResponse\"\031\322>\023TestMethodNoReq"
-  "uest\330>\001\022n\n\025SetPropertyPropString\022 .Tests"
-  ".Test1PropStringSetRequest\032!.Tests.Test1"
-  "PropStringSetResponse\"\020\342>\nPropString\350>\001\022"
-  "n\n\025GetPropertyPropString\022 .Tests.Test1Pr"
-  "opStringGetRequest\032!.Tests.Test1PropStri"
-  "ngGetResponse\"\020\342>\nPropString\360>\001\022r\n\026SetPr"
-  "opertyPropComplex\022!.Tests.Test1PropCompl"
-  "exSetRequest\032\".Tests.Test1PropComplexSet"
-  "Response\"\021\342>\013PropComplex\350>\001\022r\n\026GetProper"
-  "tyPropComplex\022!.Tests.Test1PropComplexGe"
-  "tRequest\032\".Tests.Test1PropComplexGetResp"
-  "onse\"\021\342>\013PropComplex\360>\001\032\010\302>\005Test12\301\t\n\022Te"
-  "st2ObjectService\022=\n\006Create\022\024.google.prot"
-  "obuf.Any\032\024.google.protobuf.Any\"\003\300>\001(\0010\001\022"
-  "J\n\014ListenEvents\022\035.Tests.Test2ListenEvent"
-  "Stream\032\024.google.protobuf.Any\"\003\310>\0010\001\022p\n\021I"
-  "nvokeTestMethod2\022$.Tests.Test2TestMethod"
-  "2MethodRequest\032%.Tests.Test2TestMethod2M"
-  "ethodResponse\"\016\322>\013TestMethod2\022\203\001\n\025Invoke"
-  "TestMethodSync2\022(.Tests.Test2TestMethodS"
-  "ync2MethodRequest\032).Tests.Test2TestMetho"
-  "dSync2MethodResponse\"\025\322>\017TestMethodSync2"
-  "\330>\001\022\253\001\n\037InvokeTestMethodWithNoResponse2\022"
-  "2.Tests.Test2TestMethodWithNoResponse2Me"
-  "thodRequest\0323.Tests.Test2TestMethodWithN"
-  "oResponse2MethodResponse\"\037\322>\031TestMethodW"
-  "ithNoResponse2\330>\001\022\227\001\n\032InvokeTestMethodNo"
-  "Request2\022-.Tests.Test2TestMethodNoReques"
-  "t2MethodRequest\032..Tests.Test2TestMethodN"
-  "oRequest2MethodResponse\"\032\322>\024TestMethodNo"
-  "Request2\330>\001\022r\n\026SetPropertyPropString2\022!."
-  "Tests.Test2PropString2SetRequest\032\".Tests"
-  ".Test2PropString2SetResponse\"\021\342>\013PropStr"
-  "ing2\350>\001\022r\n\026GetPropertyPropString2\022!.Test"
-  "s.Test2PropString2GetRequest\032\".Tests.Tes"
-  "t2PropString2GetResponse\"\021\342>\013PropString2"
-  "\360>\001\022v\n\027SetPropertyPropComplex2\022\".Tests.T"
-  "est2PropComplex2SetRequest\032#.Tests.Test2"
-  "PropComplex2SetResponse\"\022\342>\014PropComplex2"
-  "\350>\001\022v\n\027GetPropertyPropComplex2\022\".Tests.T"
-  "est2PropComplex2GetRequest\032#.Tests.Test2"
-  "PropComplex2GetResponse\"\022\342>\014PropComplex2"
-  "\360>\001\032\010\302>\005Test2:/\n\006create\022\036.google.protobu"
-  "f.MethodOptions\030\350\007 \001(\010:6\n\reventListener\022"
-  "\036.google.protobuf.MethodOptions\030\351\007 \001(\010:3"
-  "\n\nmethodName\022\036.google.protobuf.MethodOpt"
-  "ions\030\352\007 \001(\t:-\n\004sync\022\036.google.protobuf.Me"
-  "thodOptions\030\353\007 \001(\010:1\n\010propName\022\036.google."
-  "protobuf.MethodOptions\030\354\007 \001(\t:0\n\007propSet"
-  "\022\036.google.protobuf.MethodOptions\030\355\007 \001(\010:"
-  "0\n\007propGet\022\036.google.protobuf.MethodOptio"
-  "ns\030\356\007 \001(\010:;\n\021messageObjectName\022\037.google."
-  "protobuf.MessageOptions\030\350\007 \001(\t:3\n\teventN"
-  "ame\022\037.google.protobuf.MessageOptions\030\351\007 "
-  "\001(\t:1\n\007forProp\022\037.google.protobuf.Message"
-  "Options\030\352\007 \001(\t:;\n\021serviceObjectName\022\037.go"
-  "ogle.protobuf.ServiceOptions\030\350\007 \001(\tb\006pro"
-  "to3"
+  "\"f\n!Test2TestMethodSync2MethodRequest\022\020\n"
+  "\010objectId\030\001 \001(\004\022/\n\005value\030\002 \001(\0132 .custom."
+  "types.TestMessageRequest\"V\n\"Test2TestMet"
+  "hodSync2MethodResponse\0220\n\005value\030\001 \001(\0132!."
+  "custom.types.TestMessageResponse\"p\n+Test"
+  "2TestMethodWithNoResponse2MethodRequest\022"
+  "\020\n\010objectId\030\001 \001(\004\022/\n\005value\030\002 \001(\0132 .custo"
+  "m.types.TestMessageRequest\".\n,Test2TestM"
+  "ethodWithNoResponse2MethodResponse\":\n&Te"
+  "st2TestMethodNoRequest2MethodRequest\022\020\n\010"
+  "objectId\030\001 \001(\004\")\n\'Test2TestMethodNoReque"
+  "st2MethodResponse2\266\n\n\022Test1ObjectService"
+  "\022=\n\006Create\022\024.google.protobuf.Any\032\024.googl"
+  "e.protobuf.Any\"\003\300>\001(\0010\001\022J\n\014ListenEvents\022"
+  "\035.Tests.Test1ListenEventStream\032\024.google."
+  "protobuf.Any\"\003\310>\0010\001\022l\n\020InvokeTestMethod\022"
+  "#.Tests.Test1TestMethodMethodRequest\032$.T"
+  "ests.Test1TestMethodMethodResponse\"\r\322>\nT"
+  "estMethod\022\177\n\024InvokeTestMethodSync\022\'.Test"
+  "s.Test1TestMethodSyncMethodRequest\032(.Tes"
+  "ts.Test1TestMethodSyncMethodResponse\"\024\322>"
+  "\016TestMethodSync\330>\001\022\247\001\n\036InvokeTestMethodW"
+  "ithNoResponse\0221.Tests.Test1TestMethodWit"
+  "hNoResponseMethodRequest\0322.Tests.Test1Te"
+  "stMethodWithNoResponseMethodResponse\"\036\322>"
+  "\030TestMethodWithNoResponse\330>\001\022\223\001\n\031InvokeT"
+  "estMethodPrimitive\022,.Tests.Test1TestMeth"
+  "odPrimitiveMethodRequest\032-.Tests.Test1Te"
+  "stMethodPrimitiveMethodResponse\"\031\322>\023Test"
+  "MethodPrimitive\330>\001\022\223\001\n\031InvokeTestMethodN"
+  "oRequest\022,.Tests.Test1TestMethodNoReques"
+  "tMethodRequest\032-.Tests.Test1TestMethodNo"
+  "RequestMethodResponse\"\031\322>\023TestMethodNoRe"
+  "quest\330>\001\022n\n\025SetPropertyPropString\022 .Test"
+  "s.Test1PropStringSetRequest\032!.Tests.Test"
+  "1PropStringSetResponse\"\020\342>\nPropString\350>\001"
+  "\022n\n\025GetPropertyPropString\022 .Tests.Test1P"
+  "ropStringGetRequest\032!.Tests.Test1PropStr"
+  "ingGetResponse\"\020\342>\nPropString\360>\001\022r\n\026SetP"
+  "ropertyPropComplex\022!.Tests.Test1PropComp"
+  "lexSetRequest\032\".Tests.Test1PropComplexSe"
+  "tResponse\"\021\342>\013PropComplex\350>\001\022r\n\026GetPrope"
+  "rtyPropComplex\022!.Tests.Test1PropComplexG"
+  "etRequest\032\".Tests.Test1PropComplexGetRes"
+  "ponse\"\021\342>\013PropComplex\360>\001\032\010\302>\005Test12\301\t\n\022T"
+  "est2ObjectService\022=\n\006Create\022\024.google.pro"
+  "tobuf.Any\032\024.google.protobuf.Any\"\003\300>\001(\0010\001"
+  "\022J\n\014ListenEvents\022\035.Tests.Test2ListenEven"
+  "tStream\032\024.google.protobuf.Any\"\003\310>\0010\001\022p\n\021"
+  "InvokeTestMethod2\022$.Tests.Test2TestMetho"
+  "d2MethodRequest\032%.Tests.Test2TestMethod2"
+  "MethodResponse\"\016\322>\013TestMethod2\022\203\001\n\025Invok"
+  "eTestMethodSync2\022(.Tests.Test2TestMethod"
+  "Sync2MethodRequest\032).Tests.Test2TestMeth"
+  "odSync2MethodResponse\"\025\322>\017TestMethodSync"
+  "2\330>\001\022\253\001\n\037InvokeTestMethodWithNoResponse2"
+  "\0222.Tests.Test2TestMethodWithNoResponse2M"
+  "ethodRequest\0323.Tests.Test2TestMethodWith"
+  "NoResponse2MethodResponse\"\037\322>\031TestMethod"
+  "WithNoResponse2\330>\001\022\227\001\n\032InvokeTestMethodN"
+  "oRequest2\022-.Tests.Test2TestMethodNoReque"
+  "st2MethodRequest\032..Tests.Test2TestMethod"
+  "NoRequest2MethodResponse\"\032\322>\024TestMethodN"
+  "oRequest2\330>\001\022r\n\026SetPropertyPropString2\022!"
+  ".Tests.Test2PropString2SetRequest\032\".Test"
+  "s.Test2PropString2SetResponse\"\021\342>\013PropSt"
+  "ring2\350>\001\022r\n\026GetPropertyPropString2\022!.Tes"
+  "ts.Test2PropString2GetRequest\032\".Tests.Te"
+  "st2PropString2GetResponse\"\021\342>\013PropString"
+  "2\360>\001\022v\n\027SetPropertyPropComplex2\022\".Tests."
+  "Test2PropComplex2SetRequest\032#.Tests.Test"
+  "2PropComplex2SetResponse\"\022\342>\014PropComplex"
+  "2\350>\001\022v\n\027GetPropertyPropComplex2\022\".Tests."
+  "Test2PropComplex2GetRequest\032#.Tests.Test"
+  "2PropComplex2GetResponse\"\022\342>\014PropComplex"
+  "2\360>\001\032\010\302>\005Test2:/\n\006create\022\036.google.protob"
+  "uf.MethodOptions\030\350\007 \001(\010:6\n\reventListener"
+  "\022\036.google.protobuf.MethodOptions\030\351\007 \001(\010:"
+  "3\n\nmethodName\022\036.google.protobuf.MethodOp"
+  "tions\030\352\007 \001(\t:-\n\004sync\022\036.google.protobuf.M"
+  "ethodOptions\030\353\007 \001(\010:1\n\010propName\022\036.google"
+  ".protobuf.MethodOptions\030\354\007 \001(\t:0\n\007propSe"
+  "t\022\036.google.protobuf.MethodOptions\030\355\007 \001(\010"
+  ":0\n\007propGet\022\036.google.protobuf.MethodOpti"
+  "ons\030\356\007 \001(\010:;\n\021messageObjectName\022\037.google"
+  ".protobuf.MessageOptions\030\350\007 \001(\t:3\n\tevent"
+  "Name\022\037.google.protobuf.MessageOptions\030\351\007"
+  " \001(\t:1\n\007forProp\022\037.google.protobuf.Messag"
+  "eOptions\030\352\007 \001(\t:;\n\021serviceObjectName\022\037.g"
+  "oogle.protobuf.ServiceOptions\030\350\007 \001(\tb\006pr"
+  "oto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_gen_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -1543,7 +1603,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor
   &::descriptor_table_google_2fprotobuf_2fwrappers_2eproto,
   &::descriptor_table_types_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_gen_2eproto_sccs[50] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_gen_2eproto_sccs[52] = {
   &scc_info_Test1CreateResponse_gen_2eproto.base,
   &scc_info_Test1ListenEventStream_gen_2eproto.base,
   &scc_info_Test1PropComplexGetRequest_gen_2eproto.base,
@@ -1565,6 +1625,8 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_gen
   &scc_info_Test1TestMethodMethodResponse_gen_2eproto.base,
   &scc_info_Test1TestMethodNoRequestMethodRequest_gen_2eproto.base,
   &scc_info_Test1TestMethodNoRequestMethodResponse_gen_2eproto.base,
+  &scc_info_Test1TestMethodPrimitiveMethodRequest_gen_2eproto.base,
+  &scc_info_Test1TestMethodPrimitiveMethodResponse_gen_2eproto.base,
   &scc_info_Test1TestMethodSyncMethodRequest_gen_2eproto.base,
   &scc_info_Test1TestMethodSyncMethodResponse_gen_2eproto.base,
   &scc_info_Test1TestMethodWithNoResponseMethodRequest_gen_2eproto.base,
@@ -1598,10 +1660,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_gen
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_gen_2eproto_once;
 static bool descriptor_table_gen_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_gen_2eproto = {
-  &descriptor_table_gen_2eproto_initialized, descriptor_table_protodef_gen_2eproto, "gen.proto", 6843,
-  &descriptor_table_gen_2eproto_once, descriptor_table_gen_2eproto_sccs, descriptor_table_gen_2eproto_deps, 50, 4,
+  &descriptor_table_gen_2eproto_initialized, descriptor_table_protodef_gen_2eproto, "gen.proto", 7124,
+  &descriptor_table_gen_2eproto_once, descriptor_table_gen_2eproto_sccs, descriptor_table_gen_2eproto_deps, 52, 4,
   schemas, file_default_instances, TableStruct_gen_2eproto::offsets,
-  file_level_metadata_gen_2eproto, 50, file_level_enum_descriptors_gen_2eproto, file_level_service_descriptors_gen_2eproto,
+  file_level_metadata_gen_2eproto, 52, file_level_enum_descriptors_gen_2eproto, file_level_service_descriptors_gen_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -6286,6 +6348,408 @@ void Test1TestMethodWithNoResponseMethodResponse::InternalSwap(Test1TestMethodWi
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Test1TestMethodWithNoResponseMethodResponse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void Test1TestMethodPrimitiveMethodRequest::InitAsDefaultInstance() {
+}
+class Test1TestMethodPrimitiveMethodRequest::_Internal {
+ public:
+};
+
+Test1TestMethodPrimitiveMethodRequest::Test1TestMethodPrimitiveMethodRequest()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Tests.Test1TestMethodPrimitiveMethodRequest)
+}
+Test1TestMethodPrimitiveMethodRequest::Test1TestMethodPrimitiveMethodRequest(const Test1TestMethodPrimitiveMethodRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&objectid_, &from.objectid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&value_) -
+    reinterpret_cast<char*>(&objectid_)) + sizeof(value_));
+  // @@protoc_insertion_point(copy_constructor:Tests.Test1TestMethodPrimitiveMethodRequest)
+}
+
+void Test1TestMethodPrimitiveMethodRequest::SharedCtor() {
+  ::memset(&objectid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&value_) -
+      reinterpret_cast<char*>(&objectid_)) + sizeof(value_));
+}
+
+Test1TestMethodPrimitiveMethodRequest::~Test1TestMethodPrimitiveMethodRequest() {
+  // @@protoc_insertion_point(destructor:Tests.Test1TestMethodPrimitiveMethodRequest)
+  SharedDtor();
+}
+
+void Test1TestMethodPrimitiveMethodRequest::SharedDtor() {
+}
+
+void Test1TestMethodPrimitiveMethodRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Test1TestMethodPrimitiveMethodRequest& Test1TestMethodPrimitiveMethodRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Test1TestMethodPrimitiveMethodRequest_gen_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Test1TestMethodPrimitiveMethodRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:Tests.Test1TestMethodPrimitiveMethodRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&objectid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&value_) -
+      reinterpret_cast<char*>(&objectid_)) + sizeof(value_));
+  _internal_metadata_.Clear();
+}
+
+const char* Test1TestMethodPrimitiveMethodRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // uint64 objectId = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          objectid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 value = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Test1TestMethodPrimitiveMethodRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Tests.Test1TestMethodPrimitiveMethodRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 objectId = 1;
+  if (this->objectid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
+  }
+
+  // int32 value = 2;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_value(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Tests.Test1TestMethodPrimitiveMethodRequest)
+  return target;
+}
+
+size_t Test1TestMethodPrimitiveMethodRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Tests.Test1TestMethodPrimitiveMethodRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint64 objectId = 1;
+  if (this->objectid() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_objectid());
+  }
+
+  // int32 value = 2;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_value());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Test1TestMethodPrimitiveMethodRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Tests.Test1TestMethodPrimitiveMethodRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Test1TestMethodPrimitiveMethodRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Test1TestMethodPrimitiveMethodRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Tests.Test1TestMethodPrimitiveMethodRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Tests.Test1TestMethodPrimitiveMethodRequest)
+    MergeFrom(*source);
+  }
+}
+
+void Test1TestMethodPrimitiveMethodRequest::MergeFrom(const Test1TestMethodPrimitiveMethodRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Tests.Test1TestMethodPrimitiveMethodRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.objectid() != 0) {
+    _internal_set_objectid(from._internal_objectid());
+  }
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
+}
+
+void Test1TestMethodPrimitiveMethodRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Tests.Test1TestMethodPrimitiveMethodRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Test1TestMethodPrimitiveMethodRequest::CopyFrom(const Test1TestMethodPrimitiveMethodRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Tests.Test1TestMethodPrimitiveMethodRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Test1TestMethodPrimitiveMethodRequest::IsInitialized() const {
+  return true;
+}
+
+void Test1TestMethodPrimitiveMethodRequest::InternalSwap(Test1TestMethodPrimitiveMethodRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(objectid_, other->objectid_);
+  swap(value_, other->value_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Test1TestMethodPrimitiveMethodRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void Test1TestMethodPrimitiveMethodResponse::InitAsDefaultInstance() {
+}
+class Test1TestMethodPrimitiveMethodResponse::_Internal {
+ public:
+};
+
+Test1TestMethodPrimitiveMethodResponse::Test1TestMethodPrimitiveMethodResponse()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Tests.Test1TestMethodPrimitiveMethodResponse)
+}
+Test1TestMethodPrimitiveMethodResponse::Test1TestMethodPrimitiveMethodResponse(const Test1TestMethodPrimitiveMethodResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
+  // @@protoc_insertion_point(copy_constructor:Tests.Test1TestMethodPrimitiveMethodResponse)
+}
+
+void Test1TestMethodPrimitiveMethodResponse::SharedCtor() {
+  value_ = 0;
+}
+
+Test1TestMethodPrimitiveMethodResponse::~Test1TestMethodPrimitiveMethodResponse() {
+  // @@protoc_insertion_point(destructor:Tests.Test1TestMethodPrimitiveMethodResponse)
+  SharedDtor();
+}
+
+void Test1TestMethodPrimitiveMethodResponse::SharedDtor() {
+}
+
+void Test1TestMethodPrimitiveMethodResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Test1TestMethodPrimitiveMethodResponse& Test1TestMethodPrimitiveMethodResponse::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Test1TestMethodPrimitiveMethodResponse_gen_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Test1TestMethodPrimitiveMethodResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:Tests.Test1TestMethodPrimitiveMethodResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  value_ = 0;
+  _internal_metadata_.Clear();
+}
+
+const char* Test1TestMethodPrimitiveMethodResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Test1TestMethodPrimitiveMethodResponse::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Tests.Test1TestMethodPrimitiveMethodResponse)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_value(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Tests.Test1TestMethodPrimitiveMethodResponse)
+  return target;
+}
+
+size_t Test1TestMethodPrimitiveMethodResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Tests.Test1TestMethodPrimitiveMethodResponse)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 value = 1;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_value());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Test1TestMethodPrimitiveMethodResponse::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Tests.Test1TestMethodPrimitiveMethodResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Test1TestMethodPrimitiveMethodResponse* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Test1TestMethodPrimitiveMethodResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Tests.Test1TestMethodPrimitiveMethodResponse)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Tests.Test1TestMethodPrimitiveMethodResponse)
+    MergeFrom(*source);
+  }
+}
+
+void Test1TestMethodPrimitiveMethodResponse::MergeFrom(const Test1TestMethodPrimitiveMethodResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Tests.Test1TestMethodPrimitiveMethodResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
+}
+
+void Test1TestMethodPrimitiveMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Tests.Test1TestMethodPrimitiveMethodResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Test1TestMethodPrimitiveMethodResponse::CopyFrom(const Test1TestMethodPrimitiveMethodResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Tests.Test1TestMethodPrimitiveMethodResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Test1TestMethodPrimitiveMethodResponse::IsInitialized() const {
+  return true;
+}
+
+void Test1TestMethodPrimitiveMethodResponse::InternalSwap(Test1TestMethodPrimitiveMethodResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Test1TestMethodPrimitiveMethodResponse::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -11762,6 +12226,12 @@ template<> PROTOBUF_NOINLINE ::Tests::Test1TestMethodWithNoResponseMethodRequest
 }
 template<> PROTOBUF_NOINLINE ::Tests::Test1TestMethodWithNoResponseMethodResponse* Arena::CreateMaybeMessage< ::Tests::Test1TestMethodWithNoResponseMethodResponse >(Arena* arena) {
   return Arena::CreateInternal< ::Tests::Test1TestMethodWithNoResponseMethodResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Tests::Test1TestMethodPrimitiveMethodRequest* Arena::CreateMaybeMessage< ::Tests::Test1TestMethodPrimitiveMethodRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::Tests::Test1TestMethodPrimitiveMethodRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Tests::Test1TestMethodPrimitiveMethodResponse* Arena::CreateMaybeMessage< ::Tests::Test1TestMethodPrimitiveMethodResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::Tests::Test1TestMethodPrimitiveMethodResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Tests::Test1TestMethodNoRequestMethodRequest* Arena::CreateMaybeMessage< ::Tests::Test1TestMethodNoRequestMethodRequest >(Arena* arena) {
   return Arena::CreateInternal< ::Tests::Test1TestMethodNoRequestMethodRequest >(arena);

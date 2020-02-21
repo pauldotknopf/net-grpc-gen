@@ -30,24 +30,34 @@ namespace NetGrpcGen.Generator
             }
         }
 
-        public IDisposable Indent()
+        public IDisposable Indent(bool brackets = false)
         {
+            if (brackets)
+            {
+                WriteLine("{");
+            }
             _indentCount++;
-            return new ReleaseIndent(this);
+            return new ReleaseIndent(this, brackets);
         }
 
         private class ReleaseIndent : IDisposable
         {
             private readonly CodeWriter _codeWriter;
+            private readonly bool _brackets;
 
-            public ReleaseIndent(CodeWriter codeWriter)
+            public ReleaseIndent(CodeWriter codeWriter, bool brackets)
             {
                 _codeWriter = codeWriter;
+                _brackets = brackets;
             }
 
             public void Dispose()
             {
                 _codeWriter._indentCount--;
+                if (_brackets)
+                {
+                    _codeWriter.WriteLine("}");
+                }
             }
         }
     }

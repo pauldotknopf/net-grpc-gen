@@ -77,28 +77,4 @@ namespace NetGrpcGen.Tests.Objects
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
     }
-    
-    public class Test2Adapter : ObjectAdapter<Test2>
-    {
-        private readonly Test2 _instance;
-
-        public Test2Adapter(Test2 instance)
-        {
-            _instance = instance;
-            RegisterPropChangedType<Test2PropString2PropertyChanged>("PropString2");
-            RegisterPropChangedType<Test2PropComplex2PropertyChanged>("PropComplex2");
-            RegisterEventType<Test2TestEvent2Event>("TestEvent2");
-            RegisterEventType<Test2TestEventComplex2Event>("TestEventComplex2");
-            RegisterEventType<Test2TestEventNoData2Event>("TestEventNoData2");
-        }
-        
-        public override Test2 Create()
-        {
-            if (_instance == null)
-            {
-                return new Test2();
-            }
-            return _instance;
-        }
-    }
 }

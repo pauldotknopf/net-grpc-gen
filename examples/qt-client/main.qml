@@ -9,6 +9,30 @@ ApplicationWindow {
     height: 480
     title: qsTr("Stack")
 
+    property int requestNumber: 0;
+
+    Timer {
+        running: true
+        repeat: true
+        interval: 10
+        onTriggered: {
+            gc()
+        }
+    }
+
+    Timer {
+        running: true
+        repeat: true
+        interval: 1
+        onTriggered: {
+            requestNumber++;
+            test1.testMethodNoRequest("state " + requestNumber, function(e) {
+                console.log("callback!")
+                console.log(JSON.stringify(e))
+            })
+        }
+    }
+
     Test1 {
         id: test1
 

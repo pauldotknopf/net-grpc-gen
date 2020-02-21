@@ -8,8 +8,6 @@ namespace NetGrpcGen.ProtoModel
     {
         public string ObjectName { get; set; }
         
-        public Type ClrType { get; set; }
-        
         public ServiceDescriptor ServiceDescriptor { get; set; }
         
         public MethodDescriptor CreateDescriptor { get; set; }

@@ -1,4 +1,4 @@
-QT += quick
+QT += quick quick-private
 
 CONFIG += c++11 link_pkgconfig
 
@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 PKGCONFIG += grpc++ protobuf
 
+include(protobuf-qjson/protobuf-qjson.pri)
 include(../../qt/roc-lib.pri)
 include(proto-roc/roc.pri)
 

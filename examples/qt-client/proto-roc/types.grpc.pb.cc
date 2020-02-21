@@ -22,6 +22,109 @@
 namespace custom {
 namespace types {
 
+static const char* TestService_method_names[] = {
+  "/custom.types.TestService/Foo",
+  "/custom.types.TestService/Bar",
+};
+
+std::unique_ptr< TestService::Stub> TestService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< TestService::Stub> stub(new TestService::Stub(channel));
+  return stub;
+}
+
+TestService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_Foo_(TestService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Bar_(TestService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status TestService::Stub::Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::custom::types::FooResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Foo_, context, request, response);
+}
+
+void TestService::Stub::experimental_async::Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Foo_, context, request, response, std::move(f));
+}
+
+void TestService::Stub::experimental_async::Foo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::FooResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Foo_, context, request, response, std::move(f));
+}
+
+void TestService::Stub::experimental_async::Foo(::grpc::ClientContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Foo_, context, request, response, reactor);
+}
+
+void TestService::Stub::experimental_async::Foo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::FooResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Foo_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::custom::types::FooResponse>* TestService::Stub::AsyncFooRaw(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::custom::types::FooResponse>::Create(channel_.get(), cq, rpcmethod_Foo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::custom::types::FooResponse>* TestService::Stub::PrepareAsyncFooRaw(::grpc::ClientContext* context, const ::custom::types::FooRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::custom::types::FooResponse>::Create(channel_.get(), cq, rpcmethod_Foo_, context, request, false);
+}
+
+::grpc::Status TestService::Stub::Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::custom::types::BarResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_Bar_, context, request, response);
+}
+
+void TestService::Stub::experimental_async::Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Bar_, context, request, response, std::move(f));
+}
+
+void TestService::Stub::experimental_async::Bar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::BarResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_Bar_, context, request, response, std::move(f));
+}
+
+void TestService::Stub::experimental_async::Bar(::grpc::ClientContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Bar_, context, request, response, reactor);
+}
+
+void TestService::Stub::experimental_async::Bar(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::custom::types::BarResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_Bar_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::custom::types::BarResponse>* TestService::Stub::AsyncBarRaw(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::custom::types::BarResponse>::Create(channel_.get(), cq, rpcmethod_Bar_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::custom::types::BarResponse>* TestService::Stub::PrepareAsyncBarRaw(::grpc::ClientContext* context, const ::custom::types::BarRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::custom::types::BarResponse>::Create(channel_.get(), cq, rpcmethod_Bar_, context, request, false);
+}
+
+TestService::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestService_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestService::Service, ::custom::types::FooRequest, ::custom::types::FooResponse>(
+          std::mem_fn(&TestService::Service::Foo), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestService_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestService::Service, ::custom::types::BarRequest, ::custom::types::BarResponse>(
+          std::mem_fn(&TestService::Service::Bar), this)));
+}
+
+TestService::Service::~Service() {
+}
+
+::grpc::Status TestService::Service::Foo(::grpc::ServerContext* context, const ::custom::types::FooRequest* request, ::custom::types::FooResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestService::Service::Bar(::grpc::ServerContext* context, const ::custom::types::BarRequest* request, ::custom::types::BarResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 }  // namespace custom
 }  // namespace types
 

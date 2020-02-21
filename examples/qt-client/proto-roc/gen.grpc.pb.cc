@@ -27,6 +27,7 @@ static const char* Test1ObjectService_method_names[] = {
   "/Tests.Test1ObjectService/InvokeTestMethod",
   "/Tests.Test1ObjectService/InvokeTestMethodSync",
   "/Tests.Test1ObjectService/InvokeTestMethodWithNoResponse",
+  "/Tests.Test1ObjectService/InvokeTestMethodPrimitive",
   "/Tests.Test1ObjectService/InvokeTestMethodNoRequest",
   "/Tests.Test1ObjectService/SetPropertyPropString",
   "/Tests.Test1ObjectService/GetPropertyPropString",
@@ -46,11 +47,12 @@ Test1ObjectService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>&
   , rpcmethod_InvokeTestMethod_(Test1ObjectService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_InvokeTestMethodSync_(Test1ObjectService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_InvokeTestMethodWithNoResponse_(Test1ObjectService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_InvokeTestMethodNoRequest_(Test1ObjectService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPropertyPropString_(Test1ObjectService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPropertyPropString_(Test1ObjectService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetPropertyPropComplex_(Test1ObjectService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetPropertyPropComplex_(Test1ObjectService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestMethodPrimitive_(Test1ObjectService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestMethodNoRequest_(Test1ObjectService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPropertyPropString_(Test1ObjectService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPropertyPropString_(Test1ObjectService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetPropertyPropComplex_(Test1ObjectService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetPropertyPropComplex_(Test1ObjectService_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::ClientReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* Test1ObjectService::Stub::CreateRaw(::grpc::ClientContext* context) {
@@ -167,6 +169,34 @@ void Test1ObjectService::Stub::experimental_async::InvokeTestMethodWithNoRespons
 
 ::grpc::ClientAsyncResponseReader< ::Tests::Test1TestMethodWithNoResponseMethodResponse>* Test1ObjectService::Stub::PrepareAsyncInvokeTestMethodWithNoResponseRaw(::grpc::ClientContext* context, const ::Tests::Test1TestMethodWithNoResponseMethodRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::Test1TestMethodWithNoResponseMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestMethodWithNoResponse_, context, request, false);
+}
+
+::grpc::Status Test1ObjectService::Stub::InvokeTestMethodPrimitive(::grpc::ClientContext* context, const ::Tests::Test1TestMethodPrimitiveMethodRequest& request, ::Tests::Test1TestMethodPrimitiveMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestMethodPrimitive_, context, request, response);
+}
+
+void Test1ObjectService::Stub::experimental_async::InvokeTestMethodPrimitive(::grpc::ClientContext* context, const ::Tests::Test1TestMethodPrimitiveMethodRequest* request, ::Tests::Test1TestMethodPrimitiveMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestMethodPrimitive_, context, request, response, std::move(f));
+}
+
+void Test1ObjectService::Stub::experimental_async::InvokeTestMethodPrimitive(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::Test1TestMethodPrimitiveMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestMethodPrimitive_, context, request, response, std::move(f));
+}
+
+void Test1ObjectService::Stub::experimental_async::InvokeTestMethodPrimitive(::grpc::ClientContext* context, const ::Tests::Test1TestMethodPrimitiveMethodRequest* request, ::Tests::Test1TestMethodPrimitiveMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestMethodPrimitive_, context, request, response, reactor);
+}
+
+void Test1ObjectService::Stub::experimental_async::InvokeTestMethodPrimitive(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::Test1TestMethodPrimitiveMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestMethodPrimitive_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::Test1TestMethodPrimitiveMethodResponse>* Test1ObjectService::Stub::AsyncInvokeTestMethodPrimitiveRaw(::grpc::ClientContext* context, const ::Tests::Test1TestMethodPrimitiveMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::Test1TestMethodPrimitiveMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestMethodPrimitive_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::Test1TestMethodPrimitiveMethodResponse>* Test1ObjectService::Stub::PrepareAsyncInvokeTestMethodPrimitiveRaw(::grpc::ClientContext* context, const ::Tests::Test1TestMethodPrimitiveMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::Test1TestMethodPrimitiveMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestMethodPrimitive_, context, request, false);
 }
 
 ::grpc::Status Test1ObjectService::Stub::InvokeTestMethodNoRequest(::grpc::ClientContext* context, const ::Tests::Test1TestMethodNoRequestMethodRequest& request, ::Tests::Test1TestMethodNoRequestMethodResponse* response) {
@@ -338,25 +368,30 @@ Test1ObjectService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Test1ObjectService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Test1ObjectService::Service, ::Tests::Test1TestMethodPrimitiveMethodRequest, ::Tests::Test1TestMethodPrimitiveMethodResponse>(
+          std::mem_fn(&Test1ObjectService::Service::InvokeTestMethodPrimitive), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Test1ObjectService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Test1ObjectService::Service, ::Tests::Test1TestMethodNoRequestMethodRequest, ::Tests::Test1TestMethodNoRequestMethodResponse>(
           std::mem_fn(&Test1ObjectService::Service::InvokeTestMethodNoRequest), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Test1ObjectService_method_names[6],
+      Test1ObjectService_method_names[7],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Test1ObjectService::Service, ::Tests::Test1PropStringSetRequest, ::Tests::Test1PropStringSetResponse>(
           std::mem_fn(&Test1ObjectService::Service::SetPropertyPropString), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Test1ObjectService_method_names[7],
+      Test1ObjectService_method_names[8],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Test1ObjectService::Service, ::Tests::Test1PropStringGetRequest, ::Tests::Test1PropStringGetResponse>(
           std::mem_fn(&Test1ObjectService::Service::GetPropertyPropString), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Test1ObjectService_method_names[8],
+      Test1ObjectService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Test1ObjectService::Service, ::Tests::Test1PropComplexSetRequest, ::Tests::Test1PropComplexSetResponse>(
           std::mem_fn(&Test1ObjectService::Service::SetPropertyPropComplex), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Test1ObjectService_method_names[9],
+      Test1ObjectService_method_names[10],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Test1ObjectService::Service, ::Tests::Test1PropComplexGetRequest, ::Tests::Test1PropComplexGetResponse>(
           std::mem_fn(&Test1ObjectService::Service::GetPropertyPropComplex), this)));
@@ -393,6 +428,13 @@ Test1ObjectService::Service::~Service() {
 }
 
 ::grpc::Status Test1ObjectService::Service::InvokeTestMethodWithNoResponse(::grpc::ServerContext* context, const ::Tests::Test1TestMethodWithNoResponseMethodRequest* request, ::Tests::Test1TestMethodWithNoResponseMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Test1ObjectService::Service::InvokeTestMethodPrimitive(::grpc::ServerContext* context, const ::Tests::Test1TestMethodPrimitiveMethodRequest* request, ::Tests::Test1TestMethodPrimitiveMethodResponse* response) {
   (void) context;
   (void) request;
   (void) response;

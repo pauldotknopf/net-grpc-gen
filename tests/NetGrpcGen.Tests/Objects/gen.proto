@@ -118,6 +118,13 @@ message Test1TestMethodWithNoResponseMethodRequest {
 }
 message Test1TestMethodWithNoResponseMethodResponse {
 }
+message Test1TestMethodPrimitiveMethodRequest {
+	uint64 objectId = 1;
+	int32 value = 2;
+}
+message Test1TestMethodPrimitiveMethodResponse {
+	int32 value = 1;
+}
 message Test1TestMethodNoRequestMethodRequest {
 	uint64 objectId = 1;
 }
@@ -140,6 +147,10 @@ service Test1ObjectService {
 	};
 	rpc InvokeTestMethodWithNoResponse (Test1TestMethodWithNoResponseMethodRequest) returns (Test1TestMethodWithNoResponseMethodResponse) {
 		option(methodName) = "TestMethodWithNoResponse";
+		option(sync) = true;
+	};
+	rpc InvokeTestMethodPrimitive (Test1TestMethodPrimitiveMethodRequest) returns (Test1TestMethodPrimitiveMethodResponse) {
+		option(methodName) = "TestMethodPrimitive";
 		option(sync) = true;
 	};
 	rpc InvokeTestMethodNoRequest (Test1TestMethodNoRequestMethodRequest) returns (Test1TestMethodNoRequestMethodResponse) {

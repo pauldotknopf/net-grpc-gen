@@ -64,6 +64,7 @@ namespace NetGrpcGen.ProtoModel.Impl
                 {
                     var methodModel = new ProtoMethodModel
                     {
+                        ObjectModel = result,
                         MethodName = method.Name.Substring("Invoke".Length),
                         MethodDescriptor = method
                     };

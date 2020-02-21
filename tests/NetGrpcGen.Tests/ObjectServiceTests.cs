@@ -8,6 +8,10 @@ using Grpc.Core;
 using Moq;
 using Custom.Types;
 using NetGrpcGen.Adapters;
+using NetGrpcGen.Adapters.Impl;
+using NetGrpcGen.Discovery.Impl;
+using NetGrpcGen.Infra.Impl;
+using NetGrpcGen.ProtoModel.Impl;
 using NetGrpcGen.Tests.Objects;
 using Tests;
 using Xunit;
@@ -123,6 +127,22 @@ namespace NetGrpcGen.Tests
             });
         }
 
+        [Fact]
+        public async Task Can_invoke_method_with_no_request_type()
+        {
+            var o = new Mock<Test1>();
+            o.Setup(x => x.TestMethodNoRequest());
+            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            {
+                await client.InvokeTestMethodNoRequestAsync(new Test1TestMethodNoRequestMethodRequest
+                {
+                    ObjectId = objectId
+                });
+                o.Verify(x => x.TestMethodNoRequest(), Times.Once());
+            });
+        }
+
+        
         [Fact]
         public async Task Can_read_property()
         {
@@ -278,15 +298,14 @@ namespace NetGrpcGen.Tests
         
         private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {
-            var objectAdapter = new Test1Adapter(instance);
-            var serviceAdapter = new ObjectServiceAdapter<Test1,
-                Test1CreateResponse,
-                Test1StopRequest,
-                Test1StopResponse>(objectAdapter, BuildDiscoveryService(typeof(Test1)).DiscoverObjects().First());
-
+            var serviceAdapter = new ObjectServiceAdapter<Test1>(new ProtoModelBuilder(),
+                new DiscoveryService(new AttributeFinder(new TypeFinder())),
+                new FixedTypeCreator<Test1>(instance),
+                typeof(Test1ObjectService));
+            
             var serverHandler = new Server
             {
-                Services = {  serviceAdapter.Create(typeof(Test1ObjectService)) },
+                Services = {  serviceAdapter.Create() },
                 Ports =
                 {
                     new ServerPort("localhost", 8000, ServerCredentials.Insecure)
