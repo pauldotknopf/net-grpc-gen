@@ -27,9 +27,13 @@ ApplicationWindow {
         onTriggered: {
             requestNumber++;
             test1.testMethodNoRequest("state " + requestNumber, function(e) {
-                console.log("callback!")
+                console.log("testMethodNoRequest callback!")
                 console.log(JSON.stringify(e))
             })
+            test1.testMethodPrimitive(requestNumber, "state " + requestNumber, function(e) {
+                console.log("testMethodPrimitive callback!")
+                console.log(JSON.stringify(e))
+            });
         }
     }
 
@@ -37,7 +41,6 @@ ApplicationWindow {
         id: test1
 
         Component.onCompleted: {
-
         }
     }
 }

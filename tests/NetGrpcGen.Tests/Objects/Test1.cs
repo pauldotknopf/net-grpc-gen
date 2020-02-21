@@ -60,9 +60,19 @@ namespace NetGrpcGen.Tests.Objects
         }
 
         [GrpcMethod]
-        public virtual void TestMethodNoRequest()
+        public virtual void TestMethodNoRequestOrResponse()
         {
-            Thread.Sleep(3000);
+        }
+
+        [GrpcMethod]
+        public virtual int TestMethodNoRequest()
+        {
+            return 1;
+        }
+
+        [GrpcMethod]
+        public virtual void TestMethodNoResponse(int val)
+        {
         }
 
         [GrpcProperty]

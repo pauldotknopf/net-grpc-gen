@@ -29,27 +29,28 @@ namespace NetGrpcGen.Generator
             }
             else
             {
-                throw new NotSupportedException();
+                writer.WriteLine($"void {val.Model.MethodName()}({val.Model.RequestQtType()} request, int requestId);");
             }
         }
         
         public static void WriteSignals(this WorkerWrapper val, CodeWriter writer)
         {
-            var value = val.Model.MethodDescriptor.InputType.FindFieldByName("value");
+            var value = val.Model.MethodDescriptor.OutputType.FindFieldByName("value");
             if (value == null)
             {
                 writer.WriteLine($"void {val.Model.MethodName()}Done(int requestId, QString error);");
             }
             else
             {
-                throw new NotSupportedException();
+                writer.WriteLine($"void {val.Model.MethodName()}Done({val.Model.ResponseQtType()} val, int requestId, QString error);");
             }
         }
 
         public static void WriteImpl(this WorkerWrapper val, CodeWriter writer)
         {
-            var value = val.Model.MethodDescriptor.InputType.FindFieldByName("value");
-            if (value == null)
+            var inputField = val.Model.MethodDescriptor.InputType.FindFieldByName("value");
+            var outputField = val.Model.MethodDescriptor.OutputType.FindFieldByName("value");
+            if (inputField == null)
             {
                 writer.WriteLine($"void {val.Model.ObjectModel.Worker().CppTypeName()}::{val.Model.MethodName()}(int requestId)");
                 using (writer.Indent(true))
@@ -62,18 +63,51 @@ namespace NetGrpcGen.Generator
                         writer.WriteLine("request.set_objectid(d_priv->objectId);");
                         writer.WriteLine("grpc::ClientContext context;");
                         writer.WriteLine($"auto invokeResult = d_priv->service->{val.Model.MethodDescriptor.Name}(&context, request, &response);");
-                        writer.WriteLine("if(!invokeResult.ok()) {");
-                        writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(requestId, QString::fromStdString(invokeResult.error_message()));");
-                        writer.WriteLine("} else {");
-                        writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(requestId, QString());");
-                        writer.WriteLine("}");
+                        if (outputField != null)
+                        {
+                            writer.WriteLine("auto responseValue = response.value();");
+                            writer.WriteLine("if(!invokeResult.ok()) {");
+                            writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));");
+                            writer.WriteLine("} else {");
+                            writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString());");
+                            writer.WriteLine("}");
+                        }
+                        else
+                        {
+                            writer.WriteLine("if(!invokeResult.ok()) {");
+                            writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(requestId, QString::fromStdString(invokeResult.error_message()));");
+                            writer.WriteLine("} else {");
+                            writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(requestId, QString());");
+                            writer.WriteLine("}");
+                        }
+                        
                     }
                     writer.WriteLine("});");
                 }
             }
             else
             {
-                throw new NotSupportedException();
+                writer.WriteLine($"void {val.Model.ObjectModel.Worker().CppTypeName()}::{val.Model.MethodName()}({val.Model.ResponseQtType()} val, int requestId)");
+                using (writer.Indent(true))
+                {
+                    writer.WriteLine("QMetaObject::invokeMethod(this, [this, val, requestId] {");
+                    using (writer.Indent())
+                    {
+                        writer.WriteLine($"{val.Model.ProtobufRequestCppType()} request;");
+                        writer.WriteLine($"{val.Model.ProtobufResponseCppType()} response;");
+                        writer.WriteLine("request.set_objectid(d_priv->objectId);");
+                        writer.WriteLine("request.set_value(val);");
+                        writer.WriteLine("grpc::ClientContext context;");
+                        writer.WriteLine($"auto invokeResult = d_priv->service->{val.Model.MethodDescriptor.Name}(&context, request, &response);");
+                        writer.WriteLine("auto responseValue = response.value();");
+                        writer.WriteLine("if(!invokeResult.ok()) {");
+                        writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));");
+                        writer.WriteLine("} else {");
+                        writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString());");
+                        writer.WriteLine("}");
+                    }
+                    writer.WriteLine("});");
+                }
             }
         }
     }

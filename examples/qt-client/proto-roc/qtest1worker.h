@@ -9,9 +9,11 @@ class QTest1Worker : public QObject {
 public:
 	QTest1Worker();
 	~QTest1Worker();
+	void testMethodPrimitive(int request, int requestId);
 	void testMethodNoRequest(int requestId);
 signals:
-	void testMethodNoRequestDone(int requestId, QString error);
+	void testMethodPrimitiveDone(int val, int requestId, QString error);
+	void testMethodNoRequestDone(int val, int requestId, QString error);
 private:
 	QScopedPointer<QTest1WorkerPrivate> const d_priv;
 };

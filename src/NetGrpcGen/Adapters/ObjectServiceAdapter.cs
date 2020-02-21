@@ -222,7 +222,7 @@ namespace NetGrpcGen.Adapters
             object response = null;
             if (method.RequestType == null)
             {
-                method.Method.Invoke(o, new object[]{});
+                response = method.Method.Invoke(o, new object[]{});
             }
             else
             {

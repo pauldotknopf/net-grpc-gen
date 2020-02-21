@@ -55,6 +55,23 @@ QTest1Worker::~QTest1Worker()
 {
 	d_priv->releaseObject();
 }
+void QTest1Worker::testMethodPrimitive(int val, int requestId)
+{
+	QMetaObject::invokeMethod(this, [this, val, requestId] {
+		Tests::Test1TestMethodPrimitiveMethodRequest request;
+		Tests::Test1TestMethodPrimitiveMethodResponse response;
+		request.set_objectid(d_priv->objectId);
+		request.set_value(val);
+		grpc::ClientContext context;
+		auto invokeResult = d_priv->service->InvokeTestMethodPrimitive(&context, request, &response);
+		auto responseValue = response.value();
+		if(!invokeResult.ok()) {
+			emit testMethodPrimitiveDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
+		} else {
+			emit testMethodPrimitiveDone(responseValue, requestId, QString());
+		}
+	});
+}
 void QTest1Worker::testMethodNoRequest(int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, requestId] {
@@ -63,10 +80,11 @@ void QTest1Worker::testMethodNoRequest(int requestId)
 		request.set_objectid(d_priv->objectId);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestMethodNoRequest(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testMethodNoRequestDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testMethodNoRequestDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testMethodNoRequestDone(requestId, QString());
+			emit testMethodNoRequestDone(responseValue, requestId, QString());
 		}
 	});
 }

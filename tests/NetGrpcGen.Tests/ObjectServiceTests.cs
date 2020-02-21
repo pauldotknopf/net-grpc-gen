@@ -131,13 +131,14 @@ namespace NetGrpcGen.Tests
         public async Task Can_invoke_method_with_no_request_type()
         {
             var o = new Mock<Test1>();
-            o.Setup(x => x.TestMethodNoRequest());
+            o.Setup(x => x.TestMethodNoRequest()).Returns(2);
             await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
             {
-                await client.InvokeTestMethodNoRequestAsync(new Test1TestMethodNoRequestMethodRequest
+                var response = await client.InvokeTestMethodNoRequestAsync(new Test1TestMethodNoRequestMethodRequest
                 {
                     ObjectId = objectId
                 });
+                response.Value.Should().Be(2);
                 o.Verify(x => x.TestMethodNoRequest(), Times.Once());
             });
         }

@@ -10,9 +10,11 @@ class QTest1 : public QObject {
 public:
 	QTest1(QObject* parent = nullptr);
 	~QTest1();
+	Q_INVOKABLE void testMethodPrimitive(int val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testMethodNoRequest(QJSValue state, QJSValue callback);
 private slots:
-	void testMethodNoRequestHandler(int requestId, QString error);
+	void testMethodPrimitiveHandler(int result, int requestId, QString error);
+	void testMethodNoRequestHandler(int result, int requestId, QString error);
 private:
 	QScopedPointer<QTest1Private> const d_priv;
 };

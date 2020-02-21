@@ -135,7 +135,7 @@ namespace NetGrpcGen.Generator
             {
                 header.WriteLine($"{objectModel.CppTypeName()}(QObject* parent = nullptr);");
                 header.WriteLine($"~{objectModel.CppTypeName()}();");
-                foreach (var method in objectModel.Methods.Where(x => x.MethodName == "TestMethodNoRequest"))
+                foreach (var method in objectModel.Methods)
                 {
                     method.WriteDecl(header);
                 }
@@ -143,7 +143,7 @@ namespace NetGrpcGen.Generator
             header.WriteLine("private slots:");
             using (header.Indent())
             {
-                foreach (var method in objectModel.Methods.Where(x => x.MethodName == "TestMethodNoRequest"))
+                foreach (var method in objectModel.Methods)
                 {
                     method.WriteSlotsDecl(header);
                 }
@@ -200,7 +200,7 @@ namespace NetGrpcGen.Generator
                 impl.WriteLine("d_priv->worker->moveToThread(&d_priv->workerThread);");
                 impl.WriteLine("connect(&d_priv->workerThread, SIGNAL(finished()), d_priv->worker, SLOT(deleteLater()));");
                 impl.WriteLine("d_priv->workerThread.start();");
-                foreach (var method in objectModel.Methods.Where(x => x.MethodName == "TestMethodNoRequest"))
+                foreach (var method in objectModel.Methods)
                 {
                     impl.WriteLine($"connect(d_priv->worker, &{objectModel.Worker().CppTypeName()}::{method.MethodName()}Done, this, &{objectModel.CppTypeName()}::{method.MethodName()}Handler);");
                 }
@@ -211,11 +211,11 @@ namespace NetGrpcGen.Generator
                 impl.WriteLine("d_priv->workerThread.quit();");
                 impl.WriteLine("d_priv->workerThread.wait();");
             }
-            foreach (var method in objectModel.Methods.Where(x => x.MethodName == "TestMethodNoRequest"))
+            foreach (var method in objectModel.Methods)
             {
                 method.WriteImpl(impl);
             }
-            foreach (var method in objectModel.Methods.Where(x => x.MethodName == "TestMethodNoRequest"))
+            foreach (var method in objectModel.Methods)
             {
                 method.WriteSlotsImpl(impl);
             }
@@ -239,7 +239,7 @@ namespace NetGrpcGen.Generator
             {
                 header.WriteLine($"{objectModel.Worker().CppTypeName()}();");
                 header.WriteLine($"~{objectModel.Worker().CppTypeName()}();");
-                foreach (var method in objectModel.Methods.Where(x => x.MethodName == "TestMethodNoRequest"))
+                foreach (var method in objectModel.Methods)
                 {
                     method.Worker().WriteDecl(header);
                 }
@@ -247,7 +247,7 @@ namespace NetGrpcGen.Generator
             header.WriteLine("signals:");
             using (header.Indent())
             {
-                foreach (var method in objectModel.Methods.Where(x => x.MethodName == "TestMethodNoRequest"))
+                foreach (var method in objectModel.Methods)
                 {
                     method.Worker().WriteSignals(header);
                 }
@@ -338,7 +338,7 @@ namespace NetGrpcGen.Generator
                 impl.WriteLine("d_priv->releaseObject();");
             }
             
-            foreach (var method in objectModel.Methods.Where(x => x.MethodName == "TestMethodNoRequest"))
+            foreach (var method in objectModel.Methods)
             {
                 method.Worker().WriteImpl(impl);
             }

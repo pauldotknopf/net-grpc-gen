@@ -125,10 +125,22 @@ message Test1TestMethodPrimitiveMethodRequest {
 message Test1TestMethodPrimitiveMethodResponse {
 	int32 value = 1;
 }
+message Test1TestMethodNoRequestOrResponseMethodRequest {
+	uint64 objectId = 1;
+}
+message Test1TestMethodNoRequestOrResponseMethodResponse {
+}
 message Test1TestMethodNoRequestMethodRequest {
 	uint64 objectId = 1;
 }
 message Test1TestMethodNoRequestMethodResponse {
+	int32 value = 1;
+}
+message Test1TestMethodNoResponseMethodRequest {
+	uint64 objectId = 1;
+	int32 value = 2;
+}
+message Test1TestMethodNoResponseMethodResponse {
 }
 service Test1ObjectService {
 	option(serviceObjectName) = "Test1";
@@ -153,8 +165,16 @@ service Test1ObjectService {
 		option(methodName) = "TestMethodPrimitive";
 		option(sync) = true;
 	};
+	rpc InvokeTestMethodNoRequestOrResponse (Test1TestMethodNoRequestOrResponseMethodRequest) returns (Test1TestMethodNoRequestOrResponseMethodResponse) {
+		option(methodName) = "TestMethodNoRequestOrResponse";
+		option(sync) = true;
+	};
 	rpc InvokeTestMethodNoRequest (Test1TestMethodNoRequestMethodRequest) returns (Test1TestMethodNoRequestMethodResponse) {
 		option(methodName) = "TestMethodNoRequest";
+		option(sync) = true;
+	};
+	rpc InvokeTestMethodNoResponse (Test1TestMethodNoResponseMethodRequest) returns (Test1TestMethodNoResponseMethodResponse) {
+		option(methodName) = "TestMethodNoResponse";
 		option(sync) = true;
 	};
 	rpc SetPropertyPropString (Test1PropStringSetRequest) returns (Test1PropStringSetResponse) {
