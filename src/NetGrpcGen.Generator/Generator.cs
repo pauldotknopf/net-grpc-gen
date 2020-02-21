@@ -123,6 +123,7 @@ namespace NetGrpcGen.Generator
             header.WriteLine("#include <QObject>");
             header.WriteLine("#include <QScopedPointer>");
             header.WriteLine("#include <QJSValue>");
+            header.WriteLine("#include <QJsonValue>");
             foreach (var nameSpace in objectModel.NamespaceComponents())
             {
                 header.WriteLine($"namespace {nameSpace} {{");
@@ -169,6 +170,7 @@ namespace NetGrpcGen.Generator
             impl.WriteLine("#include <QSharedPointer>");
             impl.WriteLine("#include <QQmlEngine>");
             impl.WriteLine("#include <QQmlContext>");
+            impl.WriteLine("#include \"roc-lib/qroccommon.h\"");
             if (!string.IsNullOrEmpty(objectModel.CppNamespace()))
             {
                 impl.WriteLine($"using namespace {objectModel.CppNamespace()};");
@@ -227,6 +229,7 @@ namespace NetGrpcGen.Generator
             header.WriteLine($"#define {objectModel.Worker().HeaderPragma()}");
             header.WriteLine("#include <QObject>");
             header.WriteLine("#include <QScopedPointer>");
+            header.WriteLine("#include <QJsonValue>");
             foreach (var nameSpace in objectModel.NamespaceComponents())
             {
                 header.WriteLine($"namespace {nameSpace} {{");
@@ -270,6 +273,7 @@ namespace NetGrpcGen.Generator
                 impl.WriteLine($"#include \"{protoInclude}\"");
             }
             impl.WriteLine("#include \"roc-lib/qrocobjectadapter.h\"");
+            impl.WriteLine("#include \"protobuf-qjson/protobufjsonconverter.h\"");
             if (!string.IsNullOrEmpty(objectModel.CppNamespace()))
             {
                 impl.WriteLine($"using namespace {objectModel.CppNamespace()};");

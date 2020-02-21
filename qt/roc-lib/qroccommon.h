@@ -1,15 +1,10 @@
 #ifndef QROCCOMMON_H
 #define QROCCOMMON_H
 
+#include <QJsonValue>
 #include <QJSValue>
-#include <QSharedPointer>
 
-struct QJSValueContainer
-{
-    QJSValue value;
-};
-
-Q_DECLARE_METATYPE(QJSValueContainer)
-Q_DECLARE_METATYPE(QSharedPointer<QJSValueContainer>)
+class QJSEngine;
+QJSValue convertJsonValueToJsValue(QJSEngine* engine, QJsonValue& val);
 
 #endif // QROCCOMMON_H

@@ -65,8 +65,9 @@ namespace NetGrpcGen.Generator
         
         public static void WriteSlotsImpl(this ProtoMethodModel val, CodeWriter writer)
         {
-            var value = val.MethodDescriptor.OutputType.FindFieldByName("value");
-            if (value == null)
+            var inputField = val.MethodDescriptor.OutputType.FindFieldByName("value");
+            var outputField = val.MethodDescriptor.OutputType.FindFieldByName("value");
+            if (outputField == null)
             {
                 writer.WriteLine($"void {val.ObjectModel.CppTypeName()}::{val.MethodName()}Handler(int requestId, QString error)");
                 using (writer.Indent(true))
@@ -98,9 +99,17 @@ namespace NetGrpcGen.Generator
                     writer.WriteLine("if(request->callback.isCallable())");
                     using (writer.Indent(true))
                     {
-                        writer.WriteLine("QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();");
+                        writer.WriteLine("auto engine = QQmlEngine::contextForObject(this)->engine();");
+                        writer.WriteLine("QJSValue e = engine->newObject();");
                         writer.WriteLine("e.setProperty(\"state\", request->state);");
-                        writer.WriteLine("e.setProperty(\"result\", val);");
+                        if (val.ResponseQtType() == "QJsonValue")
+                        {
+                            writer.WriteLine("e.setProperty(\"result\", convertJsonValueToJsValue(engine, val));");
+                        }
+                        else
+                        {
+                            writer.WriteLine("e.setProperty(\"result\", val);");   
+                        }
                         writer.WriteLine("e.setProperty(\"error\", error);");
                         writer.WriteLine("QJSValueList args;");
                         writer.WriteLine("args.push_back(e);");
@@ -118,6 +127,21 @@ namespace NetGrpcGen.Generator
         public static string ProtobufResponseCppType(this ProtoMethodModel val)
         {
             return $"{val.ObjectModel.CppNamespacePrefix()}{val.MethodDescriptor.OutputType.Name}";
+        }
+        
+        public static string ProtobufRequestInnerCppType(this ProtoMethodModel val)
+        {
+            var valueField = val.MethodDescriptor.InputType.FindFieldByName("value");
+            if (valueField == null)
+            {
+                return null;
+            }
+            var ns = valueField.MessageType.File.Package.Replace(".", "::");
+            if (!string.IsNullOrEmpty(ns))
+            {
+                ns += "::";
+            }
+            return $"{ns}{valueField.MessageType.Name}";
         }
 
         public static string RequestQtType(this ProtoMethodModel val)

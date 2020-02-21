@@ -1,4 +1,5 @@
 using System;
+using Google.Protobuf.Reflection;
 using NetGrpcGen.ProtoModel;
 
 namespace NetGrpcGen.Generator
@@ -87,7 +88,7 @@ namespace NetGrpcGen.Generator
             }
             else
             {
-                writer.WriteLine($"void {val.Model.ObjectModel.Worker().CppTypeName()}::{val.Model.MethodName()}({val.Model.ResponseQtType()} val, int requestId)");
+                writer.WriteLine($"void {val.Model.ObjectModel.Worker().CppTypeName()}::{val.Model.MethodName()}({val.Model.RequestQtType()} val, int requestId)");
                 using (writer.Indent(true))
                 {
                     writer.WriteLine("QMetaObject::invokeMethod(this, [this, val, requestId] {");
@@ -96,15 +97,52 @@ namespace NetGrpcGen.Generator
                         writer.WriteLine($"{val.Model.ProtobufRequestCppType()} request;");
                         writer.WriteLine($"{val.Model.ProtobufResponseCppType()} response;");
                         writer.WriteLine("request.set_objectid(d_priv->objectId);");
-                        writer.WriteLine("request.set_value(val);");
+                        if (inputField.FieldType == FieldType.Message)
+                        {
+                            writer.WriteLine($"auto messageVal = new {val.Model.ProtobufRequestInnerCppType()}();");
+                            // TODO: Check response.
+                            writer.WriteLine("ProtobufJsonConverter::jsonValueToMessage(val, messageVal);");
+                            writer.WriteLine("request.set_allocated_value(messageVal);");
+                        }
+                        else
+                        {
+                            writer.WriteLine($"request.set_value(val);");
+                        }
+
                         writer.WriteLine("grpc::ClientContext context;");
                         writer.WriteLine($"auto invokeResult = d_priv->service->{val.Model.MethodDescriptor.Name}(&context, request, &response);");
-                        writer.WriteLine("auto responseValue = response.value();");
-                        writer.WriteLine("if(!invokeResult.ok()) {");
-                        writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));");
-                        writer.WriteLine("} else {");
-                        writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString());");
-                        writer.WriteLine("}");
+                       
+                        if (outputField == null)
+                        {
+                            writer.WriteLine("if(!invokeResult.ok()) {");
+                            writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(requestId, QString::fromStdString(invokeResult.error_message()));");
+                            writer.WriteLine("} else {");
+                            writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(requestId, QString());");
+                            writer.WriteLine("}");
+                        }
+                        else
+                        {
+                            writer.WriteLine("auto responseValue = response.value();");
+                            if (outputField.FieldType == FieldType.Message)
+                            {
+                                writer.WriteLine("QJsonValue messageJson;");
+                                // TODO: Check response
+                                writer.WriteLine("ProtobufJsonConverter::messageToJsonValue(&responseValue, messageJson);");
+                                writer.WriteLine("if(!invokeResult.ok()) {");
+                                writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(messageJson, requestId, QString::fromStdString(invokeResult.error_message()));");
+                                writer.WriteLine("} else {");
+                                writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(messageJson, requestId, QString());");
+                                writer.WriteLine("}");
+                            }
+                            else
+                            {
+                                writer.WriteLine("if(!invokeResult.ok()) {");
+                                writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));");
+                                writer.WriteLine("} else {");
+                                writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString());");
+                                writer.WriteLine("}");
+                            }
+                        }
                     }
                     writer.WriteLine("});");
                 }
