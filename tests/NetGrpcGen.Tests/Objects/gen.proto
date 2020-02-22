@@ -325,3 +325,119 @@ service Test2ObjectService {
 		option(propGet) = true;
 	};
 }
+message TestTypesCreateResponse {
+	option(messageObjectName) = "TestTypes";
+	uint64 objectId = 1;
+}
+message TestTypesStopRequest {
+	option(messageObjectName) = "TestTypes";
+}
+message TestTypesStopResponse {
+	option(messageObjectName) = "TestTypes";
+}
+message TestTypesTestParamDoubleMethodRequest {
+	uint64 objectId = 1;
+	double value = 2;
+}
+message TestTypesTestParamDoubleMethodResponse {
+}
+message TestTypesTestParamFloatMethodRequest {
+	uint64 objectId = 1;
+	float value = 2;
+}
+message TestTypesTestParamFloatMethodResponse {
+}
+message TestTypesTestParamIntMethodRequest {
+	uint64 objectId = 1;
+	int32 value = 2;
+}
+message TestTypesTestParamIntMethodResponse {
+}
+message TestTypesTestParamUIntMethodRequest {
+	uint64 objectId = 1;
+	uint32 value = 2;
+}
+message TestTypesTestParamUIntMethodResponse {
+}
+message TestTypesTestParamLongMethodRequest {
+	uint64 objectId = 1;
+	int64 value = 2;
+}
+message TestTypesTestParamLongMethodResponse {
+}
+message TestTypesTestParamULongMethodRequest {
+	uint64 objectId = 1;
+	uint64 value = 2;
+}
+message TestTypesTestParamULongMethodResponse {
+}
+message TestTypesTestParamBoolMethodRequest {
+	uint64 objectId = 1;
+	bool value = 2;
+}
+message TestTypesTestParamBoolMethodResponse {
+}
+message TestTypesTestParamStringMethodRequest {
+	uint64 objectId = 1;
+	google.protobuf.StringValue value = 2;
+}
+message TestTypesTestParamStringMethodResponse {
+}
+message TestTypesTestParamByteMethodRequest {
+	uint64 objectId = 1;
+	uint32 value = 2;
+}
+message TestTypesTestParamByteMethodResponse {
+}
+message TestTypesTestParamBytesMethodRequest {
+	uint64 objectId = 1;
+	bytes value = 2;
+}
+message TestTypesTestParamBytesMethodResponse {
+}
+service TestTypesObjectService {
+	option(serviceObjectName) = "TestTypes";
+	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any) {
+		option(create) = true;
+	}
+	rpc InvokeTestParamDouble (TestTypesTestParamDoubleMethodRequest) returns (TestTypesTestParamDoubleMethodResponse) {
+		option(methodName) = "TestParamDouble";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamFloat (TestTypesTestParamFloatMethodRequest) returns (TestTypesTestParamFloatMethodResponse) {
+		option(methodName) = "TestParamFloat";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamInt (TestTypesTestParamIntMethodRequest) returns (TestTypesTestParamIntMethodResponse) {
+		option(methodName) = "TestParamInt";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamUInt (TestTypesTestParamUIntMethodRequest) returns (TestTypesTestParamUIntMethodResponse) {
+		option(methodName) = "TestParamUInt";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamLong (TestTypesTestParamLongMethodRequest) returns (TestTypesTestParamLongMethodResponse) {
+		option(methodName) = "TestParamLong";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamULong (TestTypesTestParamULongMethodRequest) returns (TestTypesTestParamULongMethodResponse) {
+		option(methodName) = "TestParamULong";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamBool (TestTypesTestParamBoolMethodRequest) returns (TestTypesTestParamBoolMethodResponse) {
+		option(methodName) = "TestParamBool";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamString (TestTypesTestParamStringMethodRequest) returns (TestTypesTestParamStringMethodResponse) {
+		option(methodName) = "TestParamString";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamByte (TestTypesTestParamByteMethodRequest) returns (TestTypesTestParamByteMethodResponse) {
+		option(methodName) = "TestParamByte";
+		option(sync) = true;
+	};
+	rpc InvokeTestParamBytes (TestTypesTestParamBytesMethodRequest) returns (TestTypesTestParamBytesMethodResponse) {
+		option(methodName) = "TestParamBytes";
+		option(sync) = true;
+	};
+}

@@ -14,7 +14,8 @@ namespace NetGrpcGen.Tests.Gen
                 new List<Type>
                 {
                     typeof(Objects.Test1),
-                    typeof(Objects.Test2)
+                    typeof(Objects.Test2),
+                    typeof(Objects.TestTypes)
                 })));
 
             var protoCode = CodeGen.ProtofileCodeGen.Generate(discovery.DiscoverObjects(), "Tests");

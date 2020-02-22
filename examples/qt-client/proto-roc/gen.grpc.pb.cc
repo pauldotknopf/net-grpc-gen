@@ -975,5 +975,473 @@ Test2ObjectService::Service::~Service() {
 }
 
 
+static const char* TestTypesObjectService_method_names[] = {
+  "/Tests.TestTypesObjectService/Create",
+  "/Tests.TestTypesObjectService/InvokeTestParamDouble",
+  "/Tests.TestTypesObjectService/InvokeTestParamFloat",
+  "/Tests.TestTypesObjectService/InvokeTestParamInt",
+  "/Tests.TestTypesObjectService/InvokeTestParamUInt",
+  "/Tests.TestTypesObjectService/InvokeTestParamLong",
+  "/Tests.TestTypesObjectService/InvokeTestParamULong",
+  "/Tests.TestTypesObjectService/InvokeTestParamBool",
+  "/Tests.TestTypesObjectService/InvokeTestParamString",
+  "/Tests.TestTypesObjectService/InvokeTestParamByte",
+  "/Tests.TestTypesObjectService/InvokeTestParamBytes",
+};
+
+std::unique_ptr< TestTypesObjectService::Stub> TestTypesObjectService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+  (void)options;
+  std::unique_ptr< TestTypesObjectService::Stub> stub(new TestTypesObjectService::Stub(channel));
+  return stub;
+}
+
+TestTypesObjectService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
+  : channel_(channel), rpcmethod_Create_(TestTypesObjectService_method_names[0], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_InvokeTestParamDouble_(TestTypesObjectService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamFloat_(TestTypesObjectService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamInt_(TestTypesObjectService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamUInt_(TestTypesObjectService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamLong_(TestTypesObjectService_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamULong_(TestTypesObjectService_method_names[6], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamBool_(TestTypesObjectService_method_names[7], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamString_(TestTypesObjectService_method_names[8], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamByte_(TestTypesObjectService_method_names[9], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_InvokeTestParamBytes_(TestTypesObjectService_method_names[10], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::ClientReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* TestTypesObjectService::Stub::CreateRaw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::google::protobuf::Any, ::google::protobuf::Any>::Create(channel_.get(), rpcmethod_Create_, context);
+}
+
+void TestTypesObjectService::Stub::experimental_async::Create(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::google::protobuf::Any,::google::protobuf::Any>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::google::protobuf::Any,::google::protobuf::Any>::Create(stub_->channel_.get(), stub_->rpcmethod_Create_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* TestTypesObjectService::Stub::AsyncCreateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::google::protobuf::Any, ::google::protobuf::Any>::Create(channel_.get(), cq, rpcmethod_Create_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* TestTypesObjectService::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::google::protobuf::Any, ::google::protobuf::Any>::Create(channel_.get(), cq, rpcmethod_Create_, context, false, nullptr);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::Tests::TestTypesTestParamDoubleMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamDouble_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamDouble_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamDouble(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamDouble_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamDouble_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamDouble(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamDouble_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamDoubleMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamDoubleRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamDoubleMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamDouble_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamDoubleMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamDoubleRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamDoubleMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamDouble_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::Tests::TestTypesTestParamFloatMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamFloat_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamFloat_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamFloat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamFloat_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamFloat_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamFloat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamFloat_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamFloatMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamFloatRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamFloatMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamFloat_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamFloatMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamFloatRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamFloatMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamFloat_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::Tests::TestTypesTestParamIntMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamInt_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamInt_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamIntMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamInt_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamInt_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamInt_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamIntMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamIntMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamInt_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamIntMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamIntMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamInt_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::Tests::TestTypesTestParamUIntMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamUInt_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamUInt_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamUInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamUInt_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamUInt_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamUInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamUInt_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamUIntMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamUIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamUIntMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamUInt_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamUIntMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamUIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamUIntMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamUInt_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::Tests::TestTypesTestParamLongMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamLong_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamLong_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamLong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamLongMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamLong_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamLong_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamLong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamLong_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamLongMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamLongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamLongMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamLong_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamLongMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamLongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamLongMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamLong_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::Tests::TestTypesTestParamULongMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamULong_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamULong_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamULong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamULongMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamULong_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamULong_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamULong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamULong_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamULongMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamULongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamULongMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamULong_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamULongMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamULongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamULongMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamULong_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::Tests::TestTypesTestParamBoolMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamBool_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamBool_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamBool(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamBool_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamBool_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamBool(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamBool_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBoolMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamBoolRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamBoolMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamBool_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBoolMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamBoolRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamBoolMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamBool_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::Tests::TestTypesTestParamStringMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamString_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamString_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamString(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamStringMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamString_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamString_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamString(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamString_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamStringMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamStringRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamStringMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamString_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamStringMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamStringRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamStringMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamString_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::Tests::TestTypesTestParamByteMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamByte_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamByte_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamByte(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamByteMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamByte_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamByte_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamByte(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamByte_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamByteMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamByteRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamByteMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamByte_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamByteMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamByteRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamByteMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamByte_, context, request, false);
+}
+
+::grpc::Status TestTypesObjectService::Stub::InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::Tests::TestTypesTestParamBytesMethodResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_InvokeTestParamBytes_, context, request, response);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamBytes_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamBytes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamBytes_, context, request, response, std::move(f));
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamBytes_, context, request, response, reactor);
+}
+
+void TestTypesObjectService::Stub::experimental_async::InvokeTestParamBytes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_InvokeTestParamBytes_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBytesMethodResponse>* TestTypesObjectService::Stub::AsyncInvokeTestParamBytesRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamBytesMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamBytes_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBytesMethodResponse>* TestTypesObjectService::Stub::PrepareAsyncInvokeTestParamBytesRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::Tests::TestTypesTestParamBytesMethodResponse>::Create(channel_.get(), cq, rpcmethod_InvokeTestParamBytes_, context, request, false);
+}
+
+TestTypesObjectService::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[0],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< TestTypesObjectService::Service, ::google::protobuf::Any, ::google::protobuf::Any>(
+          std::mem_fn(&TestTypesObjectService::Service::Create), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamDoubleMethodRequest, ::Tests::TestTypesTestParamDoubleMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamDouble), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamFloatMethodRequest, ::Tests::TestTypesTestParamFloatMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamFloat), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamIntMethodRequest, ::Tests::TestTypesTestParamIntMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamInt), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamUIntMethodRequest, ::Tests::TestTypesTestParamUIntMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamUInt), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamLongMethodRequest, ::Tests::TestTypesTestParamLongMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamLong), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamULongMethodRequest, ::Tests::TestTypesTestParamULongMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamULong), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamBoolMethodRequest, ::Tests::TestTypesTestParamBoolMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamBool), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamStringMethodRequest, ::Tests::TestTypesTestParamStringMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamString), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[9],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamByteMethodRequest, ::Tests::TestTypesTestParamByteMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamByte), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TestTypesObjectService_method_names[10],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TestTypesObjectService::Service, ::Tests::TestTypesTestParamBytesMethodRequest, ::Tests::TestTypesTestParamBytesMethodResponse>(
+          std::mem_fn(&TestTypesObjectService::Service::InvokeTestParamBytes), this)));
+}
+
+TestTypesObjectService::Service::~Service() {
+}
+
+::grpc::Status TestTypesObjectService::Service::Create(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* stream) {
+  (void) context;
+  (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamDouble(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamFloat(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamInt(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamUInt(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamLong(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamULong(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamBool(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamString(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamByte(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TestTypesObjectService::Service::InvokeTestParamBytes(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+
 }  // namespace Tests
 

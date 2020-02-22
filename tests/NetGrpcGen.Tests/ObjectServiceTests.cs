@@ -296,7 +296,7 @@ namespace NetGrpcGen.Tests
                 eventStream.Dispose();
             });
         }
-        
+
         private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
         {
             var serviceAdapter = new ObjectServiceAdapter<Test1>(new ProtoModelBuilder(),

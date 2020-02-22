@@ -51,7 +51,7 @@ struct TableStruct_gen_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[56]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[79]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -227,6 +227,75 @@ extern Test2TestMethodWithNoResponse2MethodRequestDefaultTypeInternal _Test2Test
 class Test2TestMethodWithNoResponse2MethodResponse;
 class Test2TestMethodWithNoResponse2MethodResponseDefaultTypeInternal;
 extern Test2TestMethodWithNoResponse2MethodResponseDefaultTypeInternal _Test2TestMethodWithNoResponse2MethodResponse_default_instance_;
+class TestTypesCreateResponse;
+class TestTypesCreateResponseDefaultTypeInternal;
+extern TestTypesCreateResponseDefaultTypeInternal _TestTypesCreateResponse_default_instance_;
+class TestTypesStopRequest;
+class TestTypesStopRequestDefaultTypeInternal;
+extern TestTypesStopRequestDefaultTypeInternal _TestTypesStopRequest_default_instance_;
+class TestTypesStopResponse;
+class TestTypesStopResponseDefaultTypeInternal;
+extern TestTypesStopResponseDefaultTypeInternal _TestTypesStopResponse_default_instance_;
+class TestTypesTestParamBoolMethodRequest;
+class TestTypesTestParamBoolMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamBoolMethodRequestDefaultTypeInternal _TestTypesTestParamBoolMethodRequest_default_instance_;
+class TestTypesTestParamBoolMethodResponse;
+class TestTypesTestParamBoolMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamBoolMethodResponseDefaultTypeInternal _TestTypesTestParamBoolMethodResponse_default_instance_;
+class TestTypesTestParamByteMethodRequest;
+class TestTypesTestParamByteMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamByteMethodRequestDefaultTypeInternal _TestTypesTestParamByteMethodRequest_default_instance_;
+class TestTypesTestParamByteMethodResponse;
+class TestTypesTestParamByteMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamByteMethodResponseDefaultTypeInternal _TestTypesTestParamByteMethodResponse_default_instance_;
+class TestTypesTestParamBytesMethodRequest;
+class TestTypesTestParamBytesMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamBytesMethodRequestDefaultTypeInternal _TestTypesTestParamBytesMethodRequest_default_instance_;
+class TestTypesTestParamBytesMethodResponse;
+class TestTypesTestParamBytesMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamBytesMethodResponseDefaultTypeInternal _TestTypesTestParamBytesMethodResponse_default_instance_;
+class TestTypesTestParamDoubleMethodRequest;
+class TestTypesTestParamDoubleMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamDoubleMethodRequestDefaultTypeInternal _TestTypesTestParamDoubleMethodRequest_default_instance_;
+class TestTypesTestParamDoubleMethodResponse;
+class TestTypesTestParamDoubleMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamDoubleMethodResponseDefaultTypeInternal _TestTypesTestParamDoubleMethodResponse_default_instance_;
+class TestTypesTestParamFloatMethodRequest;
+class TestTypesTestParamFloatMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamFloatMethodRequestDefaultTypeInternal _TestTypesTestParamFloatMethodRequest_default_instance_;
+class TestTypesTestParamFloatMethodResponse;
+class TestTypesTestParamFloatMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamFloatMethodResponseDefaultTypeInternal _TestTypesTestParamFloatMethodResponse_default_instance_;
+class TestTypesTestParamIntMethodRequest;
+class TestTypesTestParamIntMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamIntMethodRequestDefaultTypeInternal _TestTypesTestParamIntMethodRequest_default_instance_;
+class TestTypesTestParamIntMethodResponse;
+class TestTypesTestParamIntMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamIntMethodResponseDefaultTypeInternal _TestTypesTestParamIntMethodResponse_default_instance_;
+class TestTypesTestParamLongMethodRequest;
+class TestTypesTestParamLongMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamLongMethodRequestDefaultTypeInternal _TestTypesTestParamLongMethodRequest_default_instance_;
+class TestTypesTestParamLongMethodResponse;
+class TestTypesTestParamLongMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamLongMethodResponseDefaultTypeInternal _TestTypesTestParamLongMethodResponse_default_instance_;
+class TestTypesTestParamStringMethodRequest;
+class TestTypesTestParamStringMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamStringMethodRequestDefaultTypeInternal _TestTypesTestParamStringMethodRequest_default_instance_;
+class TestTypesTestParamStringMethodResponse;
+class TestTypesTestParamStringMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamStringMethodResponseDefaultTypeInternal _TestTypesTestParamStringMethodResponse_default_instance_;
+class TestTypesTestParamUIntMethodRequest;
+class TestTypesTestParamUIntMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamUIntMethodRequestDefaultTypeInternal _TestTypesTestParamUIntMethodRequest_default_instance_;
+class TestTypesTestParamUIntMethodResponse;
+class TestTypesTestParamUIntMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamUIntMethodResponseDefaultTypeInternal _TestTypesTestParamUIntMethodResponse_default_instance_;
+class TestTypesTestParamULongMethodRequest;
+class TestTypesTestParamULongMethodRequestDefaultTypeInternal;
+extern TestTypesTestParamULongMethodRequestDefaultTypeInternal _TestTypesTestParamULongMethodRequest_default_instance_;
+class TestTypesTestParamULongMethodResponse;
+class TestTypesTestParamULongMethodResponseDefaultTypeInternal;
+extern TestTypesTestParamULongMethodResponseDefaultTypeInternal _TestTypesTestParamULongMethodResponse_default_instance_;
 }  // namespace Tests
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Tests::Test1CreateResponse* Arena::CreateMaybeMessage<::Tests::Test1CreateResponse>(Arena*);
@@ -285,6 +354,29 @@ template<> ::Tests::Test2TestMethodSync2MethodRequest* Arena::CreateMaybeMessage
 template<> ::Tests::Test2TestMethodSync2MethodResponse* Arena::CreateMaybeMessage<::Tests::Test2TestMethodSync2MethodResponse>(Arena*);
 template<> ::Tests::Test2TestMethodWithNoResponse2MethodRequest* Arena::CreateMaybeMessage<::Tests::Test2TestMethodWithNoResponse2MethodRequest>(Arena*);
 template<> ::Tests::Test2TestMethodWithNoResponse2MethodResponse* Arena::CreateMaybeMessage<::Tests::Test2TestMethodWithNoResponse2MethodResponse>(Arena*);
+template<> ::Tests::TestTypesCreateResponse* Arena::CreateMaybeMessage<::Tests::TestTypesCreateResponse>(Arena*);
+template<> ::Tests::TestTypesStopRequest* Arena::CreateMaybeMessage<::Tests::TestTypesStopRequest>(Arena*);
+template<> ::Tests::TestTypesStopResponse* Arena::CreateMaybeMessage<::Tests::TestTypesStopResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamBoolMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamBoolMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamBoolMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamBoolMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamByteMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamByteMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamByteMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamByteMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamBytesMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamBytesMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamBytesMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamBytesMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamDoubleMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamDoubleMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamDoubleMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamDoubleMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamFloatMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamFloatMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamFloatMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamFloatMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamIntMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamIntMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamIntMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamIntMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamLongMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamLongMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamLongMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamLongMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamStringMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamStringMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamStringMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamStringMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamUIntMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamUIntMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamUIntMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamUIntMethodResponse>(Arena*);
+template<> ::Tests::TestTypesTestParamULongMethodRequest* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamULongMethodRequest>(Arena*);
+template<> ::Tests::TestTypesTestParamULongMethodResponse* Arena::CreateMaybeMessage<::Tests::TestTypesTestParamULongMethodResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace Tests {
 
@@ -7663,6 +7755,2917 @@ class Test2TestMethodNoRequest2MethodResponse :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_gen_2eproto;
 };
+// -------------------------------------------------------------------
+
+class TestTypesCreateResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesCreateResponse) */ {
+ public:
+  TestTypesCreateResponse();
+  virtual ~TestTypesCreateResponse();
+
+  TestTypesCreateResponse(const TestTypesCreateResponse& from);
+  TestTypesCreateResponse(TestTypesCreateResponse&& from) noexcept
+    : TestTypesCreateResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesCreateResponse& operator=(const TestTypesCreateResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesCreateResponse& operator=(TestTypesCreateResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesCreateResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesCreateResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesCreateResponse*>(
+               &_TestTypesCreateResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    56;
+
+  friend void swap(TestTypesCreateResponse& a, TestTypesCreateResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesCreateResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesCreateResponse* New() const final {
+    return CreateMaybeMessage<TestTypesCreateResponse>(nullptr);
+  }
+
+  TestTypesCreateResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesCreateResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesCreateResponse& from);
+  void MergeFrom(const TestTypesCreateResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesCreateResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesCreateResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesCreateResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesStopRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesStopRequest) */ {
+ public:
+  TestTypesStopRequest();
+  virtual ~TestTypesStopRequest();
+
+  TestTypesStopRequest(const TestTypesStopRequest& from);
+  TestTypesStopRequest(TestTypesStopRequest&& from) noexcept
+    : TestTypesStopRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesStopRequest& operator=(const TestTypesStopRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesStopRequest& operator=(TestTypesStopRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesStopRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesStopRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesStopRequest*>(
+               &_TestTypesStopRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    57;
+
+  friend void swap(TestTypesStopRequest& a, TestTypesStopRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesStopRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesStopRequest* New() const final {
+    return CreateMaybeMessage<TestTypesStopRequest>(nullptr);
+  }
+
+  TestTypesStopRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesStopRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesStopRequest& from);
+  void MergeFrom(const TestTypesStopRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesStopRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesStopRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesStopRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesStopResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesStopResponse) */ {
+ public:
+  TestTypesStopResponse();
+  virtual ~TestTypesStopResponse();
+
+  TestTypesStopResponse(const TestTypesStopResponse& from);
+  TestTypesStopResponse(TestTypesStopResponse&& from) noexcept
+    : TestTypesStopResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesStopResponse& operator=(const TestTypesStopResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesStopResponse& operator=(TestTypesStopResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesStopResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesStopResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesStopResponse*>(
+               &_TestTypesStopResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    58;
+
+  friend void swap(TestTypesStopResponse& a, TestTypesStopResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesStopResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesStopResponse* New() const final {
+    return CreateMaybeMessage<TestTypesStopResponse>(nullptr);
+  }
+
+  TestTypesStopResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesStopResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesStopResponse& from);
+  void MergeFrom(const TestTypesStopResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesStopResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesStopResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesStopResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamDoubleMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamDoubleMethodRequest) */ {
+ public:
+  TestTypesTestParamDoubleMethodRequest();
+  virtual ~TestTypesTestParamDoubleMethodRequest();
+
+  TestTypesTestParamDoubleMethodRequest(const TestTypesTestParamDoubleMethodRequest& from);
+  TestTypesTestParamDoubleMethodRequest(TestTypesTestParamDoubleMethodRequest&& from) noexcept
+    : TestTypesTestParamDoubleMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamDoubleMethodRequest& operator=(const TestTypesTestParamDoubleMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamDoubleMethodRequest& operator=(TestTypesTestParamDoubleMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamDoubleMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamDoubleMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamDoubleMethodRequest*>(
+               &_TestTypesTestParamDoubleMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    59;
+
+  friend void swap(TestTypesTestParamDoubleMethodRequest& a, TestTypesTestParamDoubleMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamDoubleMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamDoubleMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamDoubleMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamDoubleMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamDoubleMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamDoubleMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamDoubleMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamDoubleMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamDoubleMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // double value = 2;
+  void clear_value();
+  double value() const;
+  void set_value(double value);
+  private:
+  double _internal_value() const;
+  void _internal_set_value(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamDoubleMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  double value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamDoubleMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamDoubleMethodResponse) */ {
+ public:
+  TestTypesTestParamDoubleMethodResponse();
+  virtual ~TestTypesTestParamDoubleMethodResponse();
+
+  TestTypesTestParamDoubleMethodResponse(const TestTypesTestParamDoubleMethodResponse& from);
+  TestTypesTestParamDoubleMethodResponse(TestTypesTestParamDoubleMethodResponse&& from) noexcept
+    : TestTypesTestParamDoubleMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamDoubleMethodResponse& operator=(const TestTypesTestParamDoubleMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamDoubleMethodResponse& operator=(TestTypesTestParamDoubleMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamDoubleMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamDoubleMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamDoubleMethodResponse*>(
+               &_TestTypesTestParamDoubleMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    60;
+
+  friend void swap(TestTypesTestParamDoubleMethodResponse& a, TestTypesTestParamDoubleMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamDoubleMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamDoubleMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamDoubleMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamDoubleMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamDoubleMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamDoubleMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamDoubleMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamDoubleMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamDoubleMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamDoubleMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamFloatMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamFloatMethodRequest) */ {
+ public:
+  TestTypesTestParamFloatMethodRequest();
+  virtual ~TestTypesTestParamFloatMethodRequest();
+
+  TestTypesTestParamFloatMethodRequest(const TestTypesTestParamFloatMethodRequest& from);
+  TestTypesTestParamFloatMethodRequest(TestTypesTestParamFloatMethodRequest&& from) noexcept
+    : TestTypesTestParamFloatMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamFloatMethodRequest& operator=(const TestTypesTestParamFloatMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamFloatMethodRequest& operator=(TestTypesTestParamFloatMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamFloatMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamFloatMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamFloatMethodRequest*>(
+               &_TestTypesTestParamFloatMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    61;
+
+  friend void swap(TestTypesTestParamFloatMethodRequest& a, TestTypesTestParamFloatMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamFloatMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamFloatMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamFloatMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamFloatMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamFloatMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamFloatMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamFloatMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamFloatMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamFloatMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // float value = 2;
+  void clear_value();
+  float value() const;
+  void set_value(float value);
+  private:
+  float _internal_value() const;
+  void _internal_set_value(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamFloatMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  float value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamFloatMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamFloatMethodResponse) */ {
+ public:
+  TestTypesTestParamFloatMethodResponse();
+  virtual ~TestTypesTestParamFloatMethodResponse();
+
+  TestTypesTestParamFloatMethodResponse(const TestTypesTestParamFloatMethodResponse& from);
+  TestTypesTestParamFloatMethodResponse(TestTypesTestParamFloatMethodResponse&& from) noexcept
+    : TestTypesTestParamFloatMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamFloatMethodResponse& operator=(const TestTypesTestParamFloatMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamFloatMethodResponse& operator=(TestTypesTestParamFloatMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamFloatMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamFloatMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamFloatMethodResponse*>(
+               &_TestTypesTestParamFloatMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    62;
+
+  friend void swap(TestTypesTestParamFloatMethodResponse& a, TestTypesTestParamFloatMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamFloatMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamFloatMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamFloatMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamFloatMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamFloatMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamFloatMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamFloatMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamFloatMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamFloatMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamFloatMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamIntMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamIntMethodRequest) */ {
+ public:
+  TestTypesTestParamIntMethodRequest();
+  virtual ~TestTypesTestParamIntMethodRequest();
+
+  TestTypesTestParamIntMethodRequest(const TestTypesTestParamIntMethodRequest& from);
+  TestTypesTestParamIntMethodRequest(TestTypesTestParamIntMethodRequest&& from) noexcept
+    : TestTypesTestParamIntMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamIntMethodRequest& operator=(const TestTypesTestParamIntMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamIntMethodRequest& operator=(TestTypesTestParamIntMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamIntMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamIntMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamIntMethodRequest*>(
+               &_TestTypesTestParamIntMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    63;
+
+  friend void swap(TestTypesTestParamIntMethodRequest& a, TestTypesTestParamIntMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamIntMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamIntMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamIntMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamIntMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamIntMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamIntMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamIntMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamIntMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamIntMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // int32 value = 2;
+  void clear_value();
+  ::PROTOBUF_NAMESPACE_ID::int32 value() const;
+  void set_value(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_value() const;
+  void _internal_set_value(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamIntMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamIntMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamIntMethodResponse) */ {
+ public:
+  TestTypesTestParamIntMethodResponse();
+  virtual ~TestTypesTestParamIntMethodResponse();
+
+  TestTypesTestParamIntMethodResponse(const TestTypesTestParamIntMethodResponse& from);
+  TestTypesTestParamIntMethodResponse(TestTypesTestParamIntMethodResponse&& from) noexcept
+    : TestTypesTestParamIntMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamIntMethodResponse& operator=(const TestTypesTestParamIntMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamIntMethodResponse& operator=(TestTypesTestParamIntMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamIntMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamIntMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamIntMethodResponse*>(
+               &_TestTypesTestParamIntMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    64;
+
+  friend void swap(TestTypesTestParamIntMethodResponse& a, TestTypesTestParamIntMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamIntMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamIntMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamIntMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamIntMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamIntMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamIntMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamIntMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamIntMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamIntMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamIntMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamUIntMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamUIntMethodRequest) */ {
+ public:
+  TestTypesTestParamUIntMethodRequest();
+  virtual ~TestTypesTestParamUIntMethodRequest();
+
+  TestTypesTestParamUIntMethodRequest(const TestTypesTestParamUIntMethodRequest& from);
+  TestTypesTestParamUIntMethodRequest(TestTypesTestParamUIntMethodRequest&& from) noexcept
+    : TestTypesTestParamUIntMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamUIntMethodRequest& operator=(const TestTypesTestParamUIntMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamUIntMethodRequest& operator=(TestTypesTestParamUIntMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamUIntMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamUIntMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamUIntMethodRequest*>(
+               &_TestTypesTestParamUIntMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    65;
+
+  friend void swap(TestTypesTestParamUIntMethodRequest& a, TestTypesTestParamUIntMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamUIntMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamUIntMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamUIntMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamUIntMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamUIntMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamUIntMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamUIntMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamUIntMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamUIntMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint32 value = 2;
+  void clear_value();
+  ::PROTOBUF_NAMESPACE_ID::uint32 value() const;
+  void set_value(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_value() const;
+  void _internal_set_value(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamUIntMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamUIntMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamUIntMethodResponse) */ {
+ public:
+  TestTypesTestParamUIntMethodResponse();
+  virtual ~TestTypesTestParamUIntMethodResponse();
+
+  TestTypesTestParamUIntMethodResponse(const TestTypesTestParamUIntMethodResponse& from);
+  TestTypesTestParamUIntMethodResponse(TestTypesTestParamUIntMethodResponse&& from) noexcept
+    : TestTypesTestParamUIntMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamUIntMethodResponse& operator=(const TestTypesTestParamUIntMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamUIntMethodResponse& operator=(TestTypesTestParamUIntMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamUIntMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamUIntMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamUIntMethodResponse*>(
+               &_TestTypesTestParamUIntMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    66;
+
+  friend void swap(TestTypesTestParamUIntMethodResponse& a, TestTypesTestParamUIntMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamUIntMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamUIntMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamUIntMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamUIntMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamUIntMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamUIntMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamUIntMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamUIntMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamUIntMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamUIntMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamLongMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamLongMethodRequest) */ {
+ public:
+  TestTypesTestParamLongMethodRequest();
+  virtual ~TestTypesTestParamLongMethodRequest();
+
+  TestTypesTestParamLongMethodRequest(const TestTypesTestParamLongMethodRequest& from);
+  TestTypesTestParamLongMethodRequest(TestTypesTestParamLongMethodRequest&& from) noexcept
+    : TestTypesTestParamLongMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamLongMethodRequest& operator=(const TestTypesTestParamLongMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamLongMethodRequest& operator=(TestTypesTestParamLongMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamLongMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamLongMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamLongMethodRequest*>(
+               &_TestTypesTestParamLongMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    67;
+
+  friend void swap(TestTypesTestParamLongMethodRequest& a, TestTypesTestParamLongMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamLongMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamLongMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamLongMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamLongMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamLongMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamLongMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamLongMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamLongMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamLongMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // int64 value = 2;
+  void clear_value();
+  ::PROTOBUF_NAMESPACE_ID::int64 value() const;
+  void set_value(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_value() const;
+  void _internal_set_value(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamLongMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  ::PROTOBUF_NAMESPACE_ID::int64 value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamLongMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamLongMethodResponse) */ {
+ public:
+  TestTypesTestParamLongMethodResponse();
+  virtual ~TestTypesTestParamLongMethodResponse();
+
+  TestTypesTestParamLongMethodResponse(const TestTypesTestParamLongMethodResponse& from);
+  TestTypesTestParamLongMethodResponse(TestTypesTestParamLongMethodResponse&& from) noexcept
+    : TestTypesTestParamLongMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamLongMethodResponse& operator=(const TestTypesTestParamLongMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamLongMethodResponse& operator=(TestTypesTestParamLongMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamLongMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamLongMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamLongMethodResponse*>(
+               &_TestTypesTestParamLongMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    68;
+
+  friend void swap(TestTypesTestParamLongMethodResponse& a, TestTypesTestParamLongMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamLongMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamLongMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamLongMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamLongMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamLongMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamLongMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamLongMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamLongMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamLongMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamLongMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamULongMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamULongMethodRequest) */ {
+ public:
+  TestTypesTestParamULongMethodRequest();
+  virtual ~TestTypesTestParamULongMethodRequest();
+
+  TestTypesTestParamULongMethodRequest(const TestTypesTestParamULongMethodRequest& from);
+  TestTypesTestParamULongMethodRequest(TestTypesTestParamULongMethodRequest&& from) noexcept
+    : TestTypesTestParamULongMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamULongMethodRequest& operator=(const TestTypesTestParamULongMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamULongMethodRequest& operator=(TestTypesTestParamULongMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamULongMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamULongMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamULongMethodRequest*>(
+               &_TestTypesTestParamULongMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    69;
+
+  friend void swap(TestTypesTestParamULongMethodRequest& a, TestTypesTestParamULongMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamULongMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamULongMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamULongMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamULongMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamULongMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamULongMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamULongMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamULongMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamULongMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 value = 2;
+  void clear_value();
+  ::PROTOBUF_NAMESPACE_ID::uint64 value() const;
+  void set_value(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_value() const;
+  void _internal_set_value(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamULongMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamULongMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamULongMethodResponse) */ {
+ public:
+  TestTypesTestParamULongMethodResponse();
+  virtual ~TestTypesTestParamULongMethodResponse();
+
+  TestTypesTestParamULongMethodResponse(const TestTypesTestParamULongMethodResponse& from);
+  TestTypesTestParamULongMethodResponse(TestTypesTestParamULongMethodResponse&& from) noexcept
+    : TestTypesTestParamULongMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamULongMethodResponse& operator=(const TestTypesTestParamULongMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamULongMethodResponse& operator=(TestTypesTestParamULongMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamULongMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamULongMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamULongMethodResponse*>(
+               &_TestTypesTestParamULongMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    70;
+
+  friend void swap(TestTypesTestParamULongMethodResponse& a, TestTypesTestParamULongMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamULongMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamULongMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamULongMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamULongMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamULongMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamULongMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamULongMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamULongMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamULongMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamULongMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamBoolMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamBoolMethodRequest) */ {
+ public:
+  TestTypesTestParamBoolMethodRequest();
+  virtual ~TestTypesTestParamBoolMethodRequest();
+
+  TestTypesTestParamBoolMethodRequest(const TestTypesTestParamBoolMethodRequest& from);
+  TestTypesTestParamBoolMethodRequest(TestTypesTestParamBoolMethodRequest&& from) noexcept
+    : TestTypesTestParamBoolMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamBoolMethodRequest& operator=(const TestTypesTestParamBoolMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamBoolMethodRequest& operator=(TestTypesTestParamBoolMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamBoolMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamBoolMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamBoolMethodRequest*>(
+               &_TestTypesTestParamBoolMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    71;
+
+  friend void swap(TestTypesTestParamBoolMethodRequest& a, TestTypesTestParamBoolMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamBoolMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamBoolMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamBoolMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamBoolMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamBoolMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamBoolMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamBoolMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamBoolMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamBoolMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // bool value = 2;
+  void clear_value();
+  bool value() const;
+  void set_value(bool value);
+  private:
+  bool _internal_value() const;
+  void _internal_set_value(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamBoolMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  bool value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamBoolMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamBoolMethodResponse) */ {
+ public:
+  TestTypesTestParamBoolMethodResponse();
+  virtual ~TestTypesTestParamBoolMethodResponse();
+
+  TestTypesTestParamBoolMethodResponse(const TestTypesTestParamBoolMethodResponse& from);
+  TestTypesTestParamBoolMethodResponse(TestTypesTestParamBoolMethodResponse&& from) noexcept
+    : TestTypesTestParamBoolMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamBoolMethodResponse& operator=(const TestTypesTestParamBoolMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamBoolMethodResponse& operator=(TestTypesTestParamBoolMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamBoolMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamBoolMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamBoolMethodResponse*>(
+               &_TestTypesTestParamBoolMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    72;
+
+  friend void swap(TestTypesTestParamBoolMethodResponse& a, TestTypesTestParamBoolMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamBoolMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamBoolMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamBoolMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamBoolMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamBoolMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamBoolMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamBoolMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamBoolMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamBoolMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamBoolMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamStringMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamStringMethodRequest) */ {
+ public:
+  TestTypesTestParamStringMethodRequest();
+  virtual ~TestTypesTestParamStringMethodRequest();
+
+  TestTypesTestParamStringMethodRequest(const TestTypesTestParamStringMethodRequest& from);
+  TestTypesTestParamStringMethodRequest(TestTypesTestParamStringMethodRequest&& from) noexcept
+    : TestTypesTestParamStringMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamStringMethodRequest& operator=(const TestTypesTestParamStringMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamStringMethodRequest& operator=(TestTypesTestParamStringMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamStringMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamStringMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamStringMethodRequest*>(
+               &_TestTypesTestParamStringMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    73;
+
+  friend void swap(TestTypesTestParamStringMethodRequest& a, TestTypesTestParamStringMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamStringMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamStringMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamStringMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamStringMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamStringMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamStringMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamStringMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamStringMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamStringMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValueFieldNumber = 2,
+    kObjectIdFieldNumber = 1,
+  };
+  // .google.protobuf.StringValue value = 2;
+  bool has_value() const;
+  private:
+  bool _internal_has_value() const;
+  public:
+  void clear_value();
+  const PROTOBUF_NAMESPACE_ID::StringValue& value() const;
+  PROTOBUF_NAMESPACE_ID::StringValue* release_value();
+  PROTOBUF_NAMESPACE_ID::StringValue* mutable_value();
+  void set_allocated_value(PROTOBUF_NAMESPACE_ID::StringValue* value);
+  private:
+  const PROTOBUF_NAMESPACE_ID::StringValue& _internal_value() const;
+  PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_value();
+  public:
+
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamStringMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  PROTOBUF_NAMESPACE_ID::StringValue* value_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamStringMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamStringMethodResponse) */ {
+ public:
+  TestTypesTestParamStringMethodResponse();
+  virtual ~TestTypesTestParamStringMethodResponse();
+
+  TestTypesTestParamStringMethodResponse(const TestTypesTestParamStringMethodResponse& from);
+  TestTypesTestParamStringMethodResponse(TestTypesTestParamStringMethodResponse&& from) noexcept
+    : TestTypesTestParamStringMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamStringMethodResponse& operator=(const TestTypesTestParamStringMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamStringMethodResponse& operator=(TestTypesTestParamStringMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamStringMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamStringMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamStringMethodResponse*>(
+               &_TestTypesTestParamStringMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    74;
+
+  friend void swap(TestTypesTestParamStringMethodResponse& a, TestTypesTestParamStringMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamStringMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamStringMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamStringMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamStringMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamStringMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamStringMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamStringMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamStringMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamStringMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamStringMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamByteMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamByteMethodRequest) */ {
+ public:
+  TestTypesTestParamByteMethodRequest();
+  virtual ~TestTypesTestParamByteMethodRequest();
+
+  TestTypesTestParamByteMethodRequest(const TestTypesTestParamByteMethodRequest& from);
+  TestTypesTestParamByteMethodRequest(TestTypesTestParamByteMethodRequest&& from) noexcept
+    : TestTypesTestParamByteMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamByteMethodRequest& operator=(const TestTypesTestParamByteMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamByteMethodRequest& operator=(TestTypesTestParamByteMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamByteMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamByteMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamByteMethodRequest*>(
+               &_TestTypesTestParamByteMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    75;
+
+  friend void swap(TestTypesTestParamByteMethodRequest& a, TestTypesTestParamByteMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamByteMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamByteMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamByteMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamByteMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamByteMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamByteMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamByteMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamByteMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamByteMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kObjectIdFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint32 value = 2;
+  void clear_value();
+  ::PROTOBUF_NAMESPACE_ID::uint32 value() const;
+  void set_value(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_value() const;
+  void _internal_set_value(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamByteMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 value_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamByteMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamByteMethodResponse) */ {
+ public:
+  TestTypesTestParamByteMethodResponse();
+  virtual ~TestTypesTestParamByteMethodResponse();
+
+  TestTypesTestParamByteMethodResponse(const TestTypesTestParamByteMethodResponse& from);
+  TestTypesTestParamByteMethodResponse(TestTypesTestParamByteMethodResponse&& from) noexcept
+    : TestTypesTestParamByteMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamByteMethodResponse& operator=(const TestTypesTestParamByteMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamByteMethodResponse& operator=(TestTypesTestParamByteMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamByteMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamByteMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamByteMethodResponse*>(
+               &_TestTypesTestParamByteMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    76;
+
+  friend void swap(TestTypesTestParamByteMethodResponse& a, TestTypesTestParamByteMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamByteMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamByteMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamByteMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamByteMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamByteMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamByteMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamByteMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamByteMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamByteMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamByteMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamBytesMethodRequest :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamBytesMethodRequest) */ {
+ public:
+  TestTypesTestParamBytesMethodRequest();
+  virtual ~TestTypesTestParamBytesMethodRequest();
+
+  TestTypesTestParamBytesMethodRequest(const TestTypesTestParamBytesMethodRequest& from);
+  TestTypesTestParamBytesMethodRequest(TestTypesTestParamBytesMethodRequest&& from) noexcept
+    : TestTypesTestParamBytesMethodRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamBytesMethodRequest& operator=(const TestTypesTestParamBytesMethodRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamBytesMethodRequest& operator=(TestTypesTestParamBytesMethodRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamBytesMethodRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamBytesMethodRequest* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamBytesMethodRequest*>(
+               &_TestTypesTestParamBytesMethodRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    77;
+
+  friend void swap(TestTypesTestParamBytesMethodRequest& a, TestTypesTestParamBytesMethodRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamBytesMethodRequest* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamBytesMethodRequest* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamBytesMethodRequest>(nullptr);
+  }
+
+  TestTypesTestParamBytesMethodRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamBytesMethodRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamBytesMethodRequest& from);
+  void MergeFrom(const TestTypesTestParamBytesMethodRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamBytesMethodRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamBytesMethodRequest";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValueFieldNumber = 2,
+    kObjectIdFieldNumber = 1,
+  };
+  // bytes value = 2;
+  void clear_value();
+  const std::string& value() const;
+  void set_value(const std::string& value);
+  void set_value(std::string&& value);
+  void set_value(const char* value);
+  void set_value(const void* value, size_t size);
+  std::string* mutable_value();
+  std::string* release_value();
+  void set_allocated_value(std::string* value);
+  private:
+  const std::string& _internal_value() const;
+  void _internal_set_value(const std::string& value);
+  std::string* _internal_mutable_value();
+  public:
+
+  // uint64 objectId = 1;
+  void clear_objectid();
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid() const;
+  void set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_objectid() const;
+  void _internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamBytesMethodRequest)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr value_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 objectid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestTypesTestParamBytesMethodResponse :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Tests.TestTypesTestParamBytesMethodResponse) */ {
+ public:
+  TestTypesTestParamBytesMethodResponse();
+  virtual ~TestTypesTestParamBytesMethodResponse();
+
+  TestTypesTestParamBytesMethodResponse(const TestTypesTestParamBytesMethodResponse& from);
+  TestTypesTestParamBytesMethodResponse(TestTypesTestParamBytesMethodResponse&& from) noexcept
+    : TestTypesTestParamBytesMethodResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TestTypesTestParamBytesMethodResponse& operator=(const TestTypesTestParamBytesMethodResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestTypesTestParamBytesMethodResponse& operator=(TestTypesTestParamBytesMethodResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TestTypesTestParamBytesMethodResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TestTypesTestParamBytesMethodResponse* internal_default_instance() {
+    return reinterpret_cast<const TestTypesTestParamBytesMethodResponse*>(
+               &_TestTypesTestParamBytesMethodResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    78;
+
+  friend void swap(TestTypesTestParamBytesMethodResponse& a, TestTypesTestParamBytesMethodResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestTypesTestParamBytesMethodResponse* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestTypesTestParamBytesMethodResponse* New() const final {
+    return CreateMaybeMessage<TestTypesTestParamBytesMethodResponse>(nullptr);
+  }
+
+  TestTypesTestParamBytesMethodResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestTypesTestParamBytesMethodResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TestTypesTestParamBytesMethodResponse& from);
+  void MergeFrom(const TestTypesTestParamBytesMethodResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestTypesTestParamBytesMethodResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Tests.TestTypesTestParamBytesMethodResponse";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gen_2eproto);
+    return ::descriptor_table_gen_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:Tests.TestTypesTestParamBytesMethodResponse)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_gen_2eproto;
+};
 // ===================================================================
 
 static const int kCreateFieldNumber = 1000;
@@ -10090,9 +13093,642 @@ inline void Test2TestMethodNoRequest2MethodRequest::set_objectid(::PROTOBUF_NAME
 
 // Test2TestMethodNoRequest2MethodResponse
 
+// -------------------------------------------------------------------
+
+// TestTypesCreateResponse
+
+// uint64 objectId = 1;
+inline void TestTypesCreateResponse::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesCreateResponse::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesCreateResponse::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesCreateResponse.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesCreateResponse::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesCreateResponse::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesCreateResponse.objectId)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesStopRequest
+
+// -------------------------------------------------------------------
+
+// TestTypesStopResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamDoubleMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamDoubleMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamDoubleMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamDoubleMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamDoubleMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamDoubleMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamDoubleMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamDoubleMethodRequest.objectId)
+}
+
+// double value = 2;
+inline void TestTypesTestParamDoubleMethodRequest::clear_value() {
+  value_ = 0;
+}
+inline double TestTypesTestParamDoubleMethodRequest::_internal_value() const {
+  return value_;
+}
+inline double TestTypesTestParamDoubleMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamDoubleMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamDoubleMethodRequest::_internal_set_value(double value) {
+  
+  value_ = value;
+}
+inline void TestTypesTestParamDoubleMethodRequest::set_value(double value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamDoubleMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamDoubleMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamFloatMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamFloatMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamFloatMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamFloatMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamFloatMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamFloatMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamFloatMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamFloatMethodRequest.objectId)
+}
+
+// float value = 2;
+inline void TestTypesTestParamFloatMethodRequest::clear_value() {
+  value_ = 0;
+}
+inline float TestTypesTestParamFloatMethodRequest::_internal_value() const {
+  return value_;
+}
+inline float TestTypesTestParamFloatMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamFloatMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamFloatMethodRequest::_internal_set_value(float value) {
+  
+  value_ = value;
+}
+inline void TestTypesTestParamFloatMethodRequest::set_value(float value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamFloatMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamFloatMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamIntMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamIntMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamIntMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamIntMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamIntMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamIntMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamIntMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamIntMethodRequest.objectId)
+}
+
+// int32 value = 2;
+inline void TestTypesTestParamIntMethodRequest::clear_value() {
+  value_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TestTypesTestParamIntMethodRequest::_internal_value() const {
+  return value_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TestTypesTestParamIntMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamIntMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamIntMethodRequest::_internal_set_value(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  value_ = value;
+}
+inline void TestTypesTestParamIntMethodRequest::set_value(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamIntMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamIntMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamUIntMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamUIntMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamUIntMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamUIntMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamUIntMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamUIntMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamUIntMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamUIntMethodRequest.objectId)
+}
+
+// uint32 value = 2;
+inline void TestTypesTestParamUIntMethodRequest::clear_value() {
+  value_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TestTypesTestParamUIntMethodRequest::_internal_value() const {
+  return value_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TestTypesTestParamUIntMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamUIntMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamUIntMethodRequest::_internal_set_value(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  value_ = value;
+}
+inline void TestTypesTestParamUIntMethodRequest::set_value(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamUIntMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamUIntMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamLongMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamLongMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamLongMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamLongMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamLongMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamLongMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamLongMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamLongMethodRequest.objectId)
+}
+
+// int64 value = 2;
+inline void TestTypesTestParamLongMethodRequest::clear_value() {
+  value_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 TestTypesTestParamLongMethodRequest::_internal_value() const {
+  return value_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 TestTypesTestParamLongMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamLongMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamLongMethodRequest::_internal_set_value(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  value_ = value;
+}
+inline void TestTypesTestParamLongMethodRequest::set_value(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamLongMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamLongMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamULongMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamULongMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamULongMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamULongMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamULongMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamULongMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamULongMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamULongMethodRequest.objectId)
+}
+
+// uint64 value = 2;
+inline void TestTypesTestParamULongMethodRequest::clear_value() {
+  value_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamULongMethodRequest::_internal_value() const {
+  return value_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamULongMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamULongMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamULongMethodRequest::_internal_set_value(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  value_ = value;
+}
+inline void TestTypesTestParamULongMethodRequest::set_value(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamULongMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamULongMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamBoolMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamBoolMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamBoolMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamBoolMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamBoolMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamBoolMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamBoolMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamBoolMethodRequest.objectId)
+}
+
+// bool value = 2;
+inline void TestTypesTestParamBoolMethodRequest::clear_value() {
+  value_ = false;
+}
+inline bool TestTypesTestParamBoolMethodRequest::_internal_value() const {
+  return value_;
+}
+inline bool TestTypesTestParamBoolMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamBoolMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamBoolMethodRequest::_internal_set_value(bool value) {
+  
+  value_ = value;
+}
+inline void TestTypesTestParamBoolMethodRequest::set_value(bool value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamBoolMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamBoolMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamStringMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamStringMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamStringMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamStringMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamStringMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamStringMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamStringMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamStringMethodRequest.objectId)
+}
+
+// .google.protobuf.StringValue value = 2;
+inline bool TestTypesTestParamStringMethodRequest::_internal_has_value() const {
+  return this != internal_default_instance() && value_ != nullptr;
+}
+inline bool TestTypesTestParamStringMethodRequest::has_value() const {
+  return _internal_has_value();
+}
+inline const PROTOBUF_NAMESPACE_ID::StringValue& TestTypesTestParamStringMethodRequest::_internal_value() const {
+  const PROTOBUF_NAMESPACE_ID::StringValue* p = value_;
+  return p != nullptr ? *p : *reinterpret_cast<const PROTOBUF_NAMESPACE_ID::StringValue*>(
+      &PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const PROTOBUF_NAMESPACE_ID::StringValue& TestTypesTestParamStringMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamStringMethodRequest.value)
+  return _internal_value();
+}
+inline PROTOBUF_NAMESPACE_ID::StringValue* TestTypesTestParamStringMethodRequest::release_value() {
+  // @@protoc_insertion_point(field_release:Tests.TestTypesTestParamStringMethodRequest.value)
+  
+  PROTOBUF_NAMESPACE_ID::StringValue* temp = value_;
+  value_ = nullptr;
+  return temp;
+}
+inline PROTOBUF_NAMESPACE_ID::StringValue* TestTypesTestParamStringMethodRequest::_internal_mutable_value() {
+  
+  if (value_ == nullptr) {
+    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaNoVirtual());
+    value_ = p;
+  }
+  return value_;
+}
+inline PROTOBUF_NAMESPACE_ID::StringValue* TestTypesTestParamStringMethodRequest::mutable_value() {
+  // @@protoc_insertion_point(field_mutable:Tests.TestTypesTestParamStringMethodRequest.value)
+  return _internal_mutable_value();
+}
+inline void TestTypesTestParamStringMethodRequest::set_allocated_value(PROTOBUF_NAMESPACE_ID::StringValue* value) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(value_);
+  }
+  if (value) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, value, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  value_ = value;
+  // @@protoc_insertion_point(field_set_allocated:Tests.TestTypesTestParamStringMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamStringMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamByteMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamByteMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamByteMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamByteMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamByteMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamByteMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamByteMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamByteMethodRequest.objectId)
+}
+
+// uint32 value = 2;
+inline void TestTypesTestParamByteMethodRequest::clear_value() {
+  value_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TestTypesTestParamByteMethodRequest::_internal_value() const {
+  return value_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TestTypesTestParamByteMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamByteMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamByteMethodRequest::_internal_set_value(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  value_ = value;
+}
+inline void TestTypesTestParamByteMethodRequest::set_value(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamByteMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamByteMethodResponse
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamBytesMethodRequest
+
+// uint64 objectId = 1;
+inline void TestTypesTestParamBytesMethodRequest::clear_objectid() {
+  objectid_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamBytesMethodRequest::_internal_objectid() const {
+  return objectid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 TestTypesTestParamBytesMethodRequest::objectid() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamBytesMethodRequest.objectId)
+  return _internal_objectid();
+}
+inline void TestTypesTestParamBytesMethodRequest::_internal_set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  objectid_ = value;
+}
+inline void TestTypesTestParamBytesMethodRequest::set_objectid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_objectid(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamBytesMethodRequest.objectId)
+}
+
+// bytes value = 2;
+inline void TestTypesTestParamBytesMethodRequest::clear_value() {
+  value_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TestTypesTestParamBytesMethodRequest::value() const {
+  // @@protoc_insertion_point(field_get:Tests.TestTypesTestParamBytesMethodRequest.value)
+  return _internal_value();
+}
+inline void TestTypesTestParamBytesMethodRequest::set_value(const std::string& value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:Tests.TestTypesTestParamBytesMethodRequest.value)
+}
+inline std::string* TestTypesTestParamBytesMethodRequest::mutable_value() {
+  // @@protoc_insertion_point(field_mutable:Tests.TestTypesTestParamBytesMethodRequest.value)
+  return _internal_mutable_value();
+}
+inline const std::string& TestTypesTestParamBytesMethodRequest::_internal_value() const {
+  return value_.GetNoArena();
+}
+inline void TestTypesTestParamBytesMethodRequest::_internal_set_value(const std::string& value) {
+  
+  value_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TestTypesTestParamBytesMethodRequest::set_value(std::string&& value) {
+  
+  value_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Tests.TestTypesTestParamBytesMethodRequest.value)
+}
+inline void TestTypesTestParamBytesMethodRequest::set_value(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  value_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Tests.TestTypesTestParamBytesMethodRequest.value)
+}
+inline void TestTypesTestParamBytesMethodRequest::set_value(const void* value, size_t size) {
+  
+  value_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Tests.TestTypesTestParamBytesMethodRequest.value)
+}
+inline std::string* TestTypesTestParamBytesMethodRequest::_internal_mutable_value() {
+  
+  return value_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TestTypesTestParamBytesMethodRequest::release_value() {
+  // @@protoc_insertion_point(field_release:Tests.TestTypesTestParamBytesMethodRequest.value)
+  
+  return value_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TestTypesTestParamBytesMethodRequest::set_allocated_value(std::string* value) {
+  if (value != nullptr) {
+    
+  } else {
+    
+  }
+  value_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set_allocated:Tests.TestTypesTestParamBytesMethodRequest.value)
+}
+
+// -------------------------------------------------------------------
+
+// TestTypesTestParamBytesMethodResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -4772,6 +4772,2292 @@ class Test2ObjectService final {
   typedef WithSplitStreamingMethod_ListenEvents<WithStreamedUnaryMethod_InvokeTestMethod2<WithStreamedUnaryMethod_InvokeTestMethodSync2<WithStreamedUnaryMethod_InvokeTestMethodWithNoResponse2<WithStreamedUnaryMethod_InvokeTestMethodNoRequest2<WithStreamedUnaryMethod_SetPropertyPropString2<WithStreamedUnaryMethod_GetPropertyPropString2<WithStreamedUnaryMethod_SetPropertyPropComplex2<WithStreamedUnaryMethod_GetPropertyPropComplex2<Service > > > > > > > > > StreamedService;
 };
 
+class TestTypesObjectService final {
+ public:
+  static constexpr char const* service_full_name() {
+    return "Tests.TestTypesObjectService";
+  }
+  class StubInterface {
+   public:
+    virtual ~StubInterface() {}
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>> Create(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>>(CreateRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>> AsyncCreate(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>>(AsyncCreateRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>> PrepareAsyncCreate(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>>(PrepareAsyncCreateRaw(context, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::Tests::TestTypesTestParamDoubleMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamDoubleMethodResponse>> AsyncInvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamDoubleMethodResponse>>(AsyncInvokeTestParamDoubleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamDoubleMethodResponse>> PrepareAsyncInvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamDoubleMethodResponse>>(PrepareAsyncInvokeTestParamDoubleRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::Tests::TestTypesTestParamFloatMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamFloatMethodResponse>> AsyncInvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamFloatMethodResponse>>(AsyncInvokeTestParamFloatRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamFloatMethodResponse>> PrepareAsyncInvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamFloatMethodResponse>>(PrepareAsyncInvokeTestParamFloatRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::Tests::TestTypesTestParamIntMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamIntMethodResponse>> AsyncInvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamIntMethodResponse>>(AsyncInvokeTestParamIntRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamIntMethodResponse>> PrepareAsyncInvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamIntMethodResponse>>(PrepareAsyncInvokeTestParamIntRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::Tests::TestTypesTestParamUIntMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamUIntMethodResponse>> AsyncInvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamUIntMethodResponse>>(AsyncInvokeTestParamUIntRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamUIntMethodResponse>> PrepareAsyncInvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamUIntMethodResponse>>(PrepareAsyncInvokeTestParamUIntRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::Tests::TestTypesTestParamLongMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamLongMethodResponse>> AsyncInvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamLongMethodResponse>>(AsyncInvokeTestParamLongRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamLongMethodResponse>> PrepareAsyncInvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamLongMethodResponse>>(PrepareAsyncInvokeTestParamLongRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::Tests::TestTypesTestParamULongMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamULongMethodResponse>> AsyncInvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamULongMethodResponse>>(AsyncInvokeTestParamULongRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamULongMethodResponse>> PrepareAsyncInvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamULongMethodResponse>>(PrepareAsyncInvokeTestParamULongRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::Tests::TestTypesTestParamBoolMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBoolMethodResponse>> AsyncInvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBoolMethodResponse>>(AsyncInvokeTestParamBoolRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBoolMethodResponse>> PrepareAsyncInvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBoolMethodResponse>>(PrepareAsyncInvokeTestParamBoolRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::Tests::TestTypesTestParamStringMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamStringMethodResponse>> AsyncInvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamStringMethodResponse>>(AsyncInvokeTestParamStringRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamStringMethodResponse>> PrepareAsyncInvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamStringMethodResponse>>(PrepareAsyncInvokeTestParamStringRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::Tests::TestTypesTestParamByteMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamByteMethodResponse>> AsyncInvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamByteMethodResponse>>(AsyncInvokeTestParamByteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamByteMethodResponse>> PrepareAsyncInvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamByteMethodResponse>>(PrepareAsyncInvokeTestParamByteRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::Tests::TestTypesTestParamBytesMethodResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBytesMethodResponse>> AsyncInvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBytesMethodResponse>>(AsyncInvokeTestParamBytesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBytesMethodResponse>> PrepareAsyncInvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBytesMethodResponse>>(PrepareAsyncInvokeTestParamBytesRaw(context, request, cq));
+    }
+    class experimental_async_interface {
+     public:
+      virtual ~experimental_async_interface() {}
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Create(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::google::protobuf::Any,::google::protobuf::Any>* reactor) = 0;
+      #else
+      virtual void Create(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::google::protobuf::Any,::google::protobuf::Any>* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamDouble(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamDouble(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamDouble(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamFloat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamFloat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamFloat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamIntMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamUInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamUInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamUInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamLong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamLongMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamLong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamLong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamULong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamULongMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamULong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamULong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamBool(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamBool(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamBool(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamString(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamStringMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamString(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamString(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamByte(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamByteMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamByte(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamByte(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InvokeTestParamBytes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InvokeTestParamBytes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InvokeTestParamBytes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+    };
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    typedef class experimental_async_interface async_interface;
+    #endif
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    async_interface* async() { return experimental_async(); }
+    #endif
+    virtual class experimental_async_interface* experimental_async() { return nullptr; }
+  private:
+    virtual ::grpc::ClientReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>* CreateRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>* AsyncCreateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::google::protobuf::Any, ::google::protobuf::Any>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamDoubleMethodResponse>* AsyncInvokeTestParamDoubleRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamDoubleMethodResponse>* PrepareAsyncInvokeTestParamDoubleRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamFloatMethodResponse>* AsyncInvokeTestParamFloatRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamFloatMethodResponse>* PrepareAsyncInvokeTestParamFloatRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamIntMethodResponse>* AsyncInvokeTestParamIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamIntMethodResponse>* PrepareAsyncInvokeTestParamIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamUIntMethodResponse>* AsyncInvokeTestParamUIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamUIntMethodResponse>* PrepareAsyncInvokeTestParamUIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamLongMethodResponse>* AsyncInvokeTestParamLongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamLongMethodResponse>* PrepareAsyncInvokeTestParamLongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamULongMethodResponse>* AsyncInvokeTestParamULongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamULongMethodResponse>* PrepareAsyncInvokeTestParamULongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBoolMethodResponse>* AsyncInvokeTestParamBoolRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBoolMethodResponse>* PrepareAsyncInvokeTestParamBoolRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamStringMethodResponse>* AsyncInvokeTestParamStringRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamStringMethodResponse>* PrepareAsyncInvokeTestParamStringRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamByteMethodResponse>* AsyncInvokeTestParamByteRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamByteMethodResponse>* PrepareAsyncInvokeTestParamByteRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBytesMethodResponse>* AsyncInvokeTestParamBytesRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Tests::TestTypesTestParamBytesMethodResponse>* PrepareAsyncInvokeTestParamBytesRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) = 0;
+  };
+  class Stub final : public StubInterface {
+   public:
+    Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>> Create(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>>(CreateRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>> AsyncCreate(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>>(AsyncCreateRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>> PrepareAsyncCreate(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>>(PrepareAsyncCreateRaw(context, cq));
+    }
+    ::grpc::Status InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::Tests::TestTypesTestParamDoubleMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamDoubleMethodResponse>> AsyncInvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamDoubleMethodResponse>>(AsyncInvokeTestParamDoubleRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamDoubleMethodResponse>> PrepareAsyncInvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamDoubleMethodResponse>>(PrepareAsyncInvokeTestParamDoubleRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::Tests::TestTypesTestParamFloatMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamFloatMethodResponse>> AsyncInvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamFloatMethodResponse>>(AsyncInvokeTestParamFloatRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamFloatMethodResponse>> PrepareAsyncInvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamFloatMethodResponse>>(PrepareAsyncInvokeTestParamFloatRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::Tests::TestTypesTestParamIntMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamIntMethodResponse>> AsyncInvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamIntMethodResponse>>(AsyncInvokeTestParamIntRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamIntMethodResponse>> PrepareAsyncInvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamIntMethodResponse>>(PrepareAsyncInvokeTestParamIntRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::Tests::TestTypesTestParamUIntMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamUIntMethodResponse>> AsyncInvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamUIntMethodResponse>>(AsyncInvokeTestParamUIntRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamUIntMethodResponse>> PrepareAsyncInvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamUIntMethodResponse>>(PrepareAsyncInvokeTestParamUIntRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::Tests::TestTypesTestParamLongMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamLongMethodResponse>> AsyncInvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamLongMethodResponse>>(AsyncInvokeTestParamLongRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamLongMethodResponse>> PrepareAsyncInvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamLongMethodResponse>>(PrepareAsyncInvokeTestParamLongRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::Tests::TestTypesTestParamULongMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamULongMethodResponse>> AsyncInvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamULongMethodResponse>>(AsyncInvokeTestParamULongRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamULongMethodResponse>> PrepareAsyncInvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamULongMethodResponse>>(PrepareAsyncInvokeTestParamULongRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::Tests::TestTypesTestParamBoolMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBoolMethodResponse>> AsyncInvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBoolMethodResponse>>(AsyncInvokeTestParamBoolRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBoolMethodResponse>> PrepareAsyncInvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBoolMethodResponse>>(PrepareAsyncInvokeTestParamBoolRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::Tests::TestTypesTestParamStringMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamStringMethodResponse>> AsyncInvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamStringMethodResponse>>(AsyncInvokeTestParamStringRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamStringMethodResponse>> PrepareAsyncInvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamStringMethodResponse>>(PrepareAsyncInvokeTestParamStringRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::Tests::TestTypesTestParamByteMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamByteMethodResponse>> AsyncInvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamByteMethodResponse>>(AsyncInvokeTestParamByteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamByteMethodResponse>> PrepareAsyncInvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamByteMethodResponse>>(PrepareAsyncInvokeTestParamByteRaw(context, request, cq));
+    }
+    ::grpc::Status InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::Tests::TestTypesTestParamBytesMethodResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBytesMethodResponse>> AsyncInvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBytesMethodResponse>>(AsyncInvokeTestParamBytesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBytesMethodResponse>> PrepareAsyncInvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBytesMethodResponse>>(PrepareAsyncInvokeTestParamBytesRaw(context, request, cq));
+    }
+    class experimental_async final :
+      public StubInterface::experimental_async_interface {
+     public:
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Create(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::google::protobuf::Any,::google::protobuf::Any>* reactor) override;
+      #else
+      void Create(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::google::protobuf::Any,::google::protobuf::Any>* reactor) override;
+      #endif
+      void InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamDouble(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamDouble(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamDouble(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamDouble(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamFloat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamFloat(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamFloat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamFloat(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamFloatMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamIntMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamUInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamUInt(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamUInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamUInt(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamUIntMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamLong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamLongMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamLong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamLong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamLong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamLongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamULong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamULongMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamULong(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamULong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamULong(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamULongMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamBool(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamBool(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamBool(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamBool(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBoolMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamString(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamStringMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamString(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamString(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamString(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamStringMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamByte(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamByteMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamByte(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamByte(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamByte(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamByteMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      void InvokeTestParamBytes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamBytes(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InvokeTestParamBytes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InvokeTestParamBytes(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::Tests::TestTypesTestParamBytesMethodResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+     private:
+      friend class Stub;
+      explicit experimental_async(Stub* stub): stub_(stub) { }
+      Stub* stub() { return stub_; }
+      Stub* stub_;
+    };
+    class experimental_async_interface* experimental_async() override { return &async_stub_; }
+
+   private:
+    std::shared_ptr< ::grpc::ChannelInterface> channel_;
+    class experimental_async async_stub_{this};
+    ::grpc::ClientReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* CreateRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* AsyncCreateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamDoubleMethodResponse>* AsyncInvokeTestParamDoubleRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamDoubleMethodResponse>* PrepareAsyncInvokeTestParamDoubleRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamFloatMethodResponse>* AsyncInvokeTestParamFloatRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamFloatMethodResponse>* PrepareAsyncInvokeTestParamFloatRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamIntMethodResponse>* AsyncInvokeTestParamIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamIntMethodResponse>* PrepareAsyncInvokeTestParamIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamIntMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamUIntMethodResponse>* AsyncInvokeTestParamUIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamUIntMethodResponse>* PrepareAsyncInvokeTestParamUIntRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamLongMethodResponse>* AsyncInvokeTestParamLongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamLongMethodResponse>* PrepareAsyncInvokeTestParamLongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamLongMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamULongMethodResponse>* AsyncInvokeTestParamULongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamULongMethodResponse>* PrepareAsyncInvokeTestParamULongRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamULongMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBoolMethodResponse>* AsyncInvokeTestParamBoolRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBoolMethodResponse>* PrepareAsyncInvokeTestParamBoolRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamStringMethodResponse>* AsyncInvokeTestParamStringRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamStringMethodResponse>* PrepareAsyncInvokeTestParamStringRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamStringMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamByteMethodResponse>* AsyncInvokeTestParamByteRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamByteMethodResponse>* PrepareAsyncInvokeTestParamByteRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamByteMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBytesMethodResponse>* AsyncInvokeTestParamBytesRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Tests::TestTypesTestParamBytesMethodResponse>* PrepareAsyncInvokeTestParamBytesRaw(::grpc::ClientContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Create_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamDouble_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamFloat_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamInt_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamUInt_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamLong_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamULong_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamBool_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamString_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamByte_;
+    const ::grpc::internal::RpcMethod rpcmethod_InvokeTestParamBytes_;
+  };
+  static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
+
+  class Service : public ::grpc::Service {
+   public:
+    Service();
+    virtual ~Service();
+    virtual ::grpc::Status Create(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* stream);
+    virtual ::grpc::Status InvokeTestParamDouble(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamFloat(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamInt(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamUInt(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamLong(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamULong(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamBool(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamString(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamByte(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response);
+    virtual ::grpc::Status InvokeTestParamBytes(::grpc::ServerContext* context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Create() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamDouble : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamDouble() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_InvokeTestParamDouble() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamDouble(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamDoubleMethodRequest* /*request*/, ::Tests::TestTypesTestParamDoubleMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamDouble(::grpc::ServerContext* context, ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamDoubleMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamFloat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamFloat() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_InvokeTestParamFloat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamFloat(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamFloatMethodRequest* /*request*/, ::Tests::TestTypesTestParamFloatMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamFloat(::grpc::ServerContext* context, ::Tests::TestTypesTestParamFloatMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamFloatMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamInt() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_InvokeTestParamInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamInt(::grpc::ServerContext* context, ::Tests::TestTypesTestParamIntMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamIntMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamUInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamUInt() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_InvokeTestParamUInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamUInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamUIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamUIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamUInt(::grpc::ServerContext* context, ::Tests::TestTypesTestParamUIntMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamUIntMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamLong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamLong() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_InvokeTestParamLong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamLong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamLongMethodRequest* /*request*/, ::Tests::TestTypesTestParamLongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamLong(::grpc::ServerContext* context, ::Tests::TestTypesTestParamLongMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamLongMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamULong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamULong() {
+      ::grpc::Service::MarkMethodAsync(6);
+    }
+    ~WithAsyncMethod_InvokeTestParamULong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamULong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamULongMethodRequest* /*request*/, ::Tests::TestTypesTestParamULongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamULong(::grpc::ServerContext* context, ::Tests::TestTypesTestParamULongMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamULongMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamBool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamBool() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_InvokeTestParamBool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBool(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBoolMethodRequest* /*request*/, ::Tests::TestTypesTestParamBoolMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamBool(::grpc::ServerContext* context, ::Tests::TestTypesTestParamBoolMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamBoolMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamString() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_InvokeTestParamString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamString(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamStringMethodRequest* /*request*/, ::Tests::TestTypesTestParamStringMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamString(::grpc::ServerContext* context, ::Tests::TestTypesTestParamStringMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamStringMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamByte : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamByte() {
+      ::grpc::Service::MarkMethodAsync(9);
+    }
+    ~WithAsyncMethod_InvokeTestParamByte() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamByte(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamByteMethodRequest* /*request*/, ::Tests::TestTypesTestParamByteMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamByte(::grpc::ServerContext* context, ::Tests::TestTypesTestParamByteMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamByteMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InvokeTestParamBytes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InvokeTestParamBytes() {
+      ::grpc::Service::MarkMethodAsync(10);
+    }
+    ~WithAsyncMethod_InvokeTestParamBytes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBytes(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBytesMethodRequest* /*request*/, ::Tests::TestTypesTestParamBytesMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamBytes(::grpc::ServerContext* context, ::Tests::TestTypesTestParamBytesMethodRequest* request, ::grpc::ServerAsyncResponseWriter< ::Tests::TestTypesTestParamBytesMethodResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Create<WithAsyncMethod_InvokeTestParamDouble<WithAsyncMethod_InvokeTestParamFloat<WithAsyncMethod_InvokeTestParamInt<WithAsyncMethod_InvokeTestParamUInt<WithAsyncMethod_InvokeTestParamLong<WithAsyncMethod_InvokeTestParamULong<WithAsyncMethod_InvokeTestParamBool<WithAsyncMethod_InvokeTestParamString<WithAsyncMethod_InvokeTestParamByte<WithAsyncMethod_InvokeTestParamBytes<Service > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Create() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::google::protobuf::Any, ::google::protobuf::Any>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->Create(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::google::protobuf::Any, ::google::protobuf::Any>* Create(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::google::protobuf::Any, ::google::protobuf::Any>* Create(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamDouble : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamDouble() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamDoubleMethodRequest, ::Tests::TestTypesTestParamDoubleMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamDoubleMethodRequest* request, ::Tests::TestTypesTestParamDoubleMethodResponse* response) { return this->InvokeTestParamDouble(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamDouble(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamDoubleMethodRequest, ::Tests::TestTypesTestParamDoubleMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamDoubleMethodRequest, ::Tests::TestTypesTestParamDoubleMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamDouble() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamDouble(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamDoubleMethodRequest* /*request*/, ::Tests::TestTypesTestParamDoubleMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamDouble(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamDoubleMethodRequest* /*request*/, ::Tests::TestTypesTestParamDoubleMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamDouble(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamDoubleMethodRequest* /*request*/, ::Tests::TestTypesTestParamDoubleMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamFloat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamFloat() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamFloatMethodRequest, ::Tests::TestTypesTestParamFloatMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamFloatMethodRequest* request, ::Tests::TestTypesTestParamFloatMethodResponse* response) { return this->InvokeTestParamFloat(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamFloat(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamFloatMethodRequest, ::Tests::TestTypesTestParamFloatMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamFloatMethodRequest, ::Tests::TestTypesTestParamFloatMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamFloat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamFloat(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamFloatMethodRequest* /*request*/, ::Tests::TestTypesTestParamFloatMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamFloat(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamFloatMethodRequest* /*request*/, ::Tests::TestTypesTestParamFloatMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamFloat(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamFloatMethodRequest* /*request*/, ::Tests::TestTypesTestParamFloatMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamInt() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamIntMethodRequest, ::Tests::TestTypesTestParamIntMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamIntMethodRequest* request, ::Tests::TestTypesTestParamIntMethodResponse* response) { return this->InvokeTestParamInt(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamInt(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamIntMethodRequest, ::Tests::TestTypesTestParamIntMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamIntMethodRequest, ::Tests::TestTypesTestParamIntMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamInt(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamIntMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamInt(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamIntMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamUInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamUInt() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamUIntMethodRequest, ::Tests::TestTypesTestParamUIntMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamUIntMethodRequest* request, ::Tests::TestTypesTestParamUIntMethodResponse* response) { return this->InvokeTestParamUInt(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamUInt(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamUIntMethodRequest, ::Tests::TestTypesTestParamUIntMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamUIntMethodRequest, ::Tests::TestTypesTestParamUIntMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamUInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamUInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamUIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamUIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamUInt(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamUIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamUIntMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamUInt(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamUIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamUIntMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamLong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamLong() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamLongMethodRequest, ::Tests::TestTypesTestParamLongMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamLongMethodRequest* request, ::Tests::TestTypesTestParamLongMethodResponse* response) { return this->InvokeTestParamLong(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamLong(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamLongMethodRequest, ::Tests::TestTypesTestParamLongMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(5);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamLongMethodRequest, ::Tests::TestTypesTestParamLongMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamLong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamLong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamLongMethodRequest* /*request*/, ::Tests::TestTypesTestParamLongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamLong(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamLongMethodRequest* /*request*/, ::Tests::TestTypesTestParamLongMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamLong(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamLongMethodRequest* /*request*/, ::Tests::TestTypesTestParamLongMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamULong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamULong() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamULongMethodRequest, ::Tests::TestTypesTestParamULongMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamULongMethodRequest* request, ::Tests::TestTypesTestParamULongMethodResponse* response) { return this->InvokeTestParamULong(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamULong(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamULongMethodRequest, ::Tests::TestTypesTestParamULongMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(6);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamULongMethodRequest, ::Tests::TestTypesTestParamULongMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamULong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamULong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamULongMethodRequest* /*request*/, ::Tests::TestTypesTestParamULongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamULong(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamULongMethodRequest* /*request*/, ::Tests::TestTypesTestParamULongMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamULong(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamULongMethodRequest* /*request*/, ::Tests::TestTypesTestParamULongMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamBool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamBool() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamBoolMethodRequest, ::Tests::TestTypesTestParamBoolMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamBoolMethodRequest* request, ::Tests::TestTypesTestParamBoolMethodResponse* response) { return this->InvokeTestParamBool(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamBool(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamBoolMethodRequest, ::Tests::TestTypesTestParamBoolMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(7);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamBoolMethodRequest, ::Tests::TestTypesTestParamBoolMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamBool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBool(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBoolMethodRequest* /*request*/, ::Tests::TestTypesTestParamBoolMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamBool(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamBoolMethodRequest* /*request*/, ::Tests::TestTypesTestParamBoolMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamBool(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamBoolMethodRequest* /*request*/, ::Tests::TestTypesTestParamBoolMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamString() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamStringMethodRequest, ::Tests::TestTypesTestParamStringMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamStringMethodRequest* request, ::Tests::TestTypesTestParamStringMethodResponse* response) { return this->InvokeTestParamString(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamString(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamStringMethodRequest, ::Tests::TestTypesTestParamStringMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(8);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamStringMethodRequest, ::Tests::TestTypesTestParamStringMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamString(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamStringMethodRequest* /*request*/, ::Tests::TestTypesTestParamStringMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamString(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamStringMethodRequest* /*request*/, ::Tests::TestTypesTestParamStringMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamString(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamStringMethodRequest* /*request*/, ::Tests::TestTypesTestParamStringMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamByte : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamByte() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamByteMethodRequest, ::Tests::TestTypesTestParamByteMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamByteMethodRequest* request, ::Tests::TestTypesTestParamByteMethodResponse* response) { return this->InvokeTestParamByte(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamByte(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamByteMethodRequest, ::Tests::TestTypesTestParamByteMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(9);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(9);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamByteMethodRequest, ::Tests::TestTypesTestParamByteMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamByte() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamByte(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamByteMethodRequest* /*request*/, ::Tests::TestTypesTestParamByteMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamByte(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamByteMethodRequest* /*request*/, ::Tests::TestTypesTestParamByteMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamByte(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamByteMethodRequest* /*request*/, ::Tests::TestTypesTestParamByteMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InvokeTestParamBytes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InvokeTestParamBytes() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamBytesMethodRequest, ::Tests::TestTypesTestParamBytesMethodResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::Tests::TestTypesTestParamBytesMethodRequest* request, ::Tests::TestTypesTestParamBytesMethodResponse* response) { return this->InvokeTestParamBytes(context, request, response); }));}
+    void SetMessageAllocatorFor_InvokeTestParamBytes(
+        ::grpc::experimental::MessageAllocator< ::Tests::TestTypesTestParamBytesMethodRequest, ::Tests::TestTypesTestParamBytesMethodResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(10);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(10);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::Tests::TestTypesTestParamBytesMethodRequest, ::Tests::TestTypesTestParamBytesMethodResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InvokeTestParamBytes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBytes(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBytesMethodRequest* /*request*/, ::Tests::TestTypesTestParamBytesMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamBytes(
+      ::grpc::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamBytesMethodRequest* /*request*/, ::Tests::TestTypesTestParamBytesMethodResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamBytes(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::Tests::TestTypesTestParamBytesMethodRequest* /*request*/, ::Tests::TestTypesTestParamBytesMethodResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+  typedef ExperimentalWithCallbackMethod_Create<ExperimentalWithCallbackMethod_InvokeTestParamDouble<ExperimentalWithCallbackMethod_InvokeTestParamFloat<ExperimentalWithCallbackMethod_InvokeTestParamInt<ExperimentalWithCallbackMethod_InvokeTestParamUInt<ExperimentalWithCallbackMethod_InvokeTestParamLong<ExperimentalWithCallbackMethod_InvokeTestParamULong<ExperimentalWithCallbackMethod_InvokeTestParamBool<ExperimentalWithCallbackMethod_InvokeTestParamString<ExperimentalWithCallbackMethod_InvokeTestParamByte<ExperimentalWithCallbackMethod_InvokeTestParamBytes<Service > > > > > > > > > > > CallbackService;
+  #endif
+
+  typedef ExperimentalWithCallbackMethod_Create<ExperimentalWithCallbackMethod_InvokeTestParamDouble<ExperimentalWithCallbackMethod_InvokeTestParamFloat<ExperimentalWithCallbackMethod_InvokeTestParamInt<ExperimentalWithCallbackMethod_InvokeTestParamUInt<ExperimentalWithCallbackMethod_InvokeTestParamLong<ExperimentalWithCallbackMethod_InvokeTestParamULong<ExperimentalWithCallbackMethod_InvokeTestParamBool<ExperimentalWithCallbackMethod_InvokeTestParamString<ExperimentalWithCallbackMethod_InvokeTestParamByte<ExperimentalWithCallbackMethod_InvokeTestParamBytes<Service > > > > > > > > > > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Create() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamDouble : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamDouble() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_InvokeTestParamDouble() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamDouble(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamDoubleMethodRequest* /*request*/, ::Tests::TestTypesTestParamDoubleMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamFloat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamFloat() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_InvokeTestParamFloat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamFloat(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamFloatMethodRequest* /*request*/, ::Tests::TestTypesTestParamFloatMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamInt() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_InvokeTestParamInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamUInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamUInt() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_InvokeTestParamUInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamUInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamUIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamUIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamLong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamLong() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_InvokeTestParamLong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamLong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamLongMethodRequest* /*request*/, ::Tests::TestTypesTestParamLongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamULong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamULong() {
+      ::grpc::Service::MarkMethodGeneric(6);
+    }
+    ~WithGenericMethod_InvokeTestParamULong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamULong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamULongMethodRequest* /*request*/, ::Tests::TestTypesTestParamULongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamBool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamBool() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_InvokeTestParamBool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBool(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBoolMethodRequest* /*request*/, ::Tests::TestTypesTestParamBoolMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamString() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_InvokeTestParamString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamString(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamStringMethodRequest* /*request*/, ::Tests::TestTypesTestParamStringMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamByte : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamByte() {
+      ::grpc::Service::MarkMethodGeneric(9);
+    }
+    ~WithGenericMethod_InvokeTestParamByte() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamByte(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamByteMethodRequest* /*request*/, ::Tests::TestTypesTestParamByteMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InvokeTestParamBytes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InvokeTestParamBytes() {
+      ::grpc::Service::MarkMethodGeneric(10);
+    }
+    ~WithGenericMethod_InvokeTestParamBytes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBytes(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBytesMethodRequest* /*request*/, ::Tests::TestTypesTestParamBytesMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Create() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamDouble : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamDouble() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_InvokeTestParamDouble() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamDouble(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamDoubleMethodRequest* /*request*/, ::Tests::TestTypesTestParamDoubleMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamDouble(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamFloat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamFloat() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_InvokeTestParamFloat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamFloat(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamFloatMethodRequest* /*request*/, ::Tests::TestTypesTestParamFloatMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamFloat(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamInt() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_InvokeTestParamInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamInt(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamUInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamUInt() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_InvokeTestParamUInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamUInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamUIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamUIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamUInt(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamLong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamLong() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_InvokeTestParamLong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamLong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamLongMethodRequest* /*request*/, ::Tests::TestTypesTestParamLongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamLong(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamULong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamULong() {
+      ::grpc::Service::MarkMethodRaw(6);
+    }
+    ~WithRawMethod_InvokeTestParamULong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamULong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamULongMethodRequest* /*request*/, ::Tests::TestTypesTestParamULongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamULong(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamBool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamBool() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_InvokeTestParamBool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBool(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBoolMethodRequest* /*request*/, ::Tests::TestTypesTestParamBoolMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamBool(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamString() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_InvokeTestParamString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamString(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamStringMethodRequest* /*request*/, ::Tests::TestTypesTestParamStringMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamString(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamByte : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamByte() {
+      ::grpc::Service::MarkMethodRaw(9);
+    }
+    ~WithRawMethod_InvokeTestParamByte() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamByte(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamByteMethodRequest* /*request*/, ::Tests::TestTypesTestParamByteMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamByte(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(9, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InvokeTestParamBytes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InvokeTestParamBytes() {
+      ::grpc::Service::MarkMethodRaw(10);
+    }
+    ~WithRawMethod_InvokeTestParamBytes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBytes(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBytesMethodRequest* /*request*/, ::Tests::TestTypesTestParamBytesMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInvokeTestParamBytes(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(10, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Create() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(0,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->Create(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::google::protobuf::Any, ::google::protobuf::Any>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Create(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Create(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamDouble : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamDouble() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamDouble(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamDouble() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamDouble(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamDoubleMethodRequest* /*request*/, ::Tests::TestTypesTestParamDoubleMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamDouble(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamDouble(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamFloat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamFloat() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamFloat(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamFloat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamFloat(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamFloatMethodRequest* /*request*/, ::Tests::TestTypesTestParamFloatMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamFloat(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamFloat(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamInt() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamInt(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamInt(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamInt(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamUInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamUInt() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamUInt(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamUInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamUInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamUIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamUIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamUInt(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamUInt(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamLong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamLong() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamLong(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamLong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamLong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamLongMethodRequest* /*request*/, ::Tests::TestTypesTestParamLongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamLong(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamLong(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamULong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamULong() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(6,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamULong(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamULong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamULong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamULongMethodRequest* /*request*/, ::Tests::TestTypesTestParamULongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamULong(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamULong(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamBool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamBool() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(7,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamBool(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamBool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBool(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBoolMethodRequest* /*request*/, ::Tests::TestTypesTestParamBoolMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamBool(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamBool(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamString() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamString(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamString(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamStringMethodRequest* /*request*/, ::Tests::TestTypesTestParamStringMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamString(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamString(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamByte : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamByte() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(9,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamByte(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamByte() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamByte(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamByteMethodRequest* /*request*/, ::Tests::TestTypesTestParamByteMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamByte(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamByte(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InvokeTestParamBytes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InvokeTestParamBytes() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(10,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InvokeTestParamBytes(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InvokeTestParamBytes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InvokeTestParamBytes(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBytesMethodRequest* /*request*/, ::Tests::TestTypesTestParamBytesMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InvokeTestParamBytes(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InvokeTestParamBytes(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamDouble : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamDouble() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamDoubleMethodRequest, ::Tests::TestTypesTestParamDoubleMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamDouble<BaseClass>::StreamedInvokeTestParamDouble, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamDouble() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamDouble(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamDoubleMethodRequest* /*request*/, ::Tests::TestTypesTestParamDoubleMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamDouble(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamDoubleMethodRequest,::Tests::TestTypesTestParamDoubleMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamFloat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamFloat() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamFloatMethodRequest, ::Tests::TestTypesTestParamFloatMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamFloat<BaseClass>::StreamedInvokeTestParamFloat, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamFloat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamFloat(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamFloatMethodRequest* /*request*/, ::Tests::TestTypesTestParamFloatMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamFloat(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamFloatMethodRequest,::Tests::TestTypesTestParamFloatMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamInt() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamIntMethodRequest, ::Tests::TestTypesTestParamIntMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamInt<BaseClass>::StreamedInvokeTestParamInt, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamInt(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamIntMethodRequest,::Tests::TestTypesTestParamIntMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamUInt : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamUInt() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamUIntMethodRequest, ::Tests::TestTypesTestParamUIntMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamUInt<BaseClass>::StreamedInvokeTestParamUInt, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamUInt() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamUInt(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamUIntMethodRequest* /*request*/, ::Tests::TestTypesTestParamUIntMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamUInt(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamUIntMethodRequest,::Tests::TestTypesTestParamUIntMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamLong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamLong() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamLongMethodRequest, ::Tests::TestTypesTestParamLongMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamLong<BaseClass>::StreamedInvokeTestParamLong, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamLong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamLong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamLongMethodRequest* /*request*/, ::Tests::TestTypesTestParamLongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamLong(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamLongMethodRequest,::Tests::TestTypesTestParamLongMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamULong : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamULong() {
+      ::grpc::Service::MarkMethodStreamed(6,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamULongMethodRequest, ::Tests::TestTypesTestParamULongMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamULong<BaseClass>::StreamedInvokeTestParamULong, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamULong() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamULong(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamULongMethodRequest* /*request*/, ::Tests::TestTypesTestParamULongMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamULong(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamULongMethodRequest,::Tests::TestTypesTestParamULongMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamBool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamBool() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamBoolMethodRequest, ::Tests::TestTypesTestParamBoolMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamBool<BaseClass>::StreamedInvokeTestParamBool, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamBool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamBool(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBoolMethodRequest* /*request*/, ::Tests::TestTypesTestParamBoolMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamBool(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamBoolMethodRequest,::Tests::TestTypesTestParamBoolMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamString : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamString() {
+      ::grpc::Service::MarkMethodStreamed(8,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamStringMethodRequest, ::Tests::TestTypesTestParamStringMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamString<BaseClass>::StreamedInvokeTestParamString, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamString() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamString(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamStringMethodRequest* /*request*/, ::Tests::TestTypesTestParamStringMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamString(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamStringMethodRequest,::Tests::TestTypesTestParamStringMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamByte : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamByte() {
+      ::grpc::Service::MarkMethodStreamed(9,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamByteMethodRequest, ::Tests::TestTypesTestParamByteMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamByte<BaseClass>::StreamedInvokeTestParamByte, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamByte() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamByte(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamByteMethodRequest* /*request*/, ::Tests::TestTypesTestParamByteMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamByte(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamByteMethodRequest,::Tests::TestTypesTestParamByteMethodResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InvokeTestParamBytes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InvokeTestParamBytes() {
+      ::grpc::Service::MarkMethodStreamed(10,
+        new ::grpc::internal::StreamedUnaryHandler< ::Tests::TestTypesTestParamBytesMethodRequest, ::Tests::TestTypesTestParamBytesMethodResponse>(std::bind(&WithStreamedUnaryMethod_InvokeTestParamBytes<BaseClass>::StreamedInvokeTestParamBytes, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_InvokeTestParamBytes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InvokeTestParamBytes(::grpc::ServerContext* /*context*/, const ::Tests::TestTypesTestParamBytesMethodRequest* /*request*/, ::Tests::TestTypesTestParamBytesMethodResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInvokeTestParamBytes(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Tests::TestTypesTestParamBytesMethodRequest,::Tests::TestTypesTestParamBytesMethodResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_InvokeTestParamDouble<WithStreamedUnaryMethod_InvokeTestParamFloat<WithStreamedUnaryMethod_InvokeTestParamInt<WithStreamedUnaryMethod_InvokeTestParamUInt<WithStreamedUnaryMethod_InvokeTestParamLong<WithStreamedUnaryMethod_InvokeTestParamULong<WithStreamedUnaryMethod_InvokeTestParamBool<WithStreamedUnaryMethod_InvokeTestParamString<WithStreamedUnaryMethod_InvokeTestParamByte<WithStreamedUnaryMethod_InvokeTestParamBytes<Service > > > > > > > > > > StreamedUnaryService;
+  typedef Service SplitStreamedService;
+  typedef WithStreamedUnaryMethod_InvokeTestParamDouble<WithStreamedUnaryMethod_InvokeTestParamFloat<WithStreamedUnaryMethod_InvokeTestParamInt<WithStreamedUnaryMethod_InvokeTestParamUInt<WithStreamedUnaryMethod_InvokeTestParamLong<WithStreamedUnaryMethod_InvokeTestParamULong<WithStreamedUnaryMethod_InvokeTestParamBool<WithStreamedUnaryMethod_InvokeTestParamString<WithStreamedUnaryMethod_InvokeTestParamByte<WithStreamedUnaryMethod_InvokeTestParamBytes<Service > > > > > > > > > > StreamedService;
+};
+
 }  // namespace Tests
 
 

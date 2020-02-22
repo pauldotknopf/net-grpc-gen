@@ -156,9 +156,22 @@ namespace NetGrpcGen.Generator
             {
                 case FieldType.Int32:
                     return "int";
+                case FieldType.Double:
+                    return "double";
+                case FieldType.Float:
+                    return "float";
+                case FieldType.UInt32:
+                    return "quint32";
+                case FieldType.Int64:
+                    return "qint64";
+                case FieldType.UInt64:
+                    return "ulong";
+                case FieldType.Bytes:
+                    return "QByteArray";
                 case FieldType.Message:
                     return "QJsonValue";
                 default:
+                    return "bool";
                     throw new Exception($"Not supported: {field.FieldType}");
             }
         }
@@ -175,9 +188,22 @@ namespace NetGrpcGen.Generator
             {
                 case FieldType.Int32:
                     return "int";
+                case FieldType.Double:
+                    return "double";
+                case FieldType.Float:
+                    return "float";
+                case FieldType.UInt32:
+                    return "quint32";
+                case FieldType.Int64:
+                    return "qint64";
+                case FieldType.UInt64:
+                    return "ulong";
+                case FieldType.Bytes:
+                    return "QByteArray";
                 case FieldType.Message:
                     return "QJsonValue";
                 default:
+                    return "bool";
                     throw new Exception($"Not supported: {field.FieldType}");
             }
         }

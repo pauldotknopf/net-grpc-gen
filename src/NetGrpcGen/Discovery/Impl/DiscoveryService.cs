@@ -182,6 +182,14 @@ namespace NetGrpcGen.Discovery.Impl
                 return GetGrpcType(typeof(StringValue));
             }
 
+            if (type == typeof(uint))
+            {
+                return new GrpcType
+                {
+                    TypeName = "uint32"
+                };
+            }
+            
             if (type == typeof(int))
             {
                 return new GrpcType
@@ -190,6 +198,62 @@ namespace NetGrpcGen.Discovery.Impl
                 };
             }
 
+            if (type == typeof(double))
+            {
+                return new GrpcType
+                {
+                    TypeName = "double"
+                };
+            }
+
+            if (type == typeof(float))
+            {
+                return new GrpcType
+                {
+                    TypeName = "float"
+                };
+            }
+
+            if (type == typeof(long))
+            {
+                return new GrpcType
+                {
+                    TypeName = "int64"
+                };
+            }
+
+            if (type == typeof(ulong))
+            {
+                return new GrpcType
+                {
+                    TypeName = "uint64"
+                };
+            }
+
+            if (type == typeof(bool))
+            {
+                return new GrpcType
+                {
+                    TypeName = "bool"
+                };
+            }
+
+            if (type == typeof(byte))
+            {
+                return new GrpcType
+                {
+                    TypeName = "uint32"
+                };
+            }
+
+            if (type == typeof(byte[]))
+            {
+                return new GrpcType
+                {
+                    TypeName = "bytes"
+                };
+            }
+            
             if (typeof(IMessage).IsAssignableFrom(type))
             {
                 var descriptor = GetDescriptor(type);
