@@ -13,7 +13,7 @@ namespace NetGrpcGen.Tests.TypeTests
         {
             var o = new Mock<TestTypes>();
             o.Setup(x => x.TestParamInt(3));
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 await client.InvokeTestParamIntAsync(new TestTypesTestParamIntMethodRequest
                 {

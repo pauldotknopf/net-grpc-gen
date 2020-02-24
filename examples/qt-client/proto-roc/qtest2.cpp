@@ -32,6 +32,9 @@ QTest2::QTest2(QObject* parent) : QObject(parent), d_priv(new Tests::QTest2Priva
 	connect(d_priv->worker, &QTest2Worker::testMethodSync2Done, this, &QTest2::testMethodSync2Handler);
 	connect(d_priv->worker, &QTest2Worker::testMethodWithNoResponse2Done, this, &QTest2::testMethodWithNoResponse2Handler);
 	connect(d_priv->worker, &QTest2Worker::testMethodNoRequest2Done, this, &QTest2::testMethodNoRequest2Handler);
+	connect(d_priv->worker, &QTest2Worker::testEvent2Raised, this, &QTest2::testEvent2);
+	connect(d_priv->worker, &QTest2Worker::testEventComplex2Raised, this, &QTest2::testEventComplex2);
+	connect(d_priv->worker, &QTest2Worker::testEventNoData2Raised, this, &QTest2::testEventNoData2);
 }
 QTest2::~QTest2()
 {
@@ -127,4 +130,20 @@ void QTest2::testMethodNoRequest2Handler(int requestId, QString error)
 		args.push_back(e);
 		request->callback.call(args);
 	}
+}
+QJsonValue QTest2::getPropString2()
+{
+	return d_priv->worker->getPropString2();
+}
+void QTest2::setPropString2(QJsonValue val)
+{
+	d_priv->worker->setPropString2(val);
+}
+QJsonValue QTest2::getPropComplex2()
+{
+	return d_priv->worker->getPropComplex2();
+}
+void QTest2::setPropComplex2(QJsonValue val)
+{
+	d_priv->worker->setPropComplex2(val);
 }

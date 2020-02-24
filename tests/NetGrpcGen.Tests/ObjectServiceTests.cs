@@ -24,7 +24,7 @@ namespace NetGrpcGen.Tests
         public async Task Can_create_and_finalize_object()
         {
             var o = new Mock<Test1>();
-            await WithWithObject(o.Object, (client, stream, instance, objectId) => Task.CompletedTask);
+            await WithWithObject(o.Object, (client, instance, objectId) => Task.CompletedTask);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace NetGrpcGen.Tests
         {
             var o = new Mock<Test1>();
             o.CallBase = true;
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var response = await client.InvokeTestMethodAsync(new Test1TestMethodMethodRequest
                 {
@@ -59,7 +59,7 @@ namespace NetGrpcGen.Tests
                     Value1 = 3,
                     Value2 = "we"
                 }));
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var response = await client.InvokeTestMethodAsync(new Test1TestMethodMethodRequest
                 {
@@ -78,7 +78,7 @@ namespace NetGrpcGen.Tests
             var o = new Mock<Test1>();
             o.Setup(x => x.TestMethod(null))
                 .Returns(Task.FromResult<TestMessageResponse>(null));
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var response = await client.InvokeTestMethodAsync(new Test1TestMethodMethodRequest
                 {
@@ -94,7 +94,7 @@ namespace NetGrpcGen.Tests
         {
             var o = new Mock<Test1>();
             o.CallBase = true;
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var response = await client.InvokeTestMethodSyncAsync(new Test1TestMethodSyncMethodRequest
                 {
@@ -116,7 +116,7 @@ namespace NetGrpcGen.Tests
         {
             var o = new Mock<Test1>();
             o.Setup(x => x.TestMethodWithNoResponse(It.IsAny<TestMessageRequest>()));
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 await client.InvokeTestMethodWithNoResponseAsync(new Test1TestMethodWithNoResponseMethodRequest
                 {
@@ -132,7 +132,7 @@ namespace NetGrpcGen.Tests
         {
             var o = new Mock<Test1>();
             o.Setup(x => x.TestMethodNoRequest()).Returns(2);
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var response = await client.InvokeTestMethodNoRequestAsync(new Test1TestMethodNoRequestMethodRequest
                 {
@@ -149,7 +149,7 @@ namespace NetGrpcGen.Tests
         {
             var o = new Mock<Test1>();
             o.SetupGet(x => x.PropString).Returns("sssdsd");
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var response = await client.GetPropertyPropStringAsync(new Test1PropStringGetRequest
                 {
@@ -165,7 +165,7 @@ namespace NetGrpcGen.Tests
         {
             var o = new Mock<Test1>();
             o.SetupSet(x => x.PropString = "TTT");
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 await client.SetPropertyPropStringAsync(new Test1PropStringSetRequest
                 {
@@ -181,7 +181,7 @@ namespace NetGrpcGen.Tests
         {
             var o = new Mock<Test1>();
             o.SetupGet(x => x.PropString).Returns("sdfxcvs");
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
@@ -208,7 +208,7 @@ namespace NetGrpcGen.Tests
                 Value1 = 78,
                 Value2 = "sss"
             });
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
@@ -231,7 +231,7 @@ namespace NetGrpcGen.Tests
         public async Task Can_listen_to_event()
         {
             var o = new Mock<Test1>();
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
@@ -253,7 +253,7 @@ namespace NetGrpcGen.Tests
         public async Task Can_listen_to_event_with_complex_data()
         {
             var o = new Mock<Test1>();
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
@@ -280,7 +280,7 @@ namespace NetGrpcGen.Tests
         public async Task Can_listen_to_event_with_no_data()
         {
             var o = new Mock<Test1>();
-            await WithWithObject(o.Object, async (client, stream, instance, objectId) =>
+            await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
                 var eventStream = client.ListenEvents(new Test1ListenEventStream
                 {
@@ -297,7 +297,7 @@ namespace NetGrpcGen.Tests
             });
         }
 
-        private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, Test1, ulong, Task> action)
+        private async Task WithWithObject(Test1 instance, Func<Test1ObjectService.Test1ObjectServiceClient, Test1, ulong, Task> action)
         {
             var serviceAdapter = new ObjectServiceAdapter<Test1>(new ProtoModelBuilder(),
                 new DiscoveryService(new AttributeFinder(new TypeFinder())),
@@ -317,18 +317,15 @@ namespace NetGrpcGen.Tests
             var client = new Test1ObjectService.Test1ObjectServiceClient(new Channel("localhost", 8000,
                 ChannelCredentials.Insecure));
 
-            var stream = client.Create();
+            var stream = client.Create(new Test1CreateRequest());
             
             (await stream.ResponseStream.MoveNext()).Should().BeTrue();
 
-            var objectId = stream.ResponseStream.Current.Unpack<Test1CreateResponse>().ObjectId;
+            var objectId = stream.ResponseStream.Current.ObjectId;
 
-            await action(client, stream, instance, objectId);
+            await action(client, instance, objectId);
             
             // Finalize the object.
-            await stream.RequestStream.WriteAsync(Any.Pack(new Test1StopRequest()));
-            (await stream.ResponseStream.MoveNext()).Should().BeTrue();
-            stream.ResponseStream.Current.Unpack<Test1StopResponse>();
             stream.Dispose();
 
             await serverHandler.ShutdownAsync();

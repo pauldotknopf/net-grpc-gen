@@ -12,13 +12,7 @@ namespace NetGrpcGen.ProtoModel
         
         public MethodDescriptor CreateDescriptor { get; set; }
         
-        public MessageDescriptor CreateResponseDescriptor { get; set; }
-        
-        public MessageDescriptor StopRequestDescriptor { get; set; }
-        
-        public MessageDescriptor StopResponseDescriptor { get; set; }
-        
-        public MethodDescriptor ListEventsDescriptor { get; set; }
+        public MethodDescriptor ListenEventsDescriptor { get; set; }
         
         public List<ProtoMethodModel> Methods { get; set; } = new List<ProtoMethodModel>();
         

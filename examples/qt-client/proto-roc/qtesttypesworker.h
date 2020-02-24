@@ -10,16 +10,17 @@ class QTestTypesWorker : public QObject {
 public:
 	QTestTypesWorker();
 	~QTestTypesWorker();
-	void testParamDouble(double request, int requestId);
-	void testParamFloat(float request, int requestId);
-	void testParamInt(int request, int requestId);
-	void testParamUInt(quint32 request, int requestId);
-	void testParamLong(qint64 request, int requestId);
-	void testParamULong(ulong request, int requestId);
+	void testParamDouble(bool request, int requestId);
+	void testParamFloat(bool request, int requestId);
+	void testParamInt(bool request, int requestId);
+	void testParamUInt(bool request, int requestId);
+	void testParamLong(bool request, int requestId);
+	void testParamULong(bool request, int requestId);
 	void testParamBool(bool request, int requestId);
 	void testParamString(QJsonValue request, int requestId);
-	void testParamByte(quint32 request, int requestId);
+	void testParamByte(bool request, int requestId);
 	void testParamBytes(QByteArray request, int requestId);
+	void processEvent(void* event);
 signals:
 	void testParamDoubleDone(int requestId, QString error);
 	void testParamFloatDone(int requestId, QString error);
@@ -31,6 +32,7 @@ signals:
 	void testParamStringDone(int requestId, QString error);
 	void testParamByteDone(int requestId, QString error);
 	void testParamBytesDone(int requestId, QString error);
+	void testEventRaised(QJsonValue val);
 private:
 	QScopedPointer<QTestTypesWorkerPrivate> const d_priv;
 };

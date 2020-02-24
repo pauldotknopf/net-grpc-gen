@@ -35,6 +35,9 @@ QTest1::QTest1(QObject* parent) : QObject(parent), d_priv(new Tests::QTest1Priva
 	connect(d_priv->worker, &QTest1Worker::testMethodNoRequestOrResponseDone, this, &QTest1::testMethodNoRequestOrResponseHandler);
 	connect(d_priv->worker, &QTest1Worker::testMethodNoRequestDone, this, &QTest1::testMethodNoRequestHandler);
 	connect(d_priv->worker, &QTest1Worker::testMethodNoResponseDone, this, &QTest1::testMethodNoResponseHandler);
+	connect(d_priv->worker, &QTest1Worker::testEventRaised, this, &QTest1::testEvent);
+	connect(d_priv->worker, &QTest1Worker::testEventComplexRaised, this, &QTest1::testEventComplex);
+	connect(d_priv->worker, &QTest1Worker::testEventNoDataRaised, this, &QTest1::testEventNoData);
 }
 QTest1::~QTest1()
 {
@@ -59,7 +62,7 @@ void QTest1::testMethodWithNoResponse(QJsonValue val, QJSValue state, QJSValue c
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testMethodWithNoResponse(val, requestId);
 }
-void QTest1::testMethodPrimitive(int val, QJSValue state, QJSValue callback)
+void QTest1::testMethodPrimitive(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
@@ -77,7 +80,7 @@ void QTest1::testMethodNoRequest(QJSValue state, QJSValue callback)
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testMethodNoRequest(requestId);
 }
-void QTest1::testMethodNoResponse(int val, QJSValue state, QJSValue callback)
+void QTest1::testMethodNoResponse(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
@@ -133,7 +136,7 @@ void QTest1::testMethodWithNoResponseHandler(int requestId, QString error)
 		request->callback.call(args);
 	}
 }
-void QTest1::testMethodPrimitiveHandler(int val, int requestId, QString error)
+void QTest1::testMethodPrimitiveHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
@@ -166,7 +169,7 @@ void QTest1::testMethodNoRequestOrResponseHandler(int requestId, QString error)
 		request->callback.call(args);
 	}
 }
-void QTest1::testMethodNoRequestHandler(int val, int requestId, QString error)
+void QTest1::testMethodNoRequestHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
@@ -198,4 +201,20 @@ void QTest1::testMethodNoResponseHandler(int requestId, QString error)
 		args.push_back(e);
 		request->callback.call(args);
 	}
+}
+QJsonValue QTest1::getPropString()
+{
+	return d_priv->worker->getPropString();
+}
+void QTest1::setPropString(QJsonValue val)
+{
+	d_priv->worker->setPropString(val);
+}
+QJsonValue QTest1::getPropComplex()
+{
+	return d_priv->worker->getPropComplex();
+}
+void QTest1::setPropComplex(QJsonValue val)
+{
+	d_priv->worker->setPropComplex(val);
 }

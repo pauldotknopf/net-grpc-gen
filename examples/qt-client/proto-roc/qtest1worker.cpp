@@ -3,41 +3,61 @@
 #include "gen.grpc.pb.h"
 #include "roc-lib/qrocobjectadapter.h"
 #include "protobuf-qjson/protobufjsonconverter.h"
+#include <QThread>
 using namespace Tests;
+class EventThread : public QThread
+{
+public:
+	std::shared_ptr<Tests::Test1ObjectService::Stub> service;
+	grpc::ClientContext context;
+	google::protobuf::uint64 objectId;
+	QTest1Worker* worker;
+	void run() override
+	{
+		if(!service) { return; }
+		Tests::Test1ListenEventStream request;
+		request.set_objectid(objectId);
+		auto stream = service->ListenEvents(&context, request);
+		google::protobuf::Any any;
+		while(stream->Read(&any)) { worker->processEvent(&any); }
+		auto result = stream->Finish();
+		if(result.error_code() == grpc::StatusCode::CANCELLED) { return; }
+		if(result.ok()) { qCritical("unabled to stop stream: %s", result.error_message().c_str()); return; }
+	}
+};
 class Tests::QTest1WorkerPrivate
 {
 public:
-	QTest1WorkerPrivate() : objectId(0) {}
+	QTest1WorkerPrivate(QTest1Worker* worker) : objectId(0), worker(worker) {}
+	QTest1Worker* worker;
 	google::protobuf::uint64 objectId;
-	std::unique_ptr<Tests::Test1ObjectService::Stub> service;
+	std::shared_ptr<Tests::Test1ObjectService::Stub> service;
 	grpc::ClientContext objectRequestContext;
-	std::unique_ptr<grpc::ClientReaderWriter<google::protobuf::Any, google::protobuf::Any>> objectRequest;
-	
+	std::unique_ptr<grpc::ClientReader<Tests::Test1CreateResponse>> objectRequest;
+	EventThread eventThread;
 	void createObject()
 	{
-		objectRequest = service->Create(&objectRequestContext);
-		google::protobuf::Any createResponseAny;
-		if(!objectRequest->Read(&createResponseAny))
-		{
-			qCritical("Failed to read request from object creation.");
-			objectRequest.release();
-			return;
-		}
-		Tests::Test1CreateResponse createResponse;
-		if(!createResponseAny.UnpackTo(&createResponse))
-		{
-			qCritical("Failed to unpack request from object creation.");
-			objectRequest.release();
-			return;
-		}
-		objectId = createResponse.objectid();
+		Tests::Test1CreateRequest request;
+		objectRequest = service->Create(&objectRequestContext, request);
+		Tests::Test1CreateResponse response;
+		if(!objectRequest->Read(&response)) { qCritical(""); objectRequest.release(); return; }
+		objectId = response.objectid();
+		eventThread.objectId = objectId;
+		eventThread.service = service;
+		eventThread.worker = worker;
+		eventThread.start();
 	}
 	void releaseObject()
 	{
 		if(objectRequest != nullptr)
 		{
+			eventThread.context.TryCancel();
+			eventThread.quit();
+			eventThread.wait();
+			objectRequestContext.TryCancel();
 			auto result = objectRequest->Finish();
-			if(!result.ok()) { qCritical("Couldn't dispose of object: %s", result.error_message().c_str()); }
+			if(result.error_code() == grpc::StatusCode::CANCELLED) { return; }
+			if(!result.ok()) { qCritical("Couldn't release object: %s", result.error_message().c_str()); }
 		}
 	}
 	bool isValid()
@@ -45,7 +65,7 @@ public:
 		return objectRequest != nullptr;
 	}
 };
-QTest1Worker::QTest1Worker() : QObject(nullptr), d_priv(new QTest1WorkerPrivate())
+QTest1Worker::QTest1Worker() : QObject(nullptr), d_priv(new QTest1WorkerPrivate(this))
 {
 	auto channel = QRocObjectAdapter::getSharedChannel();
 	if(channel == nullptr) { qWarning("Set the channel to use via QRocObjectAdapter::setSharedChannel(...)"); return; }
@@ -116,7 +136,7 @@ void QTest1Worker::testMethodWithNoResponse(QJsonValue val, int requestId)
 		}
 	});
 }
-void QTest1Worker::testMethodPrimitive(int val, int requestId)
+void QTest1Worker::testMethodPrimitive(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::Test1TestMethodPrimitiveMethodRequest request;
@@ -164,7 +184,7 @@ void QTest1Worker::testMethodNoRequest(int requestId)
 		}
 	});
 }
-void QTest1Worker::testMethodNoResponse(int val, int requestId)
+void QTest1Worker::testMethodNoResponse(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::Test1TestMethodNoResponseMethodRequest request;
@@ -179,4 +199,75 @@ void QTest1Worker::testMethodNoResponse(int val, int requestId)
 			emit testMethodNoResponseDone(requestId, QString());
 		}
 	});
+}
+void QTest1Worker::processEvent(void* _event)
+{
+	auto event = reinterpret_cast<google::protobuf::Any*>(_event);
+	if(event->Is<Tests::Test1TestEventEvent>())
+	{
+		Tests::Test1TestEventEvent eventMessage;
+		event->UnpackTo(&eventMessage);
+		auto eventValue = eventMessage.value();
+		QJsonValue jsonValue;
+		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
+		emit testEventRaised(jsonValue);
+	}
+	if(event->Is<Tests::Test1TestEventComplexEvent>())
+	{
+		Tests::Test1TestEventComplexEvent eventMessage;
+		event->UnpackTo(&eventMessage);
+		auto eventValue = eventMessage.value();
+		QJsonValue jsonValue;
+		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
+		emit testEventComplexRaised(jsonValue);
+	}
+	if(event->Is<Tests::Test1TestEventNoDataEvent>())
+	{
+		emit testEventNoDataRaised();
+	}
+	if(event->Is<Tests::Test1PropStringPropertyChanged>())
+	{
+		Tests::Test1PropStringPropertyChanged eventMessage;
+		event->UnpackTo(&eventMessage);
+		auto eventValue = eventMessage.value();
+		QJsonValue jsonValue;
+		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
+		emit propStringChanged(jsonValue);
+	}
+	if(event->Is<Tests::Test1PropComplexPropertyChanged>())
+	{
+		Tests::Test1PropComplexPropertyChanged eventMessage;
+		event->UnpackTo(&eventMessage);
+		auto eventValue = eventMessage.value();
+		QJsonValue jsonValue;
+		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
+		emit propComplexChanged(jsonValue);
+	}
+	qDebug("got event: %s", event->type_url().c_str());
+}
+QJsonValue QTest1Worker::getPropString()
+{
+	Tests::Test1PropStringGetRequest request;
+	Tests::Test1PropStringGetResponse response;
+	request.set_objectid(d_priv->objectId);
+	grpc::ClientContext context;
+	auto result = d_priv->service->GetPropertyPropString(&context, request, &response);
+	if(!result.ok()) { qCritical("couldn't read property PropString: %s", result.error_message().c_str()); return QJsonValue(); }
+	auto propValue = response.value();
+}
+void QTest1Worker::setPropString(QJsonValue val)
+{
+}
+QJsonValue QTest1Worker::getPropComplex()
+{
+	Tests::Test1PropComplexGetRequest request;
+	Tests::Test1PropComplexGetResponse response;
+	request.set_objectid(d_priv->objectId);
+	grpc::ClientContext context;
+	auto result = d_priv->service->GetPropertyPropComplex(&context, request, &response);
+	if(!result.ok()) { qCritical("couldn't read property PropComplex: %s", result.error_message().c_str()); return QJsonValue(); }
+	auto propValue = response.value();
+}
+void QTest1Worker::setPropComplex(QJsonValue val)
+{
 }

@@ -35,15 +35,11 @@ extend google.protobuf.ServiceOptions {
 message Test1ListenEventStream {
 	uint64 objectId = 1;
 }
+message Test1CreateRequest {
+}
 message Test1CreateResponse {
 	option(messageObjectName) = "Test1";
 	uint64 objectId = 1;
-}
-message Test1StopRequest {
-	option(messageObjectName) = "Test1";
-}
-message Test1StopResponse {
-	option(messageObjectName) = "Test1";
 }
 message Test1PropStringSetRequest {
 	uint64 objectId = 1;
@@ -144,7 +140,7 @@ message Test1TestMethodNoResponseMethodResponse {
 }
 service Test1ObjectService {
 	option(serviceObjectName) = "Test1";
-	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any) {
+	rpc Create (Test1CreateRequest) returns (stream Test1CreateResponse) {
 		option(create) = true;
 	}
 	rpc ListenEvents (Test1ListenEventStream) returns (stream google.protobuf.Any) {
@@ -197,15 +193,11 @@ service Test1ObjectService {
 message Test2ListenEventStream {
 	uint64 objectId = 1;
 }
+message Test2CreateRequest {
+}
 message Test2CreateResponse {
 	option(messageObjectName) = "Test2";
 	uint64 objectId = 1;
-}
-message Test2StopRequest {
-	option(messageObjectName) = "Test2";
-}
-message Test2StopResponse {
-	option(messageObjectName) = "Test2";
 }
 message Test2PropString2SetRequest {
 	uint64 objectId = 1;
@@ -287,7 +279,7 @@ message Test2TestMethodNoRequest2MethodResponse {
 }
 service Test2ObjectService {
 	option(serviceObjectName) = "Test2";
-	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any) {
+	rpc Create (Test2CreateRequest) returns (stream Test2CreateResponse) {
 		option(create) = true;
 	}
 	rpc ListenEvents (Test2ListenEventStream) returns (stream google.protobuf.Any) {
@@ -325,15 +317,20 @@ service Test2ObjectService {
 		option(propGet) = true;
 	};
 }
+message TestTypesListenEventStream {
+	uint64 objectId = 1;
+}
+message TestTypesCreateRequest {
+}
 message TestTypesCreateResponse {
 	option(messageObjectName) = "TestTypes";
 	uint64 objectId = 1;
 }
-message TestTypesStopRequest {
+message TestTypesTestEventEvent {
 	option(messageObjectName) = "TestTypes";
-}
-message TestTypesStopResponse {
-	option(messageObjectName) = "TestTypes";
+	option(eventName) = "TestEvent";
+	uint64 objectId = 1;
+	google.protobuf.StringValue value = 2;
 }
 message TestTypesTestParamDoubleMethodRequest {
 	uint64 objectId = 1;
@@ -397,9 +394,12 @@ message TestTypesTestParamBytesMethodResponse {
 }
 service TestTypesObjectService {
 	option(serviceObjectName) = "TestTypes";
-	rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any) {
+	rpc Create (TestTypesCreateRequest) returns (stream TestTypesCreateResponse) {
 		option(create) = true;
 	}
+	rpc ListenEvents (TestTypesListenEventStream) returns (stream google.protobuf.Any) {
+		option(eventListener) = true;
+	};
 	rpc InvokeTestParamDouble (TestTypesTestParamDoubleMethodRequest) returns (TestTypesTestParamDoubleMethodResponse) {
 		option(methodName) = "TestParamDouble";
 		option(sync) = true;

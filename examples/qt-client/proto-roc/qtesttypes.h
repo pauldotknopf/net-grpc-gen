@@ -11,16 +11,18 @@ class QTestTypes : public QObject {
 public:
 	QTestTypes(QObject* parent = nullptr);
 	~QTestTypes();
-	Q_INVOKABLE void testParamDouble(double val, QJSValue state, QJSValue callback);
-	Q_INVOKABLE void testParamFloat(float val, QJSValue state, QJSValue callback);
-	Q_INVOKABLE void testParamInt(int val, QJSValue state, QJSValue callback);
-	Q_INVOKABLE void testParamUInt(quint32 val, QJSValue state, QJSValue callback);
-	Q_INVOKABLE void testParamLong(qint64 val, QJSValue state, QJSValue callback);
-	Q_INVOKABLE void testParamULong(ulong val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamDouble(bool val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamFloat(bool val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamInt(bool val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamUInt(bool val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamLong(bool val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamULong(bool val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testParamBool(bool val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testParamString(QJsonValue val, QJSValue state, QJSValue callback);
-	Q_INVOKABLE void testParamByte(quint32 val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamByte(bool val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testParamBytes(QByteArray val, QJSValue state, QJSValue callback);
+signals:
+	void testEvent(QJsonValue val);
 private slots:
 	void testParamDoubleHandler(int requestId, QString error);
 	void testParamFloatHandler(int requestId, QString error);

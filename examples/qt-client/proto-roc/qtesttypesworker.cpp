@@ -3,41 +3,61 @@
 #include "gen.grpc.pb.h"
 #include "roc-lib/qrocobjectadapter.h"
 #include "protobuf-qjson/protobufjsonconverter.h"
+#include <QThread>
 using namespace Tests;
+class EventThread : public QThread
+{
+public:
+	std::shared_ptr<Tests::TestTypesObjectService::Stub> service;
+	grpc::ClientContext context;
+	google::protobuf::uint64 objectId;
+	QTestTypesWorker* worker;
+	void run() override
+	{
+		if(!service) { return; }
+		Tests::TestTypesListenEventStream request;
+		request.set_objectid(objectId);
+		auto stream = service->ListenEvents(&context, request);
+		google::protobuf::Any any;
+		while(stream->Read(&any)) { worker->processEvent(&any); }
+		auto result = stream->Finish();
+		if(result.error_code() == grpc::StatusCode::CANCELLED) { return; }
+		if(result.ok()) { qCritical("unabled to stop stream: %s", result.error_message().c_str()); return; }
+	}
+};
 class Tests::QTestTypesWorkerPrivate
 {
 public:
-	QTestTypesWorkerPrivate() : objectId(0) {}
+	QTestTypesWorkerPrivate(QTestTypesWorker* worker) : objectId(0), worker(worker) {}
+	QTestTypesWorker* worker;
 	google::protobuf::uint64 objectId;
-	std::unique_ptr<Tests::TestTypesObjectService::Stub> service;
+	std::shared_ptr<Tests::TestTypesObjectService::Stub> service;
 	grpc::ClientContext objectRequestContext;
-	std::unique_ptr<grpc::ClientReaderWriter<google::protobuf::Any, google::protobuf::Any>> objectRequest;
-	
+	std::unique_ptr<grpc::ClientReader<Tests::TestTypesCreateResponse>> objectRequest;
+	EventThread eventThread;
 	void createObject()
 	{
-		objectRequest = service->Create(&objectRequestContext);
-		google::protobuf::Any createResponseAny;
-		if(!objectRequest->Read(&createResponseAny))
-		{
-			qCritical("Failed to read request from object creation.");
-			objectRequest.release();
-			return;
-		}
-		Tests::TestTypesCreateResponse createResponse;
-		if(!createResponseAny.UnpackTo(&createResponse))
-		{
-			qCritical("Failed to unpack request from object creation.");
-			objectRequest.release();
-			return;
-		}
-		objectId = createResponse.objectid();
+		Tests::TestTypesCreateRequest request;
+		objectRequest = service->Create(&objectRequestContext, request);
+		Tests::TestTypesCreateResponse response;
+		if(!objectRequest->Read(&response)) { qCritical(""); objectRequest.release(); return; }
+		objectId = response.objectid();
+		eventThread.objectId = objectId;
+		eventThread.service = service;
+		eventThread.worker = worker;
+		eventThread.start();
 	}
 	void releaseObject()
 	{
 		if(objectRequest != nullptr)
 		{
+			eventThread.context.TryCancel();
+			eventThread.quit();
+			eventThread.wait();
+			objectRequestContext.TryCancel();
 			auto result = objectRequest->Finish();
-			if(!result.ok()) { qCritical("Couldn't dispose of object: %s", result.error_message().c_str()); }
+			if(result.error_code() == grpc::StatusCode::CANCELLED) { return; }
+			if(!result.ok()) { qCritical("Couldn't release object: %s", result.error_message().c_str()); }
 		}
 	}
 	bool isValid()
@@ -45,7 +65,7 @@ public:
 		return objectRequest != nullptr;
 	}
 };
-QTestTypesWorker::QTestTypesWorker() : QObject(nullptr), d_priv(new QTestTypesWorkerPrivate())
+QTestTypesWorker::QTestTypesWorker() : QObject(nullptr), d_priv(new QTestTypesWorkerPrivate(this))
 {
 	auto channel = QRocObjectAdapter::getSharedChannel();
 	if(channel == nullptr) { qWarning("Set the channel to use via QRocObjectAdapter::setSharedChannel(...)"); return; }
@@ -56,7 +76,7 @@ QTestTypesWorker::~QTestTypesWorker()
 {
 	d_priv->releaseObject();
 }
-void QTestTypesWorker::testParamDouble(double val, int requestId)
+void QTestTypesWorker::testParamDouble(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamDoubleMethodRequest request;
@@ -72,7 +92,7 @@ void QTestTypesWorker::testParamDouble(double val, int requestId)
 		}
 	});
 }
-void QTestTypesWorker::testParamFloat(float val, int requestId)
+void QTestTypesWorker::testParamFloat(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamFloatMethodRequest request;
@@ -88,7 +108,7 @@ void QTestTypesWorker::testParamFloat(float val, int requestId)
 		}
 	});
 }
-void QTestTypesWorker::testParamInt(int val, int requestId)
+void QTestTypesWorker::testParamInt(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamIntMethodRequest request;
@@ -104,7 +124,7 @@ void QTestTypesWorker::testParamInt(int val, int requestId)
 		}
 	});
 }
-void QTestTypesWorker::testParamUInt(quint32 val, int requestId)
+void QTestTypesWorker::testParamUInt(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamUIntMethodRequest request;
@@ -120,7 +140,7 @@ void QTestTypesWorker::testParamUInt(quint32 val, int requestId)
 		}
 	});
 }
-void QTestTypesWorker::testParamLong(qint64 val, int requestId)
+void QTestTypesWorker::testParamLong(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamLongMethodRequest request;
@@ -136,7 +156,7 @@ void QTestTypesWorker::testParamLong(qint64 val, int requestId)
 		}
 	});
 }
-void QTestTypesWorker::testParamULong(ulong val, int requestId)
+void QTestTypesWorker::testParamULong(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamULongMethodRequest request;
@@ -186,7 +206,7 @@ void QTestTypesWorker::testParamString(QJsonValue val, int requestId)
 		}
 	});
 }
-void QTestTypesWorker::testParamByte(quint32 val, int requestId)
+void QTestTypesWorker::testParamByte(bool val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamByteMethodRequest request;
@@ -217,4 +237,18 @@ void QTestTypesWorker::testParamBytes(QByteArray val, int requestId)
 			emit testParamBytesDone(requestId, QString());
 		}
 	});
+}
+void QTestTypesWorker::processEvent(void* _event)
+{
+	auto event = reinterpret_cast<google::protobuf::Any*>(_event);
+	if(event->Is<Tests::TestTypesTestEventEvent>())
+	{
+		Tests::TestTypesTestEventEvent eventMessage;
+		event->UnpackTo(&eventMessage);
+		auto eventValue = eventMessage.value();
+		QJsonValue jsonValue;
+		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
+		emit testEventRaised(jsonValue);
+	}
+	qDebug("got event: %s", event->type_url().c_str());
 }

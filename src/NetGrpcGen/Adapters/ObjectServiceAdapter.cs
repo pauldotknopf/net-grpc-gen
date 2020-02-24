@@ -2,6 +2,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -67,6 +68,7 @@ namespace NetGrpcGen.Adapters
             }
 
             var eventHandlers = new List<Tuple<GrpcEvent, Delegate>>();
+            var queue = new BlockingCollection<Any>();
             foreach (var even in _grpcObject.Events)
             {
                 var del = Create(even.Event, val =>
@@ -84,7 +86,7 @@ namespace NetGrpcGen.Adapters
                         SetValue(eventMessage, val);
                     }
 
-                    responseStream.WriteAsync(Any.Pack(eventMessage));
+                    queue.Add(Any.Pack(eventMessage));
                 });
                 even.Event.AddEventHandler(o, del);
                 eventHandlers.Add(new Tuple<GrpcEvent, Delegate>(even, del));
@@ -120,22 +122,30 @@ namespace NetGrpcGen.Adapters
                 var propChangedResponse = Activator.CreateInstance(eventType);
                 SetValue(propChangedResponse, grpcProperty.Property.GetValue(o));
                 SetObjectId(propChangedResponse, objectId);
-                responseStream.WriteAsync(Any.Pack(propChangedResponse as IMessage));
+                
+                queue.Add(Any.Pack(propChangedResponse as IMessage));
             });
             if (notifyHandler != null)
             {
                 notifyHandler.PropertyChanged += handler;
             }
-            
+
             try
             {
-                // Wait for the client to disconnect.
-                var tcs = new TaskCompletionSource<bool>();
-                context.CancellationToken.Register(s => ((TaskCompletionSource<bool>) s).SetResult(true), tcs);
-                if (!context.CancellationToken.IsCancellationRequested)
+                while (!context.CancellationToken.IsCancellationRequested)
                 {
-                    await tcs.Task;
+                    var message = queue.Take(context.CancellationToken);
+                    await responseStream.WriteAsync(message);
                 }
+            }
+            catch (Exception)
+            {
+                if (context.CancellationToken.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                throw;
             }
             finally
             {
@@ -151,35 +161,47 @@ namespace NetGrpcGen.Adapters
             }
         }
 
-        private async Task Create(
-            IAsyncStreamReader<Any> requestStream,
-            IServerStreamWriter<Any> responseStream)
+        private async Task Create<TRequest, TResponse>(
+            TRequest request,
+            IServerStreamWriter<TResponse> responseStream,
+            ServerCallContext context)
         {
             var o = _typeCreator.Create();
             var tagId = o.GetOrCreateTag();
             _objects.TryAdd(tagId, o);
 
+            if (o is IObjectCreated objectCreated)
+            {
+                objectCreated.ObjectCreated();
+            }
+            
             try
             {
-                var response = Activator.CreateInstance(_protoObjectModel.CreateResponseDescriptor.ClrType) as IMessage;
+                var response = Activator.CreateInstance<TResponse>();
                 SetObjectId(response, tagId);
-                await responseStream.WriteAsync(Any.Pack(response));
-
-                // Wait for a stop request...
-                await requestStream.MoveNext();
-                var stopRequest =
-                    Activator.CreateInstance(_protoObjectModel.StopRequestDescriptor.ClrType) as IMessage;
-                stopRequest.MergeFrom(requestStream.Current.Value);
+                await responseStream.WriteAsync(response);
                 
-                // Send the stop response.
-                var stopResponse =
-                    Activator.CreateInstance(_protoObjectModel.StopResponseDescriptor.ClrType) as IMessage;
-                await responseStream.WriteAsync(Any.Pack(stopResponse));
+                // Wait for the client to disconnect.
+                var tcs = new TaskCompletionSource<bool>();
+                context.CancellationToken.Register(s => ((TaskCompletionSource<bool>) s).SetResult(true), tcs);
+                if (!context.CancellationToken.IsCancellationRequested)
+                {
+                    await tcs.Task;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             finally
             {
                 ObjectTagger.Default.FreeId(tagId);
                 _objects.TryRemove(tagId, out o);
+
+                if (o is IObjectReleased objectReleased)
+                {
+                    objectReleased.ObjectReleased();
+                }
             }
         }
         
@@ -348,16 +370,7 @@ namespace NetGrpcGen.Adapters
 
             public override void AddMethod<TRequest, TResponse>(Method<TRequest, TResponse> method, DuplexStreamingServerMethod<TRequest, TResponse> handler)
             {
-                switch (method.Name)
-                {
-                    case "Create":
-                        _builder.AddMethod(method, new DuplexStreamingServerMethod<TRequest, TResponse>(
-                            (stream, responseStream, context) => _serviceAdapter.Create(stream as IAsyncStreamReader<Any>,
-                                responseStream as IServerStreamWriter<Any>)));
-                        break;
-                    default:
-                        throw new NotSupportedException();
-                }
+                throw new NotSupportedException();
             }
 
             public override void AddMethod<TRequest, TResponse>(Method<TRequest, TResponse> method, ClientStreamingServerMethod<TRequest, TResponse> handler)
@@ -373,6 +386,11 @@ namespace NetGrpcGen.Adapters
                         _builder.AddMethod(method, new ServerStreamingServerMethod<TRequest, TResponse>(
                             (request, responseStream, context) => _serviceAdapter.ListenEvents(request,
                                 responseStream as IServerStreamWriter<Any>, context)));
+                        break;
+                    case "Create":
+                        _builder.AddMethod(method, new ServerStreamingServerMethod<TRequest, TResponse>(
+                            (request, responseStream, context) => _serviceAdapter.Create(request,
+                                responseStream, context)));
                         break;
                     default:
                         throw new NotSupportedException();

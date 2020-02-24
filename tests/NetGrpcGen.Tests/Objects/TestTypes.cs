@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using NetGrpcGen.ComponentModel;
 
@@ -65,5 +67,8 @@ namespace NetGrpcGen.Tests.Objects
         {
             
         }
+        
+        [GrpcEvent]
+        public virtual event GrpcObjectEventDelegate<string> TestEvent = delegate { };
     }
 }

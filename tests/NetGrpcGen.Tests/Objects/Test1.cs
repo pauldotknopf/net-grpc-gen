@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using Tests;
 namespace NetGrpcGen.Tests.Objects
 {
     [GrpcObject]
-    public class Test1 : INotifyPropertyChanged
+    public class Test1 : INotifyPropertyChanged, IObjectCreated, IObjectReleased
     {
         private string _propString;
         private TestMessageResponse _propComplex;
@@ -98,5 +99,41 @@ namespace NetGrpcGen.Tests.Objects
         }
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
+
+        private Task _task;
+        private CancellationTokenSource _cancellationTokenSource;
+        public void ObjectCreated()
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+            _task = Task.Factory.StartNew(() =>
+            {
+                while (!_cancellationTokenSource.IsCancellationRequested)
+                {
+                    Console.WriteLine("Invoking events!!");
+                    try
+                    {
+                        // TestEvent.Invoke(Guid.NewGuid() + "汉字");
+                        // TestEventComplex.Invoke(new TestMessageResponse
+                        // {
+                        //     Value1 = 34,
+                        //     Value2 = "werwer"
+                        // });
+                        // TestEventNoData.Invoke();
+                        PropString = Guid.NewGuid().ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    Thread.Sleep(1000);
+                }
+            });
+        }
+
+        public void ObjectReleased()
+        {
+            _cancellationTokenSource.Cancel();
+            _task.Wait();
+        }
     }
 }

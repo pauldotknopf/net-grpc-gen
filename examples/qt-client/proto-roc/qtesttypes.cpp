@@ -38,43 +38,44 @@ QTestTypes::QTestTypes(QObject* parent) : QObject(parent), d_priv(new Tests::QTe
 	connect(d_priv->worker, &QTestTypesWorker::testParamStringDone, this, &QTestTypes::testParamStringHandler);
 	connect(d_priv->worker, &QTestTypesWorker::testParamByteDone, this, &QTestTypes::testParamByteHandler);
 	connect(d_priv->worker, &QTestTypesWorker::testParamBytesDone, this, &QTestTypes::testParamBytesHandler);
+	connect(d_priv->worker, &QTestTypesWorker::testEventRaised, this, &QTestTypes::testEvent);
 }
 QTestTypes::~QTestTypes()
 {
 	d_priv->workerThread.quit();
 	d_priv->workerThread.wait();
 }
-void QTestTypes::testParamDouble(double val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamDouble(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamDouble(val, requestId);
 }
-void QTestTypes::testParamFloat(float val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamFloat(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamFloat(val, requestId);
 }
-void QTestTypes::testParamInt(int val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamInt(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamInt(val, requestId);
 }
-void QTestTypes::testParamUInt(quint32 val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamUInt(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamUInt(val, requestId);
 }
-void QTestTypes::testParamLong(qint64 val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamLong(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamLong(val, requestId);
 }
-void QTestTypes::testParamULong(ulong val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamULong(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
@@ -92,7 +93,7 @@ void QTestTypes::testParamString(QJsonValue val, QJSValue state, QJSValue callba
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamString(val, requestId);
 }
-void QTestTypes::testParamByte(quint32 val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamByte(bool val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));

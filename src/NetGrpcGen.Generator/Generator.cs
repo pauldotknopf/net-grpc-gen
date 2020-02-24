@@ -131,6 +131,13 @@ namespace NetGrpcGen.Generator
             header.WriteLine($"class {objectModel.CppTypeName()}Private;");
             header.WriteLine($"class {objectModel.CppTypeName()} : public QObject {{");
             header.WriteLineIndented("Q_OBJECT");
+            using (header.Indent())
+            {
+                foreach (var property in objectModel.Properties)
+                {
+                    property.WritePropertyDef(header);
+                }
+            }
             header.WriteLine("public:");
             using (header.Indent())
             {
@@ -139,6 +146,20 @@ namespace NetGrpcGen.Generator
                 foreach (var method in objectModel.Methods)
                 {
                     method.WriteDecl(header);
+                }
+
+                foreach (var property in objectModel.Properties)
+                {
+                    property.WriteGetterSetterDecl(header);
+                }
+            }
+            header.WriteLine("signals:");
+            using (header.Indent())
+            {
+                objectModel.WriteEventSignals(header);
+                foreach (var property in objectModel.Properties)
+                {
+                    property.WriteEventSignal(header);
                 }
             }
             header.WriteLine("private slots:");
@@ -206,6 +227,10 @@ namespace NetGrpcGen.Generator
                 {
                     impl.WriteLine($"connect(d_priv->worker, &{objectModel.Worker().CppTypeName()}::{method.MethodName()}Done, this, &{objectModel.CppTypeName()}::{method.MethodName()}Handler);");
                 }
+                foreach (var even in objectModel.Events)
+                {
+                    impl.WriteLine($"connect(d_priv->worker, &{objectModel.Worker().CppTypeName()}::{even.GetEventName()}Raised, this, &{objectModel.CppTypeName()}::{even.GetEventName()});");
+                }
             }
             impl.WriteLine($"{objectModel.CppTypeName()}::~{objectModel.CppTypeName()}()");
             using (impl.Indent(true))
@@ -220,6 +245,11 @@ namespace NetGrpcGen.Generator
             foreach (var method in objectModel.Methods)
             {
                 method.WriteSlotsImpl(impl);
+            }
+
+            foreach (var property in objectModel.Properties)
+            {
+                property.WriteGetterSetterImpl(impl);
             }
         }
 
@@ -246,6 +276,11 @@ namespace NetGrpcGen.Generator
                 {
                     method.Worker().WriteDecl(header);
                 }
+                objectModel.Worker().WriteEventProcessDecl(header);
+                foreach (var property in objectModel.Properties)
+                {
+                    property.Worker().WriteGetterSetterDecl(header);
+                }
             }
             header.WriteLine("signals:");
             using (header.Indent())
@@ -253,6 +288,11 @@ namespace NetGrpcGen.Generator
                 foreach (var method in objectModel.Methods)
                 {
                     method.Worker().WriteSignals(header);
+                }
+                objectModel.Worker().WriteEventSignals(header);
+                foreach (var property in objectModel.Properties)
+                {
+                    property.Worker().WriteEventSignal(header);
                 }
             }
             header.WriteLine("private:");
@@ -274,42 +314,59 @@ namespace NetGrpcGen.Generator
             }
             impl.WriteLine("#include \"roc-lib/qrocobjectadapter.h\"");
             impl.WriteLine("#include \"protobuf-qjson/protobufjsonconverter.h\"");
+            impl.WriteLine("#include <QThread>");
             if (!string.IsNullOrEmpty(objectModel.CppNamespace()))
             {
                 impl.WriteLine($"using namespace {objectModel.CppNamespace()};");
             }
+            impl.WriteLine("class EventThread : public QThread");
+            impl.WriteLine("{");
+            impl.WriteLine("public:");
+            using (impl.Indent())
+            {
+                impl.WriteLine($"std::shared_ptr<{objectModel.ProtoBufServiceName()}::Stub> service;");
+                impl.WriteLine("grpc::ClientContext context;");
+                impl.WriteLine("google::protobuf::uint64 objectId;");
+                impl.WriteLine($"{objectModel.Worker().CppTypeName()}* worker;");
+                impl.WriteLine("void run() override");
+                using (impl.Indent(true))
+                {
+                    impl.WriteLine("if(!service) { return; }");
+                    impl.WriteLine($"{objectModel.CppNamespacePrefix()}{objectModel.ListenEventsDescriptor.InputType.Name} request;");
+                    impl.WriteLine("request.set_objectid(objectId);");
+                    impl.WriteLine("auto stream = service->ListenEvents(&context, request);");
+                    impl.WriteLine("google::protobuf::Any any;");
+                    impl.WriteLine("while(stream->Read(&any)) { worker->processEvent(&any); }");
+                    impl.WriteLine("auto result = stream->Finish();");
+                    impl.WriteLine("if(result.error_code() == grpc::StatusCode::CANCELLED) { return; }");
+                    impl.WriteLine("if(result.ok()) { qCritical(\"unabled to stop stream: %s\", result.error_message().c_str()); return; }");
+                }
+            }
+            impl.WriteLine("};");
             impl.WriteLine($"class {objectModel.CppNamespacePrefix()}{objectModel.Worker().CppTypeName()}Private");
             impl.WriteLine("{");
             impl.WriteLine("public:");
             using (impl.Indent())
             {
-                impl.WriteLine($"{objectModel.Worker().CppTypeName()}Private() : objectId(0) {{}}");
+                impl.WriteLine($"{objectModel.Worker().CppTypeName()}Private({objectModel.Worker().CppTypeName()}* worker) : objectId(0), worker(worker) {{}}");
+                impl.WriteLine($"{objectModel.Worker().CppTypeName()}* worker;");
                 impl.WriteLine("google::protobuf::uint64 objectId;");
-                impl.WriteLine($"std::unique_ptr<{objectModel.ProtoBufServiceName()}::Stub> service;");
+                impl.WriteLine($"std::shared_ptr<{objectModel.ProtoBufServiceName()}::Stub> service;");
                 impl.WriteLine("grpc::ClientContext objectRequestContext;");
-                impl.WriteLine("std::unique_ptr<grpc::ClientReaderWriter<google::protobuf::Any, google::protobuf::Any>> objectRequest;");
-                impl.WriteLine("");
+                impl.WriteLine($"std::unique_ptr<grpc::ClientReader<{objectModel.CppNamespacePrefix()}{objectModel.CreateDescriptor.OutputType.Name}>> objectRequest;");
+                impl.WriteLine("EventThread eventThread;");
                 impl.WriteLine("void createObject()");
                 using (impl.Indent(true))
                 {
-                    impl.WriteLine("objectRequest = service->Create(&objectRequestContext);");
-                    impl.WriteLine("google::protobuf::Any createResponseAny;");
-                    impl.WriteLine("if(!objectRequest->Read(&createResponseAny))");
-                    using (impl.Indent(true))
-                    {
-                        impl.WriteLine("qCritical(\"Failed to read request from object creation.\");");
-                        impl.WriteLine("objectRequest.release();");
-                        impl.WriteLine("return;");
-                    }
-                    impl.WriteLine($"{objectModel.CppNamespacePrefix()}{objectModel.CreateResponseDescriptor.Name} createResponse;");
-                    impl.WriteLine("if(!createResponseAny.UnpackTo(&createResponse))");
-                    using (impl.Indent(true))
-                    {
-                        impl.WriteLine("qCritical(\"Failed to unpack request from object creation.\");");
-                        impl.WriteLine("objectRequest.release();");
-                        impl.WriteLine("return;");
-                    }
-                    impl.WriteLine("objectId = createResponse.objectid();");
+                    impl.WriteLine($"{objectModel.CppNamespacePrefix()}{objectModel.CreateDescriptor.InputType.Name} request;");
+                    impl.WriteLine("objectRequest = service->Create(&objectRequestContext, request);");
+                    impl.WriteLine($"{objectModel.CppNamespacePrefix()}{objectModel.CreateDescriptor.OutputType.Name} response;");
+                    impl.WriteLine("if(!objectRequest->Read(&response)) { qCritical(\"\"); objectRequest.release(); return; }");
+                    impl.WriteLine("objectId = response.objectid();");
+                    impl.WriteLine("eventThread.objectId = objectId;");
+                    impl.WriteLine("eventThread.service = service;");
+                    impl.WriteLine("eventThread.worker = worker;");
+                    impl.WriteLine("eventThread.start();");
                 }
                 impl.WriteLine("void releaseObject()");
                 using (impl.Indent(true))
@@ -317,8 +374,13 @@ namespace NetGrpcGen.Generator
                     impl.WriteLine("if(objectRequest != nullptr)");
                     using (impl.Indent(true))
                     {
+                        impl.WriteLine("eventThread.context.TryCancel();");
+                        impl.WriteLine("eventThread.quit();");
+                        impl.WriteLine("eventThread.wait();");
+                        impl.WriteLine("objectRequestContext.TryCancel();");
                         impl.WriteLine("auto result = objectRequest->Finish();");
-                        impl.WriteLine("if(!result.ok()) { qCritical(\"Couldn't dispose of object: %s\", result.error_message().c_str()); }");
+                        impl.WriteLine("if(result.error_code() == grpc::StatusCode::CANCELLED) { return; }");
+                        impl.WriteLine("if(!result.ok()) { qCritical(\"Couldn't release object: %s\", result.error_message().c_str()); }");
                     }
                 }
                 impl.WriteLine("bool isValid()");
@@ -328,7 +390,7 @@ namespace NetGrpcGen.Generator
                 }
             }
             impl.WriteLine("};");
-            impl.WriteLine($"{objectModel.Worker().CppTypeName()}::{objectModel.Worker().CppTypeName()}() : QObject(nullptr), d_priv(new {objectModel.Worker().CppTypeName()}Private())");
+            impl.WriteLine($"{objectModel.Worker().CppTypeName()}::{objectModel.Worker().CppTypeName()}() : QObject(nullptr), d_priv(new {objectModel.Worker().CppTypeName()}Private(this))");
             using (impl.Indent(true))
             {
                 impl.WriteLine($"auto channel = QRocObjectAdapter::getSharedChannel();");
@@ -345,6 +407,11 @@ namespace NetGrpcGen.Generator
             foreach (var method in objectModel.Methods)
             {
                 method.Worker().WriteImpl(impl);
+            }
+            objectModel.Worker().WriteEventProcessImpl(impl);
+            foreach (var property in objectModel.Properties)
+            {
+                property.Worker().WriteGetterSetterImpl(impl);
             }
         }
         

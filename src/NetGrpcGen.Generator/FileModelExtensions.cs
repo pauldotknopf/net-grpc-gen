@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -74,6 +75,22 @@ namespace NetGrpcGen.Generator
         public static List<string> NamespaceComponents(this ProtoObjectModel objectModel)
         {
             return objectModel.CppNamespace().Split("::").ToList();
+        }
+
+        public static void WriteEventSignals(this ProtoObjectModel objectModel, CodeWriter writer)
+        {
+            foreach (var even in objectModel.Events)
+            {
+                var valueField = even.MessageDescriptor.FindFieldByName("value");
+                if (valueField == null)
+                {
+                    writer.WriteLine($"void {even.GetEventName()}();");
+                }
+                else
+                {
+                    writer.WriteLine($"void {even.GetEventName()}({valueField.NativeType()} val);");
+                }
+            }
         }
     }
 }

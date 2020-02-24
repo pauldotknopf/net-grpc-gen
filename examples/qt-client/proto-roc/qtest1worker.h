@@ -13,18 +13,28 @@ public:
 	void testMethod(QJsonValue request, int requestId);
 	void testMethodSync(QJsonValue request, int requestId);
 	void testMethodWithNoResponse(QJsonValue request, int requestId);
-	void testMethodPrimitive(int request, int requestId);
+	void testMethodPrimitive(bool request, int requestId);
 	void testMethodNoRequestOrResponse(int requestId);
 	void testMethodNoRequest(int requestId);
-	void testMethodNoResponse(int request, int requestId);
+	void testMethodNoResponse(bool request, int requestId);
+	void processEvent(void* event);
+	QJsonValue getPropString();
+	void setPropString(QJsonValue val);
+	QJsonValue getPropComplex();
+	void setPropComplex(QJsonValue val);
 signals:
 	void testMethodDone(QJsonValue val, int requestId, QString error);
 	void testMethodSyncDone(QJsonValue val, int requestId, QString error);
 	void testMethodWithNoResponseDone(int requestId, QString error);
-	void testMethodPrimitiveDone(int val, int requestId, QString error);
+	void testMethodPrimitiveDone(bool val, int requestId, QString error);
 	void testMethodNoRequestOrResponseDone(int requestId, QString error);
-	void testMethodNoRequestDone(int val, int requestId, QString error);
+	void testMethodNoRequestDone(bool val, int requestId, QString error);
 	void testMethodNoResponseDone(int requestId, QString error);
+	void testEventRaised(QJsonValue val);
+	void testEventComplexRaised(QJsonValue val);
+	void testEventNoDataRaised();
+	void propStringChanged(QJsonValue val);
+	void propComplexChanged(QJsonValue val);
 private:
 	QScopedPointer<QTest1WorkerPrivate> const d_priv;
 };

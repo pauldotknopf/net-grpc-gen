@@ -56,7 +56,7 @@ namespace NetGrpcGen.ProtoModel.Impl
 
                 if (method.Name == "ListenEvents")
                 {
-                    result.ListEventsDescriptor = method;
+                    result.ListenEventsDescriptor = method;
                     continue;
                 }
 
@@ -80,6 +80,7 @@ namespace NetGrpcGen.ProtoModel.Impl
                     {
                         propertyModel = new ProtoPropertyModel
                         {
+                            ObjectModel = result,
                             PropertyName = propertyName
                         };
                         result.Properties.Add(propertyModel);
@@ -100,29 +101,11 @@ namespace NetGrpcGen.ProtoModel.Impl
                 throw new Exception($"Unknown method: {method.Name}");
             }
 
-            var propChangedEventRegex = new Regex($@"{result.ObjectName}(.*)PropertyChanged");
-            var eventRegex = new Regex($@"{result.ObjectName}(.*)Event");
+            var propChangedEventRegex = new Regex($@"^{result.ObjectName}(.*)PropertyChanged$");
+            var eventRegex = new Regex($@"^{result.ObjectName}(.*)Event$");
                 
             foreach (var messageDescriptor in result.ServiceDescriptor.File.MessageTypes)
             {
-                if (messageDescriptor.Name == $"{result.ObjectName}CreateResponse")
-                {
-                    result.CreateResponseDescriptor = messageDescriptor;
-                    continue;
-                }
-
-                if (messageDescriptor.Name == $"{result.ObjectName}StopRequest")
-                {
-                    result.StopRequestDescriptor = messageDescriptor;
-                    continue;
-                }
-
-                if (messageDescriptor.Name == $"{result.ObjectName}StopResponse")
-                {
-                    result.StopResponseDescriptor = messageDescriptor;
-                    continue;
-                }
-
                 var match = propChangedEventRegex.Match(messageDescriptor.Name);
                 if (match.Success)
                 {

@@ -15,7 +15,7 @@ namespace NetGrpcGen.Tests.TypeTests
 {
     public class BaseTypeTests : BaseTests
     {
-        protected async Task WithWithObject(TestTypes instance, Func<TestTypesObjectService.TestTypesObjectServiceClient, AsyncDuplexStreamingCall<Any, Any>, TestTypes, ulong, Task> action)
+        protected async Task WithWithObject(TestTypes instance, Func<TestTypesObjectService.TestTypesObjectServiceClient, TestTypes, ulong, Task> action)
         {
             var serviceAdapter = new ObjectServiceAdapter<TestTypes>(new ProtoModelBuilder(),
                 new DiscoveryService(new AttributeFinder(new TypeFinder())),
@@ -35,20 +35,17 @@ namespace NetGrpcGen.Tests.TypeTests
             var client = new TestTypesObjectService.TestTypesObjectServiceClient(new Channel("localhost", 8000,
                 ChannelCredentials.Insecure));
 
-            var stream = client.Create();
+            var stream = client.Create(new TestTypesCreateRequest());
             
             (await stream.ResponseStream.MoveNext()).Should().BeTrue();
+            
+            var objectId = stream.ResponseStream.Current.ObjectId;
 
-            var objectId = stream.ResponseStream.Current.Unpack<TestTypesCreateResponse>().ObjectId;
-
-            await action(client, stream, instance, objectId);
+            await action(client, instance, objectId);
             
             // Finalize the object.
-            await stream.RequestStream.WriteAsync(Any.Pack(new TestTypesStopRequest()));
-            (await stream.ResponseStream.MoveNext()).Should().BeTrue();
-            stream.ResponseStream.Current.Unpack<TestTypesStopResponse>();
             stream.Dispose();
-
+            
             await serverHandler.ShutdownAsync();
         }
     }

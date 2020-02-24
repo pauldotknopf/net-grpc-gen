@@ -128,20 +128,15 @@ namespace NetGrpcGen.CodeGen
                     codeWriter.WriteLine("}");
                 }
                 
+                codeWriter.WriteLine($"message {o.Name}CreateRequest {{");
+                codeWriter.WriteLine("}");
+                
                 codeWriter.WriteLine($"message {o.Name}CreateResponse {{");
                 using (codeWriter.Indent())
                 {
                     codeWriter.WriteLine($"option(messageObjectName) = \"{o.Name}\";");
                     codeWriter.WriteLine("uint64 objectId = 1;");
                 }
-                codeWriter.WriteLine("}");
-                
-                codeWriter.WriteLine($"message {o.Name}StopRequest {{");
-                codeWriter.WriteLineIndented($"option(messageObjectName) = \"{o.Name}\";");
-                codeWriter.WriteLine("}");
-                
-                codeWriter.WriteLine($"message {o.Name}StopResponse {{");
-                codeWriter.WriteLineIndented($"option(messageObjectName) = \"{o.Name}\";");
                 codeWriter.WriteLine("}");
 
                 foreach (var property in o.Properties)
@@ -230,7 +225,7 @@ namespace NetGrpcGen.CodeGen
                 using (codeWriter.Indent())
                 {
                     codeWriter.WriteLine($"option(serviceObjectName) = \"{o.Name}\";");
-                    codeWriter.WriteLine("rpc Create (stream google.protobuf.Any) returns (stream google.protobuf.Any) {");
+                    codeWriter.WriteLine($"rpc Create ({o.Name}CreateRequest) returns (stream {o.Name}CreateResponse) {{");
                     codeWriter.WriteLineIndented("option(create) = true;");
                     codeWriter.WriteLine("}");
                     if (o.Events.Count > 0)
