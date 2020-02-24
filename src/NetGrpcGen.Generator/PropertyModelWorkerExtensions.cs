@@ -45,26 +45,14 @@ namespace NetGrpcGen.Generator
             writer.WriteLine($"{valueField.NativeType()} {model.Model.ObjectModel.Worker().CppTypeName()}::{model.Model.GetGetterName()}()");
             using (writer.Indent(true))
             {
-                writer.WriteLine($"{model.Model.ObjectModel.CppNamespacePrefix()}{model.Model.Getter.InputType.Name} request;");
-                writer.WriteLine($"{model.Model.ObjectModel.CppNamespacePrefix()}{model.Model.Getter.OutputType.Name} response;");
+                writer.WriteLine($"{model.Model.Getter.InputType.File.CppNamespacePrefix()}{model.Model.Getter.InputType.Name} request;");
+                writer.WriteLine($"{model.Model.Getter.OutputType.File.CppNamespacePrefix()}{model.Model.Getter.OutputType.Name} response;");
                 writer.WriteLine("request.set_objectid(d_priv->objectId);");
                 writer.WriteLine("grpc::ClientContext context;");
                 writer.WriteLine($"auto result = d_priv->service->{model.Model.Getter.Name}(&context, request, &response);");
-                writer.WriteLine($"if(!result.ok()) {{ qCritical(\"couldn't read property {model.Model.PropertyName}: %s\", result.error_message().c_str()); return {valueField.NativeType()}(); }}");
-                writer.WriteLine("auto propValue = response.value();");
-                // Tests::Test1PropStringGetRequest request;
-                // Tests::Test1PropStringGetResponse response;
-                // request.set_objectid(d_priv->objectId);
-                // grpc::ClientContext context;
-                // auto result = d_priv->service->GetPropertyPropString(&context, request, &response);
-                // if(!result.ok()) {
-                //     qCritical("unable to get property PropString: %s", result.error_message().c_str());
-                //     return QJsonValue::Undefined;
-                // }
-                // auto propValue = response.value();
-                // QJsonValue propResult;
-                // ProtobufJsonConverter::messageToJsonValue(&propValue, propResult);
-                // return propResult;
+                writer.WriteLine($"if(!result.ok()) {{ qCritical(\"couldn't read property {model.Model.PropertyName}: %s\", result.error_message().c_str()); return {valueField.DefaultValue()}; }}");
+                valueField.MarshalMessagePropertyToField(writer, "propValue", "response");
+                writer.WriteLine("return propValue;");
             }
 
             if (model.Model.Setter != null)
@@ -72,7 +60,13 @@ namespace NetGrpcGen.Generator
                 writer.WriteLine($"void {model.Model.ObjectModel.Worker().CppTypeName()}::{model.Model.GetSetterName()}({valueField.NativeType()} val)");
                 using (writer.Indent(true))
                 {
-                
+                    writer.WriteLine($"{model.Model.Setter.InputType.File.CppNamespacePrefix()}{model.Model.Setter.InputType.Name} request;");
+                    writer.WriteLine($"{model.Model.Setter.OutputType.File.CppNamespacePrefix()}{model.Model.Setter.OutputType.Name} response;");
+                    writer.WriteLine("request.set_objectid(d_priv->objectId);");
+                    valueField.MarshalValueToMessageProperty(writer, "val", "request");
+                    writer.WriteLine("grpc::ClientContext context;");
+                    writer.WriteLine($"auto result = d_priv->service->{model.Model.Setter.Name}(&context, request, &response);");
+                    writer.WriteLine($"if(!result.ok()) {{ qCritical(\"couldn't set property {model.Model.GetPropertyName()}: %s\", result.error_message().c_str()); }}");
                 }
             }
         }

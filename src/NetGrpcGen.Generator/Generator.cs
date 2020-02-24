@@ -124,6 +124,7 @@ namespace NetGrpcGen.Generator
             header.WriteLine("#include <QScopedPointer>");
             header.WriteLine("#include <QJSValue>");
             header.WriteLine("#include <QJsonValue>");
+            header.WriteLine("#include <QVariant>");
             foreach (var nameSpace in objectModel.NamespaceComponents())
             {
                 header.WriteLine($"namespace {nameSpace} {{");
@@ -231,6 +232,23 @@ namespace NetGrpcGen.Generator
                 {
                     impl.WriteLine($"connect(d_priv->worker, &{objectModel.Worker().CppTypeName()}::{even.GetEventName()}Raised, this, &{objectModel.CppTypeName()}::{even.GetEventName()});");
                 }
+
+                foreach (var prop in objectModel.Properties)
+                {
+                    if (prop.UpdatedEvent == null)
+                    {
+                        continue;
+                    }
+                    impl.WriteLine($"connect(d_priv->worker, &{objectModel.Worker().CppTypeName()}::{prop.GetPropertyName()}Changed, this, &{objectModel.CppTypeName()}::{prop.GetPropertyName()}Changed);");
+                }
+
+                foreach (var property in objectModel.Properties)
+                {
+                    if (property.UpdatedEvent == null)
+                    {
+                        return;
+                    }
+                }
             }
             impl.WriteLine($"{objectModel.CppTypeName()}::~{objectModel.CppTypeName()}()");
             using (impl.Indent(true))
@@ -260,6 +278,7 @@ namespace NetGrpcGen.Generator
             header.WriteLine("#include <QObject>");
             header.WriteLine("#include <QScopedPointer>");
             header.WriteLine("#include <QJsonValue>");
+            header.WriteLine("#include <QVariant>");
             foreach (var nameSpace in objectModel.NamespaceComponents())
             {
                 header.WriteLine($"namespace {nameSpace} {{");

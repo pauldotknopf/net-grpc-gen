@@ -188,15 +188,18 @@ void QTestTypesWorker::testParamBool(bool val, int requestId)
 		}
 	});
 }
-void QTestTypesWorker::testParamString(QJsonValue val, int requestId)
+void QTestTypesWorker::testParamString(QVariant val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamStringMethodRequest request;
 		Tests::TestTypesTestParamStringMethodResponse response;
 		request.set_objectid(d_priv->objectId);
-		auto messageVal = new google::protobuf::StringValue();
-		ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
-		request.set_allocated_value(messageVal);
+		if(val.userType() == QMetaType::QString)
+		{
+			auto messageVal = new google::protobuf::StringValue();
+			messageVal->set_value(val.toString().toStdString());
+			request.set_allocated_value(messageVal);
+		}
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamString(&context, request, &response);
 		if(!invokeResult.ok()) {
@@ -245,10 +248,12 @@ void QTestTypesWorker::processEvent(void* _event)
 	{
 		Tests::TestTypesTestEventEvent eventMessage;
 		event->UnpackTo(&eventMessage);
-		auto eventValue = eventMessage.value();
-		QJsonValue jsonValue;
-		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
-		emit testEventRaised(jsonValue);
+		QVariant eventValue = QVariant::fromValue(nullptr);
+		if(eventMessage.has_value())
+		{
+			eventValue = QString::fromStdString(eventMessage.value().value());
+		}
+		emit testEventRaised(eventValue);
 	}
 	qDebug("got event: %s", event->type_url().c_str());
 }

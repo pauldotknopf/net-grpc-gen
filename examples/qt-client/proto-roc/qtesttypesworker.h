@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QScopedPointer>
 #include <QJsonValue>
+#include <QVariant>
 namespace Tests {
 class QTestTypesWorkerPrivate;
 class QTestTypesWorker : public QObject {
@@ -17,7 +18,7 @@ public:
 	void testParamLong(bool request, int requestId);
 	void testParamULong(bool request, int requestId);
 	void testParamBool(bool request, int requestId);
-	void testParamString(QJsonValue request, int requestId);
+	void testParamString(QVariant request, int requestId);
 	void testParamByte(bool request, int requestId);
 	void testParamBytes(QByteArray request, int requestId);
 	void processEvent(void* event);
@@ -32,7 +33,7 @@ signals:
 	void testParamStringDone(int requestId, QString error);
 	void testParamByteDone(int requestId, QString error);
 	void testParamBytesDone(int requestId, QString error);
-	void testEventRaised(QJsonValue val);
+	void testEventRaised(QVariant val);
 private:
 	QScopedPointer<QTestTypesWorkerPrivate> const d_priv;
 };

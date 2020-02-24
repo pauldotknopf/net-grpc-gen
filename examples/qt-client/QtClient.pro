@@ -15,7 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 PKGCONFIG += grpc++ protobuf
 
-include(protobuf-qjson/protobuf-qjson.pri)
+include(protobuf-qjson/src/protobuf-qjson.pri)
 include(../../qt/roc-lib.pri)
 include(proto-roc/roc.pri)
 

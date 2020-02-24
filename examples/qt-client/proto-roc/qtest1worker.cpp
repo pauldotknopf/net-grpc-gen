@@ -87,13 +87,12 @@ void QTest1Worker::testMethod(QJsonValue val, int requestId)
 		request.set_allocated_value(messageVal);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestMethod(&context, request, &response);
-		auto responseValue = response.value();
-		QJsonValue messageJson;
-		ProtobufJsonConverter::messageToJsonValue(&responseValue, messageJson);
+		QJsonValue responseValue;
+		ProtobufJsonConverter::messageToJsonValue(&response, responseValue);
 		if(!invokeResult.ok()) {
-			emit testMethodDone(messageJson, requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testMethodDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testMethodDone(messageJson, requestId, QString());
+			emit testMethodDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -108,13 +107,12 @@ void QTest1Worker::testMethodSync(QJsonValue val, int requestId)
 		request.set_allocated_value(messageVal);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestMethodSync(&context, request, &response);
-		auto responseValue = response.value();
-		QJsonValue messageJson;
-		ProtobufJsonConverter::messageToJsonValue(&responseValue, messageJson);
+		QJsonValue responseValue;
+		ProtobufJsonConverter::messageToJsonValue(&response, responseValue);
 		if(!invokeResult.ok()) {
-			emit testMethodSyncDone(messageJson, requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testMethodSyncDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testMethodSyncDone(messageJson, requestId, QString());
+			emit testMethodSyncDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -207,19 +205,20 @@ void QTest1Worker::processEvent(void* _event)
 	{
 		Tests::Test1TestEventEvent eventMessage;
 		event->UnpackTo(&eventMessage);
-		auto eventValue = eventMessage.value();
-		QJsonValue jsonValue;
-		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
-		emit testEventRaised(jsonValue);
+		QVariant eventValue = QVariant::fromValue(nullptr);
+		if(eventMessage.has_value())
+		{
+			eventValue = QString::fromStdString(eventMessage.value().value());
+		}
+		emit testEventRaised(eventValue);
 	}
 	if(event->Is<Tests::Test1TestEventComplexEvent>())
 	{
 		Tests::Test1TestEventComplexEvent eventMessage;
 		event->UnpackTo(&eventMessage);
-		auto eventValue = eventMessage.value();
-		QJsonValue jsonValue;
-		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
-		emit testEventComplexRaised(jsonValue);
+		QJsonValue eventValue;
+		ProtobufJsonConverter::messageToJsonValue(&eventMessage, eventValue);
+		emit testEventComplexRaised(eventValue);
 	}
 	if(event->Is<Tests::Test1TestEventNoDataEvent>())
 	{
@@ -229,34 +228,52 @@ void QTest1Worker::processEvent(void* _event)
 	{
 		Tests::Test1PropStringPropertyChanged eventMessage;
 		event->UnpackTo(&eventMessage);
-		auto eventValue = eventMessage.value();
-		QJsonValue jsonValue;
-		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
-		emit propStringChanged(jsonValue);
+		QVariant eventValue = QVariant::fromValue(nullptr);
+		if(eventMessage.has_value())
+		{
+			eventValue = QString::fromStdString(eventMessage.value().value());
+		}
+		emit propStringChanged(eventValue);
 	}
 	if(event->Is<Tests::Test1PropComplexPropertyChanged>())
 	{
 		Tests::Test1PropComplexPropertyChanged eventMessage;
 		event->UnpackTo(&eventMessage);
-		auto eventValue = eventMessage.value();
-		QJsonValue jsonValue;
-		ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);
-		emit propComplexChanged(jsonValue);
+		QJsonValue eventValue;
+		ProtobufJsonConverter::messageToJsonValue(&eventMessage, eventValue);
+		emit propComplexChanged(eventValue);
 	}
 	qDebug("got event: %s", event->type_url().c_str());
 }
-QJsonValue QTest1Worker::getPropString()
+QVariant QTest1Worker::getPropString()
 {
 	Tests::Test1PropStringGetRequest request;
 	Tests::Test1PropStringGetResponse response;
 	request.set_objectid(d_priv->objectId);
 	grpc::ClientContext context;
 	auto result = d_priv->service->GetPropertyPropString(&context, request, &response);
-	if(!result.ok()) { qCritical("couldn't read property PropString: %s", result.error_message().c_str()); return QJsonValue(); }
-	auto propValue = response.value();
+	if(!result.ok()) { qCritical("couldn't read property PropString: %s", result.error_message().c_str()); return QVariant(); }
+	QVariant propValue = QVariant::fromValue(nullptr);
+	if(response.has_value())
+	{
+		propValue = QString::fromStdString(response.value().value());
+	}
+	return propValue;
 }
-void QTest1Worker::setPropString(QJsonValue val)
+void QTest1Worker::setPropString(QVariant val)
 {
+	Tests::Test1PropStringSetRequest request;
+	Tests::Test1PropStringSetResponse response;
+	request.set_objectid(d_priv->objectId);
+	if(val.userType() == QMetaType::QString)
+	{
+		auto messageVal = new google::protobuf::StringValue();
+		messageVal->set_value(val.toString().toStdString());
+		request.set_allocated_value(messageVal);
+	}
+	grpc::ClientContext context;
+	auto result = d_priv->service->SetPropertyPropString(&context, request, &response);
+	if(!result.ok()) { qCritical("couldn't set property propString: %s", result.error_message().c_str()); }
 }
 QJsonValue QTest1Worker::getPropComplex()
 {
@@ -265,9 +282,20 @@ QJsonValue QTest1Worker::getPropComplex()
 	request.set_objectid(d_priv->objectId);
 	grpc::ClientContext context;
 	auto result = d_priv->service->GetPropertyPropComplex(&context, request, &response);
-	if(!result.ok()) { qCritical("couldn't read property PropComplex: %s", result.error_message().c_str()); return QJsonValue(); }
-	auto propValue = response.value();
+	if(!result.ok()) { qCritical("couldn't read property PropComplex: %s", result.error_message().c_str()); return QJsonValue::Undefined; }
+	QJsonValue propValue;
+	ProtobufJsonConverter::messageToJsonValue(&response, propValue);
+	return propValue;
 }
 void QTest1Worker::setPropComplex(QJsonValue val)
 {
+	Tests::Test1PropComplexSetRequest request;
+	Tests::Test1PropComplexSetResponse response;
+	request.set_objectid(d_priv->objectId);
+	auto messageVal = new custom::types::TestMessageResponse();
+	ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
+	request.set_allocated_value(messageVal);
+	grpc::ClientContext context;
+	auto result = d_priv->service->SetPropertyPropComplex(&context, request, &response);
+	if(!result.ok()) { qCritical("couldn't set property propComplex: %s", result.error_message().c_str()); }
 }

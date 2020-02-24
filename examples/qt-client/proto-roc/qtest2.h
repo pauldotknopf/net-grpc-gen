@@ -4,11 +4,12 @@
 #include <QScopedPointer>
 #include <QJSValue>
 #include <QJsonValue>
+#include <QVariant>
 namespace Tests {
 class QTest2Private;
 class QTest2 : public QObject {
 	Q_OBJECT
-	Q_PROPERTY(QJsonValue propString2 READ getPropString2 WRITE setPropString2 NOTIFY propString2Changed)
+	Q_PROPERTY(QVariant propString2 READ getPropString2 WRITE setPropString2 NOTIFY propString2Changed)
 	Q_PROPERTY(QJsonValue propComplex2 READ getPropComplex2 WRITE setPropComplex2 NOTIFY propComplex2Changed)
 public:
 	QTest2(QObject* parent = nullptr);
@@ -17,15 +18,15 @@ public:
 	Q_INVOKABLE void testMethodSync2(QJsonValue val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testMethodWithNoResponse2(QJsonValue val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testMethodNoRequest2(QJSValue state, QJSValue callback);
-	QJsonValue getPropString2();
-	void setPropString2(QJsonValue val);
+	QVariant getPropString2();
+	void setPropString2(QVariant val);
 	QJsonValue getPropComplex2();
 	void setPropComplex2(QJsonValue val);
 signals:
-	void testEvent2(QJsonValue val);
+	void testEvent2(QVariant val);
 	void testEventComplex2(QJsonValue val);
 	void testEventNoData2();
-	void propString2Changed(QJsonValue val);
+	void propString2Changed(QVariant val);
 	void propComplex2Changed(QJsonValue val);
 private slots:
 	void testMethod2Handler(QJsonValue result, int requestId, QString error);

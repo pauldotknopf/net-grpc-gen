@@ -38,6 +38,8 @@ QTest1::QTest1(QObject* parent) : QObject(parent), d_priv(new Tests::QTest1Priva
 	connect(d_priv->worker, &QTest1Worker::testEventRaised, this, &QTest1::testEvent);
 	connect(d_priv->worker, &QTest1Worker::testEventComplexRaised, this, &QTest1::testEventComplex);
 	connect(d_priv->worker, &QTest1Worker::testEventNoDataRaised, this, &QTest1::testEventNoData);
+	connect(d_priv->worker, &QTest1Worker::propStringChanged, this, &QTest1::propStringChanged);
+	connect(d_priv->worker, &QTest1Worker::propComplexChanged, this, &QTest1::propComplexChanged);
 }
 QTest1::~QTest1()
 {
@@ -202,11 +204,11 @@ void QTest1::testMethodNoResponseHandler(int requestId, QString error)
 		request->callback.call(args);
 	}
 }
-QJsonValue QTest1::getPropString()
+QVariant QTest1::getPropString()
 {
 	return d_priv->worker->getPropString();
 }
-void QTest1::setPropString(QJsonValue val)
+void QTest1::setPropString(QVariant val)
 {
 	d_priv->worker->setPropString(val);
 }

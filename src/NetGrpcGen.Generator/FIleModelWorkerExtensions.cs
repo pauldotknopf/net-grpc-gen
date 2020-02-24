@@ -58,17 +58,7 @@ namespace NetGrpcGen.Generator
                 }
                 else
                 {
-                    switch (valueField.FieldType)
-                    {
-                        case FieldType.String:
-                            writer.WriteLine($"void {even.GetEventName()}Raised(QString val);");
-                            break;
-                        case FieldType.Message:
-                            writer.WriteLine($"void {even.GetEventName()}Raised(QJsonValue val);");
-                            break;
-                        default:
-                            throw new Exception($"Unsupported event type: {valueField.FieldType}");
-                    }
+                    writer.WriteLine($"void {even.GetEventName()}Raised({valueField.NativeType()} val);");
                 }
             }
         }
@@ -93,21 +83,8 @@ namespace NetGrpcGen.Generator
                         {
                             writer.WriteLine($"{objectModel.ProtoObjectModel.CppNamespacePrefix()}{ev.MessageDescriptor.Name} eventMessage;");
                             writer.WriteLine("event->UnpackTo(&eventMessage);");
-                            writer.WriteLine("auto eventValue = eventMessage.value();");
-                            switch (valueField.FieldType)
-                            {
-                                case FieldType.String:
-                                    writer.WriteLine($"emit {ev.GetEventName()}Raised(QString::fromStdString(eventValue.value()));");
-                                    break;
-                                case FieldType.Message:
-                                    writer.WriteLine("QJsonValue jsonValue;");
-                                    // TODO: Check return type.
-                                    writer.WriteLine("ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);");
-                                    writer.WriteLine($"emit {ev.GetEventName()}Raised(jsonValue);");
-                                    break;
-                                default:
-                                    throw new Exception($"Unsupported event type: {valueField.FieldType}");
-                            }
+                            valueField.MarshalMessagePropertyToField(writer, "eventValue", "eventMessage");
+                            writer.WriteLine($"emit {ev.GetEventName()}Raised(eventValue);");   
                         }
                     }
                 }
@@ -124,22 +101,9 @@ namespace NetGrpcGen.Generator
                     {
                         writer.WriteLine($"{objectModel.ProtoObjectModel.CppNamespacePrefix()}{property.UpdatedEvent.Name} eventMessage;");
                         writer.WriteLine("event->UnpackTo(&eventMessage);");
-                        writer.WriteLine("auto eventValue = eventMessage.value();");
                         var valueField = property.UpdatedEvent.Fields["value"];
-                        switch (valueField.FieldType)
-                        {
-                            case FieldType.String:
-                                writer.WriteLine($"emit {property.GetPropertyName()}Changed(QString::fromStdString(eventValue.value()));");
-                                break;
-                            case FieldType.Message:
-                                writer.WriteLine("QJsonValue jsonValue;");
-                                // TODO: Check return type.
-                                writer.WriteLine("ProtobufJsonConverter::messageToJsonValue(&eventValue, jsonValue);");
-                                writer.WriteLine($"emit {property.GetPropertyName()}Changed(jsonValue);");
-                                break;
-                            default:
-                                throw new Exception($"Unsupported event type: {valueField.FieldType}");
-                        }
+                        valueField.MarshalMessagePropertyToField(writer, "eventValue", "eventMessage");
+                        writer.WriteLine($"emit {property.GetPropertyName()}Changed(eventValue);");
                     }
                 }
                 writer.WriteLine("qDebug(\"got event: %s\", event->type_url().c_str());");

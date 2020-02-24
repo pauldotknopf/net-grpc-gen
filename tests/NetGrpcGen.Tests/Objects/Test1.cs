@@ -107,25 +107,35 @@ namespace NetGrpcGen.Tests.Objects
             _cancellationTokenSource = new CancellationTokenSource();
             _task = Task.Factory.StartNew(() =>
             {
+                return;
+                var counter = 0;
                 while (!_cancellationTokenSource.IsCancellationRequested)
                 {
                     Console.WriteLine("Invoking events!!");
                     try
                     {
-                        // TestEvent.Invoke(Guid.NewGuid() + "汉字");
-                        // TestEventComplex.Invoke(new TestMessageResponse
-                        // {
-                        //     Value1 = 34,
-                        //     Value2 = "werwer"
-                        // });
-                        // TestEventNoData.Invoke();
-                        PropString = Guid.NewGuid().ToString();
+                        counter++;
+                        switch (counter)
+                        {
+                            case 1:
+                                PropString = Guid.NewGuid().ToString();
+                                break;
+                            case 2:
+                                PropString = null;
+                                break;
+                            case 3:
+                                PropString = "";
+                                break;
+                            default:
+                                counter = 0;
+                                break;
+                        }
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                 }
             });
         }

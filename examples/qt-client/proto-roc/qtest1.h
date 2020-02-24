@@ -4,11 +4,12 @@
 #include <QScopedPointer>
 #include <QJSValue>
 #include <QJsonValue>
+#include <QVariant>
 namespace Tests {
 class QTest1Private;
 class QTest1 : public QObject {
 	Q_OBJECT
-	Q_PROPERTY(QJsonValue propString READ getPropString WRITE setPropString NOTIFY propStringChanged)
+	Q_PROPERTY(QVariant propString READ getPropString WRITE setPropString NOTIFY propStringChanged)
 	Q_PROPERTY(QJsonValue propComplex READ getPropComplex WRITE setPropComplex NOTIFY propComplexChanged)
 public:
 	QTest1(QObject* parent = nullptr);
@@ -20,15 +21,15 @@ public:
 	Q_INVOKABLE void testMethodNoRequestOrResponse(QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testMethodNoRequest(QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testMethodNoResponse(bool val, QJSValue state, QJSValue callback);
-	QJsonValue getPropString();
-	void setPropString(QJsonValue val);
+	QVariant getPropString();
+	void setPropString(QVariant val);
 	QJsonValue getPropComplex();
 	void setPropComplex(QJsonValue val);
 signals:
-	void testEvent(QJsonValue val);
+	void testEvent(QVariant val);
 	void testEventComplex(QJsonValue val);
 	void testEventNoData();
-	void propStringChanged(QJsonValue val);
+	void propStringChanged(QVariant val);
 	void propComplexChanged(QJsonValue val);
 private slots:
 	void testMethodHandler(QJsonValue result, int requestId, QString error);

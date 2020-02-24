@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QScopedPointer>
 #include <QJsonValue>
+#include <QVariant>
 namespace Tests {
 class QTest2WorkerPrivate;
 class QTest2Worker : public QObject {
@@ -15,8 +16,8 @@ public:
 	void testMethodWithNoResponse2(QJsonValue request, int requestId);
 	void testMethodNoRequest2(int requestId);
 	void processEvent(void* event);
-	QJsonValue getPropString2();
-	void setPropString2(QJsonValue val);
+	QVariant getPropString2();
+	void setPropString2(QVariant val);
 	QJsonValue getPropComplex2();
 	void setPropComplex2(QJsonValue val);
 signals:
@@ -24,10 +25,10 @@ signals:
 	void testMethodSync2Done(QJsonValue val, int requestId, QString error);
 	void testMethodWithNoResponse2Done(int requestId, QString error);
 	void testMethodNoRequest2Done(int requestId, QString error);
-	void testEvent2Raised(QJsonValue val);
+	void testEvent2Raised(QVariant val);
 	void testEventComplex2Raised(QJsonValue val);
 	void testEventNoData2Raised();
-	void propString2Changed(QJsonValue val);
+	void propString2Changed(QVariant val);
 	void propComplex2Changed(QJsonValue val);
 private:
 	QScopedPointer<QTest2WorkerPrivate> const d_priv;

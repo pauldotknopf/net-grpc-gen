@@ -58,18 +58,12 @@ namespace NetGrpcGen.Generator
     
         public static string CppNamespace(this ProtoObjectModel objectModel)
         {
-            return string.IsNullOrEmpty(objectModel.ServiceDescriptor.File.Package) ? "" : objectModel.ServiceDescriptor.File.Package.Replace(".", "::");
+            return objectModel.ServiceDescriptor.File.CppNamespace();
         }
         
         public static string CppNamespacePrefix(this ProtoObjectModel objectModel)
         {
-            var ns = objectModel.CppNamespace();
-            if (!string.IsNullOrEmpty(ns))
-            {
-                ns += "::";
-            }
-
-            return ns;
+            return objectModel.ServiceDescriptor.File.CppNamespacePrefix();
         }
 
         public static List<string> NamespaceComponents(this ProtoObjectModel objectModel)

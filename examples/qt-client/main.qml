@@ -10,10 +10,10 @@ ApplicationWindow {
     Timer {
         running: true
         repeat: true
-        interval: 2000
+        interval: 5000
         onTriggered: {
-            pageLoader.source = ""
-            pageLoader.source = "Test1.qml"
+            //pageLoader.source = ""
+            //pageLoader.source = "Test1.qml"
         }
     }
 
@@ -21,28 +21,4 @@ ApplicationWindow {
         id: pageLoader
         source: "Test1.qml"
     }
-
-//    Timer {
-//        running: false
-//        repeat: true
-//        interval: 1
-//        onTriggered: {
-//            requestNumber++;
-//            test1.testMethodNoRequest("state " + requestNumber, function(e) {
-//                console.log("testMethodNoRequest callback!")
-//                console.log(JSON.stringify(e))
-//            })
-//            test1.testMethodPrimitive(requestNumber, "state " + requestNumber, function(e) {
-//                console.log("testMethodPrimitive callback!")
-//                console.log(JSON.stringify(e))
-//            });
-//        }
-//    }
-
-//    Test1 {
-//        id: test1
-
-//        Component.onCompleted: {
-//        }
-//    }
 }

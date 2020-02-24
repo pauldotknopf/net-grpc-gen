@@ -87,7 +87,7 @@ void QTestTypes::testParamBool(bool val, QJSValue state, QJSValue callback)
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamBool(val, requestId);
 }
-void QTestTypes::testParamString(QJsonValue val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamString(QVariant val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));

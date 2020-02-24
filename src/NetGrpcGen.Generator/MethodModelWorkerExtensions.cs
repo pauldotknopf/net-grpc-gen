@@ -66,7 +66,7 @@ namespace NetGrpcGen.Generator
                         writer.WriteLine($"auto invokeResult = d_priv->service->{val.Model.MethodDescriptor.Name}(&context, request, &response);");
                         if (outputField != null)
                         {
-                            writer.WriteLine("auto responseValue = response.value();");
+                            outputField.MarshalMessagePropertyToField(writer, "responseValue", "response");
                             writer.WriteLine("if(!invokeResult.ok()) {");
                             writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));");
                             writer.WriteLine("} else {");
@@ -97,21 +97,11 @@ namespace NetGrpcGen.Generator
                         writer.WriteLine($"{val.Model.ProtobufRequestCppType()} request;");
                         writer.WriteLine($"{val.Model.ProtobufResponseCppType()} response;");
                         writer.WriteLine("request.set_objectid(d_priv->objectId);");
-                        if (inputField.FieldType == FieldType.Message)
-                        {
-                            writer.WriteLine($"auto messageVal = new {val.Model.ProtobufRequestInnerCppType()}();");
-                            // TODO: Check response.
-                            writer.WriteLine("ProtobufJsonConverter::jsonValueToMessage(val, messageVal);");
-                            writer.WriteLine("request.set_allocated_value(messageVal);");
-                        }
-                        else
-                        {
-                            writer.WriteLine($"request.set_value(val);");
-                        }
+                        inputField.MarshalValueToMessageProperty(writer, "val", "request");
 
                         writer.WriteLine("grpc::ClientContext context;");
                         writer.WriteLine($"auto invokeResult = d_priv->service->{val.Model.MethodDescriptor.Name}(&context, request, &response);");
-                       
+                        
                         if (outputField == null)
                         {
                             writer.WriteLine("if(!invokeResult.ok()) {");
@@ -122,26 +112,12 @@ namespace NetGrpcGen.Generator
                         }
                         else
                         {
-                            writer.WriteLine("auto responseValue = response.value();");
-                            if (outputField.FieldType == FieldType.Message)
-                            {
-                                writer.WriteLine("QJsonValue messageJson;");
-                                // TODO: Check response
-                                writer.WriteLine("ProtobufJsonConverter::messageToJsonValue(&responseValue, messageJson);");
-                                writer.WriteLine("if(!invokeResult.ok()) {");
-                                writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(messageJson, requestId, QString::fromStdString(invokeResult.error_message()));");
-                                writer.WriteLine("} else {");
-                                writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(messageJson, requestId, QString());");
-                                writer.WriteLine("}");
-                            }
-                            else
-                            {
-                                writer.WriteLine("if(!invokeResult.ok()) {");
-                                writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));");
-                                writer.WriteLine("} else {");
-                                writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString());");
-                                writer.WriteLine("}");
-                            }
+                            outputField.MarshalMessagePropertyToField(writer, "responseValue", "response");
+                            writer.WriteLine("if(!invokeResult.ok()) {");
+                            writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));");
+                            writer.WriteLine("} else {");
+                            writer.WriteLineIndented($"emit {val.Model.MethodName()}Done(responseValue, requestId, QString());");
+                            writer.WriteLine("}");
                         }
                     }
                     writer.WriteLine("});");
