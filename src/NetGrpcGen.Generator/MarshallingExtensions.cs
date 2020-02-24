@@ -76,8 +76,14 @@ namespace NetGrpcGen.Generator
                             break;
                         default:
                             writer.WriteLine($"QJsonValue {valueFieldName};");
-                            // TODO: Check return type.
-                            writer.WriteLine($"ProtobufJsonConverter::messageToJsonValue(&{messageFieldName}, {valueFieldName});");
+                            writer.WriteLine($"if({messageFieldName}.has_value())");
+                            using (writer.Indent(true))
+                            {
+                                // TODO: Check return type.
+                                writer.WriteLine($"auto {messageFieldName}MessageValue = {messageFieldName}.value();");
+                                writer.WriteLine(
+                                    $"ProtobufJsonConverter::messageToJsonValue(&{messageFieldName}MessageValue, {valueFieldName});");
+                            }
                             break;
                     }
                     break;
@@ -107,10 +113,17 @@ namespace NetGrpcGen.Generator
                             }
                             break;
                         default:
-                            // TODO: Check response.
-                            writer.WriteLine($"auto messageVal = new {fieldDescriptor.MessageType.File.CppNamespacePrefix()}{fieldDescriptor.MessageType.Name}();");
-                            writer.WriteLine($"ProtobufJsonConverter::jsonValueToMessage({valueFieldName}, messageVal);");
-                            writer.WriteLine($"{messageFieldName}.set_allocated_value(messageVal);");
+                            writer.WriteLine("if(!val.isNull())");
+                            using (writer.Indent(true))
+                            {
+                                // TODO: Check response.
+                                writer.WriteLine(
+                                    $"auto messageVal = new {fieldDescriptor.MessageType.File.CppNamespacePrefix()}{fieldDescriptor.MessageType.Name}();");
+                                writer.WriteLine(
+                                    $"ProtobufJsonConverter::jsonValueToMessage({valueFieldName}, messageVal);");
+                                writer.WriteLine($"{messageFieldName}.set_allocated_value(messageVal);");
+                            }
+
                             break;
                     }
                     break;

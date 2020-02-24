@@ -11,11 +11,9 @@ Item {
         onTriggered: {
             testInt++;
             if(testInt == 1) {
-                test.propString = null;
+                test.propComplex = null;
             } else if(testInt == 2) {
-                test.propString = ""
-            } else {
-                test.propString = new Date().toString()
+                test.propComplex = {value1: 1}
                 testInt = 0
             }
         }
@@ -30,7 +28,11 @@ Item {
             console.log("no data!")
         }
         onPropComplexChanged: {
-            console.log("changed: " + JSON.stringify(test.propComplex))
+            console.log("prop complex changed...")
+            console.log(typeof test.propComplex)
+            if(test.propComplex) {
+                console.log(JSON.stringify(test.propComplex))
+            }
         }
         onPropStringChanged: {
             console.log("prop string changed: " + test.propString)

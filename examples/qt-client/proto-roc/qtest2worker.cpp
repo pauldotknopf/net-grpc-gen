@@ -82,13 +82,20 @@ void QTest2Worker::testMethod2(QJsonValue val, int requestId)
 		Tests::Test2TestMethod2MethodRequest request;
 		Tests::Test2TestMethod2MethodResponse response;
 		request.set_objectid(d_priv->objectId);
-		auto messageVal = new custom::types::TestMessageRequest();
-		ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
-		request.set_allocated_value(messageVal);
+		if(!val.isNull())
+		{
+			auto messageVal = new custom::types::TestMessageRequest();
+			ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
+			request.set_allocated_value(messageVal);
+		}
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestMethod2(&context, request, &response);
 		QJsonValue responseValue;
-		ProtobufJsonConverter::messageToJsonValue(&response, responseValue);
+		if(response.has_value())
+		{
+			auto responseMessageValue = response.value();
+			ProtobufJsonConverter::messageToJsonValue(&responseMessageValue, responseValue);
+		}
 		if(!invokeResult.ok()) {
 			emit testMethod2Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
@@ -102,13 +109,20 @@ void QTest2Worker::testMethodSync2(QJsonValue val, int requestId)
 		Tests::Test2TestMethodSync2MethodRequest request;
 		Tests::Test2TestMethodSync2MethodResponse response;
 		request.set_objectid(d_priv->objectId);
-		auto messageVal = new custom::types::TestMessageRequest();
-		ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
-		request.set_allocated_value(messageVal);
+		if(!val.isNull())
+		{
+			auto messageVal = new custom::types::TestMessageRequest();
+			ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
+			request.set_allocated_value(messageVal);
+		}
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestMethodSync2(&context, request, &response);
 		QJsonValue responseValue;
-		ProtobufJsonConverter::messageToJsonValue(&response, responseValue);
+		if(response.has_value())
+		{
+			auto responseMessageValue = response.value();
+			ProtobufJsonConverter::messageToJsonValue(&responseMessageValue, responseValue);
+		}
 		if(!invokeResult.ok()) {
 			emit testMethodSync2Done(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
@@ -122,9 +136,12 @@ void QTest2Worker::testMethodWithNoResponse2(QJsonValue val, int requestId)
 		Tests::Test2TestMethodWithNoResponse2MethodRequest request;
 		Tests::Test2TestMethodWithNoResponse2MethodResponse response;
 		request.set_objectid(d_priv->objectId);
-		auto messageVal = new custom::types::TestMessageRequest();
-		ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
-		request.set_allocated_value(messageVal);
+		if(!val.isNull())
+		{
+			auto messageVal = new custom::types::TestMessageRequest();
+			ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
+			request.set_allocated_value(messageVal);
+		}
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestMethodWithNoResponse2(&context, request, &response);
 		if(!invokeResult.ok()) {
@@ -168,7 +185,11 @@ void QTest2Worker::processEvent(void* _event)
 		Tests::Test2TestEventComplex2Event eventMessage;
 		event->UnpackTo(&eventMessage);
 		QJsonValue eventValue;
-		ProtobufJsonConverter::messageToJsonValue(&eventMessage, eventValue);
+		if(eventMessage.has_value())
+		{
+			auto eventMessageMessageValue = eventMessage.value();
+			ProtobufJsonConverter::messageToJsonValue(&eventMessageMessageValue, eventValue);
+		}
 		emit testEventComplex2Raised(eventValue);
 	}
 	if(event->Is<Tests::Test2TestEventNoData2Event>())
@@ -191,7 +212,11 @@ void QTest2Worker::processEvent(void* _event)
 		Tests::Test2PropComplex2PropertyChanged eventMessage;
 		event->UnpackTo(&eventMessage);
 		QJsonValue eventValue;
-		ProtobufJsonConverter::messageToJsonValue(&eventMessage, eventValue);
+		if(eventMessage.has_value())
+		{
+			auto eventMessageMessageValue = eventMessage.value();
+			ProtobufJsonConverter::messageToJsonValue(&eventMessageMessageValue, eventValue);
+		}
 		emit propComplex2Changed(eventValue);
 	}
 	qDebug("got event: %s", event->type_url().c_str());
@@ -235,7 +260,11 @@ QJsonValue QTest2Worker::getPropComplex2()
 	auto result = d_priv->service->GetPropertyPropComplex2(&context, request, &response);
 	if(!result.ok()) { qCritical("couldn't read property PropComplex2: %s", result.error_message().c_str()); return QJsonValue::Undefined; }
 	QJsonValue propValue;
-	ProtobufJsonConverter::messageToJsonValue(&response, propValue);
+	if(response.has_value())
+	{
+		auto responseMessageValue = response.value();
+		ProtobufJsonConverter::messageToJsonValue(&responseMessageValue, propValue);
+	}
 	return propValue;
 }
 void QTest2Worker::setPropComplex2(QJsonValue val)
@@ -243,9 +272,12 @@ void QTest2Worker::setPropComplex2(QJsonValue val)
 	Tests::Test2PropComplex2SetRequest request;
 	Tests::Test2PropComplex2SetResponse response;
 	request.set_objectid(d_priv->objectId);
-	auto messageVal = new custom::types::TestMessageResponse();
-	ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
-	request.set_allocated_value(messageVal);
+	if(!val.isNull())
+	{
+		auto messageVal = new custom::types::TestMessageResponse();
+		ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
+		request.set_allocated_value(messageVal);
+	}
 	grpc::ClientContext context;
 	auto result = d_priv->service->SetPropertyPropComplex2(&context, request, &response);
 	if(!result.ok()) { qCritical("couldn't set property propComplex2: %s", result.error_message().c_str()); }
