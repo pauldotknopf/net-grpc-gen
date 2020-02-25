@@ -337,60 +337,70 @@ message TestTypesTestParamDoubleMethodRequest {
 	double value = 2;
 }
 message TestTypesTestParamDoubleMethodResponse {
+	double value = 1;
 }
 message TestTypesTestParamFloatMethodRequest {
 	uint64 objectId = 1;
 	float value = 2;
 }
 message TestTypesTestParamFloatMethodResponse {
+	float value = 1;
 }
 message TestTypesTestParamIntMethodRequest {
 	uint64 objectId = 1;
 	int32 value = 2;
 }
 message TestTypesTestParamIntMethodResponse {
+	int32 value = 1;
 }
 message TestTypesTestParamUIntMethodRequest {
 	uint64 objectId = 1;
 	uint32 value = 2;
 }
 message TestTypesTestParamUIntMethodResponse {
+	uint32 value = 1;
 }
 message TestTypesTestParamLongMethodRequest {
 	uint64 objectId = 1;
 	int64 value = 2;
 }
 message TestTypesTestParamLongMethodResponse {
+	int64 value = 1;
 }
 message TestTypesTestParamULongMethodRequest {
 	uint64 objectId = 1;
 	uint64 value = 2;
 }
 message TestTypesTestParamULongMethodResponse {
+	uint64 value = 1;
 }
 message TestTypesTestParamBoolMethodRequest {
 	uint64 objectId = 1;
 	bool value = 2;
 }
 message TestTypesTestParamBoolMethodResponse {
+	bool value = 1;
 }
 message TestTypesTestParamStringMethodRequest {
 	uint64 objectId = 1;
 	google.protobuf.StringValue value = 2;
 }
 message TestTypesTestParamStringMethodResponse {
+	google.protobuf.StringValue value = 1;
 }
 message TestTypesTestParamByteMethodRequest {
 	uint64 objectId = 1;
 	uint32 value = 2;
 }
 message TestTypesTestParamByteMethodResponse {
+	uint32 value = 1;
 }
 message TestTypesTestParamBytesMethodRequest {
 	uint64 objectId = 1;
-	bytes value = 2;
+	google.protobuf.BytesValue value = 2;
 }
 message TestTypesTestParamBytesMethodResponse {
+	google.protobuf.BytesValue value = 1;
 }
 service TestTypesObjectService {
 	option(serviceObjectName) = "TestTypes";

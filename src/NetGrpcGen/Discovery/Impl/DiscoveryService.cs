@@ -101,6 +101,7 @@ namespace NetGrpcGen.Discovery.Impl
                         }
                         var returnType = generateParameters[0];
                         m.ResponseType = GetGrpcType(returnType);
+                        m.ClrResponseType = returnType;
                     }
 
                     m.IsAsync = true;
@@ -110,6 +111,7 @@ namespace NetGrpcGen.Discovery.Impl
                     if (m.Method.ReturnType != typeof(void))
                     {
                         m.ResponseType = GetGrpcType(m.Method.ReturnType);
+                        m.ClrResponseType = m.Method.ReturnType;
                     }
                     else
                     {
@@ -122,6 +124,7 @@ namespace NetGrpcGen.Discovery.Impl
                 if (parameters.Length == 1)
                 {
                     m.RequestType = GetGrpcType(parameters[0].ParameterType);
+                    m.ClrRequestType = parameters[0].ParameterType;
                 }
                 else if(parameters.Length == 0)
                 {
@@ -155,6 +158,7 @@ namespace NetGrpcGen.Discovery.Impl
                     }
 
                     e.DataType = GetGrpcType(genericArguments[0]);
+                    e.ClrDataType = genericArguments[0];
                 
                     o.Events.Add(e);
                 } else if (genericArguments.Length == 0)
@@ -180,6 +184,11 @@ namespace NetGrpcGen.Discovery.Impl
             if (type == typeof(String))
             {
                 return GetGrpcType(typeof(StringValue));
+            }
+
+            if (type == typeof(byte[]))
+            {
+                return GetGrpcType(typeof(BytesValue));
             }
 
             if (type == typeof(uint))

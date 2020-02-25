@@ -244,12 +244,23 @@ namespace NetGrpcGen.Adapters
             object response = null;
             if (method.RequestType == null)
             {
-                response = method.Method.Invoke(o, new object[]{});
+                response = method.Method.Invoke(o, new object[] { });
             }
             else
             {
                 var value = GetValue(request);
-                response = method.Method.Invoke(o, new object[] {value});
+                if (method.ClrRequestType == typeof(byte))
+                {
+                    // This is exposed in grpc via UInt32;
+                    value = Convert.ToByte(value);
+                }
+
+                if (method.ClrRequestType == typeof(byte[]))
+                {
+                    // This is exposed in grpc via ByteString
+                    value = ((ByteString) value)?.ToByteArray();
+                }
+                response = method.Method.Invoke(o, new[] {value});
             }
 
             if (response is Task task)
@@ -265,6 +276,14 @@ namespace NetGrpcGen.Adapters
                 var messageResponse = Activator.CreateInstance(typeof(TResponse));
                 if (method.ResponseType != null)
                 {
+                    if (method.ClrResponseType == typeof(byte[]))
+                    {
+                        // This is exposed as a byte string.
+                        if (response != null)
+                        {
+                            response = ByteString.CopyFrom(((byte[]) response));
+                        }
+                    }
                     SetValue(messageResponse, response);
                 }
                 return (TResponse) messageResponse;

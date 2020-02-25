@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using NetGrpcGen.ComponentModel;
@@ -13,6 +14,10 @@ namespace NetGrpcGen.Model
         public GrpcObject GrpcObject { get; set; }
         
         public MethodInfo Method { get; set; }
+        
+        public Type ClrRequestType { get; set; }
+        
+        public Type ClrResponseType { get; set; }
         
         public bool IsAsync { get; set; }
         

@@ -85,10 +85,11 @@ void QTestTypesWorker::testParamDouble(bool val, int requestId)
 		request.set_value(val);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamDouble(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testParamDoubleDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamDoubleDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamDoubleDone(requestId, QString());
+			emit testParamDoubleDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -101,10 +102,11 @@ void QTestTypesWorker::testParamFloat(bool val, int requestId)
 		request.set_value(val);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamFloat(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testParamFloatDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamFloatDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamFloatDone(requestId, QString());
+			emit testParamFloatDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -117,10 +119,11 @@ void QTestTypesWorker::testParamInt(bool val, int requestId)
 		request.set_value(val);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamInt(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testParamIntDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamIntDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamIntDone(requestId, QString());
+			emit testParamIntDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -133,10 +136,11 @@ void QTestTypesWorker::testParamUInt(bool val, int requestId)
 		request.set_value(val);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamUInt(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testParamUIntDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamUIntDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamUIntDone(requestId, QString());
+			emit testParamUIntDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -149,10 +153,11 @@ void QTestTypesWorker::testParamLong(bool val, int requestId)
 		request.set_value(val);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamLong(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testParamLongDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamLongDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamLongDone(requestId, QString());
+			emit testParamLongDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -165,10 +170,11 @@ void QTestTypesWorker::testParamULong(bool val, int requestId)
 		request.set_value(val);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamULong(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testParamULongDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamULongDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamULongDone(requestId, QString());
+			emit testParamULongDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -181,10 +187,11 @@ void QTestTypesWorker::testParamBool(bool val, int requestId)
 		request.set_value(val);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamBool(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testParamBoolDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamBoolDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamBoolDone(requestId, QString());
+			emit testParamBoolDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -202,10 +209,15 @@ void QTestTypesWorker::testParamString(QVariant val, int requestId)
 		}
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamString(&context, request, &response);
+		QVariant responseValue = QVariant::fromValue(nullptr);
+		if(response.has_value())
+		{
+			responseValue = QString::fromStdString(response.value().value());
+		}
 		if(!invokeResult.ok()) {
-			emit testParamStringDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamStringDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamStringDone(requestId, QString());
+			emit testParamStringDone(responseValue, requestId, QString());
 		}
 	});
 }
@@ -218,26 +230,38 @@ void QTestTypesWorker::testParamByte(bool val, int requestId)
 		request.set_value(val);
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamByte(&context, request, &response);
+		auto responseValue = response.value();
 		if(!invokeResult.ok()) {
-			emit testParamByteDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamByteDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamByteDone(requestId, QString());
+			emit testParamByteDone(responseValue, requestId, QString());
 		}
 	});
 }
-void QTestTypesWorker::testParamBytes(QByteArray val, int requestId)
+void QTestTypesWorker::testParamBytes(QJsonValue val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamBytesMethodRequest request;
 		Tests::TestTypesTestParamBytesMethodResponse response;
 		request.set_objectid(d_priv->objectId);
-		request.set_value(val);
+		if(!val.isNull())
+		{
+			auto messageVal = new google::protobuf::BytesValue();
+			ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
+			request.set_allocated_value(messageVal);
+		}
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamBytes(&context, request, &response);
+		QJsonValue responseValue;
+		if(response.has_value())
+		{
+			auto responseMessageValue = response.value();
+			ProtobufJsonConverter::messageToJsonValue(&responseMessageValue, responseValue);
+		}
 		if(!invokeResult.ok()) {
-			emit testParamBytesDone(requestId, QString::fromStdString(invokeResult.error_message()));
+			emit testParamBytesDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));
 		} else {
-			emit testParamBytesDone(requestId, QString());
+			emit testParamBytesDone(responseValue, requestId, QString());
 		}
 	});
 }

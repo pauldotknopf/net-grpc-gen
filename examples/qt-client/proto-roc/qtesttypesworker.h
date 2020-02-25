@@ -20,19 +20,19 @@ public:
 	void testParamBool(bool request, int requestId);
 	void testParamString(QVariant request, int requestId);
 	void testParamByte(bool request, int requestId);
-	void testParamBytes(QByteArray request, int requestId);
+	void testParamBytes(QJsonValue request, int requestId);
 	void processEvent(void* event);
 signals:
-	void testParamDoubleDone(int requestId, QString error);
-	void testParamFloatDone(int requestId, QString error);
-	void testParamIntDone(int requestId, QString error);
-	void testParamUIntDone(int requestId, QString error);
-	void testParamLongDone(int requestId, QString error);
-	void testParamULongDone(int requestId, QString error);
-	void testParamBoolDone(int requestId, QString error);
-	void testParamStringDone(int requestId, QString error);
-	void testParamByteDone(int requestId, QString error);
-	void testParamBytesDone(int requestId, QString error);
+	void testParamDoubleDone(bool val, int requestId, QString error);
+	void testParamFloatDone(bool val, int requestId, QString error);
+	void testParamIntDone(bool val, int requestId, QString error);
+	void testParamUIntDone(bool val, int requestId, QString error);
+	void testParamLongDone(bool val, int requestId, QString error);
+	void testParamULongDone(bool val, int requestId, QString error);
+	void testParamBoolDone(bool val, int requestId, QString error);
+	void testParamStringDone(QVariant val, int requestId, QString error);
+	void testParamByteDone(bool val, int requestId, QString error);
+	void testParamBytesDone(QJsonValue val, int requestId, QString error);
 	void testEventRaised(QVariant val);
 private:
 	QScopedPointer<QTestTypesWorkerPrivate> const d_priv;

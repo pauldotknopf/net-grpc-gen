@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>Test1.qml</file>
+        <file>TestTypes.qml</file>
     </qresource>
 </RCC>

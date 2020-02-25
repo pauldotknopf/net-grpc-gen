@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using NetGrpcGen.ComponentModel;
 
@@ -14,5 +15,7 @@ namespace NetGrpcGen.Model
         public EventInfo Event { get; set; }
         
         public GrpcType DataType { get; set; }
+        
+        public Type ClrDataType { get; set; }
     }
 }

@@ -9,63 +9,63 @@ namespace NetGrpcGen.Tests.Objects
     public class TestTypes
     {
         [GrpcMethod]
-        public virtual void TestParamDouble(double val)
+        public virtual double TestParamDouble(double val)
         {
-            
+            return val;
         }
 
         [GrpcMethod]
-        public virtual void TestParamFloat(float val)
+        public virtual float TestParamFloat(float val)
         {
-            
+            return val;
         }
 
         [GrpcMethod]
-        public virtual void TestParamInt(int val)
+        public virtual int TestParamInt(int val)
         {
-            
+            return val;
         }
 
         [GrpcMethod]
-        public virtual void TestParamUInt(uint val)
+        public virtual uint TestParamUInt(uint val)
         {
-            
+            return val;
         }
 
         [GrpcMethod]
-        public virtual void TestParamLong(long val)
+        public virtual long TestParamLong(long val)
         {
-            
+            return val;
         }
         
         [GrpcMethod]
-        public virtual void TestParamULong(ulong val)
+        public virtual ulong TestParamULong(ulong val)
         {
-                
+            return val;
         }
 
         [GrpcMethod]
-        public virtual void TestParamBool(bool val)
+        public virtual bool TestParamBool(bool val)
         {
-            
+            return val;
         }
 
         [GrpcMethod]
-        public virtual void TestParamString(string val)
+        public virtual string TestParamString(string val)
         {
-            
+            return val;
         }
 
         [GrpcMethod]
-        public virtual void TestParamByte(byte val)
+        public virtual byte TestParamByte(byte val)
         {
-            
+            return val;
         }
         
         [GrpcMethod]
-        public virtual void TestParamBytes(byte[] val)
+        public virtual byte[] TestParamBytes(byte[] val)
         {
-            
+            return val;
         }
         
         [GrpcEvent]

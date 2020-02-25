@@ -7,22 +7,22 @@ using Xunit;
 
 namespace NetGrpcGen.Tests.TypeTests
 {
-    public class IntTests : BaseTypeTests
+    public class ByteTests : BaseTypeTests
     {
         [Fact]
-        public async Task Can_call_with_int_param()
+        public async Task Can_call_with_byte_param()
         {
             var o = new Mock<TestTypes>();
-            o.Setup(x => x.TestParamInt(-3)).Returns(-3);
+            o.Setup(x => x.TestParamByte(0x3)).Returns(0x4);
             await WithWithObject(o.Object, async (client, instance, objectId) =>
             {
-                var response = await client.InvokeTestParamIntAsync(new TestTypesTestParamIntMethodRequest
+                var response = await client.InvokeTestParamByteAsync(new TestTypesTestParamByteMethodRequest
                 {
                     ObjectId = objectId,
-                    Value = -3
+                    Value = 0x03
                 });
-                response.Value.Should().Be(-3);
-                o.Verify(x => x.TestParamInt(-3), Times.Once);
+                response.Value.Should().Be(0x4);
+                o.Verify(x => x.TestParamByte(0x3), Times.Once);
             });
         }
     }

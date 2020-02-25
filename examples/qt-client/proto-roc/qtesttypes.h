@@ -21,20 +21,20 @@ public:
 	Q_INVOKABLE void testParamBool(bool val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testParamString(QVariant val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testParamByte(bool val, QJSValue state, QJSValue callback);
-	Q_INVOKABLE void testParamBytes(QByteArray val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamBytes(QJsonValue val, QJSValue state, QJSValue callback);
 signals:
 	void testEvent(QVariant val);
 private slots:
-	void testParamDoubleHandler(int requestId, QString error);
-	void testParamFloatHandler(int requestId, QString error);
-	void testParamIntHandler(int requestId, QString error);
-	void testParamUIntHandler(int requestId, QString error);
-	void testParamLongHandler(int requestId, QString error);
-	void testParamULongHandler(int requestId, QString error);
-	void testParamBoolHandler(int requestId, QString error);
-	void testParamStringHandler(int requestId, QString error);
-	void testParamByteHandler(int requestId, QString error);
-	void testParamBytesHandler(int requestId, QString error);
+	void testParamDoubleHandler(bool result, int requestId, QString error);
+	void testParamFloatHandler(bool result, int requestId, QString error);
+	void testParamIntHandler(bool result, int requestId, QString error);
+	void testParamUIntHandler(bool result, int requestId, QString error);
+	void testParamLongHandler(bool result, int requestId, QString error);
+	void testParamULongHandler(bool result, int requestId, QString error);
+	void testParamBoolHandler(bool result, int requestId, QString error);
+	void testParamStringHandler(QVariant result, int requestId, QString error);
+	void testParamByteHandler(bool result, int requestId, QString error);
+	void testParamBytesHandler(QJsonValue result, int requestId, QString error);
 private:
 	QScopedPointer<QTestTypesPrivate> const d_priv;
 };

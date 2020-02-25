@@ -14,7 +14,7 @@ using Tests;
 namespace NetGrpcGen.Tests.Objects
 {
     [GrpcObject]
-    public class Test1 : INotifyPropertyChanged, IObjectCreated, IObjectReleased
+    public class Test1 : INotifyPropertyChanged
     {
         private string _propString;
         private TestMessageResponse _propComplex;
@@ -99,51 +99,5 @@ namespace NetGrpcGen.Tests.Objects
         }
 
         public virtual event PropertyChangedEventHandler PropertyChanged;
-
-        private Task _task;
-        private CancellationTokenSource _cancellationTokenSource;
-        public void ObjectCreated()
-        {
-            _cancellationTokenSource = new CancellationTokenSource();
-            _task = Task.Factory.StartNew(() =>
-            {
-                return;
-                var counter = 0;
-                while (!_cancellationTokenSource.IsCancellationRequested)
-                {
-                    Console.WriteLine("Invoking events!!");
-                    try
-                    {
-                        counter++;
-                        switch (counter)
-                        {
-                            case 1:
-                                PropString = Guid.NewGuid().ToString();
-                                break;
-                            case 2:
-                                PropString = null;
-                                break;
-                            case 3:
-                                PropString = "";
-                                break;
-                            default:
-                                counter = 0;
-                                break;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                    Thread.Sleep(2000);
-                }
-            });
-        }
-
-        public void ObjectReleased()
-        {
-            _cancellationTokenSource.Cancel();
-            _task.Wait();
-        }
     }
 }

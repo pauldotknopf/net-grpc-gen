@@ -99,166 +99,176 @@ void QTestTypes::testParamByte(bool val, QJSValue state, QJSValue callback)
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamByte(val, requestId);
 }
-void QTestTypes::testParamBytes(QByteArray val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamBytes(QJsonValue val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamBytes(val, requestId);
 }
-void QTestTypes::testParamDoubleHandler(int requestId, QString error)
+void QTestTypes::testParamDoubleHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamFloatHandler(int requestId, QString error)
+void QTestTypes::testParamFloatHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamIntHandler(int requestId, QString error)
+void QTestTypes::testParamIntHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamUIntHandler(int requestId, QString error)
+void QTestTypes::testParamUIntHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamLongHandler(int requestId, QString error)
+void QTestTypes::testParamLongHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamULongHandler(int requestId, QString error)
+void QTestTypes::testParamULongHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamBoolHandler(int requestId, QString error)
+void QTestTypes::testParamBoolHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamStringHandler(int requestId, QString error)
+void QTestTypes::testParamStringHandler(QVariant val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+        e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamByteHandler(int requestId, QString error)
+void QTestTypes::testParamByteHandler(bool val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamBytesHandler(int requestId, QString error)
+void QTestTypes::testParamBytesHandler(QJsonValue val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
 	d_priv->requests.remove(requestId);
 	if(request->callback.isCallable())
 	{
-		QJSValue e = QQmlEngine::contextForObject(this)->engine()->newObject();
+		auto engine = QQmlEngine::contextForObject(this)->engine();
+		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-		e.setProperty("result", QJSValue::NullValue);
+		e.setProperty("result", convertJsonValueToJsValue(engine, val));
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
