@@ -7,6 +7,8 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 #include "roc-lib/qroccommon.h"
+#include "private/qv4engine_p.h"
+#include "private/qqmlengine_p.h"
 using namespace Tests;
 struct CallbackRequest
 {
@@ -99,7 +101,7 @@ void QTestTypes::testParamByte(bool val, QJSValue state, QJSValue callback)
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
 	d_priv->worker->testParamByte(val, requestId);
 }
-void QTestTypes::testParamBytes(QJsonValue val, QJSValue state, QJSValue callback)
+void QTestTypes::testParamBytes(QByteArray val, QJSValue state, QJSValue callback)
 {
 	auto requestId = d_priv->currentRequestId++;
 	d_priv->requests.insert(requestId, QSharedPointer<CallbackRequest>(new CallbackRequest { state, callback }));
@@ -234,7 +236,7 @@ void QTestTypes::testParamStringHandler(QVariant val, int requestId, QString err
 		auto engine = QQmlEngine::contextForObject(this)->engine();
 		QJSValue e = engine->newObject();
 		e.setProperty("state", request->state);
-        e.setProperty("result", val);
+        //e.setProperty("result", val);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);
@@ -258,7 +260,7 @@ void QTestTypes::testParamByteHandler(bool val, int requestId, QString error)
 		request->callback.call(args);
 	}
 }
-void QTestTypes::testParamBytesHandler(QJsonValue val, int requestId, QString error)
+void QTestTypes::testParamBytesHandler(QByteArray val, int requestId, QString error)
 {
 	if(!d_priv->requests.contains(requestId)) { qCritical("Couldn't find the given request id."); return; }
 	auto request = d_priv->requests.value(requestId);
@@ -267,8 +269,12 @@ void QTestTypes::testParamBytesHandler(QJsonValue val, int requestId, QString er
 	{
 		auto engine = QQmlEngine::contextForObject(this)->engine();
 		QJSValue e = engine->newObject();
-		e.setProperty("state", request->state);
-		e.setProperty("result", convertJsonValueToJsValue(engine, val));
+        e.setProperty("state", request->state);
+        auto execEngine = QQmlEnginePrivate::getV4Engine(engine);
+
+        QV4::Scope scope(execEngine);
+        QV4::ScopedValue v(scope, scope.engine->fromVariant(QVariant::fromValue(val)));
+        //e.setProperty("result", v.js);
 		e.setProperty("error", error);
 		QJSValueList args;
 		args.push_back(e);

@@ -16,6 +16,8 @@ namespace NetGrpcGen.Generator
                     {
                         case "google.protobuf.StringValue":
                             return "QVariant";
+                        case "google.protobuf.BytesValue":
+                            return "QByteArray";
                         default:
                             return "QJsonValue";
                     }
@@ -38,6 +40,8 @@ namespace NetGrpcGen.Generator
                     {
                         case "google.protobuf.StringValue":
                             return "QVariant()";
+                        case "google.protobuf.BytesValue":
+                            return "QByteArray()";
                         default:
                             return "QJsonValue::Undefined";
                     }
@@ -72,6 +76,14 @@ namespace NetGrpcGen.Generator
                             using (writer.Indent(true))
                             {
                                 writer.WriteLine($"{valueFieldName} = QString::fromStdString({messageFieldName}.value().value());");
+                            }
+                            break;
+                        case "google.protobuf.BytesValue":
+                            writer.WriteLine($"QByteArray {valueFieldName};");
+                            writer.WriteLine($"if({messageFieldName}.has_value())");
+                            using (writer.Indent(true))
+                            {
+                                writer.WriteLine($"{valueFieldName} = QByteArray::fromStdString({messageFieldName}.value().value());");
                             }
                             break;
                         default:
@@ -109,6 +121,15 @@ namespace NetGrpcGen.Generator
                             {
                                 writer.WriteLine($"auto messageVal = new {fieldDescriptor.MessageType.File.CppNamespacePrefix()}{fieldDescriptor.MessageType.Name}();");
                                 writer.WriteLine($"messageVal->set_value({valueFieldName}.toString().toStdString());");
+                                writer.WriteLine($"{messageFieldName}.set_allocated_value(messageVal);");
+                            }
+                            break;
+                        case "google.protobuf.BytesValue":
+                            writer.WriteLine("if(val.isNull())");
+                            using (writer.Indent(true))
+                            {
+                                writer.WriteLine($"auto messageVal = new {fieldDescriptor.MessageType.File.CppNamespacePrefix()}{fieldDescriptor.MessageType.Name}();");
+                                writer.WriteLine("messageVal->set_value(val);");
                                 writer.WriteLine($"{messageFieldName}.set_allocated_value(messageVal);");
                             }
                             break;

@@ -10,12 +10,7 @@ Item {
         interval: 1000
         onTriggered: {
             testInt++;
-            if(testInt == 1) {
-                test.propComplex = null;
-            } else if(testInt == 2) {
-                test.propComplex = {value1: 1}
-                testInt = 0
-            }
+            test.TestParamByte()
         }
     }
 

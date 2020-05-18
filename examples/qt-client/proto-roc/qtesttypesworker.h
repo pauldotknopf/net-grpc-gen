@@ -20,7 +20,7 @@ public:
 	void testParamBool(bool request, int requestId);
 	void testParamString(QVariant request, int requestId);
 	void testParamByte(bool request, int requestId);
-	void testParamBytes(QJsonValue request, int requestId);
+	void testParamBytes(QByteArray request, int requestId);
 	void processEvent(void* event);
 signals:
 	void testParamDoubleDone(bool val, int requestId, QString error);
@@ -32,7 +32,7 @@ signals:
 	void testParamBoolDone(bool val, int requestId, QString error);
 	void testParamStringDone(QVariant val, int requestId, QString error);
 	void testParamByteDone(bool val, int requestId, QString error);
-	void testParamBytesDone(QJsonValue val, int requestId, QString error);
+	void testParamBytesDone(QByteArray val, int requestId, QString error);
 	void testEventRaised(QVariant val);
 private:
 	QScopedPointer<QTestTypesWorkerPrivate> const d_priv;

@@ -21,7 +21,7 @@ public:
 	Q_INVOKABLE void testParamBool(bool val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testParamString(QVariant val, QJSValue state, QJSValue callback);
 	Q_INVOKABLE void testParamByte(bool val, QJSValue state, QJSValue callback);
-	Q_INVOKABLE void testParamBytes(QJsonValue val, QJSValue state, QJSValue callback);
+	Q_INVOKABLE void testParamBytes(QByteArray val, QJSValue state, QJSValue callback);
 signals:
 	void testEvent(QVariant val);
 private slots:
@@ -34,7 +34,7 @@ private slots:
 	void testParamBoolHandler(bool result, int requestId, QString error);
 	void testParamStringHandler(QVariant result, int requestId, QString error);
 	void testParamByteHandler(bool result, int requestId, QString error);
-	void testParamBytesHandler(QJsonValue result, int requestId, QString error);
+	void testParamBytesHandler(QByteArray result, int requestId, QString error);
 private:
 	QScopedPointer<QTestTypesPrivate> const d_priv;
 };

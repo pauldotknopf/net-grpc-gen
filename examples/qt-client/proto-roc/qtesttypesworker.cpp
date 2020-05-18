@@ -238,25 +238,24 @@ void QTestTypesWorker::testParamByte(bool val, int requestId)
 		}
 	});
 }
-void QTestTypesWorker::testParamBytes(QJsonValue val, int requestId)
+void QTestTypesWorker::testParamBytes(QByteArray val, int requestId)
 {
 	QMetaObject::invokeMethod(this, [this, val, requestId] {
 		Tests::TestTypesTestParamBytesMethodRequest request;
 		Tests::TestTypesTestParamBytesMethodResponse response;
 		request.set_objectid(d_priv->objectId);
-		if(!val.isNull())
+		if(val.isNull())
 		{
 			auto messageVal = new google::protobuf::BytesValue();
-			ProtobufJsonConverter::jsonValueToMessage(val, messageVal);
+			messageVal->set_value(val);
 			request.set_allocated_value(messageVal);
 		}
 		grpc::ClientContext context;
 		auto invokeResult = d_priv->service->InvokeTestParamBytes(&context, request, &response);
-		QJsonValue responseValue;
+		QByteArray responseValue;
 		if(response.has_value())
 		{
-			auto responseMessageValue = response.value();
-			ProtobufJsonConverter::messageToJsonValue(&responseMessageValue, responseValue);
+			responseValue = QByteArray::fromStdString(response.value().value());
 		}
 		if(!invokeResult.ok()) {
 			emit testParamBytesDone(responseValue, requestId, QString::fromStdString(invokeResult.error_message()));

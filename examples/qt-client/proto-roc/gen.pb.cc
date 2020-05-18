@@ -16,6 +16,7 @@
 #include <google/protobuf/port_def.inc>
 extern PROTOBUF_INTERNAL_EXPORT_types_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TestMessageRequest_types_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_types_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TestMessageResponse_types_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2fwrappers_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BytesValue_google_2fprotobuf_2fwrappers_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2fwrappers_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StringValue_google_2fprotobuf_2fwrappers_2eproto;
 namespace Tests {
 class Test1ListenEventStreamDefaultTypeInternal {
@@ -1237,8 +1238,9 @@ static void InitDefaultsscc_info_TestTypesTestParamBytesMethodRequest_gen_2eprot
   ::Tests::TestTypesTestParamBytesMethodRequest::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TestTypesTestParamBytesMethodRequest_gen_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TestTypesTestParamBytesMethodRequest_gen_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TestTypesTestParamBytesMethodRequest_gen_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TestTypesTestParamBytesMethodRequest_gen_2eproto}, {
+      &scc_info_BytesValue_google_2fprotobuf_2fwrappers_2eproto.base,}};
 
 static void InitDefaultsscc_info_TestTypesTestParamBytesMethodResponse_gen_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1251,8 +1253,9 @@ static void InitDefaultsscc_info_TestTypesTestParamBytesMethodResponse_gen_2epro
   ::Tests::TestTypesTestParamBytesMethodResponse::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TestTypesTestParamBytesMethodResponse_gen_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TestTypesTestParamBytesMethodResponse_gen_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TestTypesTestParamBytesMethodResponse_gen_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TestTypesTestParamBytesMethodResponse_gen_2eproto}, {
+      &scc_info_BytesValue_google_2fprotobuf_2fwrappers_2eproto.base,}};
 
 static void InitDefaultsscc_info_TestTypesTestParamDoubleMethodRequest_gen_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1392,8 +1395,9 @@ static void InitDefaultsscc_info_TestTypesTestParamStringMethodResponse_gen_2epr
   ::Tests::TestTypesTestParamStringMethodResponse::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TestTypesTestParamStringMethodResponse_gen_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TestTypesTestParamStringMethodResponse_gen_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TestTypesTestParamStringMethodResponse_gen_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TestTypesTestParamStringMethodResponse_gen_2eproto}, {
+      &scc_info_StringValue_google_2fprotobuf_2fwrappers_2eproto.base,}};
 
 static void InitDefaultsscc_info_TestTypesTestParamUIntMethodRequest_gen_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1825,6 +1829,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamDoubleMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamFloatMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1837,6 +1842,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamFloatMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamIntMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1849,6 +1855,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamIntMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamUIntMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1861,6 +1868,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamUIntMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamLongMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1873,6 +1881,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamLongMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamULongMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1885,6 +1894,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamULongMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamBoolMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1897,6 +1907,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamBoolMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamStringMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1909,6 +1920,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamStringMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamByteMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1921,6 +1933,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamByteMethodResponse, value_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamBytesMethodRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1933,6 +1946,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gen_2eproto::offsets[] PROTOBU
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::Tests::TestTypesTestParamBytesMethodResponse, value_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::Tests::Test1ListenEventStream)},
@@ -1995,24 +2009,24 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 350, -1, sizeof(::Tests::TestTypesTestEventEvent)},
   { 357, -1, sizeof(::Tests::TestTypesTestParamDoubleMethodRequest)},
   { 364, -1, sizeof(::Tests::TestTypesTestParamDoubleMethodResponse)},
-  { 369, -1, sizeof(::Tests::TestTypesTestParamFloatMethodRequest)},
-  { 376, -1, sizeof(::Tests::TestTypesTestParamFloatMethodResponse)},
-  { 381, -1, sizeof(::Tests::TestTypesTestParamIntMethodRequest)},
-  { 388, -1, sizeof(::Tests::TestTypesTestParamIntMethodResponse)},
-  { 393, -1, sizeof(::Tests::TestTypesTestParamUIntMethodRequest)},
-  { 400, -1, sizeof(::Tests::TestTypesTestParamUIntMethodResponse)},
-  { 405, -1, sizeof(::Tests::TestTypesTestParamLongMethodRequest)},
-  { 412, -1, sizeof(::Tests::TestTypesTestParamLongMethodResponse)},
-  { 417, -1, sizeof(::Tests::TestTypesTestParamULongMethodRequest)},
-  { 424, -1, sizeof(::Tests::TestTypesTestParamULongMethodResponse)},
-  { 429, -1, sizeof(::Tests::TestTypesTestParamBoolMethodRequest)},
-  { 436, -1, sizeof(::Tests::TestTypesTestParamBoolMethodResponse)},
-  { 441, -1, sizeof(::Tests::TestTypesTestParamStringMethodRequest)},
-  { 448, -1, sizeof(::Tests::TestTypesTestParamStringMethodResponse)},
-  { 453, -1, sizeof(::Tests::TestTypesTestParamByteMethodRequest)},
-  { 460, -1, sizeof(::Tests::TestTypesTestParamByteMethodResponse)},
-  { 465, -1, sizeof(::Tests::TestTypesTestParamBytesMethodRequest)},
-  { 472, -1, sizeof(::Tests::TestTypesTestParamBytesMethodResponse)},
+  { 370, -1, sizeof(::Tests::TestTypesTestParamFloatMethodRequest)},
+  { 377, -1, sizeof(::Tests::TestTypesTestParamFloatMethodResponse)},
+  { 383, -1, sizeof(::Tests::TestTypesTestParamIntMethodRequest)},
+  { 390, -1, sizeof(::Tests::TestTypesTestParamIntMethodResponse)},
+  { 396, -1, sizeof(::Tests::TestTypesTestParamUIntMethodRequest)},
+  { 403, -1, sizeof(::Tests::TestTypesTestParamUIntMethodResponse)},
+  { 409, -1, sizeof(::Tests::TestTypesTestParamLongMethodRequest)},
+  { 416, -1, sizeof(::Tests::TestTypesTestParamLongMethodResponse)},
+  { 422, -1, sizeof(::Tests::TestTypesTestParamULongMethodRequest)},
+  { 429, -1, sizeof(::Tests::TestTypesTestParamULongMethodResponse)},
+  { 435, -1, sizeof(::Tests::TestTypesTestParamBoolMethodRequest)},
+  { 442, -1, sizeof(::Tests::TestTypesTestParamBoolMethodResponse)},
+  { 448, -1, sizeof(::Tests::TestTypesTestParamStringMethodRequest)},
+  { 455, -1, sizeof(::Tests::TestTypesTestParamStringMethodResponse)},
+  { 461, -1, sizeof(::Tests::TestTypesTestParamByteMethodRequest)},
+  { 468, -1, sizeof(::Tests::TestTypesTestParamByteMethodResponse)},
+  { 474, -1, sizeof(::Tests::TestTypesTestParamBytesMethodRequest)},
+  { 481, -1, sizeof(::Tests::TestTypesTestParamBytesMethodResponse)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -2208,161 +2222,167 @@ const char descriptor_table_protodef_gen_2eproto[] PROTOBUF_SECTION_VARIABLE(pro
   "ectId\030\001 \001(\004\022+\n\005value\030\002 \001(\0132\034.google.prot"
   "obuf.StringValue:\030\302>\tTestTypes\312>\tTestEve"
   "nt\"H\n%TestTypesTestParamDoubleMethodRequ"
-  "est\022\020\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 \001(\001\"(\n&"
-  "TestTypesTestParamDoubleMethodResponse\"G"
-  "\n$TestTypesTestParamFloatMethodRequest\022\020"
-  "\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 \001(\002\"\'\n%TestT"
-  "ypesTestParamFloatMethodResponse\"E\n\"Test"
-  "TypesTestParamIntMethodRequest\022\020\n\010object"
-  "Id\030\001 \001(\004\022\r\n\005value\030\002 \001(\005\"%\n#TestTypesTest"
-  "ParamIntMethodResponse\"F\n#TestTypesTestP"
-  "aramUIntMethodRequest\022\020\n\010objectId\030\001 \001(\004\022"
-  "\r\n\005value\030\002 \001(\r\"&\n$TestTypesTestParamUInt"
-  "MethodResponse\"F\n#TestTypesTestParamLong"
+  "est\022\020\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 \001(\001\"7\n&"
+  "TestTypesTestParamDoubleMethodResponse\022\r"
+  "\n\005value\030\001 \001(\001\"G\n$TestTypesTestParamFloat"
   "MethodRequest\022\020\n\010objectId\030\001 \001(\004\022\r\n\005value"
-  "\030\002 \001(\003\"&\n$TestTypesTestParamLongMethodRe"
-  "sponse\"G\n$TestTypesTestParamULongMethodR"
-  "equest\022\020\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 \001(\004\""
-  "\'\n%TestTypesTestParamULongMethodResponse"
-  "\"F\n#TestTypesTestParamBoolMethodRequest\022"
-  "\020\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 \001(\010\"&\n$Test"
-  "TypesTestParamBoolMethodResponse\"f\n%Test"
-  "TypesTestParamStringMethodRequest\022\020\n\010obj"
-  "ectId\030\001 \001(\004\022+\n\005value\030\002 \001(\0132\034.google.prot"
-  "obuf.StringValue\"(\n&TestTypesTestParamSt"
-  "ringMethodResponse\"F\n#TestTypesTestParam"
-  "ByteMethodRequest\022\020\n\010objectId\030\001 \001(\004\022\r\n\005v"
-  "alue\030\002 \001(\r\"&\n$TestTypesTestParamByteMeth"
-  "odResponse\"G\n$TestTypesTestParamBytesMet"
-  "hodRequest\022\020\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 "
-  "\001(\014\"\'\n%TestTypesTestParamBytesMethodResp"
-  "onse2\227\r\n\022Test1ObjectService\022F\n\006Create\022\031."
-  "Tests.Test1CreateRequest\032\032.Tests.Test1Cr"
-  "eateResponse\"\003\300>\0010\001\022J\n\014ListenEvents\022\035.Te"
-  "sts.Test1ListenEventStream\032\024.google.prot"
-  "obuf.Any\"\003\310>\0010\001\022l\n\020InvokeTestMethod\022#.Te"
-  "sts.Test1TestMethodMethodRequest\032$.Tests"
-  ".Test1TestMethodMethodResponse\"\r\322>\nTestM"
-  "ethod\022\177\n\024InvokeTestMethodSync\022\'.Tests.Te"
-  "st1TestMethodSyncMethodRequest\032(.Tests.T"
-  "est1TestMethodSyncMethodResponse\"\024\322>\016Tes"
-  "tMethodSync\330>\001\022\247\001\n\036InvokeTestMethodWithN"
-  "oResponse\0221.Tests.Test1TestMethodWithNoR"
-  "esponseMethodRequest\0322.Tests.Test1TestMe"
-  "thodWithNoResponseMethodResponse\"\036\322>\030Tes"
-  "tMethodWithNoResponse\330>\001\022\223\001\n\031InvokeTestM"
-  "ethodPrimitive\022,.Tests.Test1TestMethodPr"
-  "imitiveMethodRequest\032-.Tests.Test1TestMe"
-  "thodPrimitiveMethodResponse\"\031\322>\023TestMeth"
-  "odPrimitive\330>\001\022\273\001\n#InvokeTestMethodNoReq"
-  "uestOrResponse\0226.Tests.Test1TestMethodNo"
-  "RequestOrResponseMethodRequest\0327.Tests.T"
-  "est1TestMethodNoRequestOrResponseMethodR"
-  "esponse\"#\322>\035TestMethodNoRequestOrRespons"
-  "e\330>\001\022\223\001\n\031InvokeTestMethodNoRequest\022,.Tes"
-  "ts.Test1TestMethodNoRequestMethodRequest"
-  "\032-.Tests.Test1TestMethodNoRequestMethodR"
-  "esponse\"\031\322>\023TestMethodNoRequest\330>\001\022\227\001\n\032I"
-  "nvokeTestMethodNoResponse\022-.Tests.Test1T"
-  "estMethodNoResponseMethodRequest\032..Tests"
-  ".Test1TestMethodNoResponseMethodResponse"
-  "\"\032\322>\024TestMethodNoResponse\330>\001\022n\n\025SetPrope"
-  "rtyPropString\022 .Tests.Test1PropStringSet"
-  "Request\032!.Tests.Test1PropStringSetRespon"
-  "se\"\020\342>\nPropString\350>\001\022n\n\025GetPropertyPropS"
-  "tring\022 .Tests.Test1PropStringGetRequest\032"
-  "!.Tests.Test1PropStringGetResponse\"\020\342>\nP"
-  "ropString\360>\001\022r\n\026SetPropertyPropComplex\022!"
-  ".Tests.Test1PropComplexSetRequest\032\".Test"
-  "s.Test1PropComplexSetResponse\"\021\342>\013PropCo"
-  "mplex\350>\001\022r\n\026GetPropertyPropComplex\022!.Tes"
-  "ts.Test1PropComplexGetRequest\032\".Tests.Te"
-  "st1PropComplexGetResponse\"\021\342>\013PropComple"
-  "x\360>\001\032\010\302>\005Test12\312\t\n\022Test2ObjectService\022F\n"
-  "\006Create\022\031.Tests.Test2CreateRequest\032\032.Tes"
-  "ts.Test2CreateResponse\"\003\300>\0010\001\022J\n\014ListenE"
-  "vents\022\035.Tests.Test2ListenEventStream\032\024.g"
-  "oogle.protobuf.Any\"\003\310>\0010\001\022p\n\021InvokeTestM"
-  "ethod2\022$.Tests.Test2TestMethod2MethodReq"
-  "uest\032%.Tests.Test2TestMethod2MethodRespo"
-  "nse\"\016\322>\013TestMethod2\022\203\001\n\025InvokeTestMethod"
-  "Sync2\022(.Tests.Test2TestMethodSync2Method"
-  "Request\032).Tests.Test2TestMethodSync2Meth"
-  "odResponse\"\025\322>\017TestMethodSync2\330>\001\022\253\001\n\037In"
-  "vokeTestMethodWithNoResponse2\0222.Tests.Te"
-  "st2TestMethodWithNoResponse2MethodReques"
-  "t\0323.Tests.Test2TestMethodWithNoResponse2"
-  "MethodResponse\"\037\322>\031TestMethodWithNoRespo"
-  "nse2\330>\001\022\227\001\n\032InvokeTestMethodNoRequest2\022-"
-  ".Tests.Test2TestMethodNoRequest2MethodRe"
-  "quest\032..Tests.Test2TestMethodNoRequest2M"
-  "ethodResponse\"\032\322>\024TestMethodNoRequest2\330>"
-  "\001\022r\n\026SetPropertyPropString2\022!.Tests.Test"
-  "2PropString2SetRequest\032\".Tests.Test2Prop"
-  "String2SetResponse\"\021\342>\013PropString2\350>\001\022r\n"
-  "\026GetPropertyPropString2\022!.Tests.Test2Pro"
-  "pString2GetRequest\032\".Tests.Test2PropStri"
-  "ng2GetResponse\"\021\342>\013PropString2\360>\001\022v\n\027Set"
-  "PropertyPropComplex2\022\".Tests.Test2PropCo"
-  "mplex2SetRequest\032#.Tests.Test2PropComple"
-  "x2SetResponse\"\022\342>\014PropComplex2\350>\001\022v\n\027Get"
-  "PropertyPropComplex2\022\".Tests.Test2PropCo"
-  "mplex2GetRequest\032#.Tests.Test2PropComple"
-  "x2GetResponse\"\022\342>\014PropComplex2\360>\001\032\010\302>\005Te"
-  "st22\231\014\n\026TestTypesObjectService\022N\n\006Create"
-  "\022\035.Tests.TestTypesCreateRequest\032\036.Tests."
-  "TestTypesCreateResponse\"\003\300>\0010\001\022N\n\014Listen"
-  "Events\022!.Tests.TestTypesListenEventStrea"
-  "m\032\024.google.protobuf.Any\"\003\310>\0010\001\022\213\001\n\025Invok"
-  "eTestParamDouble\022,.Tests.TestTypesTestPa"
-  "ramDoubleMethodRequest\032-.Tests.TestTypes"
-  "TestParamDoubleMethodResponse\"\025\322>\017TestPa"
-  "ramDouble\330>\001\022\207\001\n\024InvokeTestParamFloat\022+."
-  "Tests.TestTypesTestParamFloatMethodReque"
-  "st\032,.Tests.TestTypesTestParamFloatMethod"
-  "Response\"\024\322>\016TestParamFloat\330>\001\022\177\n\022Invoke"
-  "TestParamInt\022).Tests.TestTypesTestParamI"
-  "ntMethodRequest\032*.Tests.TestTypesTestPar"
-  "amIntMethodResponse\"\022\322>\014TestParamInt\330>\001\022"
-  "\203\001\n\023InvokeTestParamUInt\022*.Tests.TestType"
-  "sTestParamUIntMethodRequest\032+.Tests.Test"
-  "TypesTestParamUIntMethodResponse\"\023\322>\rTes"
-  "tParamUInt\330>\001\022\203\001\n\023InvokeTestParamLong\022*."
-  "Tests.TestTypesTestParamLongMethodReques"
-  "t\032+.Tests.TestTypesTestParamLongMethodRe"
-  "sponse\"\023\322>\rTestParamLong\330>\001\022\207\001\n\024InvokeTe"
-  "stParamULong\022+.Tests.TestTypesTestParamU"
-  "LongMethodRequest\032,.Tests.TestTypesTestP"
-  "aramULongMethodResponse\"\024\322>\016TestParamULo"
-  "ng\330>\001\022\203\001\n\023InvokeTestParamBool\022*.Tests.Te"
-  "stTypesTestParamBoolMethodRequest\032+.Test"
-  "s.TestTypesTestParamBoolMethodResponse\"\023"
-  "\322>\rTestParamBool\330>\001\022\213\001\n\025InvokeTestParamS"
-  "tring\022,.Tests.TestTypesTestParamStringMe"
-  "thodRequest\032-.Tests.TestTypesTestParamSt"
-  "ringMethodResponse\"\025\322>\017TestParamString\330>"
-  "\001\022\203\001\n\023InvokeTestParamByte\022*.Tests.TestTy"
-  "pesTestParamByteMethodRequest\032+.Tests.Te"
-  "stTypesTestParamByteMethodResponse\"\023\322>\rT"
-  "estParamByte\330>\001\022\207\001\n\024InvokeTestParamBytes"
-  "\022+.Tests.TestTypesTestParamBytesMethodRe"
-  "quest\032,.Tests.TestTypesTestParamBytesMet"
-  "hodResponse\"\024\322>\016TestParamBytes\330>\001\032\014\302>\tTe"
-  "stTypes:/\n\006create\022\036.google.protobuf.Meth"
-  "odOptions\030\350\007 \001(\010:6\n\reventListener\022\036.goog"
-  "le.protobuf.MethodOptions\030\351\007 \001(\010:3\n\nmeth"
-  "odName\022\036.google.protobuf.MethodOptions\030\352"
-  "\007 \001(\t:-\n\004sync\022\036.google.protobuf.MethodOp"
-  "tions\030\353\007 \001(\010:1\n\010propName\022\036.google.protob"
-  "uf.MethodOptions\030\354\007 \001(\t:0\n\007propSet\022\036.goo"
-  "gle.protobuf.MethodOptions\030\355\007 \001(\010:0\n\007pro"
-  "pGet\022\036.google.protobuf.MethodOptions\030\356\007 "
-  "\001(\010:;\n\021messageObjectName\022\037.google.protob"
-  "uf.MessageOptions\030\350\007 \001(\t:3\n\teventName\022\037."
-  "google.protobuf.MessageOptions\030\351\007 \001(\t:1\n"
-  "\007forProp\022\037.google.protobuf.MessageOption"
-  "s\030\352\007 \001(\t:;\n\021serviceObjectName\022\037.google.p"
-  "rotobuf.ServiceOptions\030\350\007 \001(\tb\006proto3"
+  "\030\002 \001(\002\"6\n%TestTypesTestParamFloatMethodR"
+  "esponse\022\r\n\005value\030\001 \001(\002\"E\n\"TestTypesTestP"
+  "aramIntMethodRequest\022\020\n\010objectId\030\001 \001(\004\022\r"
+  "\n\005value\030\002 \001(\005\"4\n#TestTypesTestParamIntMe"
+  "thodResponse\022\r\n\005value\030\001 \001(\005\"F\n#TestTypes"
+  "TestParamUIntMethodRequest\022\020\n\010objectId\030\001"
+  " \001(\004\022\r\n\005value\030\002 \001(\r\"5\n$TestTypesTestPara"
+  "mUIntMethodResponse\022\r\n\005value\030\001 \001(\r\"F\n#Te"
+  "stTypesTestParamLongMethodRequest\022\020\n\010obj"
+  "ectId\030\001 \001(\004\022\r\n\005value\030\002 \001(\003\"5\n$TestTypesT"
+  "estParamLongMethodResponse\022\r\n\005value\030\001 \001("
+  "\003\"G\n$TestTypesTestParamULongMethodReques"
+  "t\022\020\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 \001(\004\"6\n%Te"
+  "stTypesTestParamULongMethodResponse\022\r\n\005v"
+  "alue\030\001 \001(\004\"F\n#TestTypesTestParamBoolMeth"
+  "odRequest\022\020\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 \001"
+  "(\010\"5\n$TestTypesTestParamBoolMethodRespon"
+  "se\022\r\n\005value\030\001 \001(\010\"f\n%TestTypesTestParamS"
+  "tringMethodRequest\022\020\n\010objectId\030\001 \001(\004\022+\n\005"
+  "value\030\002 \001(\0132\034.google.protobuf.StringValu"
+  "e\"U\n&TestTypesTestParamStringMethodRespo"
+  "nse\022+\n\005value\030\001 \001(\0132\034.google.protobuf.Str"
+  "ingValue\"F\n#TestTypesTestParamByteMethod"
+  "Request\022\020\n\010objectId\030\001 \001(\004\022\r\n\005value\030\002 \001(\r"
+  "\"5\n$TestTypesTestParamByteMethodResponse"
+  "\022\r\n\005value\030\001 \001(\r\"d\n$TestTypesTestParamByt"
+  "esMethodRequest\022\020\n\010objectId\030\001 \001(\004\022*\n\005val"
+  "ue\030\002 \001(\0132\033.google.protobuf.BytesValue\"S\n"
+  "%TestTypesTestParamBytesMethodResponse\022*"
+  "\n\005value\030\001 \001(\0132\033.google.protobuf.BytesVal"
+  "ue2\227\r\n\022Test1ObjectService\022F\n\006Create\022\031.Te"
+  "sts.Test1CreateRequest\032\032.Tests.Test1Crea"
+  "teResponse\"\003\300>\0010\001\022J\n\014ListenEvents\022\035.Test"
+  "s.Test1ListenEventStream\032\024.google.protob"
+  "uf.Any\"\003\310>\0010\001\022l\n\020InvokeTestMethod\022#.Test"
+  "s.Test1TestMethodMethodRequest\032$.Tests.T"
+  "est1TestMethodMethodResponse\"\r\322>\nTestMet"
+  "hod\022\177\n\024InvokeTestMethodSync\022\'.Tests.Test"
+  "1TestMethodSyncMethodRequest\032(.Tests.Tes"
+  "t1TestMethodSyncMethodResponse\"\024\322>\016TestM"
+  "ethodSync\330>\001\022\247\001\n\036InvokeTestMethodWithNoR"
+  "esponse\0221.Tests.Test1TestMethodWithNoRes"
+  "ponseMethodRequest\0322.Tests.Test1TestMeth"
+  "odWithNoResponseMethodResponse\"\036\322>\030TestM"
+  "ethodWithNoResponse\330>\001\022\223\001\n\031InvokeTestMet"
+  "hodPrimitive\022,.Tests.Test1TestMethodPrim"
+  "itiveMethodRequest\032-.Tests.Test1TestMeth"
+  "odPrimitiveMethodResponse\"\031\322>\023TestMethod"
+  "Primitive\330>\001\022\273\001\n#InvokeTestMethodNoReque"
+  "stOrResponse\0226.Tests.Test1TestMethodNoRe"
+  "questOrResponseMethodRequest\0327.Tests.Tes"
+  "t1TestMethodNoRequestOrResponseMethodRes"
+  "ponse\"#\322>\035TestMethodNoRequestOrResponse\330"
+  ">\001\022\223\001\n\031InvokeTestMethodNoRequest\022,.Tests"
+  ".Test1TestMethodNoRequestMethodRequest\032-"
+  ".Tests.Test1TestMethodNoRequestMethodRes"
+  "ponse\"\031\322>\023TestMethodNoRequest\330>\001\022\227\001\n\032Inv"
+  "okeTestMethodNoResponse\022-.Tests.Test1Tes"
+  "tMethodNoResponseMethodRequest\032..Tests.T"
+  "est1TestMethodNoResponseMethodResponse\"\032"
+  "\322>\024TestMethodNoResponse\330>\001\022n\n\025SetPropert"
+  "yPropString\022 .Tests.Test1PropStringSetRe"
+  "quest\032!.Tests.Test1PropStringSetResponse"
+  "\"\020\342>\nPropString\350>\001\022n\n\025GetPropertyPropStr"
+  "ing\022 .Tests.Test1PropStringGetRequest\032!."
+  "Tests.Test1PropStringGetResponse\"\020\342>\nPro"
+  "pString\360>\001\022r\n\026SetPropertyPropComplex\022!.T"
+  "ests.Test1PropComplexSetRequest\032\".Tests."
+  "Test1PropComplexSetResponse\"\021\342>\013PropComp"
+  "lex\350>\001\022r\n\026GetPropertyPropComplex\022!.Tests"
+  ".Test1PropComplexGetRequest\032\".Tests.Test"
+  "1PropComplexGetResponse\"\021\342>\013PropComplex\360"
+  ">\001\032\010\302>\005Test12\312\t\n\022Test2ObjectService\022F\n\006C"
+  "reate\022\031.Tests.Test2CreateRequest\032\032.Tests"
+  ".Test2CreateResponse\"\003\300>\0010\001\022J\n\014ListenEve"
+  "nts\022\035.Tests.Test2ListenEventStream\032\024.goo"
+  "gle.protobuf.Any\"\003\310>\0010\001\022p\n\021InvokeTestMet"
+  "hod2\022$.Tests.Test2TestMethod2MethodReque"
+  "st\032%.Tests.Test2TestMethod2MethodRespons"
+  "e\"\016\322>\013TestMethod2\022\203\001\n\025InvokeTestMethodSy"
+  "nc2\022(.Tests.Test2TestMethodSync2MethodRe"
+  "quest\032).Tests.Test2TestMethodSync2Method"
+  "Response\"\025\322>\017TestMethodSync2\330>\001\022\253\001\n\037Invo"
+  "keTestMethodWithNoResponse2\0222.Tests.Test"
+  "2TestMethodWithNoResponse2MethodRequest\032"
+  "3.Tests.Test2TestMethodWithNoResponse2Me"
+  "thodResponse\"\037\322>\031TestMethodWithNoRespons"
+  "e2\330>\001\022\227\001\n\032InvokeTestMethodNoRequest2\022-.T"
+  "ests.Test2TestMethodNoRequest2MethodRequ"
+  "est\032..Tests.Test2TestMethodNoRequest2Met"
+  "hodResponse\"\032\322>\024TestMethodNoRequest2\330>\001\022"
+  "r\n\026SetPropertyPropString2\022!.Tests.Test2P"
+  "ropString2SetRequest\032\".Tests.Test2PropSt"
+  "ring2SetResponse\"\021\342>\013PropString2\350>\001\022r\n\026G"
+  "etPropertyPropString2\022!.Tests.Test2PropS"
+  "tring2GetRequest\032\".Tests.Test2PropString"
+  "2GetResponse\"\021\342>\013PropString2\360>\001\022v\n\027SetPr"
+  "opertyPropComplex2\022\".Tests.Test2PropComp"
+  "lex2SetRequest\032#.Tests.Test2PropComplex2"
+  "SetResponse\"\022\342>\014PropComplex2\350>\001\022v\n\027GetPr"
+  "opertyPropComplex2\022\".Tests.Test2PropComp"
+  "lex2GetRequest\032#.Tests.Test2PropComplex2"
+  "GetResponse\"\022\342>\014PropComplex2\360>\001\032\010\302>\005Test"
+  "22\231\014\n\026TestTypesObjectService\022N\n\006Create\022\035"
+  ".Tests.TestTypesCreateRequest\032\036.Tests.Te"
+  "stTypesCreateResponse\"\003\300>\0010\001\022N\n\014ListenEv"
+  "ents\022!.Tests.TestTypesListenEventStream\032"
+  "\024.google.protobuf.Any\"\003\310>\0010\001\022\213\001\n\025InvokeT"
+  "estParamDouble\022,.Tests.TestTypesTestPara"
+  "mDoubleMethodRequest\032-.Tests.TestTypesTe"
+  "stParamDoubleMethodResponse\"\025\322>\017TestPara"
+  "mDouble\330>\001\022\207\001\n\024InvokeTestParamFloat\022+.Te"
+  "sts.TestTypesTestParamFloatMethodRequest"
+  "\032,.Tests.TestTypesTestParamFloatMethodRe"
+  "sponse\"\024\322>\016TestParamFloat\330>\001\022\177\n\022InvokeTe"
+  "stParamInt\022).Tests.TestTypesTestParamInt"
+  "MethodRequest\032*.Tests.TestTypesTestParam"
+  "IntMethodResponse\"\022\322>\014TestParamInt\330>\001\022\203\001"
+  "\n\023InvokeTestParamUInt\022*.Tests.TestTypesT"
+  "estParamUIntMethodRequest\032+.Tests.TestTy"
+  "pesTestParamUIntMethodResponse\"\023\322>\rTestP"
+  "aramUInt\330>\001\022\203\001\n\023InvokeTestParamLong\022*.Te"
+  "sts.TestTypesTestParamLongMethodRequest\032"
+  "+.Tests.TestTypesTestParamLongMethodResp"
+  "onse\"\023\322>\rTestParamLong\330>\001\022\207\001\n\024InvokeTest"
+  "ParamULong\022+.Tests.TestTypesTestParamULo"
+  "ngMethodRequest\032,.Tests.TestTypesTestPar"
+  "amULongMethodResponse\"\024\322>\016TestParamULong"
+  "\330>\001\022\203\001\n\023InvokeTestParamBool\022*.Tests.Test"
+  "TypesTestParamBoolMethodRequest\032+.Tests."
+  "TestTypesTestParamBoolMethodResponse\"\023\322>"
+  "\rTestParamBool\330>\001\022\213\001\n\025InvokeTestParamStr"
+  "ing\022,.Tests.TestTypesTestParamStringMeth"
+  "odRequest\032-.Tests.TestTypesTestParamStri"
+  "ngMethodResponse\"\025\322>\017TestParamString\330>\001\022"
+  "\203\001\n\023InvokeTestParamByte\022*.Tests.TestType"
+  "sTestParamByteMethodRequest\032+.Tests.Test"
+  "TypesTestParamByteMethodResponse\"\023\322>\rTes"
+  "tParamByte\330>\001\022\207\001\n\024InvokeTestParamBytes\022+"
+  ".Tests.TestTypesTestParamBytesMethodRequ"
+  "est\032,.Tests.TestTypesTestParamBytesMetho"
+  "dResponse\"\024\322>\016TestParamBytes\330>\001\032\014\302>\tTest"
+  "Types:/\n\006create\022\036.google.protobuf.Method"
+  "Options\030\350\007 \001(\010:6\n\reventListener\022\036.google"
+  ".protobuf.MethodOptions\030\351\007 \001(\010:3\n\nmethod"
+  "Name\022\036.google.protobuf.MethodOptions\030\352\007 "
+  "\001(\t:-\n\004sync\022\036.google.protobuf.MethodOpti"
+  "ons\030\353\007 \001(\010:1\n\010propName\022\036.google.protobuf"
+  ".MethodOptions\030\354\007 \001(\t:0\n\007propSet\022\036.googl"
+  "e.protobuf.MethodOptions\030\355\007 \001(\010:0\n\007propG"
+  "et\022\036.google.protobuf.MethodOptions\030\356\007 \001("
+  "\010:;\n\021messageObjectName\022\037.google.protobuf"
+  ".MessageOptions\030\350\007 \001(\t:3\n\teventName\022\037.go"
+  "ogle.protobuf.MessageOptions\030\351\007 \001(\t:1\n\007f"
+  "orProp\022\037.google.protobuf.MessageOptions\030"
+  "\352\007 \001(\t:;\n\021serviceObjectName\022\037.google.pro"
+  "tobuf.ServiceOptions\030\350\007 \001(\tb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_gen_2eproto_deps[4] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -2453,7 +2473,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_gen
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_gen_2eproto_once;
 static bool descriptor_table_gen_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_gen_2eproto = {
-  &descriptor_table_gen_2eproto_initialized, descriptor_table_protodef_gen_2eproto, "gen.proto", 10637,
+  &descriptor_table_gen_2eproto_initialized, descriptor_table_protodef_gen_2eproto, "gen.proto", 10875,
   &descriptor_table_gen_2eproto_once, descriptor_table_gen_2eproto_sccs, descriptor_table_gen_2eproto_deps, 78, 4,
   schemas, file_default_instances, TableStruct_gen_2eproto::offsets,
   file_level_metadata_gen_2eproto, 78, file_level_enum_descriptors_gen_2eproto, file_level_service_descriptors_gen_2eproto,
@@ -14338,10 +14358,12 @@ TestTypesTestParamDoubleMethodResponse::TestTypesTestParamDoubleMethodResponse(c
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamDoubleMethodResponse)
 }
 
 void TestTypesTestParamDoubleMethodResponse::SharedCtor() {
+  value_ = 0;
 }
 
 TestTypesTestParamDoubleMethodResponse::~TestTypesTestParamDoubleMethodResponse() {
@@ -14367,6 +14389,7 @@ void TestTypesTestParamDoubleMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  value_ = 0;
   _internal_metadata_.Clear();
 }
 
@@ -14376,6 +14399,16 @@ const char* TestTypesTestParamDoubleMethodResponse::_InternalParse(const char* p
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // double value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -14383,6 +14416,8 @@ const char* TestTypesTestParamDoubleMethodResponse::_InternalParse(const char* p
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -14397,6 +14432,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamDoubleMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // double value = 1;
+  if (!(this->value() <= 0 && this->value() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_value(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -14413,6 +14454,11 @@ size_t TestTypesTestParamDoubleMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // double value = 1;
+  if (!(this->value() <= 0 && this->value() >= 0)) {
+    total_size += 1 + 8;
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -14445,6 +14491,9 @@ void TestTypesTestParamDoubleMethodResponse::MergeFrom(const TestTypesTestParamD
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!(from.value() <= 0 && from.value() >= 0)) {
+    _internal_set_value(from._internal_value());
+  }
 }
 
 void TestTypesTestParamDoubleMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -14468,6 +14517,7 @@ bool TestTypesTestParamDoubleMethodResponse::IsInitialized() const {
 void TestTypesTestParamDoubleMethodResponse::InternalSwap(TestTypesTestParamDoubleMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamDoubleMethodResponse::GetMetadata() const {
@@ -14706,10 +14756,12 @@ TestTypesTestParamFloatMethodResponse::TestTypesTestParamFloatMethodResponse(con
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamFloatMethodResponse)
 }
 
 void TestTypesTestParamFloatMethodResponse::SharedCtor() {
+  value_ = 0;
 }
 
 TestTypesTestParamFloatMethodResponse::~TestTypesTestParamFloatMethodResponse() {
@@ -14735,6 +14787,7 @@ void TestTypesTestParamFloatMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  value_ = 0;
   _internal_metadata_.Clear();
 }
 
@@ -14744,6 +14797,16 @@ const char* TestTypesTestParamFloatMethodResponse::_InternalParse(const char* pt
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // float value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -14751,6 +14814,8 @@ const char* TestTypesTestParamFloatMethodResponse::_InternalParse(const char* pt
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -14765,6 +14830,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamFloatMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // float value = 1;
+  if (!(this->value() <= 0 && this->value() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_value(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -14781,6 +14852,11 @@ size_t TestTypesTestParamFloatMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // float value = 1;
+  if (!(this->value() <= 0 && this->value() >= 0)) {
+    total_size += 1 + 4;
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -14813,6 +14889,9 @@ void TestTypesTestParamFloatMethodResponse::MergeFrom(const TestTypesTestParamFl
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!(from.value() <= 0 && from.value() >= 0)) {
+    _internal_set_value(from._internal_value());
+  }
 }
 
 void TestTypesTestParamFloatMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -14836,6 +14915,7 @@ bool TestTypesTestParamFloatMethodResponse::IsInitialized() const {
 void TestTypesTestParamFloatMethodResponse::InternalSwap(TestTypesTestParamFloatMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamFloatMethodResponse::GetMetadata() const {
@@ -15076,10 +15156,12 @@ TestTypesTestParamIntMethodResponse::TestTypesTestParamIntMethodResponse(const T
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamIntMethodResponse)
 }
 
 void TestTypesTestParamIntMethodResponse::SharedCtor() {
+  value_ = 0;
 }
 
 TestTypesTestParamIntMethodResponse::~TestTypesTestParamIntMethodResponse() {
@@ -15105,6 +15187,7 @@ void TestTypesTestParamIntMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  value_ = 0;
   _internal_metadata_.Clear();
 }
 
@@ -15114,6 +15197,16 @@ const char* TestTypesTestParamIntMethodResponse::_InternalParse(const char* ptr,
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -15121,6 +15214,8 @@ const char* TestTypesTestParamIntMethodResponse::_InternalParse(const char* ptr,
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -15135,6 +15230,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamIntMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // int32 value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_value(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -15151,6 +15252,13 @@ size_t TestTypesTestParamIntMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // int32 value = 1;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_value());
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -15183,6 +15291,9 @@ void TestTypesTestParamIntMethodResponse::MergeFrom(const TestTypesTestParamIntM
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
 }
 
 void TestTypesTestParamIntMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -15206,6 +15317,7 @@ bool TestTypesTestParamIntMethodResponse::IsInitialized() const {
 void TestTypesTestParamIntMethodResponse::InternalSwap(TestTypesTestParamIntMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamIntMethodResponse::GetMetadata() const {
@@ -15446,10 +15558,12 @@ TestTypesTestParamUIntMethodResponse::TestTypesTestParamUIntMethodResponse(const
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamUIntMethodResponse)
 }
 
 void TestTypesTestParamUIntMethodResponse::SharedCtor() {
+  value_ = 0u;
 }
 
 TestTypesTestParamUIntMethodResponse::~TestTypesTestParamUIntMethodResponse() {
@@ -15475,6 +15589,7 @@ void TestTypesTestParamUIntMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  value_ = 0u;
   _internal_metadata_.Clear();
 }
 
@@ -15484,6 +15599,16 @@ const char* TestTypesTestParamUIntMethodResponse::_InternalParse(const char* ptr
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -15491,6 +15616,8 @@ const char* TestTypesTestParamUIntMethodResponse::_InternalParse(const char* ptr
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -15505,6 +15632,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamUIntMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // uint32 value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_value(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -15521,6 +15654,13 @@ size_t TestTypesTestParamUIntMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // uint32 value = 1;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_value());
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -15553,6 +15693,9 @@ void TestTypesTestParamUIntMethodResponse::MergeFrom(const TestTypesTestParamUIn
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
 }
 
 void TestTypesTestParamUIntMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -15576,6 +15719,7 @@ bool TestTypesTestParamUIntMethodResponse::IsInitialized() const {
 void TestTypesTestParamUIntMethodResponse::InternalSwap(TestTypesTestParamUIntMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamUIntMethodResponse::GetMetadata() const {
@@ -15816,10 +15960,12 @@ TestTypesTestParamLongMethodResponse::TestTypesTestParamLongMethodResponse(const
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamLongMethodResponse)
 }
 
 void TestTypesTestParamLongMethodResponse::SharedCtor() {
+  value_ = PROTOBUF_LONGLONG(0);
 }
 
 TestTypesTestParamLongMethodResponse::~TestTypesTestParamLongMethodResponse() {
@@ -15845,6 +15991,7 @@ void TestTypesTestParamLongMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  value_ = PROTOBUF_LONGLONG(0);
   _internal_metadata_.Clear();
 }
 
@@ -15854,6 +16001,16 @@ const char* TestTypesTestParamLongMethodResponse::_InternalParse(const char* ptr
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // int64 value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -15861,6 +16018,8 @@ const char* TestTypesTestParamLongMethodResponse::_InternalParse(const char* ptr
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -15875,6 +16034,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamLongMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // int64 value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_value(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -15891,6 +16056,13 @@ size_t TestTypesTestParamLongMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // int64 value = 1;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_value());
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -15923,6 +16095,9 @@ void TestTypesTestParamLongMethodResponse::MergeFrom(const TestTypesTestParamLon
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
 }
 
 void TestTypesTestParamLongMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -15946,6 +16121,7 @@ bool TestTypesTestParamLongMethodResponse::IsInitialized() const {
 void TestTypesTestParamLongMethodResponse::InternalSwap(TestTypesTestParamLongMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamLongMethodResponse::GetMetadata() const {
@@ -16186,10 +16362,12 @@ TestTypesTestParamULongMethodResponse::TestTypesTestParamULongMethodResponse(con
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamULongMethodResponse)
 }
 
 void TestTypesTestParamULongMethodResponse::SharedCtor() {
+  value_ = PROTOBUF_ULONGLONG(0);
 }
 
 TestTypesTestParamULongMethodResponse::~TestTypesTestParamULongMethodResponse() {
@@ -16215,6 +16393,7 @@ void TestTypesTestParamULongMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  value_ = PROTOBUF_ULONGLONG(0);
   _internal_metadata_.Clear();
 }
 
@@ -16224,6 +16403,16 @@ const char* TestTypesTestParamULongMethodResponse::_InternalParse(const char* pt
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // uint64 value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -16231,6 +16420,8 @@ const char* TestTypesTestParamULongMethodResponse::_InternalParse(const char* pt
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -16245,6 +16436,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamULongMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // uint64 value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_value(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -16261,6 +16458,13 @@ size_t TestTypesTestParamULongMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // uint64 value = 1;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_value());
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -16293,6 +16497,9 @@ void TestTypesTestParamULongMethodResponse::MergeFrom(const TestTypesTestParamUL
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
 }
 
 void TestTypesTestParamULongMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -16316,6 +16523,7 @@ bool TestTypesTestParamULongMethodResponse::IsInitialized() const {
 void TestTypesTestParamULongMethodResponse::InternalSwap(TestTypesTestParamULongMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamULongMethodResponse::GetMetadata() const {
@@ -16554,10 +16762,12 @@ TestTypesTestParamBoolMethodResponse::TestTypesTestParamBoolMethodResponse(const
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamBoolMethodResponse)
 }
 
 void TestTypesTestParamBoolMethodResponse::SharedCtor() {
+  value_ = false;
 }
 
 TestTypesTestParamBoolMethodResponse::~TestTypesTestParamBoolMethodResponse() {
@@ -16583,6 +16793,7 @@ void TestTypesTestParamBoolMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  value_ = false;
   _internal_metadata_.Clear();
 }
 
@@ -16592,6 +16803,16 @@ const char* TestTypesTestParamBoolMethodResponse::_InternalParse(const char* ptr
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // bool value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -16599,6 +16820,8 @@ const char* TestTypesTestParamBoolMethodResponse::_InternalParse(const char* ptr
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -16613,6 +16836,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamBoolMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // bool value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_value(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -16629,6 +16858,11 @@ size_t TestTypesTestParamBoolMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // bool value = 1;
+  if (this->value() != 0) {
+    total_size += 1 + 1;
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -16661,6 +16895,9 @@ void TestTypesTestParamBoolMethodResponse::MergeFrom(const TestTypesTestParamBoo
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
 }
 
 void TestTypesTestParamBoolMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -16684,6 +16921,7 @@ bool TestTypesTestParamBoolMethodResponse::IsInitialized() const {
 void TestTypesTestParamBoolMethodResponse::InternalSwap(TestTypesTestParamBoolMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamBoolMethodResponse::GetMetadata() const {
@@ -16932,11 +17170,24 @@ void TestTypesTestParamStringMethodRequest::InternalSwap(TestTypesTestParamStrin
 // ===================================================================
 
 void TestTypesTestParamStringMethodResponse::InitAsDefaultInstance() {
+  ::Tests::_TestTypesTestParamStringMethodResponse_default_instance_._instance.get_mutable()->value_ = const_cast< PROTOBUF_NAMESPACE_ID::StringValue*>(
+      PROTOBUF_NAMESPACE_ID::StringValue::internal_default_instance());
 }
 class TestTypesTestParamStringMethodResponse::_Internal {
  public:
+  static const PROTOBUF_NAMESPACE_ID::StringValue& value(const TestTypesTestParamStringMethodResponse* msg);
 };
 
+const PROTOBUF_NAMESPACE_ID::StringValue&
+TestTypesTestParamStringMethodResponse::_Internal::value(const TestTypesTestParamStringMethodResponse* msg) {
+  return *msg->value_;
+}
+void TestTypesTestParamStringMethodResponse::clear_value() {
+  if (GetArenaNoVirtual() == nullptr && value_ != nullptr) {
+    delete value_;
+  }
+  value_ = nullptr;
+}
 TestTypesTestParamStringMethodResponse::TestTypesTestParamStringMethodResponse()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
@@ -16946,10 +17197,17 @@ TestTypesTestParamStringMethodResponse::TestTypesTestParamStringMethodResponse(c
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_value()) {
+    value_ = new PROTOBUF_NAMESPACE_ID::StringValue(*from.value_);
+  } else {
+    value_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamStringMethodResponse)
 }
 
 void TestTypesTestParamStringMethodResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TestTypesTestParamStringMethodResponse_gen_2eproto.base);
+  value_ = nullptr;
 }
 
 TestTypesTestParamStringMethodResponse::~TestTypesTestParamStringMethodResponse() {
@@ -16958,6 +17216,7 @@ TestTypesTestParamStringMethodResponse::~TestTypesTestParamStringMethodResponse(
 }
 
 void TestTypesTestParamStringMethodResponse::SharedDtor() {
+  if (this != internal_default_instance()) delete value_;
 }
 
 void TestTypesTestParamStringMethodResponse::SetCachedSize(int size) const {
@@ -16975,6 +17234,10 @@ void TestTypesTestParamStringMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  if (GetArenaNoVirtual() == nullptr && value_ != nullptr) {
+    delete value_;
+  }
+  value_ = nullptr;
   _internal_metadata_.Clear();
 }
 
@@ -16984,6 +17247,16 @@ const char* TestTypesTestParamStringMethodResponse::_InternalParse(const char* p
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // .google.protobuf.StringValue value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_value(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -16991,6 +17264,8 @@ const char* TestTypesTestParamStringMethodResponse::_InternalParse(const char* p
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -17005,6 +17280,14 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamStringMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // .google.protobuf.StringValue value = 1;
+  if (this->has_value()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::value(this), target, stream);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -17021,6 +17304,13 @@ size_t TestTypesTestParamStringMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // .google.protobuf.StringValue value = 1;
+  if (this->has_value()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *value_);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -17053,6 +17343,9 @@ void TestTypesTestParamStringMethodResponse::MergeFrom(const TestTypesTestParamS
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.has_value()) {
+    _internal_mutable_value()->PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_value());
+  }
 }
 
 void TestTypesTestParamStringMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -17076,6 +17369,7 @@ bool TestTypesTestParamStringMethodResponse::IsInitialized() const {
 void TestTypesTestParamStringMethodResponse::InternalSwap(TestTypesTestParamStringMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamStringMethodResponse::GetMetadata() const {
@@ -17316,10 +17610,12 @@ TestTypesTestParamByteMethodResponse::TestTypesTestParamByteMethodResponse(const
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamByteMethodResponse)
 }
 
 void TestTypesTestParamByteMethodResponse::SharedCtor() {
+  value_ = 0u;
 }
 
 TestTypesTestParamByteMethodResponse::~TestTypesTestParamByteMethodResponse() {
@@ -17345,6 +17641,7 @@ void TestTypesTestParamByteMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  value_ = 0u;
   _internal_metadata_.Clear();
 }
 
@@ -17354,6 +17651,16 @@ const char* TestTypesTestParamByteMethodResponse::_InternalParse(const char* ptr
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // uint32 value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -17361,6 +17668,8 @@ const char* TestTypesTestParamByteMethodResponse::_InternalParse(const char* ptr
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -17375,6 +17684,12 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamByteMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // uint32 value = 1;
+  if (this->value() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(1, this->_internal_value(), target);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -17391,6 +17706,13 @@ size_t TestTypesTestParamByteMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // uint32 value = 1;
+  if (this->value() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_value());
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -17423,6 +17745,9 @@ void TestTypesTestParamByteMethodResponse::MergeFrom(const TestTypesTestParamByt
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.value() != 0) {
+    _internal_set_value(from._internal_value());
+  }
 }
 
 void TestTypesTestParamByteMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -17446,6 +17771,7 @@ bool TestTypesTestParamByteMethodResponse::IsInitialized() const {
 void TestTypesTestParamByteMethodResponse::InternalSwap(TestTypesTestParamByteMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamByteMethodResponse::GetMetadata() const {
@@ -17456,11 +17782,24 @@ void TestTypesTestParamByteMethodResponse::InternalSwap(TestTypesTestParamByteMe
 // ===================================================================
 
 void TestTypesTestParamBytesMethodRequest::InitAsDefaultInstance() {
+  ::Tests::_TestTypesTestParamBytesMethodRequest_default_instance_._instance.get_mutable()->value_ = const_cast< PROTOBUF_NAMESPACE_ID::BytesValue*>(
+      PROTOBUF_NAMESPACE_ID::BytesValue::internal_default_instance());
 }
 class TestTypesTestParamBytesMethodRequest::_Internal {
  public:
+  static const PROTOBUF_NAMESPACE_ID::BytesValue& value(const TestTypesTestParamBytesMethodRequest* msg);
 };
 
+const PROTOBUF_NAMESPACE_ID::BytesValue&
+TestTypesTestParamBytesMethodRequest::_Internal::value(const TestTypesTestParamBytesMethodRequest* msg) {
+  return *msg->value_;
+}
+void TestTypesTestParamBytesMethodRequest::clear_value() {
+  if (GetArenaNoVirtual() == nullptr && value_ != nullptr) {
+    delete value_;
+  }
+  value_ = nullptr;
+}
 TestTypesTestParamBytesMethodRequest::TestTypesTestParamBytesMethodRequest()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
@@ -17470,9 +17809,10 @@ TestTypesTestParamBytesMethodRequest::TestTypesTestParamBytesMethodRequest(const
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_value().empty()) {
-    value_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.value_);
+  if (from._internal_has_value()) {
+    value_ = new PROTOBUF_NAMESPACE_ID::BytesValue(*from.value_);
+  } else {
+    value_ = nullptr;
   }
   objectid_ = from.objectid_;
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamBytesMethodRequest)
@@ -17480,8 +17820,9 @@ TestTypesTestParamBytesMethodRequest::TestTypesTestParamBytesMethodRequest(const
 
 void TestTypesTestParamBytesMethodRequest::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TestTypesTestParamBytesMethodRequest_gen_2eproto.base);
-  value_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  objectid_ = PROTOBUF_ULONGLONG(0);
+  ::memset(&value_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&objectid_) -
+      reinterpret_cast<char*>(&value_)) + sizeof(objectid_));
 }
 
 TestTypesTestParamBytesMethodRequest::~TestTypesTestParamBytesMethodRequest() {
@@ -17490,7 +17831,7 @@ TestTypesTestParamBytesMethodRequest::~TestTypesTestParamBytesMethodRequest() {
 }
 
 void TestTypesTestParamBytesMethodRequest::SharedDtor() {
-  value_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete value_;
 }
 
 void TestTypesTestParamBytesMethodRequest::SetCachedSize(int size) const {
@@ -17508,7 +17849,10 @@ void TestTypesTestParamBytesMethodRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  value_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == nullptr && value_ != nullptr) {
+    delete value_;
+  }
+  value_ = nullptr;
   objectid_ = PROTOBUF_ULONGLONG(0);
   _internal_metadata_.Clear();
 }
@@ -17527,11 +17871,10 @@ const char* TestTypesTestParamBytesMethodRequest::_InternalParse(const char* ptr
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bytes value = 2;
+      // .google.protobuf.BytesValue value = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_value();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ctx->ParseMessage(_internal_mutable_value(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -17567,10 +17910,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_objectid(), target);
   }
 
-  // bytes value = 2;
-  if (this->value().size() > 0) {
-    target = stream->WriteBytesMaybeAliased(
-        2, this->_internal_value(), target);
+  // .google.protobuf.BytesValue value = 2;
+  if (this->has_value()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::value(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -17589,11 +17934,11 @@ size_t TestTypesTestParamBytesMethodRequest::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes value = 2;
-  if (this->value().size() > 0) {
+  // .google.protobuf.BytesValue value = 2;
+  if (this->has_value()) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
-        this->_internal_value());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *value_);
   }
 
   // uint64 objectId = 1;
@@ -17634,9 +17979,8 @@ void TestTypesTestParamBytesMethodRequest::MergeFrom(const TestTypesTestParamByt
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.value().size() > 0) {
-
-    value_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.value_);
+  if (from.has_value()) {
+    _internal_mutable_value()->PROTOBUF_NAMESPACE_ID::BytesValue::MergeFrom(from._internal_value());
   }
   if (from.objectid() != 0) {
     _internal_set_objectid(from._internal_objectid());
@@ -17664,8 +18008,7 @@ bool TestTypesTestParamBytesMethodRequest::IsInitialized() const {
 void TestTypesTestParamBytesMethodRequest::InternalSwap(TestTypesTestParamBytesMethodRequest* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  value_.Swap(&other->value_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
+  swap(value_, other->value_);
   swap(objectid_, other->objectid_);
 }
 
@@ -17677,11 +18020,24 @@ void TestTypesTestParamBytesMethodRequest::InternalSwap(TestTypesTestParamBytesM
 // ===================================================================
 
 void TestTypesTestParamBytesMethodResponse::InitAsDefaultInstance() {
+  ::Tests::_TestTypesTestParamBytesMethodResponse_default_instance_._instance.get_mutable()->value_ = const_cast< PROTOBUF_NAMESPACE_ID::BytesValue*>(
+      PROTOBUF_NAMESPACE_ID::BytesValue::internal_default_instance());
 }
 class TestTypesTestParamBytesMethodResponse::_Internal {
  public:
+  static const PROTOBUF_NAMESPACE_ID::BytesValue& value(const TestTypesTestParamBytesMethodResponse* msg);
 };
 
+const PROTOBUF_NAMESPACE_ID::BytesValue&
+TestTypesTestParamBytesMethodResponse::_Internal::value(const TestTypesTestParamBytesMethodResponse* msg) {
+  return *msg->value_;
+}
+void TestTypesTestParamBytesMethodResponse::clear_value() {
+  if (GetArenaNoVirtual() == nullptr && value_ != nullptr) {
+    delete value_;
+  }
+  value_ = nullptr;
+}
 TestTypesTestParamBytesMethodResponse::TestTypesTestParamBytesMethodResponse()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
@@ -17691,10 +18047,17 @@ TestTypesTestParamBytesMethodResponse::TestTypesTestParamBytesMethodResponse(con
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_value()) {
+    value_ = new PROTOBUF_NAMESPACE_ID::BytesValue(*from.value_);
+  } else {
+    value_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:Tests.TestTypesTestParamBytesMethodResponse)
 }
 
 void TestTypesTestParamBytesMethodResponse::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TestTypesTestParamBytesMethodResponse_gen_2eproto.base);
+  value_ = nullptr;
 }
 
 TestTypesTestParamBytesMethodResponse::~TestTypesTestParamBytesMethodResponse() {
@@ -17703,6 +18066,7 @@ TestTypesTestParamBytesMethodResponse::~TestTypesTestParamBytesMethodResponse() 
 }
 
 void TestTypesTestParamBytesMethodResponse::SharedDtor() {
+  if (this != internal_default_instance()) delete value_;
 }
 
 void TestTypesTestParamBytesMethodResponse::SetCachedSize(int size) const {
@@ -17720,6 +18084,10 @@ void TestTypesTestParamBytesMethodResponse::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  if (GetArenaNoVirtual() == nullptr && value_ != nullptr) {
+    delete value_;
+  }
+  value_ = nullptr;
   _internal_metadata_.Clear();
 }
 
@@ -17729,6 +18097,16 @@ const char* TestTypesTestParamBytesMethodResponse::_InternalParse(const char* pt
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
+    switch (tag >> 3) {
+      // .google.protobuf.BytesValue value = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_value(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
           ctx->SetLastTag(tag);
           goto success;
@@ -17736,6 +18114,8 @@ const char* TestTypesTestParamBytesMethodResponse::_InternalParse(const char* pt
         ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
         CHK_(ptr != nullptr);
         continue;
+      }
+    }  // switch
   }  // while
 success:
   return ptr;
@@ -17750,6 +18130,14 @@ failure:
   // @@protoc_insertion_point(serialize_to_array_start:Tests.TestTypesTestParamBytesMethodResponse)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
+
+  // .google.protobuf.BytesValue value = 1;
+  if (this->has_value()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::value(this), target, stream);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -17766,6 +18154,13 @@ size_t TestTypesTestParamBytesMethodResponse::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // .google.protobuf.BytesValue value = 1;
+  if (this->has_value()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *value_);
+  }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
@@ -17798,6 +18193,9 @@ void TestTypesTestParamBytesMethodResponse::MergeFrom(const TestTypesTestParamBy
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.has_value()) {
+    _internal_mutable_value()->PROTOBUF_NAMESPACE_ID::BytesValue::MergeFrom(from._internal_value());
+  }
 }
 
 void TestTypesTestParamBytesMethodResponse::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -17821,6 +18219,7 @@ bool TestTypesTestParamBytesMethodResponse::IsInitialized() const {
 void TestTypesTestParamBytesMethodResponse::InternalSwap(TestTypesTestParamBytesMethodResponse* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(value_, other->value_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestTypesTestParamBytesMethodResponse::GetMetadata() const {
