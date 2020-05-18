@@ -1,3 +1,6 @@
 [submodule "examples/qt-client/protobuf-qjson"]
 	path = examples/qt-client/protobuf-qjson
 	url = https://github.com/pauldotknopf/protobuf-qjson.git
+[submodule "build/scripts/Buildary"]
+	path = build/scripts/Buildary
+	url = https://github.com/pauldotknopf/dotnet-buildary.git

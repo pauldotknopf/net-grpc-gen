@@ -17,12 +17,6 @@ namespace NetGrpcGen.Generator
     {
         static void Main(string[] args)
         {
-            // while (!Debugger.IsAttached)
-            // {
-            //     Thread.Sleep(10);
-            // }
-            // Debugger.Break();
-            
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console(standardErrorFromLevel: LogEventLevel.Verbose)
                 .CreateLogger();

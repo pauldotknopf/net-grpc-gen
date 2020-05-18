@@ -1,0 +1,11 @@
+<Project>
+    <Import Project="version.props" />
+    <PropertyGroup>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Authors>pauldotknopf</Authors>
+        <PackageDescription>A tool to expose .NET objects, as instances, over gRPC.</PackageDescription>
+        <Summary>A tool to expose .NET objects, as instances, over gRPC.</Summary>
+        <RepositoryUrl>https://github.com/pauldotknopf/net-grpc-gen</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/pauldotknopf/net-grpc-gen</PackageProjectUrl>
+    </PropertyGroup>
+</Project>
