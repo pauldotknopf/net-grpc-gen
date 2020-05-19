@@ -350,15 +350,24 @@ namespace NetGrpcGen.Generator
                 impl.WriteLine("void run() override");
                 using (impl.Indent(true))
                 {
-                    impl.WriteLine("if(!service) { return; }");
-                    impl.WriteLine($"{objectModel.CppNamespacePrefix()}{objectModel.ListenEventsDescriptor.InputType.Name} request;");
-                    impl.WriteLine("request.set_objectid(objectId);");
-                    impl.WriteLine("auto stream = service->ListenEvents(&context, request);");
-                    impl.WriteLine("google::protobuf::Any any;");
-                    impl.WriteLine("while(stream->Read(&any)) { worker->processEvent(&any); }");
-                    impl.WriteLine("auto result = stream->Finish();");
-                    impl.WriteLine("if(result.error_code() == grpc::StatusCode::CANCELLED) { return; }");
-                    impl.WriteLine("if(result.ok()) { qCritical(\"unabled to stop stream: %s\", result.error_message().c_str()); return; }");
+                    if (objectModel.Events.Count == 0)
+                    {
+                        impl.WriteLine("return;");
+                    }
+                    else
+                    {
+                        impl.WriteLine("if(!service) { return; }");
+                        impl.WriteLine(
+                            $"{objectModel.CppNamespacePrefix()}{objectModel.ListenEventsDescriptor.InputType.Name} request;");
+                        impl.WriteLine("request.set_objectid(objectId);");
+                        impl.WriteLine("auto stream = service->ListenEvents(&context, request);");
+                        impl.WriteLine("google::protobuf::Any any;");
+                        impl.WriteLine("while(stream->Read(&any)) { worker->processEvent(&any); }");
+                        impl.WriteLine("auto result = stream->Finish();");
+                        impl.WriteLine("if(result.error_code() == grpc::StatusCode::CANCELLED) { return; }");
+                        impl.WriteLine(
+                            "if(result.ok()) { qCritical(\"unabled to stop stream: %s\", result.error_message().c_str()); return; }");
+                    }
                 }
             }
             impl.WriteLine("};");
