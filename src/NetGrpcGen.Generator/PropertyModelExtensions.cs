@@ -29,7 +29,7 @@ namespace NetGrpcGen.Generator
         
         public static void WritePropertyDef(this ProtoPropertyModel model, CodeWriter writer)
         {
-            var valueField = model.Setter.InputType.Fields["value"];
+            var valueField = model.Getter.OutputType.Fields["value"];
            
             var decl = $"Q_PROPERTY({valueField.NativeType()} {model.GetPropertyName()} READ {model.GetGetterName()}";
             if (model.Setter != null)
