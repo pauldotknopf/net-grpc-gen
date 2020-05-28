@@ -118,7 +118,7 @@ namespace NetGrpcGen.CodeGen
             {
                 var serviceName = $"{o.Name}ObjectService";
 
-                if (o.Events.Count > 0)
+                if (o.Events.Count > 0 || o.Properties.Count > 0)
                 {
                     codeWriter.WriteLine($"message {o.Name}ListenEventStream {{");
                     using (codeWriter.Indent())
@@ -228,7 +228,7 @@ namespace NetGrpcGen.CodeGen
                     codeWriter.WriteLine($"rpc Create ({o.Name}CreateRequest) returns (stream {o.Name}CreateResponse) {{");
                     codeWriter.WriteLineIndented("option(create) = true;");
                     codeWriter.WriteLine("}");
-                    if (o.Events.Count > 0)
+                    if (o.Events.Count > 0 || o.Properties.Count > 0)
                     {
                         codeWriter.WriteLine($"rpc ListenEvents ({o.Name}ListenEventStream) returns (stream google.protobuf.Any) {{");
                         codeWriter.WriteLineIndented("option(eventListener) = true;");

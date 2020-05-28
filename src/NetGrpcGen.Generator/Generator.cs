@@ -350,7 +350,7 @@ namespace NetGrpcGen.Generator
                 impl.WriteLine("void run() override");
                 using (impl.Indent(true))
                 {
-                    if (objectModel.Events.Count == 0)
+                    if (objectModel.Events.Count == 0 && objectModel.Properties.Count == 0)
                     {
                         impl.WriteLine("return;");
                     }
