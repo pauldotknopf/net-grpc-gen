@@ -106,7 +106,6 @@ namespace NetGrpcGen.Generator
                         writer.WriteLine($"emit {property.GetPropertyName()}Changed(eventValue);");
                     }
                 }
-                writer.WriteLine("qDebug(\"got event: %s\", event->type_url().c_str());");
             }
         }
     }
