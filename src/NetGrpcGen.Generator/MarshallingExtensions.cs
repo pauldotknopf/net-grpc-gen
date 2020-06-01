@@ -25,8 +25,11 @@ namespace NetGrpcGen.Generator
                     return "QString";
                 case FieldType.Bytes:
                     return "QByteArray";
+                case FieldType.Int32:
+                    return "qint32";
+                case FieldType.Int64:
+                    return "qint64";
                 default:
-                    return "bool";
                     throw new Exception($"Unsupported type: {fieldDescriptor.FieldType}");
             }
         }
@@ -49,8 +52,10 @@ namespace NetGrpcGen.Generator
                     return "QString()";
                 case FieldType.Bool:
                     return "false";
+                case FieldType.Int32:
+                case FieldType.Int64:
+                    return "0";
                 default:
-                    return "false";
                     throw new Exception($"Unsupported type: {fieldDescriptor.FieldType}");
             }
         }

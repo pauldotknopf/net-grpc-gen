@@ -9,5 +9,7 @@ sudo rm -rf /usr/bin/protoc-gen-roc
 echo "#!/usr/bin/env bash" | sudo tee -a /usr/bin/protoc-gen-roc > /dev/null
 echo "exec dotnet exec $DIR/src/NetGrpcGen.Generator/bin/Debug/netcoreapp3.1/NetGrpcGen.Generator.dll \$*" | sudo tee -a /usr/bin/protoc-gen-roc > /dev/null
 sudo chmod +x /usr/bin/protoc-gen-roc
+sudo rm -f /usr/bin/net-grpc-proto-gen
+sudo ln -s /usr/bin/protoc-gen-roc /usr/bin/net-grpc-proto-gen
 
 echo "Done!"
