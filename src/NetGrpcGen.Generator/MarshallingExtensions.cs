@@ -29,6 +29,8 @@ namespace NetGrpcGen.Generator
                     return "qint32";
                 case FieldType.Int64:
                     return "qint64";
+                case FieldType.Bool:
+                    return "bool";
                 default:
                     throw new Exception($"Unsupported type: {fieldDescriptor.FieldType}");
             }
